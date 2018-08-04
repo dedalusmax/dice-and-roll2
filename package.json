@@ -1,0 +1,39 @@
+{
+  "name": "dice-and-roll2",
+  "version": "1.0.0",
+  "description": "Dice & Roll - lighthouse tale",
+  "keywords": [
+    "Phaser",
+    "TypeScript",
+    "Webpack",
+    "Dice&Roll"
+  ],
+  "devDependencies": {
+    "expose-loader": "0.7.5",
+    "ts-loader": "4.4.2",
+    "typescript": "2.9.2",
+    "webpack": "4.15.0",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "3.1.4"
+  },
+  "dependencies": {
+    "phaser": "3.10.1"
+  },
+  "scripts": {
+    "dev": "webpack --mode development && webpack-dev-server --mode development",
+    "build": "webpack --mode production && webpack-dev-server --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dedalusmax/dice-and-roll2.git"
+  },
+  "author": {
+    "name": "Ratko Ćosić",
+    "email": "dedalus123@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dedalusmax/dice-and-roll2/issues"
+  },
+  "homepage": "https://github.com/dedalusmax/dice-and-roll2"
+}
