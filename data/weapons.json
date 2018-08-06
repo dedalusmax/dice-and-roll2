@@ -1,0 +1,37 @@
+{
+    "revolver": {
+        "name": "revolver",
+        "title": "Revolver",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 1
+    },  
+    "battle_axe": {
+        "name": "army_sabre",
+        "title": "Army sabre",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 1
+    },  
+    "two_handed_poleaxe": {
+        "name": "rifle",
+        "title": "Rifle",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 1
+    },  
+    "orcish_poleaxe": {
+        "name": "dagger",
+        "title": "Dagger",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 1
+    },  
+    "broad_axe": {
+        "name": "deck_of_cards",
+        "title": "Deck of cards",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 1
+    }
+}

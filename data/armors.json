@@ -1,0 +1,32 @@
+{
+    "leather_coat": {
+        "name": "leather_coat",
+        "title": "Leather coat",
+        "desc": "",
+        "defense": 1
+    },
+    "regiment_uniform": {
+        "name": "regiment_uniform",
+        "title": "Regiment uniform",
+        "desc": "",
+        "defense": 1
+    },
+    "lab_coat": {
+        "name": "lab_coat",
+        "title": "Lab coat",
+        "desc": "",
+        "defense": 0
+    },
+    "black_cloak": {
+        "name": "cloak",
+        "title": "Cloak",
+        "desc": "",
+        "defense": 0
+    },
+    "magician_suit": {
+        "name": "magician_suit",
+        "title": "Magician suit",
+        "desc": "",
+        "defense": 1
+    }
+}
