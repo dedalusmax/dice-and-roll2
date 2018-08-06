@@ -5,6 +5,12 @@
         "desc": "",
         "defense": 1
     },
+    "brass_plating": {
+        "name": "brass_plating",
+        "title": "Brass plating",
+        "desc": "",
+        "defense": 2
+    },
     "regiment_uniform": {
         "name": "regiment_uniform",
         "title": "Regiment uniform",
@@ -17,7 +23,7 @@
         "desc": "",
         "defense": 0
     },
-    "black_cloak": {
+    "cloak": {
         "name": "cloak",
         "title": "Cloak",
         "desc": "",

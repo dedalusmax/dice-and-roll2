@@ -28,31 +28,9 @@ export class BootScene extends Phaser.Scene {
     }
 
     create(): void {
-        // this.disableVisibilityChange = true;
-
-        // if (this.game.device.desktop) {
-        //     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //     this.scale.minWidth = 297;
-        //     this.scale.minHeight = 210;
-        //     this.scale.pageAlignHorizontally = true;
-        //     this.scale.pageAlignVertically = true;
-        //     this.scale.setScreenSize(true);
-        // }
-        // else {
-        //     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //     this.scale.minWidth = 297;
-        //     this.scale.minHeight = 210;
-        //     this.scale.pageAlignHorizontally = true;
-        //     this.scale.pageAlignVertically = true;
-        //     this.scale.forceOrientation(true, false);
-        //     this.scale.onResize = this.gameResized.bind(this);
-        //     this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
-        //     this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
-        //     this.scale.setScreenSize(true);
-        // }
     }
 
     update(): void {
-        this.scene.start("LoadingScene", { loadScene: 'MenuScene' });
+        this.scene.start("LoadingScene", { loadScene: 'MainMenuScene' });
     }
 }

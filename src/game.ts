@@ -14,9 +14,11 @@ var A4 = { height: 297, width: 210 };
 const config: GameConfig = {
     // width: A4.height * 4,
     // height: A4.width * 4,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    type: Phaser.AUTO,
+    // width: window.innerWidth,
+    // height: window.innerHeight,
+    width: window.innerWidth * window.devicePixelRatio - 4,
+    height: window.innerHeight * window.devicePixelRatio - 4,
+    type: Phaser.CANVAS,
     parent: "game",
     scene: [ BootScene, LoadingScene, MainMenuScene, NewGameScene, GameScene, BattleScene ]
   };
