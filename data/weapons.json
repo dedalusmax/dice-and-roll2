@@ -1,37 +1,170 @@
 {
-    "revolver": {
-        "name": "revolver",
-        "title": "Revolver",
+    "revolvers": {
+        "name": "revolvers",
+        "title": "Revolvers",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 1
+    }, 
+    "hunting_revolvers": {
+        "name": "hunting_revolvers",
+        "title": "Hunting revolvers",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 2
+    }, 
+    "sherrif_sidearm": {
+        "name": "sherrif_sidearm",
+        "title": "Sherrif sidearm",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 3
+    }, 
+    "peacemaker": {
+        "name": "peacemaker",
+        "title": "Peacemaker",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 4
+    }, 
+    "steam_pipe": {
+        "name": "steam_pipe",
+        "title": "Steam pipe",
+        "desc": "",
+        "type": "BLUNT",
+        "attack": 1
+    },  
+    "brass_knockles": {
+        "name": "brass_knockles",
+        "title": "Brass knockles",
+        "desc": "",
+        "type": "BLUNT",
+        "attack": 2
+    },  
+    "wrench": {
+        "name": "wrench",
+        "title": "Wrench",
+        "desc": "",
+        "type": "BLUNT",
+        "attack": 3
+    },  
+    "forge_hammer": {
+        "name": "forge_hammer",
+        "title": "Forge hammer",
+        "desc": "",
+        "type": "BLUNT",
+        "attack": 4
+    },  
+    "musket": {
+        "name": "musket",
+        "title": "Musket",
         "desc": "",
         "type": "FIREARMS",
         "attack": 1
     },  
-    "battle_axe": {
-        "name": "army_sabre",
-        "title": "Army sabre",
+    "arquebus": {
+        "name": "arquebus",
+        "title": "Aquebus",
         "desc": "",
-        "type": "BLADE",
-        "attack": 1
+        "type": "FIREARMS",
+        "attack": 2
     },  
-    "two_handed_poleaxe": {
+    "rifle": {
         "name": "rifle",
         "title": "Rifle",
         "desc": "",
         "type": "FIREARMS",
+        "attack": 3
+    },  
+    "scoped_rifle": {
+        "name": "scoped_rifle",
+        "title": "Scoped rifle",
+        "desc": "",
+        "type": "FIREARMS",
+        "attack": 4
+    },  
+    "explosive_grenade": {
+        "name": "explosive_grenade",
+        "title": "Explosive grenade",
+        "desc": "",
+        "type": "MISSILE",
         "attack": 1
     },  
-    "orcish_poleaxe": {
+    "incendiary_grenade": {
+        "name": "incendiary_grenade",
+        "title": "Incendiary grenade",
+        "desc": "",
+        "type": "MISSILE",
+        "attack": 2
+    },  
+    "frag_grenade": {
+        "name": "frag_grenade",
+        "title": "Frag grenade",
+        "desc": "",
+        "type": "MISSILE",
+        "attack": 3
+    },  
+    "termite_grenade": {
+        "name": "termite_grenade",
+        "title": "Termite grenade",
+        "desc": "",
+        "type": "MISSILE",
+        "attack": 4
+    },  
+    "dagger": {
         "name": "dagger",
         "title": "Dagger",
         "desc": "",
         "type": "BLADE",
         "attack": 1
     },  
-    "broad_axe": {
+    "razor": {
+        "name": "razor",
+        "title": "Razor",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 2
+    },  
+    "shadow_blade": {
+        "name": "shadow_blade",
+        "title": "Shadow blade",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 3
+    },  
+    "throat_slitter": {
+        "name": "throat_slitter",
+        "title": "Throat slitter",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 1
+    },  
+    "deck_of_cards": {
         "name": "deck_of_cards",
         "title": "Deck of cards",
         "desc": "",
         "type": "BLADE",
         "attack": 1
+    },
+    "blackjack": {
+        "name": "blackjack",
+        "title": "Blackjack",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 2
+    },
+    "poker_cards": {
+        "name": "poker_cards",
+        "title": "Poker cards",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 3
+    },
+    "joker_card": {
+        "name": "joker_card",
+        "title": "Joker card",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 4
     }
 }
