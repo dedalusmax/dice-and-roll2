@@ -1,7 +1,8 @@
 export class Settings {
 
     private static _sound = {
-        musicVolume: 1
+        musicVolume: 1,
+        sfxVolume: 1
     };
 
     public static get sound() {

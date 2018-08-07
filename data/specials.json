@@ -17,13 +17,13 @@
     },
     "healing_potion": {
         "name": "Healing potion",
-        "description": "Increases health of selected combatant",
+        "description": "Increases health of selected party member.",
         "targetType": "anyFriend",
         "executionType": "healSingleTarget",
         "modifier": 2
     },
-    "electric_shock": {
-        "name": "Electric shock",
+    "catalitic_bomb": {
+        "name": "Catalitic bomb",
         "description": "Attacks nearby opponents attack -1",
         "targetType": "anyEnemy",
         "executionType": "attackRankAtOnce",
@@ -40,8 +40,8 @@
         "duration": 2,
         "power": 2
     },
-    "catalitic_bomb": {
-        "name": "Catalitic bomb",
+    "electric_bomb": {
+        "name": "Electric bomb",
         "description": "Attack all opponents +2",
         "targetType": "anyEnemy",
         "executionType": "attackAllAtOnce",
@@ -49,8 +49,8 @@
     },
 
 
-    "rage": {
-        "name": "Rage",
+    "battle_cry": {
+        "name": "Battle cry",
         "description": "Increases attack +3",
         "targetType": "self",
         "executionType": "applyStatusToSingleTarget",
@@ -120,13 +120,13 @@
         ],
         "power": 3
     },
-    "tripple_shot": {
-        "name": "Triple shot",
-        "description": "Attacks 3 opponents at once attack -1",
+    "ricochet": {
+        "name": "Ricochet",
+        "description": "Attacks opponent and deals additional damage to another random opponent.",
         "targetType": "anyEnemy",
         "executionType": "attackRandomInSequence",
         "attackCount": 2,
-        "modifier": -1
+        "modifier": 1
     },
     "fire_arrow": {
         "name": "Fire arrow",

@@ -24,7 +24,7 @@ export class LoadingScene extends Phaser.Scene {
 
     preload(): void {
         // ImageService.stretchAndFitImage('preloader', this);
-        Settings.sound.musicVolume = 0;
+        // Settings.sound.musicVolume = 0;
 
         if (!this._options.persistMusic) {
             this.sound.stopAll();
@@ -63,6 +63,18 @@ export class LoadingScene extends Phaser.Scene {
     }
 
     create(): void {
+    }
+
+    update(): void {
+        // fade in the music
+        if (this.sound.volume < Settings.sound.musicVolume) {
+            this.sound.volume += 0.005;
+        }
+
+        // check if the loading is over and prepare transition (with some sound loading sync)
+        if (this._music.isPlaying ||  this.cache.audio.exists('interlude')) {
+            this.scene.start(this._loadScene, this._options);
+        }
     }
 
     private setProgress() {
@@ -120,7 +132,7 @@ export class LoadingScene extends Phaser.Scene {
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(width / 2 - barWidth / 2, height / 2 - barHeight / 2 - 5, barWidth * value, barHeight);
             percentText.setText(Math.round(value * 100) + '%');
-            for (var i = 0; i < 400000000; i++) {}
+            // for (var i = 0; i < 400000000; i++) {}
         }, this);
 
         this.load.on('fileprogress', function (file) {
