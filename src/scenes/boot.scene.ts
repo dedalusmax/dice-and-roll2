@@ -1,3 +1,5 @@
+import { Assets } from "../models/assets";
+
 export class BootScene extends Phaser.Scene {
   
     constructor() {
@@ -28,6 +30,8 @@ export class BootScene extends Phaser.Scene {
     }
 
     create(): void {
+        // create object repository for usage in game
+        var assets = new Assets(this.sys.game);
     }
 
     update(): void {

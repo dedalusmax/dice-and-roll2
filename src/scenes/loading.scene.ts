@@ -1,5 +1,6 @@
 import { ImageService } from '../services/image.service';
-import { Settings } from '../settings';
+import { Settings } from '../models/settings';
+import { Soundsets } from '../models/soundsets';
 
 const PROGRESSBAR_EMPTY = 0x5dae47;
 const PROGRESSBAR_FILL = 0xfff6d3;
@@ -63,6 +64,12 @@ export class LoadingScene extends Phaser.Scene {
     }
 
     create(): void {
+        // create all soundsets for the game
+        var soundsets = new Soundsets(this);
+        soundsets.create('sword', ['sword', 'sword2', 'sword3', 'sword4', 'sword5']);
+        soundsets.create('page', ['page', 'page2', 'page3', 'page4']);
+        soundsets.create('select', ['swords']);
+        soundsets.create('swing', ['swing', 'swing2', 'swing3', 'swoosh']);                
     }
 
     update(): void {
