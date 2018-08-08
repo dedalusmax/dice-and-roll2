@@ -126,11 +126,16 @@ export class MainMenuScene extends Phaser.Scene {
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game settings', 1, Styles.text.header));
+        menu.add(this.createMenuItem('Game settings', 1, Styles.menu.header));
 
-        menu.add(this.createMenuItem('Music volume', 1.8, Styles.menu.submenu));
+        var musicVolume = this.createMenuItem('Music volume', 1.8, Styles.menu.submenu);
+        menu.add(musicVolume);
 
-        var lessMusic = this.add.sprite(460, 360, 'arrows', 0);
+        var musicLevel = this.createMenuItem('', 2.4, Styles.menu.volume);
+        musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
+        menu.add(musicLevel);
+
+        var lessMusic = this.add.sprite(musicLevel.x - musicLevel.width / 2 - 40, musicLevel.y, 'arrows', 0);
 
         lessMusic.setInteractive(
             new Phaser.Geom.Rectangle(0, 0, lessMusic.width, lessMusic.height), Phaser.Geom.Rectangle.Contains);
@@ -138,14 +143,14 @@ export class MainMenuScene extends Phaser.Scene {
         lessMusic.on('pointerdown', e => {
             if (Settings.sound.musicVolume > 0) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume - 0.1) * 10) / 10;
-                musicLevel.text = this.displayVolume(Settings.sound.musicVolume);
+                musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
                 this.sound.volume = Settings.sound.musicVolume;
             }
         });
 
         menu.add(lessMusic);
 
-        var moreMusic = this.add.sprite(700, 360, 'arrows', 1);
+        var moreMusic = this.add.sprite(musicLevel.x + musicLevel.width / 2 + 40, musicLevel.y, 'arrows', 1);
 
         moreMusic.setInteractive(
             new Phaser.Geom.Rectangle(0, 0, moreMusic.width, moreMusic.height), Phaser.Geom.Rectangle.Contains);
@@ -153,19 +158,21 @@ export class MainMenuScene extends Phaser.Scene {
         moreMusic.on('pointerdown', e => {
             if (Settings.sound.musicVolume < 1) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume + 0.1) * 10) / 10;
-                musicLevel.text = this.displayVolume(Settings.sound.musicVolume);
+                musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
                 this.sound.volume = Settings.sound.musicVolume;
             }
         });
 
         menu.add(moreMusic);
 
-        var musicLevel = this.createMenuItem('', 2.4, Styles.menu.volume);
-        musicLevel.text = this.displayVolume(Settings.sound.musicVolume);
-        menu.add(musicLevel);
+        var soundFxVolume = this.createMenuItem('Sound FX volume', 3.2, Styles.menu.submenu);
+        menu.add(soundFxVolume);
 
-        menu.add(this.createMenuItem('Sound FX volume', 3.2, Styles.menu.submenu));
-        var lessSfx = this.add.sprite(460, 470, 'arrows', 0);
+        var sfxLevel = this.createMenuItem('', 3.9, Styles.menu.volume);
+        sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
+        menu.add(sfxLevel);
+
+        var lessSfx = this.add.sprite(sfxLevel.x - sfxLevel.width / 2 - 40, sfxLevel.y, 'arrows', 0);
 
         lessSfx.setInteractive(
             new Phaser.Geom.Rectangle(0, 0, lessSfx.width, lessSfx.height), Phaser.Geom.Rectangle.Contains);
@@ -173,13 +180,13 @@ export class MainMenuScene extends Phaser.Scene {
         lessSfx.on('pointerdown', e => {
             if (Settings.sound.sfxVolume > 0) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume - 0.1) * 10) / 10;
-                sfxLevel.text = this.displayVolume(Settings.sound.sfxVolume);
+                sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
         });
 
         menu.add(lessSfx);
 
-        var moreSfx = this.add.sprite(700, 470, 'arrows', 1);
+        var moreSfx = this.add.sprite(sfxLevel.x + sfxLevel.width / 2 + 40, sfxLevel.y, 'arrows', 1);
 
         moreSfx.setInteractive(
             new Phaser.Geom.Rectangle(0, 0, moreSfx.width, moreSfx.height), Phaser.Geom.Rectangle.Contains);
@@ -187,15 +194,11 @@ export class MainMenuScene extends Phaser.Scene {
         moreSfx.on('pointerdown', e => {
             if (Settings.sound.sfxVolume < 1) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume + 0.1) * 10) / 10;
-                sfxLevel.text = this.displayVolume(Settings.sound.sfxVolume);
+                sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
         });
 
         menu.add(moreSfx);
-
-        var sfxLevel = this.createMenuItem('', 3.9, Styles.menu.volume);
-        sfxLevel.text = this.displayVolume(Settings.sound.sfxVolume);
-        menu.add(sfxLevel);
 
         menu.add(this.createMenuItem('Back', 5, Styles.text.backButton, this.createMainMenu.bind(this)));
 
@@ -208,14 +211,14 @@ export class MainMenuScene extends Phaser.Scene {
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game programming:', 1, Styles.text.header));
+        menu.add(this.createMenuItem('Game programming:', 1, Styles.menu.header));
         menu.add(this.createMenuItem('Ratko & Simun Cosic', 1.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Game artwork:', 2, Styles.text.header));
+        menu.add(this.createMenuItem('Game artwork:', 2, Styles.menu.header));
         menu.add(this.createMenuItem('Klara Cosic', 2.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Game story:', 3, Styles.text.header));
+        menu.add(this.createMenuItem('Game story:', 3, Styles.menu.header));
         menu.add(this.createMenuItem('Tvrtko Cosic', 3.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Special thanks to:', 4, Styles.text.header));
-        menu.add(this.createMenuItem('Looperman for music tracks', 4.5, Styles.menu.author_small));
+        menu.add(this.createMenuItem('Special thanks to:', 4, Styles.menu.header));
+        menu.add(this.createMenuItem('Looperman for music tracks', 4.3, Styles.menu.author_small));
         menu.add(this.createMenuItem('Back', 5, Styles.text.backButton, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
