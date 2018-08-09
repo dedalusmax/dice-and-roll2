@@ -1,5 +1,6 @@
 import { Settings } from '../models/settings';
 import { Soundsets } from '../models/soundsets';
+import { Assets } from '../models/assets';
 
 export class LoadingScene extends Phaser.Scene {
 
@@ -55,7 +56,70 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('sword3', ['assets/sound/effects/sword-clang3.ogg', 'assets/sound/effects/sword-clang3.mp3']);
                 this.load.audio('sword4', ['assets/sound/effects/sword-clang4.ogg', 'assets/sound/effects/sword-clang4.mp3']);
                 this.load.audio('sword5', ['assets/sound/effects/sword-clang5.ogg', 'assets/sound/effects/sword-clang5.mp3']);
-            break;
+                break;
+            case 'NewGameScene':
+                break;
+            case 'MapScene':
+                break;
+            case 'BattleScene':
+                // background screen
+                this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
+                // ambient music
+                if (this._options.terrain === 'grass') {
+                    this.load.audio('battle_' + this._options.terrain,
+                        ['assets/sound/loops/looperman-l-0202721-0075453-anubis-tribal-escape-02.ogg',
+                            'assets/sound/loops/looperman-l-0202721-0075453-anubis-tribal-escape-02.mp3']);
+                } else if (this._options.terrain === 'dirt') {
+                    this.load.audio('battle_' + this._options.terrain,
+                        ['assets/sound/loops/looperman-l-0202721-0074960-anubis-tribal-percussion-07.ogg',
+                            'assets/sound/loops/looperman-l-0202721-0074960-anubis-tribal-percussion-07.mp3']);
+                } else if (this._options.terrain === 'siege') {
+                    this.load.audio('battle_' + this._options.terrain,
+                        ['assets/sound/loops/looperman-l-0202721-0074435-anubis-tribal-percussion-01.ogg',
+                            'assets/sound/loops/looperman-l-0202721-0074435-anubis-tribal-percussion-01.mp3']);
+                }
+                // load characters in party
+                this._options.playerParty.forEach(function (character) {
+                    this.game.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
+                }, this);
+                // load monsters in battle
+                this._options.enemyParty.forEach(function (monster) {
+                    this.game.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
+                }, this);
+                // sound effects
+                this.load.audio('hit', ['assets/sound/effects/Swoosh02.mp3']);
+                this.load.audio('multi-hit', ['assets/sound/effects/SwooshCombo1.mp3']);
+                this.load.audio('multi-hit2', ['assets/sound/effects/SwooshCombo2.mp3']);
+                this.load.audio('click', ['assets/sound/effects/mechanical-clonk-1.mp3']);
+                this.load.audio('click2', ['assets/sound/effects/smack-1.mp3']);
+                // swing audio set:
+                this.load.audio('swing', ['assets/sound/effects/swing.ogg', 'assets/sound/effects/swing.mp3']);
+                this.load.audio('swing2', ['assets/sound/effects/swing2.ogg', 'assets/sound/effects/swing2.mp3']);
+                this.load.audio('swing3', ['assets/sound/effects/swing3.ogg', 'assets/sound/effects/swing3.mp3']);
+                this.load.audio('swoosh', ['assets/sound/effects/Swoosh02.ogg', 'assets/sound/effects/Swoosh02.mp3']);
+                // select audio set:
+                this.load.audio('swords', ['assets/sound/effects/Swords_Collide.ogg', 'assets/sound/effects/Swords_Collide.mp3']);
+                // load specials
+                for (var special in Assets.specials) {
+                    this.load.image('specials/' + special, 'assets/specials/' + special + '_s.png');
+                }
+                // TODO: assort these images more efficiently !!!
+
+                this.load.image('cards/back', 'assets/cards/card-back.png');
+                this.load.image('cards/front', 'assets/cards/card-front.png');
+                this.load.image('cards/faction-1', 'assets/cards/card-faction-1.png');
+                this.load.image('cards/faction-2', 'assets/cards/card-faction-2.png');
+                this.load.image('cards/emblem-axe', 'assets/cards/card-axe.png');
+                this.load.image('cards/emblem-mace', 'assets/cards/card-mace.png');
+                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
+                this.load.image('cards/emblem-bow', 'assets/cards/card-bow.png');
+                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
+                this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
+                this.load.image('cards/emblem-claw', 'assets/cards/card-claw.png');
+                this.load.image('cards/emblem-spear', 'assets/cards/card-spear.png');
+                this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
+
+                break;
         }
     }
 

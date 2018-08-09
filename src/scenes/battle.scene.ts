@@ -5,4 +5,10 @@ export class BattleScene extends Phaser.Scene {
             key: "BattleScene"
         });
     }
+
+    init(data): void {
+
+    }
+
+
 }

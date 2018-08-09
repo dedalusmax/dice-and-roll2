@@ -86,6 +86,15 @@ export class MainMenuScene extends Phaser.Scene {
     };
 
     createSkirmishMenu() {
+
+        this.scene.start('LoadingScene', { loadScene: 'BattleScene', persistMusic: false,
+            terrain: 'grass', skirmish: true, 
+            playerParty: [ Assets.characters.gunslinger, Assets.characters.automaton, Assets.characters.musketeer ],
+            enemyParty: [{ name: 'puppeteer', type: 'RANGED' }, { name: 'harlequin', type: 'MELEE' }, { name: 'plague_doctor', type: 'RANGED' } ]
+        });
+
+        return;
+
         if (this._activeMenu) {
             this._activeMenu.toggleVisible();
         }
