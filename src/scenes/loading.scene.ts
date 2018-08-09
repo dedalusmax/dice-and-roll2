@@ -1,9 +1,5 @@
-import { ImageService } from '../services/image.service';
 import { Settings } from '../models/settings';
 import { Soundsets } from '../models/soundsets';
-
-const PROGRESSBAR_EMPTY = 0x5dae47;
-const PROGRESSBAR_FILL = 0xfff6d3;
 
 export class LoadingScene extends Phaser.Scene {
 

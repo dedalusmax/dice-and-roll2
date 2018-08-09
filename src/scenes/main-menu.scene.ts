@@ -1,6 +1,5 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
-import { Input, Scene, Game } from "phaser";
 import { Assets } from "../models/assets";
 import { Styles } from "../models/styles";
 import { Soundsets } from "../models/soundsets";

@@ -1,5 +1,3 @@
-import { Textures } from "phaser";
-
 export class ImageService {
     
     static stretchAndFitImage(name: string, scene: Phaser.Scene) {

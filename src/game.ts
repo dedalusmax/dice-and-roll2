@@ -5,7 +5,7 @@ import { BootScene } from "./scenes/boot.scene";
 import { LoadingScene } from "./scenes/loading.scene";
 import { MainMenuScene } from "./scenes/main-menu.scene";
 import { NewGameScene } from "./scenes/new-game.scene";
-import { GameScene } from "./scenes/game.scene";
+import { MapScene } from "./scenes/map.scene";
 import { BattleScene } from "./scenes/battle.scene";
 
 var A4 = { height: 297, width: 210 };
@@ -20,7 +20,7 @@ const config: GameConfig = {
     height: window.innerHeight * window.devicePixelRatio - 4,
     type: Phaser.CANVAS,
     parent: "game",
-    scene: [ BootScene, LoadingScene, MainMenuScene, NewGameScene, GameScene, BattleScene ]
+    scene: [ BootScene, LoadingScene, MainMenuScene, NewGameScene, MapScene, BattleScene ]
   };
   
 // game class
