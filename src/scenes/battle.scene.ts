@@ -80,11 +80,13 @@ export class BattleScene extends Phaser.Scene {
             // addedCharacter.customEvents.onActed.add(this.endTurn, this);
         }
 
-        for (var enemyIndex in this._options.enemyParty) {
-            var monster = this._options.enemyParty[enemyIndex];
-            // var addedMonster = this._combatants.add(CreatureService.create(monster.name, 2, this.getPosition(2, monster.type, enemyIndex, this._options.enemyParty.length, this._canvas.width, this._canvas.height), this.game));
+        for (var index in this._options.enemyParty) {
+            var monster = this._options.enemyParty[index];
+            var cardPosition = this.calculateCombatantPosition(Team.Enemy, monster.type, 
+                index, this._options.enemyParty.length, this._canvas.width, this._canvas.height);
+            var addedMonster = CreatureService.create(this, monster,  cardPosition);
             // addedMonster.customEvents.onActed.add(this.endTurn, this);
-            this._combatants.push(monster);
+            this._combatants.push(addedMonster);
         }
 
         this._combatants.sort((left, right) => {
