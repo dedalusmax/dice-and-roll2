@@ -18,7 +18,7 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     init(data): void {
-        this._options = data.options || {};
+        this._options = data;
     }
 
     preload(): void {

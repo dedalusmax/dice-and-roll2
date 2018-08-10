@@ -7,6 +7,7 @@ export class LoadingScene extends Phaser.Scene {
     private _loadScene: string;
     private _options: any;
 
+    private _loadingFinished: boolean;
     private _music: Phaser.Sound.BaseSound;
 
     constructor() {
@@ -17,13 +18,14 @@ export class LoadingScene extends Phaser.Scene {
 
     init(data): void {
         this._loadScene = data.loadScene;
-        this._options = data.options || {};
+        this._options = data;
     }
 
     preload(): void {
+        this._loadingFinished = false;
         // ImageService.stretchAndFitImage('preloader', this);
         // Settings.sound.musicVolume = 0;
-
+        
         if (!this._options.persistMusic) {
             this.sound.stopAll();
             if (Settings.sound.musicVolume > 0) {
@@ -79,13 +81,13 @@ export class LoadingScene extends Phaser.Scene {
                             'assets/sound/loops/looperman-l-0202721-0074435-anubis-tribal-percussion-01.mp3']);
                 }
                 // load characters in party
-                this._options.playerParty.forEach(function (character) {
-                    this.game.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
-                }, this);
+                this._options.playerParty.forEach(character => {
+                    this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
+                });
                 // load monsters in battle
-                this._options.enemyParty.forEach(function (monster) {
-                    this.game.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
-                }, this);
+                this._options.enemyParty.forEach(monster => {
+                    this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
+                });
                 // sound effects
                 this.load.audio('hit', ['assets/sound/effects/Swoosh02.mp3']);
                 this.load.audio('multi-hit', ['assets/sound/effects/SwooshCombo1.mp3']);
@@ -139,7 +141,7 @@ export class LoadingScene extends Phaser.Scene {
         }
 
         // check if the loading is over and prepare transition (with some sound loading sync)
-        if (this._music.isPlaying ||  this.cache.audio.exists('interlude')) {
+        if (this._loadingFinished) {
             this.scene.start(this._loadScene, this._options);
         }
     }
@@ -193,27 +195,28 @@ export class LoadingScene extends Phaser.Scene {
         var barHeight = 30;
 
         // pass value to change the loading bar fill
-        this.load.on("progress", function (value: number) {
-            console.log(value);
+        this.load.on("progress", (value: number) => {
+            // console.log(value);
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(width / 2 - barWidth / 2, height / 2 - barHeight / 2 - 5, barWidth * value, barHeight);
             percentText.setText(Math.round(value * 100) + '%');
             // for (var i = 0; i < 400000000; i++) {}
-        }, this);
+        });
 
-        this.load.on('fileprogress', function (file) {
-            console.log(file.src);
+        this.load.on('fileprogress', file => {
+            // console.log(file.src);
             assetText.setText('Loading asset: ' + file.key);
         });
 
         // delete bar graphics, when loading complete
-        this.load.on("complete", function () {
+        this.load.on("complete", f => {
             progressBar.destroy();
             progressBox.destroy();
             loadingText.destroy();
             percentText.destroy();
             assetText.destroy();
-        }, this);
+            this._loadingFinished = true;
+        });
     }
 }

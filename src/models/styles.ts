@@ -20,4 +20,8 @@ export class Styles {
         submenu_button: { font: '48px ' + FONT_FAMILY, fill: '#990000', align: 'center', stroke: '#000000', strokeThickness: 2 },
         menu_button_pressed: { font: '56px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 }
     }
+
+    public static readonly battle = {
+        round: { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' }
+    }
 }
