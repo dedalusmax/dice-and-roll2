@@ -6,6 +6,7 @@ import { Soundsets } from "../models/soundsets";
 import { CharacterService } from "../services/character.service";
 import { CreatureService } from "../services/creature.service";
 import { Combatant, Team } from "../models/combatant";
+import { Tweens } from "phaser";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -112,8 +113,10 @@ export class BattleScene extends Phaser.Scene {
         this.checkIfBattleIsOver();
 
         if (this._turnNumber == 0 || this._turnNumber >= this._combatants.length) {
-            var promise = this.initiateRound();
-            this.startNextTurn();
+            var round = this.initiateRound();
+            round.then(() => {
+                this.startNextTurn();
+            });
             // promise.onComplete.addOnce(this.startNextTurn, this);
         } else {
             this.startNextTurn();
@@ -142,7 +145,7 @@ export class BattleScene extends Phaser.Scene {
     };
 
     // starts next round. sorts semi-randomizes initiative and sorts combatants in that order
-    private initiateRound() { 
+    private initiateRound(): Promise<Phaser.Tweens.Tween> { 
         this._turnNumber = 0;
         this._roundNumber++;
 
@@ -151,7 +154,33 @@ export class BattleScene extends Phaser.Scene {
         var roundText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Round ' + this._roundNumber, Styles.battle.round);
         roundText.setOrigin(0.5, 0.5);
         roundText.alpha = 0;
-        // var roundTweenFadeIn = this.add.tween(roundText).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true),
+
+        //var roundTweenFadeIn = this.add.tween(roundText).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
+        var promise = new Promise<Phaser.Tweens.Tween>((resolve, reject) => {
+            var roundTweenFadeOut: Phaser.Tweens.Tween;
+            var roundTweenFadeIn = this.add.tween({
+                targets: [roundText],
+                ease: 'Linear.none',
+                duration: 500,
+                delay: 0,
+                alpha: 1,
+                onComplete: () => {
+                    roundTweenFadeOut = this.add.tween({
+                        targets: [roundText],
+                        ease: 'Linear.none',
+                        duration: 500,
+                        delay: 0,
+                        alpha: 0,
+                        onComplete: () => {
+                            resolve(roundTweenFadeOut);
+                        }
+                    });
+                }
+            });
+        });
+
+        return promise;
+
         //     roundTweenFadeOut = this.add.tween(roundText).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, false);
 
         // roundTweenFadeIn.chain(roundTweenFadeOut);
