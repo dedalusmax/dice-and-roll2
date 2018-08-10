@@ -1,6 +1,12 @@
 import { Status } from "./status";
 import { Assets } from "./assets";
 import { Soundsets } from "./soundsets";
+import { Styles, FONT_FAMILY } from "./styles";
+
+export enum Team {
+    Friend = 1,
+    Enemy = 2
+}
 
 const TEAMS = { FRIEND: 1, ENEMY: 2 },
         ACTUAL_SIZE = { X: 394, Y: 530 },
@@ -23,10 +29,10 @@ const TEAMS = { FRIEND: 1, ENEMY: 2 },
         };
 
 // Combatant is any combat unit, friend or foe. 
-// GameObject wise, it's a group consisiting of the character/monster graphic and all other supporting graphics together forming a unit card.
-export class Combatant extends Phaser.GameObjects.Group {
+// it consists of the character/monster graphic and all other supporting graphics together forming a unit card.
+export class Combatant {
 
-    private _mainSprite: any;
+    private _mainSprite: Phaser.GameObjects.Sprite;
     private _attackText: Phaser.GameObjects.BitmapText;
     private _defenseText: Phaser.GameObjects.BitmapText;
     private _healthIndicator: Phaser.GameObjects.BitmapText;
@@ -43,51 +49,57 @@ export class Combatant extends Phaser.GameObjects.Group {
         return this._specials;
     }
     
-    constructor(private _scene: Phaser.Scene, team, position, texture) {
-        // Phaser.Group.call(this, this.game, null, texture);
-        super(_scene, texture);
+    private addSpriteToCard(scene: Phaser.Scene, left: number, top: number, texture) {
+        var x = this._position.x + left;
+        var y = this._position.y + top;
+        var sprite = scene.add.sprite(x, y, texture);
+        sprite.setDisplayOrigin(this._position.x, this._position.y);
+        sprite.setScale(0.3);
+        sprite.setOrigin(0.5, 0.5);
+        return sprite;
+    }
+
+    private addBitmapTextToCard(scene: Phaser.Scene, left: number, top: number, text: string, size: number) {
+        var x = this._position.x + left;
+        var y = this._position.y + top;
+        var bitmapText = scene.add.bitmapText(x, y, FONT_FAMILY, text, size);
+        // sprite.setDisplayOrigin(this._position.x, this._position.y);
+        // sprite.setScale(0.3);
+        // sprite.setOrigin(0.5, 0.5);
+        // return sprite;
+    }
+
+    constructor(private _scene: Phaser.Scene, public team: Team, private _position: Phaser.Geom.Point, texture) {
 
         this._canvas = _scene.textures.game.canvas;
 
-        this.active = false;
-
         // the main sprite, the card background
-        this._mainSprite = this.create(0, 0, 'cards/front');
-        this._mainSprite.anchor.setTo(0.5, 0.5);
+        this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/front');
+        //this._mainSprite.setOrigin(0.5, 0.5);
+        this._mainSprite.setScale(0.36); // (SCALED_SIZE.X / ACTUAL_SIZE.X, SCALED_SIZE.Y / ACTUAL_SIZE.Y);
+        console.log(this._mainSprite.x, this._mainSprite.y, this._mainSprite.width, this._mainSprite.height);
 
         // the faction emblem, top right corner
-        var factionEmblem = this.create(BOUNDS.RIGHT - 36, BOUNDS.TOP + 46, team === TEAMS.FRIEND ? 'cards/faction-1' : 'cards/faction-2');
-        factionEmblem.scale.setTo(0.6);
-        factionEmblem.anchor.setTo(0.5, 0.5);
+        var z = this.addSpriteToCard(_scene, 55, -80, team === Team.Friend ? 'cards/faction-1' : 'cards/faction-2');
 
         // the attack emblem, bottom left corner
         // TODO: Add the character specific emblem here
         // TODO: Add attack value display here
-        var attackEmblem = this.create(BOUNDS.LEFT + 38, BOUNDS.BOTTOM - 45, 'cards/emblem-sword');
-        attackEmblem.anchor.setTo(0.5, 0.5);
-        attackEmblem.scale.setTo(0.6);
+        this.addSpriteToCard(_scene, -55, 80, 'cards/emblem-sword');
 
-        this._attackText = new Phaser.GameObjects.BitmapText(_scene, BOUNDS.LEFT + 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48);
-        this.add(this._attackText);
+        this._attackText = _scene.add.bitmapText(BOUNDS.LEFT + 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48);
 
         // the defense emblem, bottom right corner
         // TODO: Add defense value display here
-        var defenseEmblem = this.create(BOUNDS.RIGHT - 38, BOUNDS.BOTTOM - 45, 'cards/emblem-shield');
-        defenseEmblem.scale.setTo(0.6);
-        defenseEmblem.anchor.setTo(0.5, 0.5);
+        this.addSpriteToCard(_scene, 55, 80, 'cards/emblem-shield');
 
-        this._defenseText = new Phaser.GameObjects.BitmapText(_scene, BOUNDS.RIGHT - 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48)
-        this.add(this._defenseText);
+        this._defenseText = _scene.add.bitmapText(BOUNDS.RIGHT - 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48);
 
-        var characterSprite = this.create(0, 0, texture);
-        characterSprite.scale.setTo((ACTUAL_SIZE.Y - 100) / characterSprite.texture.height);
-        characterSprite.anchor.setTo(0.5, 0.5);
+        var characterSprite = _scene.add.sprite(0, 0, texture);
+        characterSprite.setScale((ACTUAL_SIZE.Y - 100) / characterSprite.height);
+        characterSprite.setOrigin(0.5, 0.5);
 
-        this._healthIndicator = new Phaser.GameObjects.BitmapText(_scene, 0, BOUNDS.BOTTOM - 55, 'berkshire', 'Health', 48);
-        this.add(this._healthIndicator);
-
-        // TODO:RC this.scale.setTo(SCALED_SIZE.X / ACTUAL_SIZE.X, SCALED_SIZE.Y / ACTUAL_SIZE.Y);
-        // TODO:RC this.position.setTo(position.x, position.y);
+        this._healthIndicator = _scene.add.bitmapText(0, BOUNDS.BOTTOM - 55, 'berkshire', 'Health', 48);
         
         this._customEvents = {
             onInputDown: new Phaser.Events.EventEmitter(),
@@ -96,17 +108,17 @@ export class Combatant extends Phaser.GameObjects.Group {
         };
 
         // main sprite imput simply delegates to custom group imput
-        this._mainSprite.inputEnabled = true;
-        this._mainSprite.events.onInputDown.add(function () {
-            this.customEvents.onInputDown.dispatch(this);
-        }, this);
-        this._mainSprite.events.onKilled.add(this.combatantKilled, this);
-        this._status = new Status(_scene, this);
-        _scene.add.group(this._status);
+        this._mainSprite.setInteractive();
+        // this._mainSprite.events.onInputDown.add(function () {
+        //     this.customEvents.onInputDown.dispatch(this);
+        // }, this);
+        // this._mainSprite.events.onKilled.add(this.combatantKilled, this);
+        //this._status = new Status(_scene, this);
+        //_scene.add.group(this._status);
         // this._status.position.setTo(BOUNDS.LEFT + 58, BOUNDS.TOP + 72);
 
         // contains the character's moves
-        this._specials = _scene.add.group();
+        //this._specials = _scene.add.group();
         // this._specials.exists = false;
         this._stats = {};
     }
@@ -187,20 +199,20 @@ export class Combatant extends Phaser.GameObjects.Group {
     }
 
     damage(value) {
-        this._mainSprite.damage(value);
-        this.showDamage(value);
+        // this._mainSprite.damage(value);
+        // this.showDamage(value);
     }
 
     heal(value) {
-        this._mainSprite.health += value;
-        if (this._mainSprite.health > this._stats.maxHealth)
-            this._mainSprite.health = this._stats.maxHealth;
-        this.showHealing(value);
+        // this._mainSprite.health += value;
+        // if (this._mainSprite.health > this._stats.maxHealth)
+        //     this._mainSprite.health = this._stats.maxHealth;
+        // this.showHealing(value);
     }
 
     setStats(stats) {
         this._stats.maxHealth = stats.maxHealth || stats.health;
-        this._mainSprite.health = stats.health ? stats.health : stats.maxHealth;
+        // this._mainSprite.health = stats.health ? stats.health : stats.maxHealth;
         this._stats.speed = stats.speed;
         this._stats.attack = stats.attack;
         this._stats.defense = stats.defense;
@@ -211,15 +223,15 @@ export class Combatant extends Phaser.GameObjects.Group {
     }
 
     getStats() {
-        return {
-            health: this._mainSprite.health,
-            maxHealth: this._stats.maxHealth,
-            speed: this._stats.speed,
-            attack: this._stats.attack,
-            defense: this._stats.defense,
-            weapon: this._stats.weapon,
-            armor: this._stats.armor
-        };
+        // return {
+        //     health: this._mainSprite.health,
+        //     maxHealth: this._stats.maxHealth,
+        //     speed: this._stats.speed,
+        //     attack: this._stats.attack,
+        //     defense: this._stats.defense,
+        //     weapon: this._stats.weapon,
+        //     armor: this._stats.armor
+        // };
     }
 
     attack(target) {
@@ -278,18 +290,18 @@ export class Combatant extends Phaser.GameObjects.Group {
         // status is a member of this group, so a group's update method needs to take care of updating it
         this._status.update();
         // update health indicator
-        this._healthIndicator.setText(this._mainSprite.health + '/' + this._stats.maxHealth);
-        var ratio = this._mainSprite.health / this._stats.maxHealth;
-        var healthFont = this._healthIndicator.font;
-        if (this._mainSprite.health === this._stats.maxHealth) {
-            this._healthIndicator.tint = COLOR.GREEN;
-        }
-        else if ((ratio < 1) && (ratio > 1 / 3)) {
-            this._healthIndicator.tint = COLOR.YELLOW;
-        }
-        else {
-            this._healthIndicator.tint = COLOR.RED;
-        }
+        // this._healthIndicator.setText(this._mainSprite.health + '/' + this._stats.maxHealth);
+        // var ratio = this._mainSprite.health / this._stats.maxHealth;
+        // var healthFont = this._healthIndicator.font;
+        // if (this._mainSprite.health === this._stats.maxHealth) {
+        //     this._healthIndicator.tint = COLOR.GREEN;
+        // }
+        // else if ((ratio < 1) && (ratio > 1 / 3)) {
+        //     this._healthIndicator.tint = COLOR.YELLOW;
+        // }
+        // else {
+        //     this._healthIndicator.tint = COLOR.RED;
+        // }
         // TODO:RC this._healthIndicator.pivot.setTo(this._healthIndicator.width / 2, this._healthIndicator.height / 2);
         // update attack indicator
         var effectiveAttack = this.getEffectiveAttack(), nonModifiedAttack = this._stats.attack + (this._stats.weaponStats ? this._stats.weaponStats.attack : 0);

@@ -5,6 +5,7 @@ import { Styles } from "../models/styles";
 import { Soundsets } from "../models/soundsets";
 import { CharacterService } from "../services/character.service";
 import { CreatureService } from "../services/creature.service";
+import { Combatant, Team } from "../models/combatant";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -18,7 +19,7 @@ export class BattleScene extends Phaser.Scene {
     private _turnNumber: number;
     private _roundNumber: number;
 
-    private _combatants: Array<any>; //;Phaser.GameObjects.Group;
+    private _combatants: Array<Combatant>; //;Phaser.GameObjects.Group;
     private _damageIndicators: Phaser.GameObjects.Group;
 
     constructor() {
@@ -72,8 +73,10 @@ export class BattleScene extends Phaser.Scene {
 
         for (var index in this._options.playerParty) {
             var character = this._options.playerParty[index];
-            // var addedCharacter = CharacterService.create(character, 1, this.getPosition(1, character.type, index, this._options.playerParty.length, this._canvas.width, this._canvas.height), this.game);
-            this._combatants.push(character);
+            var cardPosition = this.calculateCombatantPosition(Team.Friend, character.type, 
+                index, this._options.playerParty.length, this._canvas.width, this._canvas.height);
+            var addedCharacter = CharacterService.create(this, character,  cardPosition);
+            this._combatants.push(addedCharacter);
             // addedCharacter.customEvents.onActed.add(this.endTurn, this);
         }
 
@@ -178,19 +181,19 @@ export class BattleScene extends Phaser.Scene {
     };
 
     private endTurn() {
-        this._combatants.forEach(function (combatant) {
-            combatant.customEvents.onInputDown.removeAll();
-        }, this);
+        this._combatants.forEach(combatant => {
+            // combatant.customEvents.onInputDown.removeAll();
+        });
         this._isTurnInProgress = false;
     };
 
-    private getPosition(team, type, slot, totalCount, width, height) {
+    private calculateCombatantPosition(team: Team, type, slot, totalCount, width, height): Phaser.Geom.Point {
         var SIZE = { X: 163, Y: 220 },
             x, y;
 
-        if (team === 1) {
+        if (team === Team.Friend) {
             y = height - (SIZE.Y / 2 + ((type === "RANGED") ? 20 : 80));
-        } else if (team === 2) {
+        } else if (team === Team.Enemy) {
             y = SIZE.Y / 2 + ((type === "RANGED") ? 20 : 80);
         }
 
@@ -198,6 +201,6 @@ export class BattleScene extends Phaser.Scene {
 
         x = offsetLeft + (slot * SIZE.X) + (slot > 1 ? (slot - 1) * 20 : 0) + SIZE.X / 2;
 
-        return { x: x, y: y };
+        return new Phaser.Geom.Point(x, y);
     }
 }

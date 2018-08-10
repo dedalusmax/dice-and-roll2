@@ -6,7 +6,7 @@
         "health": 80,
         "defense": 5,
         "attack": 12,
-        "type": "RANGED",
+        "type": "MELEE",
         "speciality": "Dual pistols",
         "armors": [ "leather_coat" ],
         "weapons": [ "revolvers", "hunting_revolvers", "sherrif_sidearm", "peacemaker" ],
