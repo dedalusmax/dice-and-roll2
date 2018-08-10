@@ -20,7 +20,8 @@ export class BattleScene extends Phaser.Scene {
     private _turnNumber: number;
     private _roundNumber: number;
 
-    private _combatants: Array<Combatant>; //;Phaser.GameObjects.Group;
+    private _combatants: Array<Combatant>;
+    private _activeCombatant: number;
     private _damageIndicators: Phaser.GameObjects.Group;
 
     constructor() {
@@ -117,36 +118,38 @@ export class BattleScene extends Phaser.Scene {
             round.then(() => {
                 this.startNextTurn();
             });
-            // promise.onComplete.addOnce(this.startNextTurn, this);
         } else {
             this.startNextTurn();
         }
     };
-
+    
     private startNextTurn() {
         this._turnNumber++;
 
         var turnText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Turn ' + this._turnNumber, Styles.battle.round);
         turnText.setOrigin(0.5, 0.5);
+        turnText.alpha = 0;
+        turnText.setColor('#008888');
 
-        // var turnTweenFadeIn = this.add.tween(turnText).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
-
-
-
-        //   var turnTweenFadeOut = this.add.tween(turnText).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, false);
-
-        // turnTweenFadeIn.chain(turnTweenFadeOut);
-
-        // turnTweenFadeOut.onComplete.addOnce(function () {
-        //     turnText.destroy();
-        //     this.activeCombatant = this.combatants.next();
-        //     this.activeCombatant.activate(this.activeCombatantClicked);
-        // }, this);
+        this.add.tween({
+            targets: [turnText],
+            ease: 'Linear',
+            duration: 600,
+            delay: 100,
+            alpha: 1,
+            yoyo: true,
+            onComplete: () => {
+                turnText.destroy();
+                //this.activeCombatant.activate(this.activeCombatantClicked);
+                this._combatants[this._activeCombatant].activate();
+            }
+        });
     };
 
     // starts next round. sorts semi-randomizes initiative and sorts combatants in that order
     private initiateRound(): Promise<Phaser.Tweens.Tween> { 
         this._turnNumber = 0;
+        this._activeCombatant = 0;
         this._roundNumber++;
 
         this._soundRound.play('', { volume: Settings.sound.sfxVolume} );
@@ -155,38 +158,22 @@ export class BattleScene extends Phaser.Scene {
         roundText.setOrigin(0.5, 0.5);
         roundText.alpha = 0;
 
-        //var roundTweenFadeIn = this.add.tween(roundText).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
         var promise = new Promise<Phaser.Tweens.Tween>((resolve, reject) => {
-            var roundTweenFadeOut: Phaser.Tweens.Tween;
             var roundTweenFadeIn = this.add.tween({
                 targets: [roundText],
-                ease: 'Linear.none',
-                duration: 500,
-                delay: 0,
+                ease: 'Linear',
+                duration: 600,
+                delay: 100,
                 alpha: 1,
+                yoyo: true,
                 onComplete: () => {
-                    roundTweenFadeOut = this.add.tween({
-                        targets: [roundText],
-                        ease: 'Linear.none',
-                        duration: 500,
-                        delay: 0,
-                        alpha: 0,
-                        onComplete: () => {
-                            resolve(roundTweenFadeOut);
-                        }
-                    });
+                    roundText.destroy();
+                    resolve(roundTweenFadeIn);
                 }
             });
         });
 
         return promise;
-
-        //     roundTweenFadeOut = this.add.tween(roundText).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, false);
-
-        // roundTweenFadeIn.chain(roundTweenFadeOut);
-
-        // roundTweenFadeOut.onComplete.addOnce(roundText.destroy, roundText);
-        // return roundTweenFadeOut;
     };
 
     // determines if all members of a single team are dead and then calles the menu screen (later, there will be a victory/defeat screen

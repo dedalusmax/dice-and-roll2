@@ -13,10 +13,10 @@ export class CharacterService {
 
         // load the selected weapon - every character MUST have a weapon defined to fight with!
         var weapon = Assets.weapons[asset.weapon];
-        //var attack = SpecialService.create(game, character, weapon, true);
+        var attack = SpecialService.create(scene, asset, weapon, true);
         //attack.name = weapon.title;
 
-        //character.specials.add(attack);
+        character.specials.add(attack);
 
         for (var index = 0; index < asset.specialsUsed; index++) {
             //character.specials.add(SpecialService.create(game, character, stats.specials[index]));

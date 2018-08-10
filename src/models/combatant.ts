@@ -112,19 +112,21 @@ export class Combatant {
         //     this.customEvents.onInputDown.dispatch(this);
         // }, this);
         // this._mainSprite.events.onKilled.add(this.combatantKilled, this);
-        //this._status = new Status(_scene, this);
+
+        this._status = new Status(this);
         //_scene.add.group(this._status);
         // this._status.position.setTo(BOUNDS.LEFT + 58, BOUNDS.TOP + 72);
 
         // contains the character's moves
-        //this._specials = _scene.add.group();
-        // this._specials.exists = false;
+        this._specials = _scene.add.group();
+        //this._specials. = false;
+
         this._stats = {};
     }
 
     activate() {
         if (!this.canAct()) {
-            this._customEvents.onActed.dispatch();
+            //this._customEvents.onActed.dispatch();
             return;
         }
 
@@ -134,13 +136,19 @@ export class Combatant {
         });
         var specialCount = this._specials.countActive(); // this will change based on level
         var leftMostPosition = (this._canvas.width - ((specialCount - 1) * SPECIAL_ICON_SIZE) - ((specialCount - 1) * 10)) / 2, y = this._canvas.height / 2;
-        this._specials.getChildren().forEach((special, index) => {
+        this._specials.getChildren().forEach((special: Phaser.GameObjects.Sprite, index: number) => {
             var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index === 0 ? index : index - 1) * 10);
-            // TODO:RC special.position.setTo(this.x, this.y);
-            // var initialScale = 0.1 * SPECIAL_ICON_SIZE / special.texture.height, finalScale = SPECIAL_ICON_SIZE / special.texture.height;
-            // special.scale.setTo(initialScale);
-            // special.angle = 180;
-            // special.inputEnabled = true;
+            special.setPosition(this._position.x, this._position.y);
+            var initialScale = 0.1 * SPECIAL_ICON_SIZE / special.height, finalScale = SPECIAL_ICON_SIZE / special.height;
+            special.setScale(initialScale);
+            special.setAngle(180);
+            special.setInteractive();
+            special.off('pointerdown', null, null, true);
+            special.on('pointerdown', () => {
+                this.selectMove(special);
+
+            });
+
             // special.events.onInputDown.removeAll();
             // special.events.onInputDown.add(this.selectMove, this);
             // special.executed.addOnce(this.deactivate, this);
@@ -148,20 +156,23 @@ export class Combatant {
             // TODO:RC special.tweenScale = this._scene.add.tween(special.scale).to({ x: finalScale, y: finalScale }, 500, Phaser.Easing.Bounce.Out).start();
         });
         this._scene.time.addEvent({ delay: 1000, callback: () => {
-            this._customEvents.onReady.dispatch();
+            //this._customEvents.onReady.dispatch();
             // if (this._specials.countActive() > 0) //  && !this.ai)
                 // this.selectMove(this._specials.getAt(0));
         }});
 
         this._isAttacking = true;
-        // TODO:RC this.angle = -5;
+        this._mainSprite.setAngle(-5);
         if (!this._activeTween || !this._activeTween.isPlaying()) {
-            // TODO:RC
+            this._activeTween = this._scene.add.tween({
+                targets: [this],
+                ease: 'Quad.easeIn',
+                duration: 200,
+                delay: 0,
+                angle: 5,
+                loop: true
+            });
             // this._activeTween = this._scene.add.tween(this).to({ angle: 5 }, 200, Phaser.Easing.Quadratic.In, false, 0, Number.MAX_VALUE, true);
-            // this._activeTween = this._scene.add.tween({
-            //     targets: [this],
-
-            // });
         }
         this._activeTween.play(true);
     }
@@ -181,14 +192,14 @@ export class Combatant {
         this._customEvents.onActed.dispatch();
     }
 
-    selectMove(selectedMove) {
+    selectMove(selectedMove: Phaser.GameObjects.Sprite) {
         // TODO: check if first (default) move, then no sound
         Soundsets['swing'].play();
         this._selectedMove = selectedMove;
-        selectedMove.select(this);
-        this._specials.getChildren().forEach(move => {
-           // if (move !== selectedMove)
-                //move.deselect();
+        selectedMove.setActive(true);
+        this._specials.getChildren().forEach((move: Phaser.GameObjects.Sprite) => {
+           if (move !== selectedMove)
+                move.setActive(false);
         });
     }
 
