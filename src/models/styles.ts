@@ -22,6 +22,7 @@ export class Styles {
     }
 
     public static readonly battle = {
-        round: { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' }
+        round: { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
+        indicator: { font: '18px ' + FONT_FAMILY, fill: '#444', align: 'center' }
     }
 }

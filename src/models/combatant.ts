@@ -33,9 +33,9 @@ const TEAMS = { FRIEND: 1, ENEMY: 2 },
 export class Combatant {
 
     private _mainSprite: Phaser.GameObjects.Sprite;
-    private _attackText: Phaser.GameObjects.BitmapText;
-    private _defenseText: Phaser.GameObjects.BitmapText;
-    private _healthIndicator: Phaser.GameObjects.BitmapText;
+    private _attackText: Phaser.GameObjects.Text;
+    private _defenseText: Phaser.GameObjects.Text;
+    private _healthIndicator: Phaser.GameObjects.Text;
     private _customEvents: any;
     private _status: Status;
     private _stats: any;
@@ -49,58 +49,57 @@ export class Combatant {
         return this._specials;
     }
     
-    private addSpriteToCard(scene: Phaser.Scene, left: number, top: number, texture) {
+    private addSpriteToCard(scene: Phaser.Scene, left: number, top: number, texture, scale?: number) {
         var x = this._position.x + left;
         var y = this._position.y + top;
         var sprite = scene.add.sprite(x, y, texture);
         sprite.setDisplayOrigin(this._position.x, this._position.y);
-        sprite.setScale(0.3);
+        sprite.setScale(scale || 0.25);
         sprite.setOrigin(0.5, 0.5);
         return sprite;
     }
 
-    private addBitmapTextToCard(scene: Phaser.Scene, left: number, top: number, text: string, size: number) {
+    private addTextToCard(scene: Phaser.Scene, left: number, top: number, text: string) {
         var x = this._position.x + left;
         var y = this._position.y + top;
-        var bitmapText = scene.add.bitmapText(x, y, FONT_FAMILY, text, size);
-        // sprite.setDisplayOrigin(this._position.x, this._position.y);
-        // sprite.setScale(0.3);
-        // sprite.setOrigin(0.5, 0.5);
-        // return sprite;
+        var textObject = scene.add.text(x, y, text, Styles.battle.indicator);
+        textObject.setDisplayOrigin(this._position.x, this._position.y);
+        // bitmapText.setScale(0.3);
+        textObject.setOrigin(0.5, 0.5);
+        return textObject;
     }
 
-    constructor(private _scene: Phaser.Scene, public team: Team, private _position: Phaser.Geom.Point, texture) {
+    constructor(private _scene: Phaser.Scene, public team: Team, private _position: Phaser.Geom.Point, private _asset) {
 
         this._canvas = _scene.textures.game.canvas;
 
         // the main sprite, the card background
         this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/front');
         //this._mainSprite.setOrigin(0.5, 0.5);
-        this._mainSprite.setScale(0.36); // (SCALED_SIZE.X / ACTUAL_SIZE.X, SCALED_SIZE.Y / ACTUAL_SIZE.Y);
-        console.log(this._mainSprite.x, this._mainSprite.y, this._mainSprite.width, this._mainSprite.height);
+        this._mainSprite.setScale(0.32); // (SCALED_SIZE.X / ACTUAL_SIZE.X, SCALED_SIZE.Y / ACTUAL_SIZE.Y);
+        // console.log(this._mainSprite.x, this._mainSprite.y, this._mainSprite.width, this._mainSprite.height);
 
         // the faction emblem, top right corner
-        var z = this.addSpriteToCard(_scene, 55, -80, team === Team.Friend ? 'cards/faction-1' : 'cards/faction-2');
+        var z = this.addSpriteToCard(_scene, 51, -74, team === Team.Friend ? 'cards/faction-1' : 'cards/faction-2', 0.3);
 
         // the attack emblem, bottom left corner
         // TODO: Add the character specific emblem here
         // TODO: Add attack value display here
-        this.addSpriteToCard(_scene, -55, 80, 'cards/emblem-sword');
+        this.addSpriteToCard(_scene, -51, 74, 'cards/emblem-sword');
 
-        this._attackText = _scene.add.bitmapText(BOUNDS.LEFT + 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48);
+        this._attackText = this.addTextToCard(_scene, -50, 71, _asset.attack);
 
         // the defense emblem, bottom right corner
         // TODO: Add defense value display here
-        this.addSpriteToCard(_scene, 55, 80, 'cards/emblem-shield');
+        this.addSpriteToCard(_scene, 55, 74, 'cards/emblem-shield');
 
-        this._defenseText = _scene.add.bitmapText(BOUNDS.RIGHT - 38, BOUNDS.BOTTOM - 55, 'berkshire', '0', 48);
+        this._defenseText = this.addTextToCard(_scene, 55, 73, _asset.defense);
 
-        var characterSprite = _scene.add.sprite(0, 0, texture);
-        characterSprite.setScale((ACTUAL_SIZE.Y - 100) / characterSprite.height);
-        characterSprite.setOrigin(0.5, 0.5);
+        this.addSpriteToCard(_scene, 0, 0, team === Team.Friend ? 'characters/' + _asset.name : 'monsters/' + _asset.name, 0.4);
 
-        this._healthIndicator = _scene.add.bitmapText(0, BOUNDS.BOTTOM - 55, 'berkshire', 'Health', 48);
-        
+        this._healthIndicator = this.addTextToCard(_scene, 0, 60, _asset.health);
+        this._healthIndicator.setColor('#009900');
+
         this._customEvents = {
             onInputDown: new Phaser.Events.EventEmitter(),
             onReady: new Phaser.Events.EventEmitter(),

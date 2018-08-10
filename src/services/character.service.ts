@@ -6,7 +6,7 @@ export class CharacterService {
 
     static create(scene: Phaser.Scene, asset, position: Phaser.Geom.Point) {
 
-        var character = new Combatant(scene, Team.Friend, position, 'characters/' + asset.name);
+        var character = new Combatant(scene, Team.Friend, position, asset);
 
         character.setStats(asset);
         // TODO:RC character.type = stats.type;
