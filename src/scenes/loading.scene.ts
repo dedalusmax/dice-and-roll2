@@ -1,6 +1,7 @@
 import { Settings } from '../models/settings';
 import { Soundsets } from '../models/soundsets';
 import { Assets } from '../models/assets';
+import { ImageService } from '../services/image.service';
 
 export class LoadingScene extends Phaser.Scene {
 
@@ -23,7 +24,12 @@ export class LoadingScene extends Phaser.Scene {
 
     preload(): void {
         this._loadingFinished = false;
-        // ImageService.stretchAndFitImage('preloader', this);
+               
+        this.cameras.main.setBackgroundColor(0x360602);
+
+        var logo = ImageService.stretchAndFitImage('logo', this);
+        logo.setScale(0.2);
+        logo.setOrigin(0.5, 0.8);   
         // Settings.sound.musicVolume = 0;
         
         if (!this._options.persistMusic) {
@@ -39,7 +45,7 @@ export class LoadingScene extends Phaser.Scene {
         switch (this._loadScene) {
             case 'MainMenuScene':
                 // background screen
-                this.load.image('menu', 'assets/screens/menu_noir.png');
+                this.load.image('menu', 'assets/screens/menu.png');
                 // ambient music
                 this.load.audio('theme', [
                     'assets/sound/loops/looperman-l-0208341-0069234-drmistersir-4moe-xxgrave-robbers.ogg',
@@ -153,40 +159,40 @@ export class LoadingScene extends Phaser.Scene {
 
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
-        progressBox.fillStyle(0x222222, 0.8);
+        progressBox.fillStyle(0x6D2401, 0.8);
         var boxWidth = 320;
         var boxHeight = 50;
-        progressBox.fillRect(width / 2 - boxWidth / 2, height / 2 - boxHeight / 2 - 5, boxWidth, boxHeight);
+        progressBox.fillRect(width / 2 - boxWidth / 2, height - 200 - boxHeight / 2 - 5, boxWidth, boxHeight);
 
         var loadingText = this.make.text({
             x: width / 2,
-            y: height / 2 - 50,
+            y: height - 250,
             text: 'Loading...',
             style: {
                 font: '20px Berkshire Swash',
-                fill: '#ffffff'
+                fill: '#D4915C'
             }
         });
         loadingText.setOrigin(0.5, 0.5);
 
         var percentText = this.make.text({
             x: width / 2,
-            y: height / 2 - 5,
+            y: height - 205,
             text: '0%',
             style: {
                 font: '18px Berkshire Swash',
-                fill: '#ffffff'
+                fill: '#EDEAD9'
             }
         });
         percentText.setOrigin(0.5, 0.5);
 
         var assetText = this.make.text({
             x: width / 2,
-            y: height / 2 + 50,
+            y: height - 160,
             text: '',
             style: {
                 font: '18px Berkshire Swash',
-                fill: '#ffffff'
+                fill: '#884825'
             }
         });
         assetText.setOrigin(0.5, 0.5);
@@ -199,7 +205,7 @@ export class LoadingScene extends Phaser.Scene {
             // console.log(value);
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(width / 2 - barWidth / 2, height / 2 - barHeight / 2 - 5, barWidth * value, barHeight);
+            progressBar.fillRect(width / 2 - barWidth / 2, height - 200 - barHeight / 2 - 5, barWidth * value, barHeight);
             percentText.setText(Math.round(value * 100) + '%');
             // for (var i = 0; i < 400000000; i++) {}
         });

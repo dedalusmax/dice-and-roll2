@@ -26,6 +26,7 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     create(): void {
+        this.cameras.main.setBackgroundColor(0xFFFFFF);
 
         var music;
         // check if music is enabled
@@ -46,8 +47,11 @@ export class MainMenuScene extends Phaser.Scene {
         }
 
         // set screen background
-        ImageService.stretchAndFitImage('menu', this);
-        
+        var menu = ImageService.stretchAndFitImage('menu', this);
+        var logo = ImageService.stretchAndFitImage('logo', this);
+        logo.setScale(0.12);
+        logo.setOrigin(1, 1.4);
+
         // set soundset for menus
         this._soundset = Soundsets.sounds['sword'];
 
@@ -134,20 +138,17 @@ export class MainMenuScene extends Phaser.Scene {
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game settings', 1, Styles.menu.header));
+        menu.add(this.createMenuItem('Game settings:', -1.2, Styles.menu.header));
 
-        var musicVolume = this.createMenuItem('Music volume', 1.8, Styles.menu.submenu);
-        menu.add(musicVolume);
+        menu.add(this.createMenuItem('Music volume', -0.4, Styles.menu.submenu));
 
-        var musicLevel = this.createMenuItem('', 2.4, Styles.menu.volume);
+        var musicLevel = this.createMenuItem('', 0.2, Styles.menu.volume);
         musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
         menu.add(musicLevel);
 
-        var lessMusic = this.add.sprite(musicLevel.x - musicLevel.width / 2 - 40, musicLevel.y, 'arrows', 0);
-
-        lessMusic.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, lessMusic.width, lessMusic.height), Phaser.Geom.Rectangle.Contains);
-
+        var lessMusic = this.add.sprite(musicLevel.x - musicLevel.width - 10, musicLevel.y + 5, 'arrows', 0);
+        lessMusic.setScale(0.8);
+        lessMusic.setInteractive();
         lessMusic.on('pointerdown', e => {
             if (Settings.sound.musicVolume > 0) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume - 0.1) * 10) / 10;
@@ -155,14 +156,11 @@ export class MainMenuScene extends Phaser.Scene {
                 this.sound.volume = Settings.sound.musicVolume;
             }
         });
-
         menu.add(lessMusic);
 
-        var moreMusic = this.add.sprite(musicLevel.x + musicLevel.width / 2 + 40, musicLevel.y, 'arrows', 1);
-
-        moreMusic.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, moreMusic.width, moreMusic.height), Phaser.Geom.Rectangle.Contains);
-
+        var moreMusic = this.add.sprite(musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, 'arrows', 1);
+        moreMusic.setScale(0.8);
+        moreMusic.setInteractive();
         moreMusic.on('pointerdown', e => {
             if (Settings.sound.musicVolume < 1) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume + 0.1) * 10) / 10;
@@ -170,45 +168,37 @@ export class MainMenuScene extends Phaser.Scene {
                 this.sound.volume = Settings.sound.musicVolume;
             }
         });
-
         menu.add(moreMusic);
 
-        var soundFxVolume = this.createMenuItem('Sound FX volume', 3.2, Styles.menu.submenu);
-        menu.add(soundFxVolume);
+        menu.add(this.createMenuItem('Sound FX volume', 1.2, Styles.menu.submenu));
 
-        var sfxLevel = this.createMenuItem('', 3.9, Styles.menu.volume);
+        var sfxLevel = this.createMenuItem('', 1.8, Styles.menu.volume);
         sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
         menu.add(sfxLevel);
 
-        var lessSfx = this.add.sprite(sfxLevel.x - sfxLevel.width / 2 - 40, sfxLevel.y, 'arrows', 0);
-
-        lessSfx.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, lessSfx.width, lessSfx.height), Phaser.Geom.Rectangle.Contains);
-
+        var lessSfx = this.add.sprite(sfxLevel.x - sfxLevel.width - 10, sfxLevel.y + 5, 'arrows', 0);
+        lessSfx.setScale(0.8);
+        lessSfx.setInteractive();
         lessSfx.on('pointerdown', e => {
             if (Settings.sound.sfxVolume > 0) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume - 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
         });
-
         menu.add(lessSfx);
 
-        var moreSfx = this.add.sprite(sfxLevel.x + sfxLevel.width / 2 + 40, sfxLevel.y, 'arrows', 1);
-
-        moreSfx.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, moreSfx.width, moreSfx.height), Phaser.Geom.Rectangle.Contains);
-
+        var moreSfx = this.add.sprite(sfxLevel.x + sfxLevel.width + 10, sfxLevel.y + 5, 'arrows', 1);
+        moreSfx.setScale(0.8);
+        moreSfx.setInteractive();
         moreSfx.on('pointerdown', e => {
             if (Settings.sound.sfxVolume < 1) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume + 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
         });
-
         menu.add(moreSfx);
 
-        menu.add(this.createMenuItem('Back', 5, Styles.text.backButton, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Back', 4, Styles.text.backButton, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     };
@@ -219,15 +209,15 @@ export class MainMenuScene extends Phaser.Scene {
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game programming:', 1, Styles.menu.header));
-        menu.add(this.createMenuItem('Ratko & Simun Cosic', 1.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Game artwork:', 2, Styles.menu.header));
-        menu.add(this.createMenuItem('Klara Cosic', 2.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Game story:', 3, Styles.menu.header));
-        menu.add(this.createMenuItem('Tvrtko Cosic', 3.5, Styles.menu.author));
-        menu.add(this.createMenuItem('Special thanks to:', 4, Styles.menu.header));
-        menu.add(this.createMenuItem('Looperman for music tracks', 4.3, Styles.menu.author_small));
-        menu.add(this.createMenuItem('Back', 5, Styles.text.backButton, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Game programming:', -1.2, Styles.menu.header));
+        menu.add(this.createMenuItem('Ratko & Šimun Ćosić', -0.7, Styles.menu.author));
+        menu.add(this.createMenuItem('Game artwork:', -0.1, Styles.menu.header));
+        menu.add(this.createMenuItem('Klara Ćosić', 0.4, Styles.menu.author));
+        menu.add(this.createMenuItem('Game story:', 1, Styles.menu.header));
+        menu.add(this.createMenuItem('Tvrtko Ćosić', 1.5, Styles.menu.author));
+        menu.add(this.createMenuItem('Special thanks to:', 2.1, Styles.menu.header));
+        menu.add(this.createMenuItem('Looperman for music tracks', 2.4, Styles.menu.author_small));
+        menu.add(this.createMenuItem('Back', 4, Styles.text.backButton, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     }
@@ -235,11 +225,10 @@ export class MainMenuScene extends Phaser.Scene {
     createMenuItem(text, position, style, action?) {
         style = style || Styles.menu.menu_button_pressed;
 
-        var item = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 4 + position * 70, text, style);
+        var item = this.add.text(this.cameras.main.width / 2 + 120, this.cameras.main.height / 4 + position * 70, text, style);
         item.setOrigin(0.5, 0.5);
 
-        item.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, item.width, item.height), Phaser.Geom.Rectangle.Contains);
+        item.setInteractive();
 
         item.on('pointerdown', e => {
             if (this._soundset) this._soundset.play();
@@ -248,16 +237,6 @@ export class MainMenuScene extends Phaser.Scene {
                 action.call();
             }
         });
-
-        // item.inputEnabled = true;
-        // item.events.onInputDown.add(function (source, cursor) {
-        //     if (soundset) soundset.play();
-        //     if (action) source.setStyle(MENU_BUTTON_PRESSED_STYLE);
-        // }, this);
-        // item.events.onInputUp.add(function (source, cursor) {
-        //     if (action) source.setStyle(style);
-        //     if (action) action.call();
-        // }, this);
 
         return item;
     };
