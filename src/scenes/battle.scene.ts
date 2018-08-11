@@ -7,6 +7,7 @@ import { CharacterService } from "../services/character.service";
 import { CreatureService } from "../services/creature.service";
 import { Combatant, Team } from "../models/combatant";
 import { Tweens } from "phaser";
+import { ProfileService } from "../services/profile.service";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -40,6 +41,8 @@ export class BattleScene extends Phaser.Scene {
     }
 
     create(): void {
+        this.cameras.main.setBackgroundColor(0x360602);
+
         // check if music is enabled
         if (Settings.sound.musicVolume > 0) {
             // introductory fade in of theme music
@@ -61,10 +64,10 @@ export class BattleScene extends Phaser.Scene {
 
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {
-            TextualService.createTextButton(this, 'Quit battle', 500, 800, Styles.text.backButton, Soundsets.sounds['sword'], a => {
+            TextualService.createTextButton(this, 'Quit battle', 80, 20, Styles.battle.backButton, Soundsets.sounds['sword'], a => {
                 var options = this._options;
                 options.loadScene = 'MainMenuScene';
-                this.scene.start('LoadingScene', options);
+                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
             });
         }
         
@@ -91,9 +94,9 @@ export class BattleScene extends Phaser.Scene {
             this._combatants.push(addedMonster);
         }
 
-        this._combatants.sort((left, right) => {
-            return (Phaser.Math.RND.between(0, 3)) - (Phaser.Math.RND.between(0, 3));
-        });
+        // this._combatants.sort((left, right) => {
+        //     return (Phaser.Math.RND.between(0, 3)) - (Phaser.Math.RND.between(0, 3));
+        // });
     }
 
     update(): void {
@@ -141,7 +144,8 @@ export class BattleScene extends Phaser.Scene {
             onComplete: () => {
                 turnText.destroy();
                 //this.activeCombatant.activate(this.activeCombatantClicked);
-                this._combatants[this._activeCombatant].activate();
+                // this._combatants[this._activeCombatant].activate();
+                this.readyCombatant();
             }
         });
     };
@@ -220,5 +224,17 @@ export class BattleScene extends Phaser.Scene {
         x = offsetLeft + (slot * SIZE.X) + (slot > 1 ? (slot - 1) * 20 : 0) + SIZE.X / 2;
 
         return new Phaser.Geom.Point(x, y);
+    }
+
+    private readyCombatant() {
+        var combatant = this._combatants[this._activeCombatant];
+        if (combatant.canAct()) {
+            // show weapon and specials
+            
+            // show profile
+            ProfileService.create(this, combatant);
+        } else {
+            this._isTurnInProgress = false;
+        }
     }
 }

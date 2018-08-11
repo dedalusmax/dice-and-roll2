@@ -5,9 +5,7 @@ export class TextualService {
         var item = scene.add.text(x, y, text, style);
         item.setOrigin(0.5, 0.5);
 
-        item.setInteractive(
-            new Phaser.Geom.Rectangle(0, 0, item.width, item.height), Phaser.Geom.Rectangle.Contains);
-
+        item.setInteractive();
         item.on('pointerdown', e => {
             if (soundset) soundset.play();
             item.setStyle({ font: style.font, fill: '#DDDD00', align: style.align });

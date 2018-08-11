@@ -69,7 +69,7 @@ export class Combatant {
         return textObject;
     }
 
-    constructor(private _scene: Phaser.Scene, public team: Team, private _position: Phaser.Geom.Point, private _asset) {
+    constructor(private _scene: Phaser.Scene, public team: Team, private _position: Phaser.Geom.Point, public data) {
 
         this._canvas = _scene.textures.game.canvas;
 
@@ -87,17 +87,19 @@ export class Combatant {
         // TODO: Add attack value display here
         this.addSpriteToCard(_scene, -51, 74, 'cards/emblem-sword');
 
-        this._attackText = this.addTextToCard(_scene, -50, 71, _asset.attack);
+        this._attackText = this.addTextToCard(_scene, -50, 71, data.attack);
 
         // the defense emblem, bottom right corner
         // TODO: Add defense value display here
         this.addSpriteToCard(_scene, 55, 74, 'cards/emblem-shield');
 
-        this._defenseText = this.addTextToCard(_scene, 55, 73, _asset.defense);
+        this._defenseText = this.addTextToCard(_scene, 55, 73, data.defense);
 
-        this.addSpriteToCard(_scene, 0, 0, team === Team.Friend ? 'characters/' + _asset.name : 'monsters/' + _asset.name, 0.4);
+        this.addSpriteToCard(_scene, 0, 0, 
+            team === Team.Friend ? 'characters/' + data.name : 'monsters/' + data.name, 
+            data.scale || 0.4);
 
-        this._healthIndicator = this.addTextToCard(_scene, 0, 60, _asset.health);
+        this._healthIndicator = this.addTextToCard(_scene, 0, 60, data.health);
         this._healthIndicator.setColor('#009900');
 
         this._customEvents = {
@@ -141,7 +143,7 @@ export class Combatant {
             special.setPosition(this._position.x, this._position.y);
             var initialScale = 0.1 * SPECIAL_ICON_SIZE / special.height, finalScale = SPECIAL_ICON_SIZE / special.height;
             special.setScale(initialScale);
-            special.setAngle(180);
+            // special.setAngle(180);
             special.setInteractive();
             special.off('pointerdown', null, null, true);
             special.on('pointerdown', () => {
@@ -163,17 +165,17 @@ export class Combatant {
 
         this._isAttacking = true;
         this._mainSprite.setAngle(-5);
-        if (!this._activeTween || !this._activeTween.isPlaying()) {
-            this._activeTween = this._scene.add.tween({
-                targets: [this],
-                ease: 'Quad.easeIn',
-                duration: 200,
-                delay: 0,
-                angle: 5,
-                loop: true
-            });
-            // this._activeTween = this._scene.add.tween(this).to({ angle: 5 }, 200, Phaser.Easing.Quadratic.In, false, 0, Number.MAX_VALUE, true);
-        }
+        // if (!this._activeTween || !this._activeTween.isPlaying()) {
+        //     this._activeTween = this._scene.add.tween({
+        //         targets: [this],
+        //         ease: 'Quad.easeIn',
+        //         duration: 200,
+        //         delay: 0,
+        //         angle: 5,
+        //         loop: true
+        //     });
+        //     // this._activeTween = this._scene.add.tween(this).to({ angle: 5 }, 200, Phaser.Easing.Quadratic.In, false, 0, Number.MAX_VALUE, true);
+        // }
         this._activeTween.play(true);
     }
 
@@ -230,18 +232,6 @@ export class Combatant {
         this._stats.weaponStats = Assets.weapons[stats.weapon];
         this._stats.armor = stats.sarmor;
         this._stats.armorStats = Assets.armors[stats.armor];
-    }
-
-    getStats() {
-        // return {
-        //     health: this._mainSprite.health,
-        //     maxHealth: this._stats.maxHealth,
-        //     speed: this._stats.speed,
-        //     attack: this._stats.attack,
-        //     defense: this._stats.defense,
-        //     weapon: this._stats.weapon,
-        //     armor: this._stats.armor
-        // };
     }
 
     attack(target) {

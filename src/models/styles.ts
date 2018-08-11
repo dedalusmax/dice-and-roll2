@@ -22,6 +22,7 @@ export class Styles {
     }
 
     public static readonly battle = {
+        backButton: { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
         round: { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
         indicator: { font: '18px ' + FONT_FAMILY, fill: '#444', align: 'center' }
     }

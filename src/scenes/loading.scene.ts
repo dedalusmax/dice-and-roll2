@@ -44,6 +44,10 @@ export class LoadingScene extends Phaser.Scene {
 
         switch (this._loadScene) {
             case 'MainMenuScene':
+                if (this.textures.exists('menu')) {
+                    this._loadingFinished = true;
+                    break;
+                }
                 // background screen
                 this.load.image('menu', 'assets/screens/menu.png');
                 // ambient music
@@ -70,8 +74,13 @@ export class LoadingScene extends Phaser.Scene {
             case 'MapScene':
                 break;
             case 'BattleScene':
+                if (this.textures.exists('battle_grass')) {
+                    this._loadingFinished = true;
+                    break;
+                }
                 // background screen
-                this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
+                // this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
+                this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
                 // ambient music
                 if (this._options.terrain === 'grass') {
                     this.load.audio('battle_' + this._options.terrain,
