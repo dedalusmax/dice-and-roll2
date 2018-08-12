@@ -3,11 +3,12 @@ import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
 import { Soundsets } from "../models/soundsets";
-import { CharacterService } from "../services/character.service";
-import { CreatureService } from "../services/creature.service";
-import { Combatant, Team } from "../models/combatant";
+import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
 import { Tweens } from "phaser";
-import { ProfileService } from "../services/profile.service";
+import { Player } from "../models/player";
+import { Enemy } from "../models/enemy";
+import { Profile } from "../models/profile";
+import { Card } from "../models/card";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -72,27 +73,19 @@ export class BattleScene extends Phaser.Scene {
         }
         
         this._combatants = [];
-        // if (this._combatants) this._combatants.destroy(false);
-        // this._combatants = this.add.group();
         this._damageIndicators = this.add.group();
 
         for (var index in this._options.playerParty) {
-            var character = this._options.playerParty[index];
-            var cardPosition = this.calculateCombatantPosition(Team.Friend, character.type, 
-                index, this._options.playerParty.length, this._canvas.width, this._canvas.height);
-            var addedCharacter = CharacterService.create(this, character,  cardPosition);
-            this._combatants.push(addedCharacter);
-            // addedCharacter.customEvents.onActed.add(this.endTurn, this);
-        }
+            var character = new Player(this._options.playerParty[index]);
+            this._combatants.push(character);
+            this.displayCard(character, +index);
+        };
 
         for (var index in this._options.enemyParty) {
-            var monster = this._options.enemyParty[index];
-            var cardPosition = this.calculateCombatantPosition(Team.Enemy, monster.type, 
-                index, this._options.enemyParty.length, this._canvas.width, this._canvas.height);
-            var addedMonster = CreatureService.create(this, monster,  cardPosition);
-            // addedMonster.customEvents.onActed.add(this.endTurn, this);
-            this._combatants.push(addedMonster);
-        }
+            var monster = new Enemy(this._options.enemyParty[index]);
+            this._combatants.push(monster);
+            this.displayCard(monster, +index);
+        };
 
         // this._combatants.sort((left, right) => {
         //     return (Phaser.Math.RND.between(0, 3)) - (Phaser.Math.RND.between(0, 3));
@@ -182,12 +175,8 @@ export class BattleScene extends Phaser.Scene {
 
     // determines if all members of a single team are dead and then calles the menu screen (later, there will be a victory/defeat screen
     private checkIfBattleIsOver() {
-        var numInPlayerTeam = 0,
-            numInEnemyTeam = 0;
-        this._combatants.forEach(combatant => {
-            if (combatant.team === 1) numInPlayerTeam++;
-            else numInEnemyTeam++;
-        });
+        var numInPlayerTeam = this._combatants.filter(c => c.side === CombatantSide.Friend).length,
+            numInEnemyTeam = this._combatants.filter(c => c.side === CombatantSide.Enemy).length;
 
         // TODO: Split into victory/defeat
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
@@ -209,14 +198,20 @@ export class BattleScene extends Phaser.Scene {
         this._isTurnInProgress = false;
     };
 
-    private calculateCombatantPosition(team: Team, type, slot, totalCount, width, height): Phaser.Geom.Point {
+    private displayCard(combatant: Combatant, index: number) {
+        var cardPosition = this.calculateCombatantPosition(combatant.side, combatant.type, 
+            index, this._options.playerParty.length, this._canvas.width, this._canvas.height);
+        var card = new Card(this, combatant, cardPosition);
+    }
+
+    private calculateCombatantPosition(side: CombatantSide, type: CombatantType, slot, totalCount, width, height): Phaser.Geom.Point {
         var SIZE = { X: 163, Y: 220 },
             x, y;
 
-        if (team === Team.Friend) {
-            y = height - (SIZE.Y / 2 + ((type === "RANGED") ? 20 : 80));
-        } else if (team === Team.Enemy) {
-            y = SIZE.Y / 2 + ((type === "RANGED") ? 20 : 80);
+        if (side === CombatantSide.Friend) {
+            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 80));
+        } else if (side === CombatantSide.Enemy) {
+            y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 80);
         }
 
         var offsetLeft = (width - ((totalCount * SIZE.X) + ((totalCount - 1) * 20))) / 2;
@@ -232,7 +227,7 @@ export class BattleScene extends Phaser.Scene {
             // show weapon and specials
             
             // show profile
-            ProfileService.create(this, combatant);
+            var profile = new Profile(this, combatant);
         } else {
             this._isTurnInProgress = false;
         }

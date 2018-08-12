@@ -166,5 +166,27 @@
         "desc": "",
         "type": "BLADE",
         "attack": 4
+    },
+
+    "strings": {
+        "name": "strings",
+        "title": "Strings",
+        "desc": "",
+        "type": "MISSILE",
+        "attack": 2
+    },
+    "sceptre": {
+        "name": "sceptre",
+        "title": "Sceptre",
+        "desc": "",
+        "type": "BLADE",
+        "attack": 2
+    },
+    "poison": {
+        "name": "poison",
+        "title": "Poison",
+        "desc": "",
+        "type": "MISSILE",
+        "attack": 2
     }
 }

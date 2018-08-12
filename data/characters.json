@@ -13,8 +13,7 @@
         "specials": [ ],
         "armor": "leather_coat",
         "weapon": "revolvers",
-        "specialsUsed": 1,
-        "scale": 0.05
+        "specialsUsed": 1
     },
     "automaton": {
         "name": "automaton",
@@ -30,8 +29,7 @@
         "specials": [ ],
         "armor": "brass_plating",
         "weapon": "steam_pipe",
-        "specialsUsed": 1,
-        "scale": 0.05
+        "specialsUsed": 1
     },
     "musketeer": {
         "name": "musketeer",
@@ -63,8 +61,7 @@
         "specials": [ ],
         "armor": "lab_coat",
         "weapon": "explosive_grenade",
-        "specialsUsed": 1,
-        "scale": 0.05
+        "specialsUsed": 1
     },
     "assasin": {
         "name": "assasin",
@@ -80,8 +77,7 @@
         "specials": [ ],
         "armor": "cloak",
         "weapon": "dagger",
-        "specialsUsed": 1,
-        "scale": 0.05
+        "specialsUsed": 1
     },
     "illusionist": {
         "name": "illusionist",

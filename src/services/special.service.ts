@@ -1,35 +1,24 @@
-import { Special } from "../models/special";
+import { Special, TargetType, ExecutionType, StatusType } from "../models/special";
 import { Assets } from "../models/assets";
 
 export class SpecialService {
 
-    static create(scene: Phaser.Scene, asset, key, isWeapon) {
-        if (isWeapon) {
-            return SpecialService.assembleSpecialFromWeapon(scene, asset, key);
-        } else {
-            //return assembleSpecial(game, character, key);
-        }
+    static get(name: string): Special {
+        var key = Object.keys(Assets.specials).find(w => w == name);
+        return this.matchSpecial(Assets.specials[key]);
     }
 
-    private static assembleSpecialFromWeapon(scene: Phaser.Scene, asset, weapon) {
-
-        var data = Assets.specials[asset.type.toLowerCase() + '_attack'];
-        var special = new Special(scene, asset, 'cards/emblem-' + weapon.type.toLowerCase(), data);
-
-        // special.getTargets = targeting[data.targetType];
-        // special.execute = execution[data.executionType] || executeCallbacks[key];
-
-        return special;
-    };
-
-    private static assembleSpecial(scene: Phaser.Scene, asset, key) {
-
-        var data = Assets.specials[key];
-        var special = new Special(scene, asset, 'specials/' + key, data);
-
-        // special.getTargets = targeting[data.targetType];
-        // special.execute = execution[data.executionType] || executeCallbacks[key];
-
-        return special;
-    };
+    static matchSpecial(prop: any): Special {
+        var result = new Special();
+        result.name = prop.name;
+        result.description = prop.desc;
+        result.targetType = TargetType[prop.targetType as string];
+        result.executionType = ExecutionType[prop.executionType as string];
+        result.attackCount = prop.attackCount;
+        result.modifier = prop.modifier;
+        result.statusType = prop.statusType ? StatusType[prop.statusType as string] : null;
+        result.duration = prop.duration;
+        result.power = prop.power;
+        return result;
+    }
 }
