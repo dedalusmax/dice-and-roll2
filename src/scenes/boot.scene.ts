@@ -19,10 +19,7 @@ export class BootScene extends Phaser.Scene {
 
         // Load assets required for preLoader (progress bar, etc.)
         this.load.image('logo', 'assets/screens/logo.png');
-        this.load.audio('interlude', [
-            'assets/sound/loops/looperman-l-0079105-0053511-centrist-tales-of-home-guitar.ogg',
-            'assets/sound/loops/looperman-l-0079105-0053511-centrist-tales-of-home-guitar.mp3'
-        ]);
+        this.load.audio('interlude', 'assets/sound/loops/looperman-l-1483711-0130311-hilltop-full.wav');
 
         // load data in JSON files
         this.load.text('characters', 'data/characters.json');

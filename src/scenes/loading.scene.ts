@@ -10,6 +10,7 @@ export class LoadingScene extends Phaser.Scene {
 
     private _loadingFinished: boolean;
     private _music: Phaser.Sound.BaseSound;
+    private _loadingText: Phaser.GameObjects.Text;
 
     constructor() {
         super({
@@ -36,7 +37,7 @@ export class LoadingScene extends Phaser.Scene {
             this.sound.stopAll();
             if (Settings.sound.musicVolume > 0) {
                 this._music = this.sound.add('interlude');
-                this._music.play('', { loop: true });                
+                this._music.play('', { loop: true });       
             }
         }
 
@@ -51,10 +52,7 @@ export class LoadingScene extends Phaser.Scene {
                 // background screen
                 this.load.image('menu', 'assets/screens/menu.png');
                 // ambient music
-                this.load.audio('theme', [
-                    'assets/sound/loops/looperman-l-0208341-0069234-drmistersir-4moe-xxgrave-robbers.ogg',
-                    'assets/sound/loops/looperman-l-0208341-0069234-drmistersir-4moe-xxgrave-robbers.mp3'
-                ]);
+                this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
                 var arrowsSheet: Phaser.Loader.FileTypes.ImageFrameConfig = { frameWidth: 80, frameHeight: 80 };
                 // arrowsSheet.frameWidth = 80;
@@ -83,17 +81,11 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
                 // ambient music
                 if (this._options.terrain === 'grass') {
-                    this.load.audio('battle_' + this._options.terrain,
-                        ['assets/sound/loops/looperman-l-0202721-0075453-anubis-tribal-escape-02.ogg',
-                            'assets/sound/loops/looperman-l-0202721-0075453-anubis-tribal-escape-02.mp3']);
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0112508-anubis-battle.wav');
                 } else if (this._options.terrain === 'dirt') {
-                    this.load.audio('battle_' + this._options.terrain,
-                        ['assets/sound/loops/looperman-l-0202721-0074960-anubis-tribal-percussion-07.ogg',
-                            'assets/sound/loops/looperman-l-0202721-0074960-anubis-tribal-percussion-07.mp3']);
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
                 } else if (this._options.terrain === 'siege') {
-                    this.load.audio('battle_' + this._options.terrain,
-                        ['assets/sound/loops/looperman-l-0202721-0074435-anubis-tribal-percussion-01.ogg',
-                            'assets/sound/loops/looperman-l-0202721-0074435-anubis-tribal-percussion-01.mp3']);
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
                 }
                 // load characters in party
                 this._options.playerParty.forEach(character => {
@@ -157,7 +149,10 @@ export class LoadingScene extends Phaser.Scene {
 
         // check if the loading is over and prepare transition (with some sound loading sync)
         if (this._loadingFinished) {
-            this.scene.start(this._loadScene, this._options);
+            this._loadingText.setText('Loading complete');
+            this.time.delayedCall(2000, () => {
+                this.scene.start(this._loadScene, this._options);
+            }, null, this);
         }
     }
 
@@ -173,7 +168,7 @@ export class LoadingScene extends Phaser.Scene {
         var boxHeight = 50;
         progressBox.fillRect(width / 2 - boxWidth / 2, height - 200 - boxHeight / 2 - 5, boxWidth, boxHeight);
 
-        var loadingText = this.make.text({
+        this._loadingText = this.make.text({
             x: width / 2,
             y: height - 250,
             text: 'Loading...',
@@ -182,7 +177,7 @@ export class LoadingScene extends Phaser.Scene {
                 fill: '#D4915C'
             }
         });
-        loadingText.setOrigin(0.5, 0.5);
+        this._loadingText.setOrigin(0.5, 0.5);
 
         var percentText = this.make.text({
             x: width / 2,
@@ -228,7 +223,6 @@ export class LoadingScene extends Phaser.Scene {
         this.load.on("complete", f => {
             progressBar.destroy();
             progressBox.destroy();
-            loadingText.destroy();
             percentText.destroy();
             assetText.destroy();
             this._loadingFinished = true;
