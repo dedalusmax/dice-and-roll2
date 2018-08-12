@@ -2,7 +2,7 @@
     "gunslinger": {
         "name": "gunslinger",
         "title": "Gunslinger",
-        "desc": "Coming from the West, quick on the trigger.",
+        "desc": "Coming from the West, quick on the trigger. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..",
         "health": 80,
         "defense": 5,
         "attack": 12,

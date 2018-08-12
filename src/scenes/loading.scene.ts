@@ -150,9 +150,9 @@ export class LoadingScene extends Phaser.Scene {
         // check if the loading is over and prepare transition (with some sound loading sync)
         if (this._loadingFinished) {
             this._loadingText.setText('Loading complete');
-            this.time.delayedCall(2000, () => {
+            //this.time.delayedCall(2000, () => {
                 this.scene.start(this._loadScene, this._options);
-            }, null, this);
+            //}, null, this);
         }
     }
 
