@@ -24,7 +24,6 @@ export class BattleScene extends Phaser.Scene {
 
     private _combatants: Array<Combatant>;
     private _activeCombatant: number;
-    private _damageIndicators: Phaser.GameObjects.Group;
 
     constructor() {
         super({
@@ -73,7 +72,6 @@ export class BattleScene extends Phaser.Scene {
         }
         
         this._combatants = [];
-        this._damageIndicators = this.add.group();
 
         for (var index in this._options.playerParty) {
             var character = new Player(this._options.playerParty[index]);
@@ -136,8 +134,6 @@ export class BattleScene extends Phaser.Scene {
             yoyo: true,
             onComplete: () => {
                 turnText.destroy();
-                //this.activeCombatant.activate(this.activeCombatantClicked);
-                // this._combatants[this._activeCombatant].activate();
                 this.readyCombatant();
             }
         });
@@ -201,7 +197,7 @@ export class BattleScene extends Phaser.Scene {
     private displayCard(combatant: Combatant, index: number) {
         var cardPosition = this.calculateCombatantPosition(combatant.side, combatant.type, 
             index, this._options.playerParty.length, this._canvas.width, this._canvas.height);
-        var card = new Card(this, combatant, cardPosition);
+        combatant.addCard(new Card(this, combatant, cardPosition));
     }
 
     private calculateCombatantPosition(side: CombatantSide, type: CombatantType, slot, totalCount, width, height): Phaser.Geom.Point {
@@ -224,6 +220,8 @@ export class BattleScene extends Phaser.Scene {
     private readyCombatant() {
         var combatant = this._combatants[this._activeCombatant];
         if (combatant.canAct()) {
+            // activate card
+            combatant.card.activate();
             // show weapon and specials
             
             // show profile

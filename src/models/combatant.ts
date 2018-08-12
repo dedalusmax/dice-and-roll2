@@ -2,6 +2,7 @@ import { Weapon } from "./weapon";
 import { Special } from "./special";
 import { Effect, EffectType } from "./effect";
 import { WeaponService } from "../services/weapon.service";
+import { Card } from "./card";
 
 export enum CombatantType {
     Melee = 1,
@@ -28,6 +29,8 @@ export abstract class Combatant {
 
     effects: Array<Effect>;
 
+    card: Card;
+    
     // calculates:
 
     get health(): number {
@@ -62,4 +65,26 @@ export abstract class Combatant {
         this.specials = [];
         this.effects = [];
     }
+
+    public addCard(card: Card) {
+        this.card = card;
+    }
+
+    private calculateCombatantPosition(side: CombatantSide, type: CombatantType, slot, totalCount, width, height): Phaser.Geom.Point {
+        var SIZE = { X: 110, Y: 150 },
+            x, y;
+
+        if (side === CombatantSide.Friend) {
+            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 70));
+        } else if (side === CombatantSide.Enemy) {
+            y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 70);
+        }
+
+        var offsetLeft = (width - (totalCount * SIZE.X + 20)) / 2;
+
+        x = offsetLeft + (slot * SIZE.X) + (slot - 1) * 20 + SIZE.X / 2;
+
+        return new Phaser.Geom.Point(x, y);
+    }
+
 }
