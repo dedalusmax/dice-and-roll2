@@ -16,7 +16,7 @@ export class Card {
 
         // the main sprite, the card background
         this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/front');
-        this._mainSprite.setScale(0.32);
+        this._mainSprite.setScale(0.30, 0.32);
 
         // the faction emblem, top right corner
         var z = this.addSpriteToCard(_scene, 51, -74, _combatant.side === CombatantSide.Friend ? 'cards/faction-1' : 'cards/faction-2', 0.3);

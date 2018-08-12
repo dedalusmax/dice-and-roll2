@@ -205,18 +205,18 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private calculateCombatantPosition(side: CombatantSide, type: CombatantType, slot, totalCount, width, height): Phaser.Geom.Point {
-        var SIZE = { X: 163, Y: 220 },
+        var SIZE = { X: 110, Y: 150 },
             x, y;
 
         if (side === CombatantSide.Friend) {
-            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 80));
+            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 70));
         } else if (side === CombatantSide.Enemy) {
-            y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 80);
+            y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 70);
         }
 
-        var offsetLeft = (width - ((totalCount * SIZE.X) + ((totalCount - 1) * 20))) / 2;
+        var offsetLeft = (width - (totalCount * SIZE.X + 20)) / 2;
 
-        x = offsetLeft + (slot * SIZE.X) + (slot > 1 ? (slot - 1) * 20 : 0) + SIZE.X / 2;
+        x = offsetLeft + (slot * SIZE.X) + (slot - 1) * 20 + SIZE.X / 2;
 
         return new Phaser.Geom.Point(x, y);
     }
