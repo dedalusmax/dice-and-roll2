@@ -2,6 +2,7 @@ import { Settings } from '../models/settings';
 import { Soundsets } from '../models/soundsets';
 import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
+import { FONT_FAMILY } from '../models/styles';
 
 export class LoadingScene extends Phaser.Scene {
 
@@ -179,7 +180,7 @@ export class LoadingScene extends Phaser.Scene {
             y: height - 250,
             text: 'Loading...',
             style: {
-                font: '20px Berkshire Swash',
+                font: '20px ' + FONT_FAMILY,
                 fill: '#D4915C'
             }
         });
@@ -190,7 +191,7 @@ export class LoadingScene extends Phaser.Scene {
             y: height - 205,
             text: '0%',
             style: {
-                font: '18px Berkshire Swash',
+                font: '18px ' + FONT_FAMILY,
                 fill: '#EDEAD9'
             }
         });
@@ -201,7 +202,7 @@ export class LoadingScene extends Phaser.Scene {
             y: height - 160,
             text: '',
             style: {
-                font: '18px Berkshire Swash',
+                font: '18px ' + FONT_FAMILY,
                 fill: '#884825'
             }
         });

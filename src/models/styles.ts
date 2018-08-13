@@ -1,4 +1,4 @@
-export const FONT_FAMILY = 'Berkshire Swash'; // alternatives: Handlee, Kaushan Script
+export const FONT_FAMILY = 'Harrington';
 
 export class Styles {
 
