@@ -1,15 +1,17 @@
 import { Weapon } from "../models/weapon";
 import { Assets } from "../models/assets";
+import { Combatant, CombatantType } from "../models/combatant";
+import { TargetType, ExecutionType } from "../models/special";
 
 export class WeaponService {
 
-    static getAll(): Array<Weapon> {
-        var result = [];
-        Object.keys(Assets.weapons).forEach(key => {
-            result.push(this.matchWeapon(Assets.weapons[key]))
-        });
-        return result;
-    }
+    // static getAll(): Array<Weapon> {
+    //     var result = [];
+    //     Object.keys(Assets.weapons).forEach(key => {
+    //         result.push(this.matchWeapon(Assets.weapons[key]))
+    //     });
+    //     return result;
+    // }
 
     static get(name: string): Weapon {
         var key = Object.keys(Assets.weapons).find(w => w == name);
@@ -23,6 +25,12 @@ export class WeaponService {
         result.description = prop.desc;
         result.type = prop.type;
         result.attack = prop.attack;
+
+        result.targetType = TargetType.anyEnemyInNearestRank;
+        result.executionType = ExecutionType.attackSingleTarget;
+        result.attackCount = 1;
+        result.modifier = result.attack;
+
         return result;
     }
 }

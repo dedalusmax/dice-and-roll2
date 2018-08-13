@@ -1,3 +1,5 @@
+import { Move } from "./move";
+
 export enum TargetType {
     self = 1,
     anyEnemy,
@@ -25,16 +27,8 @@ export enum StatusType {
     Fire
 }
 
-export class Special {
-    // from the JSON file:
-    name: string;
-    title: string;
-    description: string;    
-    targetType: TargetType;
-    executionType: ExecutionType;
-    attackCount: number;
-    modifier: number;
-
+export class Special extends Move {
+    
     statusType?: StatusType;
     duration?: number;
     power?: number;

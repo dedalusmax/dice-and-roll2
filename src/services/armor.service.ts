@@ -3,13 +3,13 @@ import { Armor } from "../models/armor";
 
 export class ArmorService {
 
-    static getAll(): Array<Armor> {
-        var result = [];
-        Object.keys(Assets.armors).forEach(key => {
-            result.push(this.matchArmor(Assets.armors[key]))
-        });
-        return result;
-    }
+    // static getAll(): Array<Armor> {
+    //     var result = [];
+    //     Object.keys(Assets.armors).forEach(key => {
+    //         result.push(this.matchArmor(Assets.armors[key]))
+    //     });
+    //     return result;
+    // }
 
     static get(name: string): Armor {
         var key = Object.keys(Assets.armors).find(w => w == name);

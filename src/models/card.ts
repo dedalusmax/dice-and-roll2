@@ -13,6 +13,8 @@ export class Card {
     private _defenseText: Phaser.GameObjects.Text;
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
+    private _activeTween: Phaser.Tweens.Tween;
+    private _activeEventEmitter: Phaser.Events.EventEmitter;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
         return [
@@ -79,13 +81,25 @@ export class Card {
         return textObject;
     }
 
-    activate() {
-        var tween = this._scene.tweens.add({
-            targets: this.allObjects,
-            y: '-=24',
-            ease: 'Sine.easeInOut',
-            yoyo: true,
-            repeat: Infinity
-        });
+    activate(onClickCallback?: any) {
+
+        if (!this._activeTween) {
+            this._activeTween = this._scene.tweens.add({
+                targets: this.allObjects,
+                y: '-=24',
+                ease: 'Sine.easeInOut',
+                yoyo: true,
+                repeat: Infinity
+            });
+        }
+
+        if (onClickCallback) {
+            this._image.setInteractive();
+            if (!this._activeEventEmitter) {
+                this._activeEventEmitter = this._image.on('pointerdown', e => {
+                    onClickCallback.call();
+                });   
+            }
+        }
     }
 }

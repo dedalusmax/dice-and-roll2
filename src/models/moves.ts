@@ -10,20 +10,21 @@ const SPECIAL_SIZE = 100,
 export class Moves {
 
     private _canvas: HTMLCanvasElement;
-    // private _image: Phaser.GameObjects.Sprite;
+    private _nameText: Phaser.GameObjects.Text;
+    private _descriptionText: Phaser.GameObjects.Text;
+    private _images: Array<Phaser.GameObjects.Sprite>;
+    private _activeTween: Phaser.Tweens.Tween;
 
     // constructs with a weapon as a first (default) move
     constructor(private _scene: Phaser.Scene, texture, name, description) {
 
         this._canvas = _scene.textures.game.canvas;
+        this._images = [];
 
-        // this._image = _scene.add.sprite(0, 0, texture);
-        // this._image.setOrigin(0.5);
-
-        var nameText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 25, name, SPECIAL_NAME_STYLE);
-        nameText.setOrigin(0.5, 0);
-        var descriptionText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 45, description, SPECIAL_DESCRIPTION_STYLE);
-        descriptionText.setOrigin(0.5, 0);
+        this._nameText =_scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 25, name, SPECIAL_NAME_STYLE);
+        this._nameText.setOrigin(0.5, 0);
+        this._descriptionText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 45, description, SPECIAL_DESCRIPTION_STYLE);
+        this._descriptionText.setOrigin(0.5, 0);
     }
 
     addWeapon(weapon: Weapon, movesCount: number) {
@@ -65,5 +66,23 @@ export class Moves {
 
         image.setScale(0.5);
         // image.setOrigin(0.5);
+
+        this._images.push(image);
+    }
+
+    public selectMove(index: number, name: string, description: string) {
+        
+        this._nameText.setText(name);
+        this._descriptionText.setText(description);
+        this._activeTween = this._scene.add.tween({
+            targets: [ this._images[index] ],
+            ease: 'Sine.easeInOut',
+            duration: 700,
+            scaleX: '-=.2',
+            scaleY: '-=.2',
+            angle: '-=30',
+            yoyo: true,
+            repeat: Infinity
+        });
     }
 }

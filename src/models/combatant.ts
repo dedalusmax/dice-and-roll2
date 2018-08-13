@@ -1,8 +1,10 @@
 import { Weapon } from "./weapon";
-import { Special } from "./special";
+import { Special, TargetType } from "./special";
 import { Effect, EffectType } from "./effect";
 import { WeaponService } from "../services/weapon.service";
 import { Card } from "./card";
+import { Moves } from "./moves";
+import { Move } from "./move";
 
 export enum CombatantType {
     Melee = 1,
@@ -30,6 +32,9 @@ export abstract class Combatant {
     effects: Array<Effect>;
 
     card: Card;
+
+    moves: Moves;
+    activeMove: Move;
 
     // calculates:
 
@@ -68,5 +73,20 @@ export abstract class Combatant {
 
     public addCard(card: Card) {
         this.card = card;
+    }
+
+    public addMoves(moves: Moves) {
+        this.moves = moves;
+    }
+
+    public activateMove(index: number) {
+        
+        if (index === 0) {
+            this.activeMove = this.weapon;
+            this.moves.selectMove(index, this.weapon.title, this.weapon.description);
+        } else {
+            this.activeMove = this.specials[index - 1];
+            this.moves.selectMove(index, this.specials[index - 1].title, this.specials[index - 1].description);
+        }
     }
 }

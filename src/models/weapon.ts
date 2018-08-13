@@ -1,8 +1,7 @@
-export class Weapon {
+import { Move } from "./move";
+
+export class Weapon extends Move {
     // from the JSON file:
-    name: string;
-    title: string;
-    description: string;    
     type: string;
     attack: number;
 }

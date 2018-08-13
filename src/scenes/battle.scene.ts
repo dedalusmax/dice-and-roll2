@@ -12,7 +12,7 @@ import { Card } from "../models/card";
 import { WeaponService } from "../services/weapon.service";
 import { Moves } from "../models/moves";
 import { SpecialService } from "../services/special.service";
-import { Special } from "../models/special";
+import { Special, TargetType } from "../models/special";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -29,7 +29,6 @@ export class BattleScene extends Phaser.Scene {
     private _combatants: Array<Combatant>;
     private _activeCombatant: number;
     private _activeProfile: Profile;
-    private _currentMoves: Moves;
 
     constructor() {
         super({
@@ -230,6 +229,8 @@ export class BattleScene extends Phaser.Scene {
             combatant.card.activate();
             // show weapon and specials
             this.displayMoves(combatant);
+            combatant.activateMove(0);
+            this.activateTargets(combatant);
             // show profile
             this._activeProfile = new Profile(this, combatant);
         } else {
@@ -243,6 +244,44 @@ export class BattleScene extends Phaser.Scene {
         var movesCount = 1 + combatant.specials.length;
         moves.addWeapon(combatant.weapon, movesCount);
         moves.addSpecials(combatant.specials, movesCount);
-        this._currentMoves = moves;
+        combatant.addMoves(moves);
+    }
+
+    private activateTargets(combatant: Combatant) {
+
+        switch (combatant.activeMove.targetType) {
+            case TargetType.self:
+                combatant.card.activate(this.executeMove);
+                break;
+            case TargetType.anyEnemy:
+                var enemies = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                enemies.forEach(t => {
+                    t.card.activate(this.executeMove);
+                });
+                break;
+            case TargetType.anyEnemyInNearestRank: 
+                var enemies = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                var melees = enemies.filter(e => e.type === CombatantType.Melee);
+                var targets: Array<Combatant>;
+                if (melees.length > 0) {
+                    targets = melees;
+                } else {
+                    targets = enemies;
+                }
+                targets.forEach(t => {
+                    t.card.activate(this.executeMove);
+                });
+                break;
+            case TargetType.anyFriend:
+                var friends = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                friends.forEach(t => {
+                    t.card.activate(this.executeMove);
+                });
+                break;
+        }
+    } 
+
+    private executeMove() {
+
     }
 }
