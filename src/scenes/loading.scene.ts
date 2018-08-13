@@ -27,6 +27,7 @@ export class LoadingScene extends Phaser.Scene {
     preload(): void {
         this._loadingFinished = false;
                
+        this.cameras.main.fadeIn(500);
         this.cameras.main.setBackgroundColor(0x360602);
 
         var logo = ImageService.stretchAndFitImage('logo', this);

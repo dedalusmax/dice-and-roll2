@@ -26,6 +26,8 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     create(): void {
+        this.cameras.main.fadeIn(1000);
+
         this.cameras.main.setBackgroundColor(0xFFFFFF);
 
         var music;

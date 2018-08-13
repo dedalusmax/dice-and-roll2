@@ -81,9 +81,10 @@ export class Moves {
             targets: [ this._images[index] ],
             ease: 'Sine.easeInOut',
             duration: 700,
-            scaleX: '-=.2',
-            scaleY: '-=.2',
-            angle: '-=30',
+            scaleX: '-=.05',
+            scaleY: '-=.05',
+            y: '-=20',
+            angle: '+=30',
             yoyo: true,
             repeat: Infinity
         });
