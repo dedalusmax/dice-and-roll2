@@ -30,7 +30,7 @@ export abstract class Combatant {
     effects: Array<Effect>;
 
     card: Card;
-    
+
     // calculates:
 
     get health(): number {
@@ -38,7 +38,7 @@ export abstract class Combatant {
     }
 
     get attack(): number {
-        return this.baseAttack;
+        return this.baseAttack + this.weapon.attack;
     }
 
     get defense(): number {
@@ -69,22 +69,4 @@ export abstract class Combatant {
     public addCard(card: Card) {
         this.card = card;
     }
-
-    private calculateCombatantPosition(side: CombatantSide, type: CombatantType, slot, totalCount, width, height): Phaser.Geom.Point {
-        var SIZE = { X: 110, Y: 150 },
-            x, y;
-
-        if (side === CombatantSide.Friend) {
-            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 70));
-        } else if (side === CombatantSide.Enemy) {
-            y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 70);
-        }
-
-        var offsetLeft = (width - (totalCount * SIZE.X + 20)) / 2;
-
-        x = offsetLeft + (slot * SIZE.X) + (slot - 1) * 20 + SIZE.X / 2;
-
-        return new Phaser.Geom.Point(x, y);
-    }
-
 }

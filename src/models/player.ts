@@ -6,9 +6,13 @@ export class Player extends Combatant {
     
     armor: Armor;
 
+    get defense(): number {
+        return this.baseDefense + this.armor.defense;
+    }
+
     constructor(data: any) {
         super(data, CombatantSide.Friend);
-
+        this.setPlayerData(data);
     }
 
     private setPlayerData(data: any) {

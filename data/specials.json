@@ -1,6 +1,7 @@
 {
     "melee_attack": {
-        "name": "Attack",
+        "name": "melee_attack",
+        "title": "Attack",
         "description": "Attack with character's melee weapon",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "attackSingleTarget",
@@ -8,7 +9,8 @@
         "modifier": 0
     },
     "ranged_attack": {
-        "name": "Attack",
+        "name": "ranged_attack",
+        "title": "Attack",
         "description": "Attack with character's ranged weapon",
         "targetType": "anyEnemy",
         "executionType": "attackSingleTarget",
@@ -16,21 +18,24 @@
         "modifier": 0
     },
     "healing_potion": {
-        "name": "Healing potion",
+        "name": "healing_potion",
+        "title": "Healing potion",
         "description": "Increases health of selected party member.",
         "targetType": "anyFriend",
         "executionType": "healSingleTarget",
         "modifier": 2
     },
     "catalitic_bomb": {
-        "name": "Catalitic bomb",
+        "name": "catalitic_bomb",
+        "title": "Catalitic bomb",
         "description": "Attacks nearby opponents attack -1",
         "targetType": "anyEnemy",
         "executionType": "attackRankAtOnce",
         "modifier": -1
     },
     "poison_gas": {
-        "name": "Poison gas",
+        "name": "poison_gas",
+        "title": "Poison gas",
         "description": "Poisons all opponents at +2 for 2 moves",
         "targetType": "anyEnemy",
         "executionType": "applyStatusToParty",
@@ -41,7 +46,8 @@
         "power": 2
     },
     "electric_bomb": {
-        "name": "Electric bomb",
+        "name": "electric_bomb",
+        "title": "Electric bomb",
         "description": "Attack all opponents +2",
         "targetType": "anyEnemy",
         "executionType": "attackAllAtOnce",

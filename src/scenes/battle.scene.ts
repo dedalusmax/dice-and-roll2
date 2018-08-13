@@ -9,6 +9,10 @@ import { Player } from "../models/player";
 import { Enemy } from "../models/enemy";
 import { Profile } from "../models/profile";
 import { Card } from "../models/card";
+import { WeaponService } from "../services/weapon.service";
+import { Moves } from "../models/moves";
+import { SpecialService } from "../services/special.service";
+import { Special } from "../models/special";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -24,6 +28,8 @@ export class BattleScene extends Phaser.Scene {
 
     private _combatants: Array<Combatant>;
     private _activeCombatant: number;
+    private _activeProfile: Profile;
+    private _currentMoves: Moves;
 
     constructor() {
         super({
@@ -223,11 +229,20 @@ export class BattleScene extends Phaser.Scene {
             // activate card
             combatant.card.activate();
             // show weapon and specials
-            
+            this.displayMoves(combatant);
             // show profile
-            var profile = new Profile(this, combatant);
+            this._activeProfile = new Profile(this, combatant);
         } else {
             this._isTurnInProgress = false;
         }
+    }
+
+    private displayMoves(combatant: Combatant) {
+        var moves = new Moves(this, 'cards/emblem-' + combatant.weapon.type.toLowerCase(), combatant.weapon.title, combatant.weapon.description);
+        //moves.addMoves(combatant.weapon, combatant.specials);
+        var movesCount = 1 + combatant.specials.length;
+        moves.addWeapon(combatant.weapon, movesCount);
+        moves.addSpecials(combatant.specials, movesCount);
+        this._currentMoves = moves;
     }
 }

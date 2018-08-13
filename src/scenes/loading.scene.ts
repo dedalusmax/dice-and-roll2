@@ -118,14 +118,11 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('cards/front', 'assets/cards/card-front.png');
                 this.load.image('cards/faction-1', 'assets/cards/card-faction-1.png');
                 this.load.image('cards/faction-2', 'assets/cards/card-faction-2.png');
-                this.load.image('cards/emblem-axe', 'assets/cards/card-axe.png');
-                this.load.image('cards/emblem-mace', 'assets/cards/card-mace.png');
-                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
-                this.load.image('cards/emblem-bow', 'assets/cards/card-bow.png');
                 this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
                 this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
-                this.load.image('cards/emblem-claw', 'assets/cards/card-claw.png');
-                this.load.image('cards/emblem-spear', 'assets/cards/card-spear.png');
+                this.load.image('cards/emblem-blunt', 'assets/cards/card-blunt.png');
+                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
+                this.load.image('cards/emblem-firearms', 'assets/cards/card-firearms.png');
                 this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
 
                 break;

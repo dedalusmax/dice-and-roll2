@@ -28,7 +28,8 @@ export enum StatusType {
 export class Special {
     // from the JSON file:
     name: string;
-    description: string;
+    title: string;
+    description: string;    
     targetType: TargetType;
     executionType: ExecutionType;
     attackCount: number;

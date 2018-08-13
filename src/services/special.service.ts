@@ -11,6 +11,7 @@ export class SpecialService {
     static matchSpecial(prop: any): Special {
         var result = new Special();
         result.name = prop.name;
+        result.title = prop.title;
         result.description = prop.desc;
         result.targetType = TargetType[prop.targetType as string];
         result.executionType = ExecutionType[prop.executionType as string];

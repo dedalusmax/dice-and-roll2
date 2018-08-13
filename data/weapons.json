@@ -2,7 +2,7 @@
     "revolvers": {
         "name": "revolvers",
         "title": "Revolvers",
-        "desc": "",
+        "desc": "Quick firearm weapon famous in the West",
         "type": "FIREARMS",
         "attack": 1
     }, 
@@ -186,7 +186,7 @@
         "name": "poison",
         "title": "Poison",
         "desc": "",
-        "type": "MISSILE",
+        "type": "POTION",
         "attack": 2
     }
 }
