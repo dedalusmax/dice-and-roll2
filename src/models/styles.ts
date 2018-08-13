@@ -1,4 +1,4 @@
-export const FONT_FAMILY = 'Harrington';
+export const FONT_FAMILY = 'Old English Text MT'; // Harrington
 
 export class Styles {
 

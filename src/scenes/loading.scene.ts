@@ -116,8 +116,7 @@ export class LoadingScene extends Phaser.Scene {
                 }
                 // TODO: assort these images more efficiently !!!
 
-                this.load.image('cards/back', 'assets/cards/card-back.png');
-                this.load.image('cards/front', 'assets/cards/card-front.png');
+                this.load.image('cards/card', 'assets/cards/card.png');
                 this.load.image('cards/faction-1', 'assets/cards/card-faction-1.png');
                 this.load.image('cards/faction-2', 'assets/cards/card-faction-2.png');
                 this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');

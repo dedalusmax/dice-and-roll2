@@ -35,21 +35,27 @@ export class Card {
         this._canvas = _scene.textures.game.canvas;
 
         // the main sprite, the card background
-        this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/front');
-        this._mainSprite.setScale(0.30, 0.32);
+        this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/card');
+        this._mainSprite.setScale(0.08, 0.08);
+        
+        // var shadow = _scene.add.sprite(_position.x, _position.y, 'cards/card');
+        // shadow.setScale(0.09, 0.09);
+        // shadow.setTint(0x000000, 0x000000, 0x000000, 0x000000);
+        //shadow.setBlendMode(Phaser.BlendModes.DARKEN);
+        //shadow.setDepth(this._mainSprite.depth - 1);
 
         // the faction emblem, top right corner
-        this._factionEmblem = this.addSpriteToCard(51, -74, combatant.side === CombatantSide.Friend ? 'cards/faction-1' : 'cards/faction-2', 0.3);
+        //this._factionEmblem = this.addSpriteToCard(51, -74, combatant.side === CombatantSide.Friend ? 'cards/faction-1' : 'cards/faction-2', 0.3);
 
         // the attack emblem, bottom left corner
-        this._attackEmblem = this.addSpriteToCard(-51, 74, 'cards/emblem-sword');
+        //this._attackEmblem = this.addSpriteToCard(-51, 74, 'cards/emblem-sword');
 
-        this._attackText = this.addTextToCard(-50, 71, combatant.attack.toString());
+        //this._attackText = this.addTextToCard(-50, 71, combatant.attack.toString());
 
         // the defense emblem, bottom right corner
-        this._shieldEmblem = this.addSpriteToCard(55, 74, 'cards/emblem-shield');
+        //this._shieldEmblem = this.addSpriteToCard(55, 74, 'cards/emblem-shield');
 
-        this._defenseText = this.addTextToCard(55, 73, combatant.defense.toString());
+        //this._defenseText = this.addTextToCard(55, 73, combatant.defense.toString());
 
         if ( combatant.side === CombatantSide.Friend) {
             this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name, 0.05);
@@ -57,8 +63,9 @@ export class Card {
             this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name, 0.4);
         }
     
-        this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString());
-        this._healthIndicator.setColor('#009900');
+        this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString(), 
+        { font: '18px ' + FONT_FAMILY, fill: '#009900', align: 'center', stroke: '#000000', strokeThickness: 2 });
+        this._healthIndicator.setShadow(0, 0, '#FFFFFF', 4, true, true);
     }
 
     private addSpriteToCard(left: number, top: number, texture, scale?: number) {

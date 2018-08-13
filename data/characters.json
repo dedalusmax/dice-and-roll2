@@ -86,7 +86,7 @@
         "health": 80,
         "defense": 5,
         "attack": 11,
-        "type": "MELEE",
+        "type": "RANGED",
         "speciality": "Tricks",
         "armors": [ "magician_suit" ],
         "weapons": [ "deck_of_cards", "blackjack", "poker_cards", "joker_card" ],
