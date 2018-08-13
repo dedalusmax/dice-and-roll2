@@ -210,7 +210,7 @@ export class BattleScene extends Phaser.Scene {
             x, y;
 
         if (side === CombatantSide.Friend) {
-            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 20 : 70));
+            y = height - (SIZE.Y / 2 + ((type === CombatantType.Melee) ? 70 : 20));
         } else if (side === CombatantSide.Enemy) {
             y = SIZE.Y / 2 + ((type === CombatantType.Ranged) ? 20 : 70);
         }
@@ -226,7 +226,7 @@ export class BattleScene extends Phaser.Scene {
         var combatant = this._combatants[this._activeCombatant];
         if (combatant.canAct()) {
             // activate card
-            combatant.card.activate();
+            combatant.card.activate(combatant);
             // show weapon and specials
             this.displayMoves(combatant);
             combatant.activateMove(0);
@@ -249,14 +249,16 @@ export class BattleScene extends Phaser.Scene {
 
     private activateTargets(combatant: Combatant) {
 
+        var activated: Promise<Combatant>;
+
         switch (combatant.activeMove.targetType) {
             case TargetType.self:
-                combatant.card.activate(this.executeMove);
+                activated = combatant.card.activate(combatant, true);
                 break;
             case TargetType.anyEnemy:
                 var enemies = this._combatants.filter(e => e.side === CombatantSide.Enemy);
                 enemies.forEach(t => {
-                    t.card.activate(this.executeMove);
+                    activated = t.card.activate(t, true);
                 });
                 break;
             case TargetType.anyEnemyInNearestRank: 
@@ -269,19 +271,46 @@ export class BattleScene extends Phaser.Scene {
                     targets = enemies;
                 }
                 targets.forEach(t => {
-                    t.card.activate(this.executeMove);
+                    activated = t.card.activate(t, true);
                 });
                 break;
             case TargetType.anyFriend:
                 var friends = this._combatants.filter(e => e.side === CombatantSide.Friend);
                 friends.forEach(t => {
-                    t.card.activate(this.executeMove);
+                    activated = t.card.activate(t, true);
                 });
                 break;
         }
+
+        activated.then(combatant => {
+            this.executeMove(combatant);
+        });
     } 
 
-    private executeMove() {
+    private executeMove(target: Combatant) {
+        // DEALING DAMAGE TO OPPONENTS:
+        // remove tween for active targets
+        // remove tween for active combatant
+        this._combatants.forEach(c => {
+            c.card.deactivate();
+        });
 
+        // deactivate all moves
+        var actor = this._combatants[this._activeCombatant];
+        actor.moves.resetMoves();
+
+        // add tween for hitting target
+        // calculate damage
+        var damage = Phaser.Math.RND.between(1, 6) + actor.attack - target.defense;
+        if (damage < 0)
+            damage = 0;
+        target.health = (target.health - damage) < 0 ? 0 : target.health - damage;
+
+        // play damage sound
+        Soundsets.sounds['sword'].play();
+
+        // add tween for displaying damage
+        // update target's card
+        target.card.showDamage(damage, target.health);
     }
 }

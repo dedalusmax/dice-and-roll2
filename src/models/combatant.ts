@@ -37,10 +37,7 @@ export abstract class Combatant {
     activeMove: Move;
 
     // calculates:
-
-    get health(): number {
-        return this.baseHealth;
-    }
+    health: number;
 
     get attack(): number {
         return this.baseAttack + this.weapon.attack;
@@ -69,6 +66,7 @@ export abstract class Combatant {
         this.weapon = WeaponService.get(data.weapon);
         this.specials = [];
         this.effects = [];
+        this.health = this.baseHealth;
     }
 
     public addCard(card: Card) {
@@ -88,5 +86,9 @@ export abstract class Combatant {
             this.activeMove = this.specials[index - 1];
             this.moves.selectMove(index, this.specials[index - 1].title, this.specials[index - 1].description);
         }
+    }
+
+    public damage() {
+
     }
 }

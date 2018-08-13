@@ -85,4 +85,10 @@ export class Moves {
             repeat: Infinity
         });
     }
+
+    public resetMoves() {
+        if (this._activeTween && this._activeTween.isPlaying()) {
+            this._activeTween.stop();
+        }
+    }
 }
