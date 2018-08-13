@@ -20,7 +20,7 @@ export class Moves {
         // this._image = _scene.add.sprite(0, 0, texture);
         // this._image.setOrigin(0.5);
 
-        var nameText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 30, name, SPECIAL_NAME_STYLE);
+        var nameText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 25, name, SPECIAL_NAME_STYLE);
         nameText.setOrigin(0.5, 0);
         var descriptionText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 45, description, SPECIAL_DESCRIPTION_STYLE);
         descriptionText.setOrigin(0.5, 0);

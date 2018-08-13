@@ -120,6 +120,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('cards/faction-2', 'assets/cards/card-faction-2.png');
                 this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
                 this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
+                this.load.image('cards/emblem-blade', 'assets/cards/card-blade.png');
                 this.load.image('cards/emblem-blunt', 'assets/cards/card-blunt.png');
                 this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
                 this.load.image('cards/emblem-firearms', 'assets/cards/card-firearms.png');

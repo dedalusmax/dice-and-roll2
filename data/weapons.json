@@ -30,7 +30,7 @@
     "steam_pipe": {
         "name": "steam_pipe",
         "title": "Steam pipe",
-        "desc": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "BLUNT",
         "attack": 1
     },  
@@ -58,7 +58,7 @@
     "musket": {
         "name": "musket",
         "title": "Musket",
-        "desc": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "FIREARMS",
         "attack": 1
     },  
@@ -86,7 +86,7 @@
     "explosive_grenade": {
         "name": "explosive_grenade",
         "title": "Explosive grenade",
-        "desc": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "MISSILE",
         "attack": 1
     },  
@@ -114,7 +114,7 @@
     "dagger": {
         "name": "dagger",
         "title": "Dagger",
-        "desc": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "BLADE",
         "attack": 1
     },  
@@ -142,7 +142,7 @@
     "deck_of_cards": {
         "name": "deck_of_cards",
         "title": "Deck of cards",
-        "desc": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "BLADE",
         "attack": 1
     },
@@ -171,21 +171,21 @@
     "strings": {
         "name": "strings",
         "title": "Strings",
-        "desc": "",
+        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
         "type": "MISSILE",
         "attack": 2
     },
     "sceptre": {
         "name": "sceptre",
         "title": "Sceptre",
-        "desc": "",
+        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
         "type": "BLADE",
         "attack": 2
     },
     "poison": {
         "name": "poison",
         "title": "Poison",
-        "desc": "",
+        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
         "type": "POTION",
         "attack": 2
     }
