@@ -176,19 +176,14 @@ export class BattleScene extends Phaser.Scene {
 
     // determines if all members of a single team are dead and then calles the menu screen (later, there will be a victory/defeat screen
     private checkIfBattleIsOver() {
-        var numInPlayerTeam = this._combatants.filter(c => c.side === CombatantSide.Friend).length,
-            numInEnemyTeam = this._combatants.filter(c => c.side === CombatantSide.Enemy).length;
+        var numInPlayerTeam = this._combatants.filter(c => c.side === CombatantSide.Friend && !c.killed).length,
+            numInEnemyTeam = this._combatants.filter(c => c.side === CombatantSide.Enemy && !c.killed).length;
 
-        // TODO: Split into victory/defeat
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
-            this._options.combatResult = (numInEnemyTeam === 0) ? 'VICTORY' : 'DEFEAT';
-
-            // if (this._options.skirmish) {
-            //     this.game.state.start('Preloader', true, false, 'SkirmishEnd', this.options);
-            // } else {
-            //     this.game.state.start('Preloader', true, false, (numInEnemyTeam === 0) ? 'BattleVictory' : 'BattleDefeat', this.options);
-            // }
-            this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+            // this._options.combatResult = (numInEnemyTeam === 0) ? 'VICTORY' : 'DEFEAT';
+            this.time.delayedCall(1000, () => {
+                this.scene.start('LoadingScene', { loadScene: (numInEnemyTeam === 0) ? 'VictoryScene' : 'DefeatScene', skirmish: this._options.skirmish });
+            }, null, this);
         }
     };
 
@@ -275,7 +270,7 @@ export class BattleScene extends Phaser.Scene {
                 });
                 break;
             case TargetType.anyEnemy:
-                var enemies = this._combatants.filter(e => e.side === myEnemy);
+                var enemies = this._combatants.filter(e => e.side === myEnemy && !e.killed);
                 enemies.forEach(t => {
                     t.card.activate(t).then(combatant => {
                         this.executeMove(combatant);
@@ -283,7 +278,7 @@ export class BattleScene extends Phaser.Scene {
                 });
                 break;
             case TargetType.anyEnemyInNearestRank: 
-                var enemies = this._combatants.filter(e => e.side === myEnemy);
+                var enemies = this._combatants.filter(e => e.side === myEnemy && !e.killed);
                 var melees = enemies.filter(e => e.type === CombatantType.Melee);
                 var targets: Array<Combatant>;
                 if (melees.length > 0) {
@@ -298,7 +293,7 @@ export class BattleScene extends Phaser.Scene {
                 });
                 break;
             case TargetType.anyFriend:
-                var friends = this._combatants.filter(e => e.side === myFriend);
+                var friends = this._combatants.filter(e => e.side === myFriend && !e.killed);
                 friends.forEach(t => {
                     t.card.activate(t).then(combatant => {
                         this.executeMove(combatant);
@@ -315,12 +310,12 @@ export class BattleScene extends Phaser.Scene {
                 this.executeMove(actor);
                 break;
             case TargetType.anyEnemy:
-                var targets = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                var targets = this._combatants.filter(e => e.side === CombatantSide.Friend && !e.killed);
                 var randomTarget = Phaser.Math.RND.pick(targets);
                 this.executeMove(randomTarget);
                 break;
             case TargetType.anyEnemyInNearestRank: 
-                var enemies = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                var enemies = this._combatants.filter(e => e.side === CombatantSide.Friend && !e.killed);
                 var melees = enemies.filter(e => e.type === CombatantType.Melee);
                 var targets: Array<Combatant>;
                 if (melees.length > 0) {
@@ -332,7 +327,7 @@ export class BattleScene extends Phaser.Scene {
                 this.executeMove(randomTarget);
                 break;
             case TargetType.anyFriend:
-                var targets = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                var targets = this._combatants.filter(e => e.side === CombatantSide.Enemy && !e.killed);
                 var randomTarget = Phaser.Math.RND.pick(targets);
                 this.executeMove(randomTarget);
                 break;
@@ -344,7 +339,7 @@ export class BattleScene extends Phaser.Scene {
         // DEALING DAMAGE TO OPPONENTS:
         // remove tween for active targets
         // remove tween for active combatant
-        this._combatants.forEach(c => {
+        this._combatants.filter(c => !c.killed).forEach(c => {
             c.card.deactivate();
         });
 
@@ -366,7 +361,11 @@ export class BattleScene extends Phaser.Scene {
         // update target's card
         target.card.showDamage(damage, target.health);
 
-        // indicate end of move
+        if (target.health == 0) {
+            target.kill();
+        }
+
+         // indicate end of move
         this.endTurn();
     }
 }

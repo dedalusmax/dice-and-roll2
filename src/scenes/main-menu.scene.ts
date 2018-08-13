@@ -29,21 +29,10 @@ export class MainMenuScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(0xFFFFFF);
 
         var music;
-        // check if music is enabled
         if (Settings.sound.musicVolume > 0) {
-            if (this._music) {
-                // music is already been there, and start playing if stopped
-                if (!this._music.isPlaying) {   
-                    music = this._music.play('', { loop: true });    
-                } else {
-                    music = this._music;
-                } 
-            } else {
-                // introductory fade in of theme music
-                this.sound.stopAll();
-                this._music = this.sound.add('theme');
-                music = this._music.play('', { loop: true });    
-            }
+            this.sound.stopAll();
+            this._music = this.sound.add('theme');
+            music = this._music.play('', { loop: true });
         }
 
         // set screen background

@@ -127,6 +127,14 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
 
                 break;
+            case 'VictoryScene':
+                this.load.image('victory', 'assets/screens/menu.png');
+                this.load.audio('victory', 'assets/sound/loops/looperman-l-0173301-0131687-eepic.wav');
+                break;
+            case 'DefeatScene':
+                this.load.image('defeat', 'assets/screens/menu.png');
+                this.load.audio('defeat', 'assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav');
+                break;
         }
     }
 

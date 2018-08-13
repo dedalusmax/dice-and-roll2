@@ -128,6 +128,23 @@ export class Card {
         });
     }
 
+    remove() {
+        this.deactivate();
+
+        this._scene.add.tween({
+            targets: this.allObjects,
+            scaleX: 0.001,
+            scaleY: 0.001,
+            angle: 180,
+            ease: 'Power2',
+            duration: 1000,
+            delay: 50,
+            onComplete: () => {
+                this.allObjects.forEach(o => o.destroy());
+            }
+        });
+    }
+
     private updateHealth(health: number) {
 
         this._healthIndicator.setText(health.toString());

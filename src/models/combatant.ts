@@ -38,6 +38,7 @@ export abstract class Combatant {
 
     // calculates:
     health: number;
+    killed: boolean;
 
     get attack(): number {
         return this.baseAttack + this.weapon.attack;
@@ -52,7 +53,7 @@ export abstract class Combatant {
     }
 
     public canAct(): boolean {
-        return this.effects.findIndex(e => e.type === EffectType.Stun) < 0;
+        return this.effects.findIndex(e => e.type === EffectType.Stun) < 0 && !this.killed;
     }
 
     private setCommonData(data: any) {
@@ -86,5 +87,10 @@ export abstract class Combatant {
             this.activeMove = this.specials[index - 1];
             this.moves.selectMove(index, this.specials[index - 1].title, this.specials[index - 1].description);
         }
+    }
+
+    public kill() {
+        this.card.remove();
+        this.killed = true;
     }
 }
