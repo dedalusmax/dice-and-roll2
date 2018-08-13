@@ -31,16 +31,20 @@ export class Profile {
     private displayStats() {
         this._objects = [];
 
+        // var graphics = this._scene.add.graphics({ lineStyle: { width: 2, color: 0xaa0000 }, fillStyle: { color: 0x0000aa }});
+        // var rect1 = new Phaser.Geom.Rectangle(100, 0, 250, 100);
+        // graphics.fillRectShape(square);
+
         var title = this._scene.add.text(30, this._scene.cameras.main.height - 300, this._combatant.title, {
             font: '24px ' + FONT_FAMILY, fill: '#FF6A00', strokeThickness: 1
         });
-        title.setShadow(2, 2, '#333333', 2, true, true);
+        title.setShadow(4, 4, '#333333', 4, true, true);
         this._objects.push(title);
 
         var desc = this._scene.add.text(30, this._scene.cameras.main.height - 270, this._combatant.description, {
             font: '14px ' + FONT_FAMILY, fill: '#EDEAD9', wordWrap: { width: 250 }
         });
-        // desc.setShadow(1, 1, '#000', 2, false, true);
+        desc.setShadow(2, 2, '#000', 10, true, true);
         this._objects.push(desc);
 
         var hpTitle = this._scene.add.text(30, this._scene.cameras.main.height - 150, 'HP', {
