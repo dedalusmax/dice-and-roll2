@@ -234,8 +234,20 @@ export class BattleScene extends Phaser.Scene {
             combatant.card.select();
             // show weapon and specials
             this.displayMoves(combatant);
-            combatant.activateMove(0);
-            this.activateTargets(combatant);
+
+            // select first move, or automatically select and activate random one, if AI
+            if (combatant.side === CombatantSide.Friend) {
+                combatant.selectMove(0);
+                this.activateTargets(combatant);
+            } else {
+                // perform action in delay because of AI
+                this.time.delayedCall(2000, () => {
+                    var actor = combatant as Enemy;
+                    actor.activateRandomMove();
+                    this.pickRandomTarget(actor);
+                }, null, this);
+            }
+            
             // show profile
             this._activeProfile = new Profile(this, combatant);
         } else {
@@ -295,6 +307,37 @@ export class BattleScene extends Phaser.Scene {
                 break;
         }
     } 
+
+    private pickRandomTarget(actor: Enemy) {
+
+        switch (actor.activeMove.targetType) {
+            case TargetType.self:
+                this.executeMove(actor);
+                break;
+            case TargetType.anyEnemy:
+                var targets = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                var randomTarget = Phaser.Math.RND.pick(targets);
+                this.executeMove(randomTarget);
+                break;
+            case TargetType.anyEnemyInNearestRank: 
+                var enemies = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                var melees = enemies.filter(e => e.type === CombatantType.Melee);
+                var targets: Array<Combatant>;
+                if (melees.length > 0) {
+                    targets = melees;
+                } else {
+                    targets = enemies;
+                }
+                var randomTarget = Phaser.Math.RND.pick(targets);
+                this.executeMove(randomTarget);
+                break;
+            case TargetType.anyFriend:
+                var targets = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                var randomTarget = Phaser.Math.RND.pick(targets);
+                this.executeMove(randomTarget);
+                break;
+        }
+    }
 
     private executeMove(target: Combatant) {
 

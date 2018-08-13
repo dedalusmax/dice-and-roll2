@@ -77,7 +77,7 @@ export abstract class Combatant {
         this.moves = moves;
     }
 
-    public activateMove(index: number) {
+    public selectMove(index: number) {
         
         if (index === 0) {
             this.activeMove = this.weapon;
@@ -86,9 +86,5 @@ export abstract class Combatant {
             this.activeMove = this.specials[index - 1];
             this.moves.selectMove(index, this.specials[index - 1].title, this.specials[index - 1].description);
         }
-    }
-
-    public damage() {
-
     }
 }

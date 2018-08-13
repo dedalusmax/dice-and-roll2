@@ -44,16 +44,6 @@ export class Moves {
             var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
 
             this.addSprite(x, y, 'specials/' + special.name);  
-
-            // special.inputEnabled = true;
-            // special.events.onInputDown.removeAll();
-            // special.events.onInputDown.add(this.selectMove, this);
-
-            // special.executed.addOnce(this.deactivate, this);
-
-            // special.tweenMove = this.game.add.tween(special).to({ angle: 0, x: x, y: y }, 500, Phaser.Easing.Bounce.Out).start();
-            // special.tweenScale = this.game.add.tween(special.scale).to({ x: finalScale, y: finalScale }, 500, Phaser.Easing.Bounce.Out).start();
-
         });
     }
     
@@ -65,7 +55,20 @@ export class Moves {
             finalScale = SPECIAL_ICON_SIZE / image.height;
 
         image.setScale(0.5);
-        // image.setOrigin(0.5);
+
+        image.setInteractive();
+        image.on('pointerdown', e => {
+            
+        });
+
+        // special.inputEnabled = true;
+        // special.events.onInputDown.removeAll();
+        // special.events.onInputDown.add(this.selectMove, this);
+
+        // special.executed.addOnce(this.deactivate, this);
+
+        // special.tweenMove = this.game.add.tween(special).to({ angle: 0, x: x, y: y }, 500, Phaser.Easing.Bounce.Out).start();
+        // special.tweenScale = this.game.add.tween(special.scale).to({ x: finalScale, y: finalScale }, 500, Phaser.Easing.Bounce.Out).start();
 
         this._images.push(image);
     }

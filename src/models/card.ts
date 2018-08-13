@@ -93,10 +93,11 @@ export class Card {
             this._activeTween.restart();
         }
     }
+
     activate(combatant: Combatant): Promise<Combatant> {
         this.select();
         this._image.setInteractive();
-
+        
         return new Promise<Combatant>((resolve, reject) => {
             this._image.on('pointerdown', e => {
                 resolve(combatant);
