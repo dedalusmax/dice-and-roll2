@@ -16,7 +16,7 @@ export class Styles {
         volume: { font: '32px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
         author: { font: '24px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center' },
         author_small: { font: '18px ' + FONT_FAMILY, strokeThickness: 1, fill: '#777' },
-        menu_button: { font: '64px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
+        menu_button: { font: '64px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
         submenu_button: { font: '48px ' + FONT_FAMILY, fill: '#990000', align: 'center', stroke: '#000000', strokeThickness: 2 },
         menu_button_pressed: { font: '56px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 }
     }

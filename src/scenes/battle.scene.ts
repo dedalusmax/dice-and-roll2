@@ -152,6 +152,13 @@ export class BattleScene extends Phaser.Scene {
 
         this._soundRound.play('', { volume: Settings.sound.sfxVolume} );
 
+        // remove all killed combatants and reduce turns
+        for (var combatant in this._combatants) {
+            if (this._combatants[combatant].killed) {
+                this._combatants.splice(+combatant, 1);
+            }
+        }
+ 
         var roundText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Round ' + this._roundNumber, Styles.battle.round);
         roundText.setOrigin(0.5, 0.5);
         roundText.alpha = 0;
