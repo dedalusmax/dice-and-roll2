@@ -91,4 +91,29 @@ export class Moves {
             this._activeTween.stop();
         }
     }
+
+    public close() {
+        this.resetMoves();
+        
+        this._scene.add.tween({
+            targets: this._images,
+            ease: 'Linear',
+            duration: 400,
+            alpha: 0
+        });
+
+        this._scene.add.tween({
+            targets: [ this._nameText, this._descriptionText ],
+            ease: 'Linear',
+            duration: 400,
+            alpha: 0
+        });
+
+        // destroy data
+        this._images.forEach(i => {
+            i.destroy();
+        });
+        this._nameText.destroy();
+        this._descriptionText.destroy();
+    }
 }

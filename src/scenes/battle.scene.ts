@@ -147,7 +147,7 @@ export class BattleScene extends Phaser.Scene {
     // starts next round. sorts semi-randomizes initiative and sorts combatants in that order
     private initiateRound(): Promise<Phaser.Tweens.Tween> { 
         this._turnNumber = 0;
-        this._activeCombatant = 0;
+        this._activeCombatant = -1;
         this._roundNumber++;
 
         this._soundRound.play('', { volume: Settings.sound.sfxVolume} );
@@ -193,9 +193,13 @@ export class BattleScene extends Phaser.Scene {
     };
 
     private endTurn() {
-        this._combatants.forEach(combatant => {
-            // combatant.customEvents.onInputDown.removeAll();
-        });
+        // remove active profile
+        this._activeProfile.remove();
+
+        // remove moves
+        var combatant = this._combatants[this._activeCombatant];
+        combatant.moves.close();
+
         this._isTurnInProgress = false;
     };
 
@@ -223,6 +227,7 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private readyCombatant() {
+        this._activeCombatant++;
         var combatant = this._combatants[this._activeCombatant];
         if (combatant.canAct()) {
             // activate card
@@ -312,5 +317,8 @@ export class BattleScene extends Phaser.Scene {
         // add tween for displaying damage
         // update target's card
         target.card.showDamage(damage, target.health);
+
+        // indicate end of move
+        this.endTurn();
     }
 }

@@ -100,7 +100,7 @@ export class Card {
                     repeat: Infinity
                 });
             } else if (!this._activeTween.isPlaying()) {
-                this._activeTween.play(true);
+                this._activeTween.restart();
             }
 
             if (interactive) {
