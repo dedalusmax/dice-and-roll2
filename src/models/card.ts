@@ -22,8 +22,6 @@ export class Card {
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
     private _activeTween: Phaser.Tweens.Tween;
-    private _promise: Promise<Combatant>;
-    private _onClick: Phaser.Events.EventEmitter;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
         return [
@@ -61,13 +59,6 @@ export class Card {
     
         this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString());
         this._healthIndicator.setColor('#009900');
-
-        // main sprite imput simply delegates to custom group imput
-        // this._mainSprite.setInteractive();
-        // this._mainSprite.events.onInputDown.add(function () {
-        //     this.customEvents.onInputDown.dispatch(this);
-        // }, this);
-        // this._mainSprite.events.onKilled.add(this.combatantKilled, this);
     }
 
     private addSpriteToCard(left: number, top: number, texture, scale?: number) {
@@ -106,19 +97,11 @@ export class Card {
         this.select();
         this._image.setInteractive();
 
-        if (this._promise) return;
-
-        this._promise = new Promise<Combatant>((resolve, reject) => {
-            // if (!this._onClick) {
-                this._onClick = this._image.on('pointerdown', e => {
-                    resolve(combatant);
-                });
-            // } else {
-            //     reject();
-            // }
+        return new Promise<Combatant>((resolve, reject) => {
+            this._image.on('pointerdown', e => {
+                resolve(combatant);
+            });
         });
-
-        return this._promise;
     }
 
     deactivate() {
@@ -127,8 +110,6 @@ export class Card {
         }
         this._image.disableInteractive();
         this._image.removeAllListeners('pointerdown');
-        this._promise = null;
-        // this._onClick.shutdown();
      }
 
      showDamage(amount: number, health: number) {
