@@ -6,7 +6,7 @@
         "health": 70,
         "defense": 3,
         "attack": 15,
-        "type": "RANGED",
+        "type": "MELEE",
         "weapon": "strings",
         "specials": [ "mind_control" ]
     },

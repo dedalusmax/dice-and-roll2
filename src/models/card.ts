@@ -22,7 +22,6 @@ export class Card {
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
     private _activeTween: Phaser.Tweens.Tween;
-    private _activeEventEmitter: Phaser.Events.EventEmitter;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
         return [
@@ -88,8 +87,13 @@ export class Card {
         return textObject;
     }
 
+    private _promise: Promise<Combatant>;
+    private _onClick: Phaser.Events.EventEmitter;
+
     activate(combatant: Combatant, interactive?: boolean): Promise<Combatant> {
-        var promise = new Promise<Combatant>((resolve, reject) => {
+        if (this._promise) return;
+
+        this._promise = new Promise<Combatant>((resolve, reject) => {
 
             if (!this._activeTween) {
                 this._activeTween = this._scene.tweens.add({
@@ -105,13 +109,15 @@ export class Card {
 
             if (interactive) {
                 this._image.setInteractive();
-                this._image.on('pointerdown', e => {
-                    resolve(combatant);
-                });
+                if (!this._onClick) {
+                    this._onClick = this._image.on('pointerdown', e => {
+                        resolve(combatant);
+                    });
+                }
             }
         });
 
-        return promise;
+        return this._promise;
     }
 
     deactivate() {
@@ -119,7 +125,7 @@ export class Card {
             this._activeTween.stop(0);
         }
         this._image.removeInteractive();
-        this._activeEventEmitter = null;
+        this._promise = null;
      }
 
      showDamage(amount: number, health: number) {

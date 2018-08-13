@@ -81,9 +81,9 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
                 // ambient music
                 if (this._options.terrain === 'grass') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0112508-anubis-battle.wav');
-                } else if (this._options.terrain === 'dirt') {
                     this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
+                } else if (this._options.terrain === 'dirt') {
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
                 } else if (this._options.terrain === 'siege') {
                     this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
                 }

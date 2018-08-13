@@ -90,9 +90,9 @@ export class BattleScene extends Phaser.Scene {
             this.displayCard(monster, +index);
         };
 
-        // this._combatants.sort((left, right) => {
-        //     return (Phaser.Math.RND.between(0, 3)) - (Phaser.Math.RND.between(0, 3));
-        // });
+        this._combatants.sort((left, right) => {
+            return (Phaser.Math.RND.between(0, this._combatants.length - 1)) - (Phaser.Math.RND.between(0, this._combatants.length - 1));
+        });
     }
 
     update(): void {
@@ -252,22 +252,30 @@ export class BattleScene extends Phaser.Scene {
         combatant.addMoves(moves);
     }
 
-    private activateTargets(combatant: Combatant) {
+    private _activations: Array<Promise<any>>;
 
-        var activated: Promise<Combatant>;
+    private activateTargets(combatant: Combatant) {
+        var myEnemy = combatant.side === CombatantSide.Friend ? CombatantSide.Enemy: CombatantSide.Friend;
+        var myFriend = combatant.side === CombatantSide.Friend ? CombatantSide.Friend: CombatantSide.Enemy;
+
+        this._activations = [];
 
         switch (combatant.activeMove.targetType) {
             case TargetType.self:
-                activated = combatant.card.activate(combatant, true);
+                 this._activations.push(combatant.card.activate(combatant, true).then(combatant => {
+                    this.executeMove(combatant);
+                }));
                 break;
             case TargetType.anyEnemy:
-                var enemies = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                var enemies = this._combatants.filter(e => e.side === myEnemy);
                 enemies.forEach(t => {
-                    activated = t.card.activate(t, true);
+                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                        this.executeMove(combatant);
+                    }));
                 });
                 break;
             case TargetType.anyEnemyInNearestRank: 
-                var enemies = this._combatants.filter(e => e.side === CombatantSide.Enemy);
+                var enemies = this._combatants.filter(e => e.side === myEnemy);
                 var melees = enemies.filter(e => e.type === CombatantType.Melee);
                 var targets: Array<Combatant>;
                 if (melees.length > 0) {
@@ -276,23 +284,24 @@ export class BattleScene extends Phaser.Scene {
                     targets = enemies;
                 }
                 targets.forEach(t => {
-                    activated = t.card.activate(t, true);
+                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                        this.executeMove(combatant);
+                    }));
                 });
                 break;
             case TargetType.anyFriend:
-                var friends = this._combatants.filter(e => e.side === CombatantSide.Friend);
+                var friends = this._combatants.filter(e => e.side === myFriend);
                 friends.forEach(t => {
-                    activated = t.card.activate(t, true);
+                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                        this.executeMove(combatant);
+                    }));
                 });
                 break;
         }
-
-        activated.then(combatant => {
-            this.executeMove(combatant);
-        });
     } 
 
     private executeMove(target: Combatant) {
+
         // DEALING DAMAGE TO OPPONENTS:
         // remove tween for active targets
         // remove tween for active combatant
