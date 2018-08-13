@@ -231,7 +231,7 @@ export class BattleScene extends Phaser.Scene {
         var combatant = this._combatants[this._activeCombatant];
         if (combatant.canAct()) {
             // activate card
-            combatant.card.activate(combatant);
+            combatant.card.select();
             // show weapon and specials
             this.displayMoves(combatant);
             combatant.activateMove(0);
@@ -252,26 +252,22 @@ export class BattleScene extends Phaser.Scene {
         combatant.addMoves(moves);
     }
 
-    private _activations: Array<Promise<any>>;
-
     private activateTargets(combatant: Combatant) {
         var myEnemy = combatant.side === CombatantSide.Friend ? CombatantSide.Enemy: CombatantSide.Friend;
         var myFriend = combatant.side === CombatantSide.Friend ? CombatantSide.Friend: CombatantSide.Enemy;
 
-        this._activations = [];
-
         switch (combatant.activeMove.targetType) {
             case TargetType.self:
-                 this._activations.push(combatant.card.activate(combatant, true).then(combatant => {
+                 combatant.card.activate(combatant).then(combatant => {
                     this.executeMove(combatant);
-                }));
+                });
                 break;
             case TargetType.anyEnemy:
                 var enemies = this._combatants.filter(e => e.side === myEnemy);
                 enemies.forEach(t => {
-                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                    t.card.activate(t).then(combatant => {
                         this.executeMove(combatant);
-                    }));
+                    });
                 });
                 break;
             case TargetType.anyEnemyInNearestRank: 
@@ -284,17 +280,17 @@ export class BattleScene extends Phaser.Scene {
                     targets = enemies;
                 }
                 targets.forEach(t => {
-                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                    t.card.activate(t).then(combatant => {
                         this.executeMove(combatant);
-                    }));
+                    });
                 });
                 break;
             case TargetType.anyFriend:
                 var friends = this._combatants.filter(e => e.side === myFriend);
                 friends.forEach(t => {
-                    this._activations.push(t.card.activate(t, true).then(combatant => {
+                    t.card.activate(t).then(combatant => {
                         this.executeMove(combatant);
-                    }));
+                    });
                 });
                 break;
         }

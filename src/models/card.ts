@@ -22,6 +22,8 @@ export class Card {
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
     private _activeTween: Phaser.Tweens.Tween;
+    private _promise: Promise<Combatant>;
+    private _onClick: Phaser.Events.EventEmitter;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
         return [
@@ -87,34 +89,33 @@ export class Card {
         return textObject;
     }
 
-    private _promise: Promise<Combatant>;
-    private _onClick: Phaser.Events.EventEmitter;
+    select() {
+        if (!this._activeTween) {
+            this._activeTween = this._scene.tweens.add({
+                targets: this.allObjects,
+                y: '-=24',
+                ease: 'Sine.easeInOut',
+                yoyo: true,
+                repeat: Infinity
+            });
+        } else if (!this._activeTween.isPlaying()) {
+            this._activeTween.restart();
+        }
+    }
+    activate(combatant: Combatant): Promise<Combatant> {
+        this.select();
+        this._image.setInteractive();
 
-    activate(combatant: Combatant, interactive?: boolean): Promise<Combatant> {
         if (this._promise) return;
 
         this._promise = new Promise<Combatant>((resolve, reject) => {
-
-            if (!this._activeTween) {
-                this._activeTween = this._scene.tweens.add({
-                    targets: this.allObjects,
-                    y: '-=24',
-                    ease: 'Sine.easeInOut',
-                    yoyo: true,
-                    repeat: Infinity
+            // if (!this._onClick) {
+                this._onClick = this._image.on('pointerdown', e => {
+                    resolve(combatant);
                 });
-            } else if (!this._activeTween.isPlaying()) {
-                this._activeTween.restart();
-            }
-
-            if (interactive) {
-                this._image.setInteractive();
-                if (!this._onClick) {
-                    this._onClick = this._image.on('pointerdown', e => {
-                        resolve(combatant);
-                    });
-                }
-            }
+            // } else {
+            //     reject();
+            // }
         });
 
         return this._promise;
@@ -124,8 +125,10 @@ export class Card {
         if (this._activeTween && this._activeTween.isPlaying()) {
             this._activeTween.stop(0);
         }
-        this._image.removeInteractive();
+        this._image.disableInteractive();
+        this._image.removeAllListeners('pointerdown');
         this._promise = null;
+        // this._onClick.shutdown();
      }
 
      showDamage(amount: number, health: number) {
