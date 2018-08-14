@@ -12,7 +12,8 @@ import { Card } from "../models/card";
 import { WeaponService } from "../services/weapon.service";
 import { Moves } from "../models/moves";
 import { SpecialService } from "../services/special.service";
-import { Special, TargetType } from "../models/special";
+import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
+import { Weapon } from "../models/weapon";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -267,23 +268,23 @@ export class BattleScene extends Phaser.Scene {
         combatant.addMoves(moves);
     }
 
-    private activateTargets(combatant: Combatant) {
+    private activateTargets(actor: Combatant) {
         this.resetTargetCards();
 
-        var myEnemy = combatant.side === CombatantSide.Friend ? CombatantSide.Enemy: CombatantSide.Friend;
-        var myFriend = combatant.side === CombatantSide.Friend ? CombatantSide.Friend: CombatantSide.Enemy;
+        var myEnemy = actor.side === CombatantSide.Friend ? CombatantSide.Enemy: CombatantSide.Friend;
+        var myFriend = actor.side === CombatantSide.Friend ? CombatantSide.Friend: CombatantSide.Enemy;
 
-        switch (combatant.activeMove.targetType) {
+        switch (actor.activeMove.targetType) {
             case TargetType.self:
-                 combatant.card.activate(combatant).then(combatant => {
-                    this.executeMove(combatant);
+                actor.card.activate(actor).then(target => {
+                    this.executeMove(actor, target);
                 });
                 break;
             case TargetType.anyEnemy:
                 var enemies = this._combatants.filter(e => e.side === myEnemy && !e.killed);
                 enemies.forEach(t => {
-                    t.card.activate(t).then(combatant => {
-                        this.executeMove(combatant);
+                    t.card.activate(t).then(target => {
+                        this.executeMove(actor, target);
                     });
                 });
                 break;
@@ -297,16 +298,16 @@ export class BattleScene extends Phaser.Scene {
                     targets = enemies;
                 }
                 targets.forEach(t => {
-                    t.card.activate(t).then(combatant => {
-                        this.executeMove(combatant);
+                    t.card.activate(t).then(target => {
+                        this.executeMove(actor, target);
                     });
                 });
                 break;
             case TargetType.anyFriend:
                 var friends = this._combatants.filter(e => e.side === myFriend && !e.killed);
                 friends.forEach(t => {
-                    t.card.activate(t).then(combatant => {
-                        this.executeMove(combatant);
+                    t.card.activate(t).then(target => {
+                        this.executeMove(actor, target);
                     });
                 });
                 break;
@@ -325,12 +326,12 @@ export class BattleScene extends Phaser.Scene {
 
         switch (actor.activeMove.targetType) {
             case TargetType.self:
-                this.executeMove(actor);
+                this.executeMove(actor, actor);
                 break;
             case TargetType.anyEnemy:
                 var targets = this._combatants.filter(e => e.side === CombatantSide.Friend && !e.killed);
                 var randomTarget = Phaser.Math.RND.pick(targets);
-                this.executeMove(randomTarget);
+                this.executeMove(actor, randomTarget);
                 break;
             case TargetType.anyEnemyInNearestRank: 
                 var enemies = this._combatants.filter(e => e.side === CombatantSide.Friend && !e.killed);
@@ -342,19 +343,20 @@ export class BattleScene extends Phaser.Scene {
                     targets = enemies;
                 }
                 var randomTarget = Phaser.Math.RND.pick(targets);
-                this.executeMove(randomTarget);
+                this.executeMove(actor, randomTarget);
                 break;
             case TargetType.anyFriend:
                 var targets = this._combatants.filter(e => e.side === CombatantSide.Enemy && !e.killed);
                 var randomTarget = Phaser.Math.RND.pick(targets);
-                this.executeMove(randomTarget);
+                this.executeMove(actor, randomTarget);
                 break;
         }
     }
 
-    private executeMove(target: Combatant) {
+    private executeMove(actor: Combatant, target: Combatant) {
+        
+        // PREPARE:
 
-        // DEALING DAMAGE TO OPPONENTS:
         // remove tween for active targets
         this._combatants.filter(c => !c.killed).forEach(c => {
             c.card.deactivate();
@@ -364,15 +366,80 @@ export class BattleScene extends Phaser.Scene {
         var actor = this._combatants[this._activeCombatant];
         actor.moves.resetMoves();
 
+        // ACT:
+
+        // determine all effective targets (in cases of multiple target effects)
+        var effectiveTargets: Array<Combatant> = [];
+        switch (actor.activeMove.executionType) {
+            case ExecutionType.singleTarget:
+                effectiveTargets.push(target);
+                break;
+            case ExecutionType.twoTargets:
+                effectiveTargets.push(target);
+                var secondTarget = this.pickRandomTargetInRank(target);
+                if (secondTarget) {
+                    effectiveTargets.push(secondTarget);
+                }
+                break;
+            case ExecutionType.allTargetsInRank:
+                var otherTargets = this.pickAllTargetsInRank(target);
+                if (otherTargets.length > 0) {
+                    effectiveTargets.push(...otherTargets);
+                }
+                break;
+            case ExecutionType.allTargets:
+                var otherTargets = this.pickAllTargets(target);
+                if (otherTargets.length > 0) {
+                    effectiveTargets.push(...otherTargets);
+                }
+                break;
+            default:
+                alert('Not implemented!');
+        }
+
+        // execute action by type
+        effectiveTargets.forEach(target => {
+            switch (actor.activeMove.effectType) {
+                case EffectType.damage:
+                    this.dealDamage(actor, target);
+                    break;
+                case EffectType.heal:
+                    break;
+                default:
+                    alert('Not implemented!');
+            }
+        });
+
+        // FINISH:
+
         // remove tween for active combatant
         actor.card.unselect();
 
-        // add tween for hitting target
-        // calculate damage
+         // indicate end of move
+        this.endTurn();
+    }
+
+    private pickRandomTargetInRank(originTarget: Combatant): Combatant {
+        return null;
+    }
+
+    private pickAllTargetsInRank(originTarget: Combatant): Array<Combatant> {
+        return null;
+    }
+    
+    private pickAllTargets(originTarget: Combatant): Array<Combatant> {
+        return null;
+    }
+
+    private dealDamage(actor: Combatant, target: Combatant) {
+        // calculate damage: 1d6 + ATT - DEF
         var damage = Phaser.Math.RND.between(1, 6) + actor.attack - target.defense;
-        if (damage < 0)
+        if (damage < 0) {
             damage = 0;
+        }
         target.health = (target.health - damage) < 0 ? 0 : target.health - damage;
+
+        // TODO: add tween for hitting target
 
         // play damage sound
         Soundsets.sounds['sword'].play();
@@ -380,12 +447,5 @@ export class BattleScene extends Phaser.Scene {
         // add tween for displaying damage
         // update target's card
         target.card.showDamage(damage, target.health);
-
-        if (target.health == 0) {
-            target.kill();
-        }
-
-         // indicate end of move
-        this.endTurn();
     }
 }

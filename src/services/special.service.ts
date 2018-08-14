@@ -15,7 +15,7 @@ export class SpecialService {
         result.description = prop.description;
         result.targetType = TargetType[prop.targetType as string];
         result.executionType = ExecutionType[prop.executionType as string];
-        result.effectType = prop.effectType ? EffectType[prop.effectType as string] : null;
+        result.effectType = EffectType[prop.effectType as string];
         result.lingeringType = prop.lingeringType ? LingeringType[prop.lingeringType as string] : null;
         result.duration = prop.duration;
         result.modifier = prop.modifier;

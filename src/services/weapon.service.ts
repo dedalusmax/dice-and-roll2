@@ -1,7 +1,7 @@
 import { Weapon } from "../models/weapon";
 import { Assets } from "../models/assets";
 import { Combatant, CombatantType } from "../models/combatant";
-import { TargetType, ExecutionType } from "../models/special";
+import { TargetType, ExecutionType, EffectType } from "../models/special";
 
 export class WeaponService {
 
@@ -24,11 +24,12 @@ export class WeaponService {
         result.title = prop.title;
         result.description = prop.desc;
         result.type = prop.type;
-        result.attack = prop.attack;
 
         result.targetType = TargetType.anyEnemyInNearestRank;
         result.executionType = ExecutionType.singleTarget;
-        
+        result.effectType = EffectType.damage;
+        result.modifier = prop.attack;
+
         return result;
     }
 }

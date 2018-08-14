@@ -1,4 +1,4 @@
-import { TargetType, ExecutionType } from "./special";
+import { TargetType, ExecutionType, EffectType } from "./special";
 
 export class Move {
     // from the JSON file:
@@ -7,4 +7,6 @@ export class Move {
     description: string;   
     targetType: TargetType; 
     executionType: ExecutionType;
+    effectType: EffectType;
+    modifier?: number; // which amount it deals over one turn
 }
