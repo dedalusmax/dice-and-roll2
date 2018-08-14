@@ -37,7 +37,6 @@ export class Card {
 
         // the main sprite, the card background
         this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/card');
-        //this._mainSprite.setScale(0.08, 0.08);
         
         // var shadow = _scene.add.sprite(_position.x, _position.y, 'cards/card');
         // shadow.setScale(0.09, 0.09);

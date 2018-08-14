@@ -12,7 +12,6 @@ export class Profile {
         var name = _combatant.side === CombatantSide.Friend ? 'characters/' + _combatant.name : 'monsters/' + _combatant.name
         this._background = _scene.add.sprite(position.x, _scene.cameras.main.height - position.y, name);
         this._background.setOrigin(0.5, 0.5);
-        this._background.setScale(0.3);
         this._background.setAlpha(0);
         
         _scene.add.tween({
