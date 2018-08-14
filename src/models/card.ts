@@ -21,6 +21,8 @@ export class Card {
     private _defenseText: Phaser.GameObjects.Text;
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
+
+    private _selectedTween: Phaser.Tweens.Tween;
     private _activeTween: Phaser.Tweens.Tween;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
@@ -89,6 +91,28 @@ export class Card {
     }
 
     select() {
+        if (!this._selectedTween) {
+            this._selectedTween = this._scene.tweens.add({
+                targets: this.allObjects,
+                scaleX: '+=0.1',
+                scaleY: '+=0.1',
+                ease: 'Sine.easeInOut',
+                yoyo: true,
+                repeat: Infinity
+            });
+        } else if (!this._selectedTween.isPlaying()) {
+            this._selectedTween.restart();
+        }
+    }
+
+    unselect() {
+        if (this._selectedTween && this._selectedTween.isPlaying()) {
+            this._selectedTween.stop(0);
+        }
+    }
+
+    activate(combatant: Combatant): Promise<Combatant> {
+
         if (!this._activeTween) {
             this._activeTween = this._scene.tweens.add({
                 targets: this.allObjects,
@@ -100,10 +124,7 @@ export class Card {
         } else if (!this._activeTween.isPlaying()) {
             this._activeTween.restart();
         }
-    }
 
-    activate(combatant: Combatant): Promise<Combatant> {
-        this.select();
         this._image.setInteractive();
         
         return new Promise<Combatant>((resolve, reject) => {

@@ -16,6 +16,8 @@ export class Moves {
     private _images: Array<Phaser.GameObjects.Sprite>;
     private _activeTween: Phaser.Tweens.Tween;
 
+    events = new Phaser.Events.EventEmitter();
+
     // constructs with a weapon as a first (default) move
     constructor(private _scene: Phaser.Scene, texture, name, description) {
 
@@ -28,36 +30,34 @@ export class Moves {
         this._descriptionText.setOrigin(0.5, 0);
     }
 
-    addMoves(weapon: Weapon, specials: Array<Special>): Promise<Move> {
+    addMoves(weapon: Weapon, specials: Array<Special>) {
+
         var movesCount = 1 + specials.length;
-        return new Promise<Move>((resolve, reject) => {
 
-            var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2;
-            var y = this._canvas.height / 2 - 10;
+        var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2;
+        var y = this._canvas.height / 2 - 10;
 
-            this.addAction(leftMostPosition, y, 'cards/emblem-' + weapon.type.toLowerCase(), weapon, 0, resolve);  
+        this.addAction(leftMostPosition, y, 'cards/emblem-' + weapon.type.toLowerCase(), 0);
 
-            specials.forEach((special, i) => {
-                var index = i + 1;
-                var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
-    
-                var specialCard = this._scene.add.sprite(x, y, 'cards/special-card');
-    
-                this.addAction(x, y, 'specials/' + special.name, special, i + 1, resolve);  
-            });
+        specials.forEach((special, i) => {
+            var index = i + 1;
+            var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
 
+            var specialCard = this._scene.add.sprite(x, y, 'cards/special-card');
+            this._images.push(specialCard);
+
+            this.addAction(x, y, 'specials/' + special.name, i + 1);
         });
     }
     
-    private addAction(x: number, y: number, texture: string, move: Move, index: number, resolve: any) {
+    private addAction(x: number, y: number, texture: string, index: number) {
        
         var image = this._scene.add.sprite(x, y, texture);
 
         image.setInteractive();
         image.on('pointerdown', e => {
             this.resetMoves();
-            this.selectMove(index, move.title, move.description);
-            resolve(move);
+            this.events.emit('moveClicked', index);
         });
 
         this._images.push(image);
@@ -68,7 +68,7 @@ export class Moves {
         this._nameText.setText(name);
         this._descriptionText.setText(description);
         this._activeTween = this._scene.add.tween({
-            targets: [ this._images[index] ],
+            targets: [ this._images[index == 0 ? 0 : index * 2] ],
             ease: 'Sine.easeInOut',
             duration: 700,
             scaleX: '-=.15',
