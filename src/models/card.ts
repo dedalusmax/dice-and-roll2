@@ -157,6 +157,21 @@ export class Card {
         });
     }
 
+    showHealing(amount: number, health: number) {
+        var healingText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY, fill: '#00FF00', align: 'center' });
+        this._scene.add.tween({
+            targets: healingText,
+            alpha: 0,
+            y: healingText.y - 60,
+            ease: 'Linear',
+            duration: 600,
+            onComplete: () => {
+                healingText.destroy();
+                this.updateHealth(health);
+            }
+        });
+    }
+
     remove() {
         this.deactivate();
 

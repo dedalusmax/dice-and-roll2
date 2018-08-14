@@ -98,7 +98,12 @@ export class LoadingScene extends Phaser.Scene {
                 this._options.enemyParty.forEach(monster => {
                     this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
                 });
+
                 // sound effects
+                this.load.audio('heal', 'assets/sound/effects/433645__dersuperanton__drinking-and-swallow.wav');
+
+                // TODO: assort this!!
+
                 this.load.audio('hit', ['assets/sound/effects/Swoosh02.mp3']);
                 this.load.audio('multi-hit', ['assets/sound/effects/SwooshCombo1.mp3']);
                 this.load.audio('multi-hit2', ['assets/sound/effects/SwooshCombo2.mp3']);
