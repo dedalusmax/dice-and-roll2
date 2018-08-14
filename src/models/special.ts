@@ -37,8 +37,6 @@ export enum LingeringType {
 
 export class Special extends Move {
     // from the JSON file:
-    effectType: EffectType;
     lingeringType?: LingeringType;
     duration?: number; // how many turns it effects (0 if immediate effect)
-    modifier?: number; // which amount it deals over one turn
 }
