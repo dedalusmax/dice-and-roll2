@@ -25,8 +25,9 @@ export class Card {
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
         return [
-            this._mainSprite, this._factionEmblem, this._attackEmblem, this._shieldEmblem,
-            this._attackText, this._defenseText, this._image, this._healthIndicator
+            this._mainSprite, this._image, this._healthIndicator
+            // this._mainSprite, this._factionEmblem, this._attackEmblem, this._shieldEmblem,
+            // this._attackText, this._defenseText, this._image, this._healthIndicator
         ];
     }
 
@@ -58,7 +59,7 @@ export class Card {
         //this._defenseText = this.addTextToCard(55, 73, combatant.defense.toString());
 
         if ( combatant.side === CombatantSide.Friend) {
-            this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name, 0.05);
+            this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name + '-head');
         } else {
             this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name, 0.4);
         }
@@ -73,7 +74,8 @@ export class Card {
         var y = this._position.y + top;
         var sprite = this._scene.add.sprite(x, y, texture);
         sprite.setDisplayOrigin(this._position.x, this._position.y);
-        sprite.setScale(scale || 0.25);
+        if (scale) 
+            sprite.setScale(scale || 0.25);
         sprite.setOrigin(0.5, 0.5);
         return sprite;
     }

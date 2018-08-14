@@ -34,9 +34,9 @@
         "type": "BLUNT",
         "attack": 1
     },  
-    "brass_knockles": {
-        "name": "brass_knockles",
-        "title": "Brass knockles",
+    "pickaxe": {
+        "name": "pickaxe",
+        "title": "Pickaxe",
         "desc": "",
         "type": "BLUNT",
         "attack": 2
@@ -69,9 +69,9 @@
         "type": "FIREARMS",
         "attack": 2
     },  
-    "rifle": {
-        "name": "rifle",
-        "title": "Rifle",
+    "shotgun": {
+        "name": "shotgun",
+        "title": "Shotgun",
         "desc": "",
         "type": "FIREARMS",
         "attack": 3
