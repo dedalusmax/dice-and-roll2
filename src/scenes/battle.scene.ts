@@ -259,10 +259,12 @@ export class BattleScene extends Phaser.Scene {
 
     private displayMoves(combatant: Combatant) {
         var moves = new Moves(this, 'cards/emblem-' + combatant.weapon.type.toLowerCase(), combatant.weapon.title, combatant.weapon.description);
-        //moves.addMoves(combatant.weapon, combatant.specials);
-        var movesCount = 1 + combatant.specials.length;
-        moves.addWeapon(combatant.weapon, movesCount);
-        moves.addSpecials(combatant.specials, movesCount);
+        moves.addMoves(combatant.weapon, combatant.specials).then(move => {
+        });
+
+        // var movesCount = 1 + combatant.specials.length;
+        // moves.addWeapon(combatant.weapon, movesCount);
+        // moves.addSpecials(combatant.specials, movesCount);
         combatant.addMoves(moves);
     }
 

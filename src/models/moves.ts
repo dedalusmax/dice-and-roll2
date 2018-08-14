@@ -1,11 +1,12 @@
 import { FONT_FAMILY } from "./styles";
 import { Special } from "./special";
 import { Weapon } from "./weapon";
+import { Move } from "./move";
 
 const SPECIAL_SIZE = 100,
     SPECIAL_ICON_SIZE = 100,
-    SPECIAL_NAME_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#7F5935', align: 'center'},
-    SPECIAL_DESCRIPTION_STYLE = { font: '14px ' + FONT_FAMILY, fill: '#7F460F', align: 'center'};
+    SPECIAL_NAME_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#7F5935', align: 'center'},
+    SPECIAL_DESCRIPTION_STYLE = { font: '16px ' + FONT_FAMILY, fill: '#7F460F', align: 'center'};
 
 export class Moves {
 
@@ -21,54 +22,43 @@ export class Moves {
         this._canvas = _scene.textures.game.canvas;
         this._images = [];
 
-        this._nameText =_scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 25, name, SPECIAL_NAME_STYLE);
+        this._nameText =_scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 35, name, SPECIAL_NAME_STYLE);
         this._nameText.setOrigin(0.5, 0);
-        this._descriptionText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 45, description, SPECIAL_DESCRIPTION_STYLE);
+        this._descriptionText = _scene.add.text(this._canvas.width / 2, this._canvas.height / 2 + 55, description, SPECIAL_DESCRIPTION_STYLE);
         this._descriptionText.setOrigin(0.5, 0);
     }
 
-    addWeapon(weapon: Weapon, movesCount: number) {
+    addMoves(weapon: Weapon, specials: Array<Special>): Promise<Move> {
+        var movesCount = 1 + specials.length;
+        return new Promise<Move>((resolve, reject) => {
 
-        var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2,
-            y = this._canvas.height / 2 - 10;
-        
-        this.addSprite(leftMostPosition, y, 'cards/emblem-' + weapon.type.toLowerCase());  
-    }
+            var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2;
+            var y = this._canvas.height / 2 - 10;
 
-    addSpecials(specials: Array<Special>, movesCount: number) {
-        var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2,
-            y = this._canvas.height / 2 - 10;
+            this.addAction(leftMostPosition, y, 'cards/emblem-' + weapon.type.toLowerCase(), weapon, 0, resolve);  
 
-        specials.forEach((special, i) => {
-            var index = i + 1;
-            var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
+            specials.forEach((special, i) => {
+                var index = i + 1;
+                var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
+    
+                var specialCard = this._scene.add.sprite(x, y, 'cards/special-card');
+    
+                this.addAction(x, y, 'specials/' + special.name, special, i + 1, resolve);  
+            });
 
-            this.addSprite(x, y, 'specials/' + special.name);  
         });
     }
     
-    private addSprite(x: number, y: number, texture: string) {
+    private addAction(x: number, y: number, texture: string, move: Move, index: number, resolve: any) {
        
         var image = this._scene.add.sprite(x, y, texture);
 
-        var initialScale = 0.1 * SPECIAL_ICON_SIZE / image.height,
-            finalScale = SPECIAL_ICON_SIZE / image.height;
-
-        image.setScale(0.5);
-
         image.setInteractive();
         image.on('pointerdown', e => {
-            
+            this.resetMoves();
+            this.selectMove(index, move.title, move.description);
+            resolve(move);
         });
-
-        // special.inputEnabled = true;
-        // special.events.onInputDown.removeAll();
-        // special.events.onInputDown.add(this.selectMove, this);
-
-        // special.executed.addOnce(this.deactivate, this);
-
-        // special.tweenMove = this.game.add.tween(special).to({ angle: 0, x: x, y: y }, 500, Phaser.Easing.Bounce.Out).start();
-        // special.tweenScale = this.game.add.tween(special.scale).to({ x: finalScale, y: finalScale }, 500, Phaser.Easing.Bounce.Out).start();
 
         this._images.push(image);
     }
@@ -81,10 +71,10 @@ export class Moves {
             targets: [ this._images[index] ],
             ease: 'Sine.easeInOut',
             duration: 700,
-            scaleX: '-=.05',
-            scaleY: '-=.05',
-            y: '-=20',
-            angle: '+=30',
+            scaleX: '-=.15',
+            scaleY: '-=.15',
+            // y: '-=10',
+            // angle: '+=30',
             yoyo: true,
             repeat: Infinity
         });
@@ -92,7 +82,7 @@ export class Moves {
 
     public resetMoves() {
         if (this._activeTween && this._activeTween.isPlaying()) {
-            this._activeTween.stop();
+            this._activeTween.stop(0);
         }
     }
 

@@ -42,7 +42,7 @@
         "speciality": "Long-range firearms",
         "armors": [ "regiment_uniform" ],
         "weapons": [ "musket", "arquebus", "shotgun", "scoped_rifle" ],
-        "specials": [ ],
+        "specials": [ "remedy" ],
         "armor": "regiment_uniform",
         "weapon": "musket",
         "specialsUsed": 1
@@ -58,7 +58,7 @@
         "speciality": "Bombs",
         "armors": [ "lab_coat" ],
         "weapons": [ "explosive_grenade", "incendiary_grenade", "frag_grenade", "termite_grenade" ],
-        "specials": [ ],
+        "specials": [ "remedy" ],
         "armor": "lab_coat",
         "weapon": "explosive_grenade",
         "specialsUsed": 1

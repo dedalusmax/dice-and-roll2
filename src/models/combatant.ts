@@ -1,10 +1,11 @@
 import { Weapon } from "./weapon";
-import { Special, TargetType } from "./special";
-import { Effect, EffectType } from "./effect";
+import { Special, TargetType, EffectType } from "./special";
+import { Effect } from "./effect";
 import { WeaponService } from "../services/weapon.service";
 import { Card } from "./card";
 import { Moves } from "./moves";
 import { Move } from "./move";
+import { SpecialService } from "../services/special.service";
 
 export enum CombatantType {
     Melee = 1,
@@ -53,7 +54,7 @@ export abstract class Combatant {
     }
 
     public canAct(): boolean {
-        return this.effects.findIndex(e => e.type === EffectType.Stun) < 0 && !this.killed;
+        return this.effects.findIndex(e => e.type === EffectType.stun) < 0 && !this.killed;
     }
 
     private setCommonData(data: any) {
@@ -65,7 +66,14 @@ export abstract class Combatant {
         this.baseDefense = data.defense;
         this.type = data.type === 'MELEE' ? CombatantType.Melee : CombatantType.Ranged;
         this.weapon = WeaponService.get(data.weapon);
+
         this.specials = [];
+        if (data.specials && data.specials.length > 0) {
+            data.specials.forEach(s => {
+                this.specials.push(SpecialService.get(s));
+            });
+        }
+
         this.effects = [];
         this.health = this.baseHealth;
     }

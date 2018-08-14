@@ -27,10 +27,8 @@ export class WeaponService {
         result.attack = prop.attack;
 
         result.targetType = TargetType.anyEnemyInNearestRank;
-        result.executionType = ExecutionType.attackSingleTarget;
-        result.attackCount = 1;
-        result.modifier = result.attack;
-
+        result.executionType = ExecutionType.singleTarget;
+        
         return result;
     }
 }

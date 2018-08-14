@@ -1,8 +1,6 @@
-export enum EffectType {
-    Stun = 1
-}
+import { EffectType } from "./special";
 
 export class Effect {
     type: EffectType;
-    duration: number;
+    duration: number; // number of turns it effects
 }

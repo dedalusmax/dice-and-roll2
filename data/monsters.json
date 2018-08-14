@@ -8,7 +8,7 @@
         "attack": 15,
         "type": "MELEE",
         "weapon": "strings",
-        "specials": [ "mind_control" ]
+        "specials": [ ]
     },
 	"harlequin": {
         "name": "harlequin",
@@ -19,7 +19,7 @@
         "attack": 18,
         "type": "MELEE",
         "weapon": "sceptre",
-        "specials": [ "piercing_laugh" ]
+        "specials": [ ]
     },
     "plague_doctor": {
         "name": "plague_doctor",
@@ -30,6 +30,6 @@
         "attack": 20,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ "fly_swarm" ]
+        "specials": [ ]
     }
 }

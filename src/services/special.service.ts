@@ -1,4 +1,4 @@
-import { Special, TargetType, ExecutionType, StatusType } from "../models/special";
+import { Special, TargetType, ExecutionType, EffectType, LingeringType } from "../models/special";
 import { Assets } from "../models/assets";
 
 export class SpecialService {
@@ -12,14 +12,13 @@ export class SpecialService {
         var result = new Special();
         result.name = prop.name;
         result.title = prop.title;
-        result.description = prop.desc;
+        result.description = prop.description;
         result.targetType = TargetType[prop.targetType as string];
         result.executionType = ExecutionType[prop.executionType as string];
-        result.attackCount = prop.attackCount;
-        result.modifier = prop.modifier;
-        result.statusType = prop.statusType ? StatusType[prop.statusType as string] : null;
+        result.effectType = prop.effectType ? EffectType[prop.effectType as string] : null;
+        result.lingeringType = prop.lingeringType ? LingeringType[prop.lingeringType as string] : null;
         result.duration = prop.duration;
-        result.power = prop.power;
+        result.modifier = prop.modifier;
         return result;
     }
 }
