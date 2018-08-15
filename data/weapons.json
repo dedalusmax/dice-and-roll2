@@ -13,8 +13,8 @@
         "type": "FIREARMS",
         "attack": 2
     }, 
-    "sherrif_sidearm": {
-        "name": "sherrif_sidearm",
+    "sherrifs_sidearm": {
+        "name": "sherrifs_sidearm",
         "title": "Sherrif sidearm",
         "desc": "",
         "type": "FIREARMS",
@@ -83,9 +83,9 @@
         "type": "FIREARMS",
         "attack": 4
     },  
-    "explosive_grenade": {
-        "name": "explosive_grenade",
-        "title": "Explosive grenade",
+    "explosive_bomb": {
+        "name": "explosive_bomb",
+        "title": "Explosive bomb",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         "type": "MISSILE",
         "attack": 1
