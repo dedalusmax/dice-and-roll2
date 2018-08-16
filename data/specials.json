@@ -7,5 +7,23 @@
         "executionType": "singleTarget",
         "effectType": "heal",
         "modifier": 20
+    },
+    "medikit": {
+        "name": "medikit",
+        "title": "Medikit",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyFriend",
+        "executionType": "singleTarget",
+        "effectType": "heal",
+        "modifier": 25
+    },
+    "ricochet": {
+        "name": "ricochet",
+        "title": "Ricochet",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "twoTargets",
+        "effectType": "damage",
+        "modifier": 15
     }
 }

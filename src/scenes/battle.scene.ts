@@ -425,7 +425,12 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private pickRandomTargetInRank(originTarget: Combatant): Combatant {
-        return null;
+        var allInRankAndSide = this._combatants.filter(c => !c.killed && c.side === originTarget.side && c.type === originTarget.type && originTarget != c); 
+        if (allInRankAndSide.length > 0) {
+            return Phaser.Math.RND.pick(allInRankAndSide);
+        } else {
+            return null;
+        }
     }
 
     private pickAllTargetsInRank(originTarget: Combatant): Array<Combatant> {

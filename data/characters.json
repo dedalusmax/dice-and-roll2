@@ -10,7 +10,7 @@
         "speciality": "Dual pistols",
         "armors": [ "leather_coat" ],
         "weapons": [ "revolvers", "hunting_revolvers", "sherrif_sidearm", "peacemaker" ],
-        "specials": [ ],
+        "specials": [ "ricochet" ],
         "armor": "leather_coat",
         "weapon": "revolvers",
         "specialsUsed": 1
@@ -42,7 +42,7 @@
         "speciality": "Long-range firearms",
         "armors": [ "regiment_uniform" ],
         "weapons": [ "musket", "arquebus", "shotgun", "scoped_rifle" ],
-        "specials": [ "remedy" ],
+        "specials": [ "medikit" ],
         "armor": "regiment_uniform",
         "weapon": "musket",
         "specialsUsed": 1
