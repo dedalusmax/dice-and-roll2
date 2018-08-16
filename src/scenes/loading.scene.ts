@@ -3,6 +3,7 @@ import { Soundsets } from '../models/soundsets';
 import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
 import { FONT_FAMILY } from '../models/styles';
+import { ArrowsService } from '../services/arrows.service';
 
 export class LoadingScene extends Phaser.Scene {
 
@@ -56,10 +57,7 @@ export class LoadingScene extends Phaser.Scene {
                 // ambient music
                 this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
-                var arrowsSheet: Phaser.Loader.FileTypes.ImageFrameConfig = { frameWidth: 80, frameHeight: 80 };
-                // arrowsSheet.frameWidth = 80;
-                // arrowsSheet.frameHeight = 80;
-                this.load.spritesheet('arrows', 'assets/common/arrows.png', arrowsSheet);
+                ArrowsService.init(this);
                 // load sound effects
                 this.load.audio('gong', ['assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3']);
                 // sword audio set:

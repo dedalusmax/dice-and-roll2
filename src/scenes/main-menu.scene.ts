@@ -3,6 +3,7 @@ import { ImageService } from "../services/image.service";
 import { Assets } from "../models/assets";
 import { Styles } from "../models/styles";
 import { Soundsets } from "../models/soundsets";
+import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -137,28 +138,32 @@ export class MainMenuScene extends Phaser.Scene {
         musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
         menu.add(musicLevel);
 
-        var lessMusic = this.add.sprite(musicLevel.x - musicLevel.width - 10, musicLevel.y + 5, 'arrows', 0);
-        lessMusic.setScale(0.8);
-        lessMusic.setInteractive();
-        lessMusic.on('pointerdown', e => {
+        var lessMusic = ArrowsService.createArrow(this, musicLevel.x - musicLevel.width - 10, musicLevel.y + 5, ArrowOrientation.left, () => {
             if (Settings.sound.musicVolume > 0) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume - 0.1) * 10) / 10;
                 musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
                 this.sound.volume = Settings.sound.musicVolume;
             }
+            if (Settings.sound.musicVolume == 0) {
+                ArrowsService.disableArrow(lessMusic);
+            } else {
+                ArrowsService.enableArrow(moreMusic);
+            }
         });
         menu.add(lessMusic);
 
-        var moreMusic = this.add.sprite(musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, 'arrows', 1);
-        moreMusic.setScale(0.8);
-        moreMusic.setInteractive();
-        moreMusic.on('pointerdown', e => {
+        var moreMusic =  ArrowsService.createArrow(this, musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, ArrowOrientation.right, () => {
             if (Settings.sound.musicVolume < 1) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume + 0.1) * 10) / 10;
                 musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
                 this.sound.volume = Settings.sound.musicVolume;
             }
-        });
+            if (Settings.sound.musicVolume == 1) {
+                ArrowsService.disableArrow(moreMusic);
+            } else {
+                ArrowsService.enableArrow(lessMusic);
+            }
+        }, true);
         menu.add(moreMusic);
 
         menu.add(this.createMenuItem('Sound FX volume', 1.2, Styles.menu.submenu));
@@ -167,26 +172,30 @@ export class MainMenuScene extends Phaser.Scene {
         sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
         menu.add(sfxLevel);
 
-        var lessSfx = this.add.sprite(sfxLevel.x - sfxLevel.width - 10, sfxLevel.y + 5, 'arrows', 0);
-        lessSfx.setScale(0.8);
-        lessSfx.setInteractive();
-        lessSfx.on('pointerdown', e => {
+        var lessSfx = ArrowsService.createArrow(this, sfxLevel.x - sfxLevel.width - 10, sfxLevel.y + 5, ArrowOrientation.left, () => {
             if (Settings.sound.sfxVolume > 0) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume - 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
+            if (Settings.sound.sfxVolume == 0) {
+                ArrowsService.disableArrow(lessSfx);
+            } else {
+                ArrowsService.enableArrow(moreSfx);
+            }
         });
         menu.add(lessSfx);
 
-        var moreSfx = this.add.sprite(sfxLevel.x + sfxLevel.width + 10, sfxLevel.y + 5, 'arrows', 1);
-        moreSfx.setScale(0.8);
-        moreSfx.setInteractive();
-        moreSfx.on('pointerdown', e => {
+        var moreSfx = ArrowsService.createArrow(this, sfxLevel.x + sfxLevel.width + 10, sfxLevel.y + 5, ArrowOrientation.right, () => {
             if (Settings.sound.sfxVolume < 1) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume + 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
             }
-        });
+            if (Settings.sound.sfxVolume == 1) {
+                ArrowsService.disableArrow(moreSfx);
+            } else {
+                ArrowsService.enableArrow(lessSfx);
+            }
+        }, true);
         menu.add(moreSfx);
 
         menu.add(this.createMenuItem('Back', 4, Styles.text.backButton, this.createMainMenu.bind(this)));
