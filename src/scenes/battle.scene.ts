@@ -448,6 +448,11 @@ export class BattleScene extends Phaser.Scene {
         // add tween for displaying damage
         // update target's card
         target.card.showDamage(damage, target.health);
+
+        // mark target as killed if HP is now 0
+        if (target.health == 0) {
+            target.kill();
+        }
     }
 
     private heal(modifier: number, target: Combatant) {
