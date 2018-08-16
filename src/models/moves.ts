@@ -63,6 +63,28 @@ export class Moves {
         this._images.push(image);
     }
 
+    public removeSpecialMoves() {
+
+        this._scene.add.tween({
+            targets: this._images.filter((i, index) => index > 0),
+            ease: 'Linear',
+            duration: 400,
+            alpha: 0,
+            onComplete: () => {
+                // destroy special images
+                this._images.forEach((image, index) => {
+                    if (index > 0) {
+                        image.destroy();
+                    }
+                });
+            }
+        });
+
+        // reset texts
+        this._nameText.setText('');
+        this._descriptionText.setText('');
+    }
+
     public selectMove(index: number, name: string, description: string) {
         
         this._nameText.setText(name);

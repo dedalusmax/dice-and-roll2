@@ -413,11 +413,17 @@ export class BattleScene extends Phaser.Scene {
 
         // FINISH:
 
-        // remove tween for active combatant
-        actor.card.unselect();
+        if (actor.activeMove.effectType === EffectType.damage) {
+            // remove tween for active combatant
+            actor.card.unselect();
 
-         // indicate end of move
-        this.endTurn();
+            // indicate end of move
+            this.endTurn();
+        } else {
+            actor.moves.removeSpecialMoves();
+            actor.selectMove(0);
+            this.activateTargets(actor);
+        }
     }
 
     private pickRandomTargetInRank(originTarget: Combatant): Combatant {
