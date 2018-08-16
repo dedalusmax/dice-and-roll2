@@ -13,10 +13,6 @@ export class BootScene extends Phaser.Scene {
     preload(): void {        
         this._loadingFinished = false;
 
-        // load fonts
-        this.load.bitmapFont('berkshire', 'assets/fonts/BerkshireSwash-Regular.png', 'assets/fonts/BerkshireSwash-Regular.xml');
-        this.load.bitmapFont('berkshire-stroked', 'assets/fonts/BerkshireSwash-Stroked.png', 'assets/fonts/BerkshireSwash-Stroked.xml');
-
         // Load assets required for preLoader (progress bar, etc.)
         this.load.image('logo', 'assets/screens/logo.png');
         this.load.audio('interlude', 'assets/sound/loops/looperman-l-1483711-0130311-hilltop-full.wav');

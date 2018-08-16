@@ -57,10 +57,10 @@
         "type": "RANGED",
         "speciality": "Bombs",
         "armors": [ "lab_coat" ],
-        "weapons": [ "explosive_grenade", "incendiary_grenade", "frag_grenade", "termite_grenade" ],
+        "weapons": [ "explosive_bomb", "incendiary_grenade", "frag_grenade", "termite_grenade" ],
         "specials": [ "remedy" ],
         "armor": "lab_coat",
-        "weapon": "explosive_grenade",
+        "weapon": "explosive_bomb",
         "specialsUsed": 1
     },
     "assasin": {
