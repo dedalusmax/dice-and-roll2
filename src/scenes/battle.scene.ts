@@ -443,7 +443,7 @@ export class BattleScene extends Phaser.Scene {
 
     private dealDamage(actor: Combatant, target: Combatant) {
         // calculate damage: 1d6 + ATT - DEF
-        var damage = Phaser.Math.RND.between(1, 6) + actor.attack - target.defense;
+        var damage = Phaser.Math.RND.between(1, 6) + actor.attack + actor.activeMove.modifier - target.defense;
         if (damage < 0) {
             damage = 0;
         }

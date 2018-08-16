@@ -24,6 +24,15 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "twoTargets",
         "effectType": "damage",
-        "modifier": 15
+        "modifier": 10
+    },
+    "precision_shot": {
+        "name": "precision_shot",
+        "title": "Precision shot",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 30
     }
 }

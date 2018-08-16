@@ -42,7 +42,7 @@ export abstract class Combatant {
     killed: boolean;
 
     get attack(): number {
-        return this.baseAttack + this.weapon.modifier;
+        return this.baseAttack; // + this.weapon.modifier;
     }
 
     get defense(): number {

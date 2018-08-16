@@ -42,7 +42,7 @@
         "speciality": "Long-range firearms",
         "armors": [ "regiment_uniform" ],
         "weapons": [ "musket", "arquebus", "shotgun", "scoped_rifle" ],
-        "specials": [ "medikit" ],
+        "specials": [ "medikit", "precision_shot" ],
         "armor": "regiment_uniform",
         "weapon": "musket",
         "specialsUsed": 1
