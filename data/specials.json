@@ -8,6 +8,15 @@
         "effectType": "heal",
         "modifier": 20
     },
+    "catalitic_bomb": {
+        "name": "catalitic_bomb",
+        "title": "Catalitic bomb",
+        "description": "blabla",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "allTargetsInRank",
+        "effectType": "damage",
+        "modifier": 16
+    },
     "medikit": {
         "name": "medikit",
         "title": "Medikit",
@@ -24,7 +33,7 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "twoTargets",
         "effectType": "damage",
-        "modifier": 10
+        "modifier": 8
     },
     "precision_shot": {
         "name": "precision_shot",
@@ -34,5 +43,14 @@
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 30
+    },
+    "ace": {
+        "name": "ace",
+        "title": "Ace",
+        "description": "acacacacaca",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 20
     }
 }

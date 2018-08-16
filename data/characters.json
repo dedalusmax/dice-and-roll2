@@ -58,7 +58,7 @@
         "speciality": "Bombs",
         "armors": [ "lab_coat" ],
         "weapons": [ "explosive_bomb", "incendiary_grenade", "frag_grenade", "termite_grenade" ],
-        "specials": [ "remedy" ],
+        "specials": [ "remedy", "catalitic_bomb" ],
         "armor": "lab_coat",
         "weapon": "explosive_bomb",
         "specialsUsed": 1
@@ -90,7 +90,7 @@
         "speciality": "Tricks",
         "armors": [ "magician_suit" ],
         "weapons": [ "deck_of_cards", "blackjack", "poker_cards", "joker_card" ],
-        "specials": [ ],
+        "specials": [ "ace" ],
         "armor": "magician_suit",
         "weapon": "deck_of_cards",
         "specialsUsed": 1

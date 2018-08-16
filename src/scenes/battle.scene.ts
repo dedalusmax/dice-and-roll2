@@ -382,7 +382,7 @@ export class BattleScene extends Phaser.Scene {
             case ExecutionType.allTargetsInRank:
                 var otherTargets = this.pickAllTargetsInRank(target);
                 if (otherTargets.length > 0) {
-                    effectiveTargets.push(...otherTargets);
+                    effectiveTargets = [...otherTargets];
                 }
                 break;
             case ExecutionType.allTargets:
@@ -434,7 +434,8 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private pickAllTargetsInRank(originTarget: Combatant): Array<Combatant> {
-        return null;
+        var allInRankAndSide = this._combatants.filter(c => !c.killed && c.side === originTarget.side && c.type === originTarget.type); 
+        return allInRankAndSide;
     }
     
     private pickAllTargets(originTarget: Combatant): Array<Combatant> {
