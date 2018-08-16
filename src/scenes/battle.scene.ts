@@ -21,7 +21,6 @@ export class BattleScene extends Phaser.Scene {
     private _canvas: HTMLCanvasElement;
     private _music: Phaser.Sound.BaseSound;
     private _soundRound: Phaser.Sound.BaseSound;
-    private _soundClick: Phaser.Sound.BaseSound;
     
     private _isTurnInProgress: boolean;
     private _turnNumber: number;
@@ -60,7 +59,6 @@ export class BattleScene extends Phaser.Scene {
         // add sounds
 
         this._soundRound = this.sound.add('gong');
-        this._soundClick = this.sound.add('click');
 
         this._turnNumber = 0;
         this._roundNumber = 0;
@@ -449,7 +447,8 @@ export class BattleScene extends Phaser.Scene {
         // TODO: add tween for hitting target
 
         // play damage sound
-        Soundsets.sounds['sword'].play();
+        var sound = this.sound.add(actor.activeMove.name, { volume: Settings.sound.sfxVolume });
+        sound.play();
 
         // add tween for displaying damage
         // update target's card

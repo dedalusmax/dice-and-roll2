@@ -58,8 +58,6 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
                 ArrowsService.init(this);
-                // load sound effects
-                this.load.audio('gong', ['assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3']);
                 // sword audio set:
                 this.load.audio('sword', ['assets/sound/effects/sword-clang.ogg', 'assets/sound/effects/sword-clang.mp3']);
                 this.load.audio('sword2', ['assets/sound/effects/sword-clang2.ogg', 'assets/sound/effects/sword-clang2.mp3']);
@@ -97,7 +95,16 @@ export class LoadingScene extends Phaser.Scene {
                     this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
                 });
 
-                // sound effects
+                // SOUND EFFECTS:
+                // round
+                this.load.audio('gong', ['assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3']);
+                // weapons
+                this.load.audio('musket', 'assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav');
+                this.load.audio('explosive_bomb', 'assets/sound/effects/weapons/155235__zangrutz__bomb-small.wav');
+                this.load.audio('strings', 'assets/sound/effects/weapons/336859__borque__zoiing-display-wires.wav');
+                this.load.audio('sceptre', 'assets/sound/effects/weapons/Swords_Collide.mp3');
+                this.load.audio('poison', 'assets/sound/effects/weapons/219566__qubodup__poison-spell-magic.mp3');
+                // specials
                 this.load.audio('heal', 'assets/sound/effects/433645__dersuperanton__drinking-and-swallow.wav');
 
                 // TODO: assort this!!

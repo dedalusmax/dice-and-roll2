@@ -11,7 +11,8 @@
         "title": "Hunting revolvers",
         "desc": "",
         "type": "FIREARMS",
-        "attack": 2
+        "attack": 2,
+        "sound": ""
     }, 
     "sherrifs_sidearm": {
         "name": "sherrifs_sidearm",
