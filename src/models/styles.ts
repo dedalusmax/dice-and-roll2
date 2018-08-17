@@ -1,4 +1,5 @@
 export const FONT_FAMILY = 'Old English Text MT'; // Harrington
+export const FONT_FAMILY_BLOCK = 'Cooper'; // Berlin Sans FB
 
 export class Styles {
 

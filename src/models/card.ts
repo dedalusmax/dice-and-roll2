@@ -1,5 +1,5 @@
 import { Combatant, CombatantSide } from "./combatant";
-import { Styles, FONT_FAMILY } from "./styles";
+import { Styles, FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
 
 const COLOR = {
     RED: '#990000',
@@ -14,9 +14,8 @@ export class Card {
     private _canvas: HTMLCanvasElement;
 
     private _mainSprite: Phaser.GameObjects.Sprite;
-    private _factionEmblem: Phaser.GameObjects.Sprite;
-    private _attackEmblem: Phaser.GameObjects.Sprite;
-    private _shieldEmblem: Phaser.GameObjects.Sprite;
+    private _positiveEffect: Phaser.GameObjects.Sprite;
+    private _negativeEffect: Phaser.GameObjects.Sprite;
     private _attackText: Phaser.GameObjects.Text;
     private _defenseText: Phaser.GameObjects.Text;
     private _image: Phaser.GameObjects.Sprite;
@@ -26,11 +25,17 @@ export class Card {
     private _activeTween: Phaser.Tweens.Tween;
 
     private get allObjects(): Array<Phaser.GameObjects.GameObject> {
-        return [
-            this._mainSprite, this._image, this._healthIndicator
-            // this._mainSprite, this._factionEmblem, this._attackEmblem, this._shieldEmblem,
-            // this._attackText, this._defenseText, this._image, this._healthIndicator
-        ];
+
+        var objects = [this._mainSprite, this._image, this._healthIndicator];
+        
+        if (this._positiveEffect) {
+            objects.push(this._positiveEffect);
+        }
+        if (this._negativeEffect) {
+            objects.push(this._negativeEffect);
+        }
+        
+        return objects;
     }
 
     constructor(private _scene: Phaser.Scene, combatant: Combatant, private _position: Phaser.Geom.Point) {
@@ -39,63 +44,46 @@ export class Card {
 
         // the main sprite, the card background
         this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/card');
-        
-        // var shadow = _scene.add.sprite(_position.x, _position.y, 'cards/card');
-        // shadow.setScale(0.09, 0.09);
-        // shadow.setTint(0x000000, 0x000000, 0x000000, 0x000000);
-        //shadow.setBlendMode(Phaser.BlendModes.DARKEN);
-        //shadow.setDepth(this._mainSprite.depth - 1);
-
-        // the faction emblem, top right corner
-        //this._factionEmblem = this.addSpriteToCard(51, -74, combatant.side === CombatantSide.Friend ? 'cards/faction-1' : 'cards/faction-2', 0.3);
-
-        // the attack emblem, bottom left corner
-        //this._attackEmblem = this.addSpriteToCard(-51, 74, 'cards/emblem-sword');
-
-        //this._attackText = this.addTextToCard(-50, 71, combatant.attack.toString());
-
-        // the defense emblem, bottom right corner
-        //this._shieldEmblem = this.addSpriteToCard(55, 74, 'cards/emblem-shield');
-
-        //this._defenseText = this.addTextToCard(55, 73, combatant.defense.toString());
 
         if ( combatant.side === CombatantSide.Friend) {
             this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name + '-head');
         } else {
-            this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name, 0.4);
+            this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name);
         }
-    
+
         this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString(), 
-        { font: '18px ' + FONT_FAMILY, fill: '#009900', align: 'center', stroke: '#000000', strokeThickness: 2 });
+        { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#009900', align: 'center', stroke: '#000000', strokeThickness: 2 });
         this._healthIndicator.setShadow(0, 0, '#FFFFFF', 4, true, true);
     }
 
-    private addSpriteToCard(left: number, top: number, texture, scale?: number) {
+    private addSpriteToCard(left: number, top: number, texture, frame?) {
+
         var x = this._position.x + left;
         var y = this._position.y + top;
-        var sprite = this._scene.add.sprite(x, y, texture);
+        var sprite = this._scene.add.sprite(x, y, texture, frame);
         sprite.setDisplayOrigin(this._position.x, this._position.y);
-        if (scale) 
-            sprite.setScale(scale || 0.25);
         sprite.setOrigin(0.5, 0.5);
+
         return sprite;
     }
 
-    private addTextToCard(left: number, top: number, text: string, style?: any) {
+    private addTextToCard(left: number, top: number, text: string | string[], style?: any) {
+
         var x = this._position.x + left;
         var y = this._position.y + top;
         var textObject = this._scene.add.text(x, y, text, style || Styles.battle.indicator);
         textObject.setDisplayOrigin(this._position.x, this._position.y);
         textObject.setOrigin(0.5, 0.5);
+      
         return textObject;
     }
 
-    select() {
+    public select() {
         if (!this._selectedTween) {
             this._selectedTween = this._scene.tweens.add({
                 targets: this.allObjects,
-                scaleX: '+=0.1',
-                scaleY: '+=0.1',
+                scaleX: '+=0.05',
+                scaleY: '+=0.05',
                 ease: 'Sine.easeInOut',
                 yoyo: true,
                 repeat: Infinity
@@ -105,13 +93,13 @@ export class Card {
         }
     }
 
-    unselect() {
+    public unselect() {
         if (this._selectedTween && this._selectedTween.isPlaying()) {
             this._selectedTween.stop(0);
         }
     }
 
-    activate(combatant: Combatant): Promise<Combatant> {
+    public activate(combatant: Combatant): Promise<Combatant> {
 
         if (!this._activeTween) {
             this._activeTween = this._scene.tweens.add({
@@ -134,7 +122,7 @@ export class Card {
         });
     }
 
-    deactivate() {
+    public deactivate() {
         if (this._activeTween && this._activeTween.isPlaying()) {
             this._activeTween.stop(0);
         }
@@ -142,37 +130,100 @@ export class Card {
         this._image.removeAllListeners('pointerdown');
      }
 
-     showDamage(amount: number, health: number) {
-        var damageText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY, fill: '#ff0000', align: 'center' });
-        this._scene.add.tween({
-            targets: damageText,
-            alpha: 0,
-            y: damageText.y - 60,
-            ease: 'Linear',
-            duration: 600,
-            onComplete: () => {
-                damageText.destroy();
-                this.updateHealth(health);
-            }
+     public showDamage(amount: number, health: number) {
+        var damageText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#ff0000', align: 'center' });
+        // this._scene.add.tween({
+        //     targets: damageText,
+        //     alpha: 0,
+        //     y: damageText.y - 60,
+        //     ease: 'Linear',
+        //     duration: 600,
+        //     onComplete: () => {
+        //         damageText.destroy();
+        //         this.updateHealth(health);
+        //     }
+        // });
+        this.playVanishingEffect(damageText).then(() => {
+            this.updateHealth(health);
         });
     }
 
-    showHealing(amount: number, health: number) {
-        var healingText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY, fill: '#00FF00', align: 'center' });
-        this._scene.add.tween({
-            targets: healingText,
-            alpha: 0,
-            y: healingText.y - 60,
-            ease: 'Linear',
-            duration: 600,
-            onComplete: () => {
-                healingText.destroy();
-                this.updateHealth(health);
-            }
+    public showHealing(amount: number, health: number) {
+        var healingText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#00FF00', align: 'center' });
+        // this._scene.add.tween({
+        //     targets: healingText,
+        //     alpha: 0,
+        //     y: healingText.y - 60,
+        //     ease: 'Linear',
+        //     duration: 600,
+        //     onComplete: () => {
+        //         healingText.destroy();
+        //         this.updateHealth(health);
+        //     }
+        // });
+        this.playVanishingEffect(healingText).then(() => {
+            this.updateHealth(health);
         });
     }
 
-    remove() {
+    public showEffect(name: string, modifier: string): Promise<any> {
+        var effect = this.addTextToCard(0, 0, [name, modifier], { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
+        return this.playVanishingEffect(effect);
+    }
+
+    private playVanishingEffect(target: Phaser.GameObjects.Text): Promise<any> {
+        return new Promise((resolve) => {
+            this._scene.add.tween({
+                targets: target,
+                alpha: 0,
+                y: target.y - 60,
+                ease: 'Linear',
+                duration: 1000,
+                onComplete: () => {
+                    target.destroy();
+                    resolve();
+                }
+            });
+        });
+    }
+
+    public updateEffects(showPositive: boolean, showNegative: boolean) {
+        
+        if (showPositive && !this._positiveEffect) {
+            // show positive since it's not displayed yet
+            this._positiveEffect = this.addSpriteToCard(-40, -60, 'card-effects', 0);
+            this._positiveEffect.setAlpha(0.5);
+            this._scene.add.tween({
+                targets: [this._positiveEffect],
+                alpha: 1,
+                ease: 'Sine.easeInOut',
+                yoyo: true,
+                repeat: Infinity
+            });
+        } else if (!showPositive && this._positiveEffect) {
+            // remove positive since it's displayed already
+            this._positiveEffect.destroy();
+            this._positiveEffect = null;
+        }
+
+        if (showNegative && !this._negativeEffect) {
+            // show positive since it's not displayed yet
+            this._negativeEffect = this.addSpriteToCard(40, -60, 'card-effects', 1);
+            this._negativeEffect.setAlpha(0.5);
+            this._scene.add.tween({
+                targets: [this._negativeEffect],
+                alpha: 1,
+                ease: 'Linear',
+                yoyo: true,
+                repeat: Infinity
+            });
+        } else if (!showNegative && this._negativeEffect) {
+            // remove positive since it's displayed already
+            this._negativeEffect.destroy();
+        }
+    }
+
+    public remove() {
         this.deactivate();
 
         this._scene.add.tween({

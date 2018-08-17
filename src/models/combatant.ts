@@ -1,6 +1,5 @@
 import { Weapon } from "./weapon";
 import { Special, TargetType, EffectType } from "./special";
-import { Effect } from "./effect";
 import { WeaponService } from "../services/weapon.service";
 import { Card } from "./card";
 import { Moves } from "./moves";
@@ -30,7 +29,7 @@ export abstract class Combatant {
     weapon: Weapon;
     specials: Array<Special>;
 
-    effects: Array<Effect>;
+    effects: Array<Special>;
 
     card: Card;
 
@@ -41,10 +40,6 @@ export abstract class Combatant {
     health: number;
     killed: boolean;
 
-    get attack(): number {
-        return this.baseAttack; // + this.weapon.modifier;
-    }
-
     get defense(): number {
         return this.baseDefense;
     }
@@ -54,7 +49,7 @@ export abstract class Combatant {
     }
 
     public canAct(): boolean {
-        return this.effects.findIndex(e => e.type === EffectType.stun) < 0 && !this.killed;
+        return this.effects.findIndex(e => e.effectType === EffectType.stun) < 0 && !this.killed;
     }
 
     private setCommonData(data: any) {
@@ -100,5 +95,49 @@ export abstract class Combatant {
     public kill() {
         this.card.remove();
         this.killed = true;
+    }
+
+    public addEffect(effect: Special) {
+        // search for similar effects, and overwrite it if the same
+        this.effects.forEach((e, index) => {
+            if (e.effectType === effect.effectType) {
+                if (e.modifier) {
+                    if (e.modifier > 0 && effect.modifier > 0 || e.modifier < 0 && effect.modifier < 0) {
+                        // it's the same effect, overwrite it with new one
+                        this.effects.splice(index, 1);
+                    }
+                } else {
+                    // it's the same effect, overwrite it with new one
+                    this.effects.splice(index, 1);
+                }
+            }
+        });
+
+        this.effects.push(effect);
+
+        this.card.showEffect(EffectType[effect.effectType], effect.modifier > 0 ? '+' + effect.modifier : effect.modifier.toString())
+            .then(() => {
+                this.updateEffectsOnCard();
+            });
+    }
+
+    public wearOffEffects() {
+        // it happens before the combatant is playing his move, decreases all effects by one
+        this.effects.forEach((e, index) => {
+            e.duration--;
+            if (e.duration <= 0) {
+                // remove the effect if it wore off completely
+                this.effects.splice(index, 1);
+            }
+        });
+
+        this.updateEffectsOnCard();
+    }
+
+    private updateEffectsOnCard() {
+        var eff = this.effects.filter(e => e.effectType === EffectType.attack || e.effectType === EffectType.defense);
+        var positives = eff.some(e => e.modifier > 0);
+        var negatives = eff.some(e => e.modifier < 0);
+        this.card.updateEffects(positives, negatives);
     }
 }

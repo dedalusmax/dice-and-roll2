@@ -74,17 +74,12 @@ export class LoadingScene extends Phaser.Scene {
                     this._loadingFinished = true;
                     break;
                 }
+                // GRAPHICS:
+
                 // background screen
                 // this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
                 this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
-                // ambient music
-                if (this._options.terrain === 'grass') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
-                } else if (this._options.terrain === 'dirt') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
-                } else if (this._options.terrain === 'siege') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
-                }
+              
                 // load characters in party
                 this._options.playerParty.forEach(character => {
                     this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
@@ -95,7 +90,38 @@ export class LoadingScene extends Phaser.Scene {
                     this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
                 });
 
+                // load card and effects
+                this.load.image('cards/card', 'assets/cards/card.png');
+                this.load.spritesheet('card-effects', 'assets/cards/effects-sign.png', { frameWidth: 30, frameHeight: 53 });
+
+                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
+
+                // load specials
+                this.load.image('cards/special-card', 'assets/cards/special-card-s.png');
+                for (var special in Assets.specials) {
+                    this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
+                }
+
+                // TODO: sort it out!!!
+                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
+                this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
+                this.load.image('cards/emblem-blade', 'assets/cards/card-blade.png');
+                this.load.image('cards/emblem-blunt', 'assets/cards/card-blunt.png');
+                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
+                this.load.image('cards/emblem-firearms', 'assets/cards/card-firearms.png');
+                this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
+
                 // SOUND EFFECTS:
+
+                // ambient music
+                if (this._options.terrain === 'grass') {
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
+                } else if (this._options.terrain === 'dirt') {
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
+                } else if (this._options.terrain === 'siege') {
+                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
+                }
+
                 // round
                 this.load.audio('gong', ['assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3']);
                 // weapons for characters
@@ -109,9 +135,10 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('sceptre', 'assets/sound/effects/weapons/Swords_Collide.mp3');
                 this.load.audio('poison', 'assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav');
                 // specials
+                this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
+                this.load.audio('bullseye', 'assets/sound/effects/specials/351777__kennysvoice__sniper-rifle-m24-sfx-edit.wav');
                 this.load.audio('heal', 'assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav');
                 this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
-                this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
                 this.load.audio('precision_shot', 'assets/sound/effects/specials/393651__eflexthesounddesigner__sniper-rifle-shot-gun-shot.wav');
                 this.load.audio('ace', 'assets/sound/effects/specials/121894__stephensaldanha__magical-effect.wav');
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
@@ -131,22 +158,6 @@ export class LoadingScene extends Phaser.Scene {
                 // select audio set:
                 this.load.audio('swords', ['assets/sound/effects/Swords_Collide.ogg', 'assets/sound/effects/Swords_Collide.mp3']);
                 
-                // load specials
-                this.load.image('cards/special-card', 'assets/cards/special-card-s.png');
-                for (var special in Assets.specials) {
-                    this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
-                }
-
-                // TODO: assort these images more efficiently !!!
-                this.load.image('cards/card', 'assets/cards/card.png');
-                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
-                this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
-                this.load.image('cards/emblem-blade', 'assets/cards/card-blade.png');
-                this.load.image('cards/emblem-blunt', 'assets/cards/card-blunt.png');
-                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
-                this.load.image('cards/emblem-firearms', 'assets/cards/card-firearms.png');
-                this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
-
                 break;
             case 'VictoryScene':
                 this.load.image('victory', 'assets/screens/menu.png');

@@ -1,4 +1,14 @@
 {
+    "bullseye": {
+        "name": "bullseye",
+        "title": "Bullseye",
+        "description": "dssdsdsa",
+        "targetType": "self",
+        "executionType": "singleTarget",
+        "effectType": "attack",
+        "modifier": 10,
+        "duration": 3
+    },
     "remedy": {
         "name": "remedy",
         "title": "Remedy",

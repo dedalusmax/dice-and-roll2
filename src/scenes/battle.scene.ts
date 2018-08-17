@@ -228,8 +228,14 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private readyCombatant() {
+        // pick the next player
         this._activeCombatant++;
         var combatant = this._combatants[this._activeCombatant];
+
+        // decrease duration of his effects for one
+        combatant.wearOffEffects();
+                
+        // check whether the player is stunned
         if (combatant.canAct()) {
             // activate card
             combatant.card.select();
@@ -404,6 +410,9 @@ export class BattleScene extends Phaser.Scene {
                 case EffectType.heal:
                     this.heal(actor.activeMove.modifier, target);
                     break;
+                case EffectType.attack:
+                    this.applyDurableEffect(actor.activeMove, target);
+                    break;
                 default:
                     alert('Not implemented!');
             }
@@ -443,11 +452,17 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private dealDamage(actor: Combatant, target: Combatant) {
-        // calculate damage: 1d6 + ATT - DEF
-        var damage = Phaser.Math.RND.between(1, 6) + actor.attack + actor.activeMove.modifier - target.defense;
+
+        // calculate damage: 1d6 + ATT (+ATT MODs) - DEF
+        var attack = Phaser.Math.RND.between(1, 6) + actor.baseAttack + actor.activeMove.modifier;
+        var modifiers = actor.effects.filter(e => e.effectType == EffectType.attack);
+        modifiers.forEach(m => attack += m.modifier);
+
+        var damage = attack - target.defense;
         if (damage < 0) {
             damage = 0;
         }
+
         target.health = (target.health - damage) < 0 ? 0 : target.health - damage;
 
         // TODO: add tween for hitting target
@@ -484,5 +499,15 @@ export class BattleScene extends Phaser.Scene {
         
         // display healing and update card
         target.card.showHealing(healing, target.health);
+    }
+
+    private applyDurableEffect(move: Special, target: Combatant) {
+
+        // play the sound
+        var sound = this.sound.add(move.name, { volume: Settings.sound.sfxVolume });
+        sound.play();
+
+        // add effect to target (or overwrite if existing by type and course)
+        target.addEffect(move);
     }
 }
