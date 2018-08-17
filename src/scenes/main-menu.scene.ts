@@ -147,7 +147,7 @@ export class MainMenuScene extends Phaser.Scene {
         });
         menu.add(lessMusic);
 
-        var moreMusic =  ArrowsService.createArrow(this, musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, ArrowOrientation.right, () => {
+        var moreMusic = ArrowsService.createArrow(this, musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, ArrowOrientation.right, () => {
             if (Settings.sound.musicVolume < 1) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume + 0.1) * 10) / 10;
                 musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
