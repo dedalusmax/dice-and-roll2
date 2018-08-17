@@ -1,4 +1,22 @@
 {
+    "ricochet": {
+        "name": "ricochet",
+        "title": "Ricochet",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "twoTargets",
+        "effectType": "damage",
+        "modifier": 8
+    },
+    "precision_shot": {
+        "name": "precision_shot",
+        "title": "Precision shot",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 30
+    },
     "bullseye": {
         "name": "bullseye",
         "title": "Bullseye",
@@ -28,6 +46,16 @@
         "effectType": "heal",
         "modifier": 20
     },
+    "throw_acid": {
+        "name": "throw_acid",
+        "title": "Throw acid",
+        "description": "xxxxx",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "defense",
+        "modifier": -10,
+        "duration": 3
+    },
     "catalitic_bomb": {
         "name": "catalitic_bomb",
         "title": "Catalitic bomb",
@@ -36,6 +64,26 @@
         "executionType": "allTargetsInRank",
         "effectType": "damage",
         "modifier": 16
+    },
+    "break_defense": {
+        "name": "break_defense",
+        "title": "Break defense",
+        "description": "xxxxx",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "defense",
+        "modifier": -15,
+        "duration": 2
+    },
+    "brass_shield": {
+        "name": "brass_shield",
+        "title": "Brass shield",
+        "description": "xxxxx",
+        "targetType": "self",
+        "executionType": "singleTarget",
+        "effectType": "defense",
+        "modifier": 8,
+        "duration": 3
     },
     "medikit": {
         "name": "medikit",
@@ -46,23 +94,15 @@
         "effectType": "heal",
         "modifier": 25
     },
-    "ricochet": {
-        "name": "ricochet",
-        "title": "Ricochet",
-        "description": "Heals wounded party member (20 HP + 1d10)",
-        "targetType": "anyEnemyInNearestRank",
-        "executionType": "twoTargets",
-        "effectType": "damage",
-        "modifier": 8
-    },
-    "precision_shot": {
-        "name": "precision_shot",
-        "title": "Precision shot",
-        "description": "Heals wounded party member (20 HP + 1d10)",
-        "targetType": "anyEnemy",
-        "executionType": "singleTarget",
-        "effectType": "damage",
-        "modifier": 30
+    "battle_cry": {
+        "name": "battle_cry",
+        "title": "Battle cry",
+        "description": "xxxxx",
+        "targetType": "anyFriend",
+        "executionType": "allTargets",
+        "effectType": "attack",
+        "modifier": 10,
+        "duration": 2
     },
     "ace": {
         "name": "ace",
@@ -72,6 +112,26 @@
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 20
+    },
+    "blind": {
+        "name": "blind",
+        "title": "Blind",
+        "description": "xxxxx",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "attack",
+        "modifier": -15,
+        "duration": 2
+    },
+    "performance": {
+        "name": "performance",
+        "title": "Performance",
+        "description": "xxxxx",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "defense",
+        "modifier": -15,
+        "duration": 2
     },
     "backstab": {
         "name": "backstab",

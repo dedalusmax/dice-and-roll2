@@ -394,7 +394,7 @@ export class BattleScene extends Phaser.Scene {
             case ExecutionType.allTargets:
                 var otherTargets = this.pickAllTargets(target);
                 if (otherTargets.length > 0) {
-                    effectiveTargets.push(...otherTargets);
+                    effectiveTargets = [...otherTargets];
                 }
                 break;
             default:
@@ -411,6 +411,7 @@ export class BattleScene extends Phaser.Scene {
                     this.heal(actor.activeMove.modifier, target);
                     break;
                 case EffectType.attack:
+                case EffectType.defense:
                     this.applyDurableEffect(actor.activeMove, target);
                     break;
                 default:
@@ -443,22 +444,26 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private pickAllTargetsInRank(originTarget: Combatant): Array<Combatant> {
-        var allInRankAndSide = this._combatants.filter(c => !c.killed && c.side === originTarget.side && c.type === originTarget.type); 
-        return allInRankAndSide;
+        return this._combatants.filter(c => !c.killed && c.side === originTarget.side && c.type === originTarget.type); 
     }
     
     private pickAllTargets(originTarget: Combatant): Array<Combatant> {
-        return null;
+        return this._combatants.filter(c => !c.killed && c.side === originTarget.side); 
     }
 
     private dealDamage(actor: Combatant, target: Combatant) {
 
-        // calculate damage: 1d6 + ATT (+ATT MODs) - DEF
+        // calculate damage: 1d6 + ATT (+ATT MODs) - DEF (+DEF MODs)
+        
         var attack = Phaser.Math.RND.between(1, 6) + actor.baseAttack + actor.activeMove.modifier;
-        var modifiers = actor.effects.filter(e => e.effectType == EffectType.attack);
-        modifiers.forEach(m => attack += m.modifier);
+        var attMods = actor.effects.filter(e => e.effectType == EffectType.attack);
+        attMods.forEach(m => attack += m.modifier);
+        
+        var defense = target.defense;
+        var defMods = target.effects.filter(e => e.effectType == EffectType.defense);
+        defMods.forEach(m => defense += m.modifier);
 
-        var damage = attack - target.defense;
+        var damage = attack - defense;
         if (damage < 0) {
             damage = 0;
         }

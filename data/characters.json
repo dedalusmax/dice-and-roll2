@@ -26,7 +26,7 @@
         "speciality": "Power strike",
         "armors": [ "brass_plating" ],
         "weapons": [ "steam_pipe", "pickaxe", "wrench", "forge_hammer" ],
-        "specials": [ ],
+        "specials": [ "break_defense", "brass_shield" ],
         "armor": "brass_plating",
         "weapon": "steam_pipe",
         "specialsUsed": 1
@@ -42,7 +42,7 @@
         "speciality": "Long-range firearms",
         "armors": [ "regiment_uniform" ],
         "weapons": [ "musket", "arquebus", "shotgun", "scoped_rifle" ],
-        "specials": [ "medikit", "precision_shot" ],
+        "specials": [ "medikit", "battle_cry", "precision_shot" ],
         "armor": "regiment_uniform",
         "weapon": "musket",
         "specialsUsed": 1
@@ -58,7 +58,7 @@
         "speciality": "Bombs",
         "armors": [ "lab_coat" ],
         "weapons": [ "explosive_bomb", "incendiary_grenade", "frag_grenade", "termite_grenade" ],
-        "specials": [ "remedy", "catalitic_bomb" ],
+        "specials": [ "remedy", "throw_acid", "catalitic_bomb" ],
         "armor": "lab_coat",
         "weapon": "explosive_bomb",
         "specialsUsed": 1
@@ -90,7 +90,7 @@
         "speciality": "Tricks",
         "armors": [ "magician_suit" ],
         "weapons": [ "deck_of_cards", "blackjack", "poker_cards", "joker_card" ],
-        "specials": [ "ace" ],
+        "specials": [ "ace", "blind", "performance" ],
         "armor": "magician_suit",
         "weapon": "deck_of_cards",
         "specialsUsed": 1
