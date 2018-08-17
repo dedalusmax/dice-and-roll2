@@ -1,5 +1,5 @@
 export const FONT_FAMILY = 'Old English Text MT'; // Harrington
-export const FONT_FAMILY_BLOCK = 'Cooper'; // Berlin Sans FB
+export const FONT_FAMILY_BLOCK = 'Franklin Gothic'; // Berlin Sans FB
 
 export class Styles {
 
@@ -14,7 +14,7 @@ export class Styles {
     public static readonly menu = {
         header: { font: '24px ' + FONT_FAMILY, fill: '#444', strokeThickness: 1 },
         submenu: { font: '32px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 },
-        volume: { font: '32px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
+        volume: { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#990000', align: 'center' },
         author: { font: '24px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center' },
         author_small: { font: '18px ' + FONT_FAMILY, strokeThickness: 1, fill: '#777' },
         menu_button: { font: '64px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },

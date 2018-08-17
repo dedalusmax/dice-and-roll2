@@ -1,5 +1,5 @@
 import { Combatant, CombatantSide } from "./combatant";
-import { FONT_FAMILY } from "./styles";
+import { FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
 
 export class Profile {
 
@@ -47,7 +47,7 @@ export class Profile {
         this._objects.push(desc);
 
         var hpTitle = this._scene.add.text(30, this._scene.cameras.main.height - 150, 'HP', {
-            font: '18px ' + FONT_FAMILY, fill: '#FF0000'
+            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FF0000'
         });
         hpTitle.setShadow(1, 1, '#000', 2, false, true);
         this._objects.push(hpTitle);
@@ -68,12 +68,12 @@ export class Profile {
         this._objects.push(hpBar);
 
         var hpValue = this._scene.add.text(boxLeft + 4, boxTop + 2, this._combatant.health.toString(), {
-            font: '16px ' + FONT_FAMILY, fill: '#FFFFFF'
+            font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FFFFFF'
         });
         this._objects.push(hpValue);
 
         var hpMax = this._scene.add.text(boxLeft + boxWidth + 4, boxTop + 2, this._combatant.baseHealth.toString(), {
-            font: '16px ' + FONT_FAMILY, fill: '#FF0000', strokeThickness: 2
+            font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FF0000', strokeThickness: 2
         });
         this._objects.push(hpMax);
 
@@ -84,7 +84,7 @@ export class Profile {
         this._objects.push(attackTitle);
 
         var baseAttack = this._scene.add.text(attackTitle.x + attackTitle.width + 5, attackTitle.y, this._combatant.baseAttack.toString(), {
-            font: '18px ' + FONT_FAMILY, fill: '#FFFFFF'
+            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FFFFFF'
         });
         this._objects.push(baseAttack);
 
@@ -95,7 +95,7 @@ export class Profile {
         this._objects.push(defenseTitle);
 
         var baseDefense = this._scene.add.text(defenseTitle.x + defenseTitle.width + 5, defenseTitle.y, this._combatant.baseDefense.toString(), {
-            font: '18px ' + FONT_FAMILY, fill: '#FFFFFF'
+            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FFFFFF'
         });
         this._objects.push(baseDefense);
     }

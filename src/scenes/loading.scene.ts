@@ -1,7 +1,7 @@
 import { Settings } from '../models/settings';
 import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
-import { FONT_FAMILY } from '../models/styles';
+import { FONT_FAMILY, FONT_FAMILY_BLOCK } from '../models/styles';
 import { ArrowsService } from '../services/arrows.service';
 
 export class LoadingScene extends Phaser.Scene {
@@ -214,7 +214,7 @@ export class LoadingScene extends Phaser.Scene {
             y: height - 205,
             text: '0%',
             style: {
-                font: '18px ' + FONT_FAMILY,
+                font: '18px ' + FONT_FAMILY_BLOCK,
                 fill: '#EDEAD9'
             }
         });
