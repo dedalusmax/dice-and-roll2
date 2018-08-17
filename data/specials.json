@@ -52,5 +52,14 @@
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 20
+    },
+    "backstab": {
+        "name": "backstab",
+        "title": "Backstab",
+        "description": "sdsadsdas",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 15
     }
 }
