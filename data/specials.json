@@ -8,15 +8,6 @@
         "effectType": "damage",
         "modifier": 8
     },
-    "precision_shot": {
-        "name": "precision_shot",
-        "title": "Precision shot",
-        "description": "Heals wounded party member (20 HP + 1d10)",
-        "targetType": "anyEnemy",
-        "executionType": "singleTarget",
-        "effectType": "damage",
-        "modifier": 30
-    },
     "bullseye": {
         "name": "bullseye",
         "title": "Bullseye",
@@ -36,6 +27,15 @@
         "effectType": "attack",
         "modifier": -10,
         "duration": 3
+    },
+    "playing_dirty": {
+        "name": "playing_dirty",
+        "title": "Playing dirty",
+        "description": "dsdsdsdsasdsdsa",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "stun",
+        "duration": 1
     },
     "remedy": {
         "name": "remedy",
@@ -85,6 +85,15 @@
         "modifier": 8,
         "duration": 3
     },
+    "shake_ground": {
+        "name": "shake_ground",
+        "title": "Shake ground",
+        "description": "dsdsdsdsasdsdsa",
+        "targetType": "anyEnemy",
+        "executionType": "allTargets",
+        "effectType": "stun",
+        "duration": 1
+    },
     "medikit": {
         "name": "medikit",
         "title": "Medikit",
@@ -103,6 +112,15 @@
         "effectType": "attack",
         "modifier": 10,
         "duration": 2
+    },
+    "precision_shot": {
+        "name": "precision_shot",
+        "title": "Precision shot",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 30
     },
     "ace": {
         "name": "ace",
@@ -132,6 +150,15 @@
         "effectType": "defense",
         "modifier": -15,
         "duration": 2
+    },
+    "magic_trick": {
+        "name": "magic_trick",
+        "title": "Magic trick",
+        "description": "dsdsdsdsasdsdsa",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "stun",
+        "duration": 3
     },
     "backstab": {
         "name": "backstab",

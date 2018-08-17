@@ -10,7 +10,7 @@
         "speciality": "Dual pistols",
         "armors": [ "leather_coat" ],
         "weapons": [ "revolvers", "hunting_revolvers", "sherrif_sidearm", "peacemaker" ],
-        "specials": [ "ricochet", "bullseye", "disarm" ],
+        "specials": [ "ricochet", "bullseye", "disarm", "playing_dirty" ],
         "armor": "leather_coat",
         "weapon": "revolvers",
         "specialsUsed": 1
@@ -26,7 +26,7 @@
         "speciality": "Power strike",
         "armors": [ "brass_plating" ],
         "weapons": [ "steam_pipe", "pickaxe", "wrench", "forge_hammer" ],
-        "specials": [ "break_defense", "brass_shield" ],
+        "specials": [ "break_defense", "brass_shield", "shake_ground" ],
         "armor": "brass_plating",
         "weapon": "steam_pipe",
         "specialsUsed": 1
@@ -90,7 +90,7 @@
         "speciality": "Tricks",
         "armors": [ "magician_suit" ],
         "weapons": [ "deck_of_cards", "blackjack", "poker_cards", "joker_card" ],
-        "specials": [ "ace", "blind", "performance" ],
+        "specials": [ "ace", "blind", "performance", "magic_trick" ],
         "armor": "magician_suit",
         "weapon": "deck_of_cards",
         "specialsUsed": 1

@@ -412,6 +412,7 @@ export class BattleScene extends Phaser.Scene {
                     break;
                 case EffectType.attack:
                 case EffectType.defense:
+                case EffectType.stun:
                     this.applyDurableEffect(actor.activeMove, target);
                     break;
                 default:

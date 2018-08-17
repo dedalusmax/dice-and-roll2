@@ -92,9 +92,7 @@ export class LoadingScene extends Phaser.Scene {
 
                 // load card and effects
                 this.load.image('cards/card', 'assets/cards/card.png');
-                this.load.spritesheet('card-effects', 'assets/cards/effects-sign.png', { frameWidth: 30, frameHeight: 53 });
-
-                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
+                this.load.spritesheet('shards', 'assets/cards/shards.png', { frameWidth: 30, frameHeight: 53 });
 
                 // load specials
                 this.load.image('cards/special-card', 'assets/cards/special-card-s.png');
@@ -140,9 +138,11 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
                 this.load.audio('bullseye', 'assets/sound/effects/specials/351777__kennysvoice__sniper-rifle-m24-sfx-edit.wav');
                 this.load.audio('disarm', 'assets/sound/effects/specials/disarm-with-pistol.wav');
+                this.load.audio('playing_dirty', 'assets/sound/effects/specials/434473__dersuperanton__sand-rattle.wav');
                 // automaton
                 this.load.audio('break_defense', 'assets/sound/effects/specials/423010__ogsoundfx__monster-bite-on-armor.wav');
                 this.load.audio('brass_shield', 'assets/sound/effects/specials/352187__inspectorj__snapping-wooden-fence-i.wav');
+                this.load.audio('shake_ground', 'assets/sound/effects/specials/399656__bajko__sfx-thunder-blast.wav');
                 // alchemist
                 this.load.audio('heal', 'assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav');
                 this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
@@ -154,6 +154,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('ace', 'assets/sound/effects/specials/121894__stephensaldanha__magical-effect.wav');
                 this.load.audio('blind', 'assets/sound/effects/specials/360830__tec-studios__fantasy-sfx-003.wav');
                 this.load.audio('performance', 'assets/sound/effects/specials/12896__harri__circus-short.wav');
+                this.load.audio('magic_trick', 'assets/sound/effects/specials/179055__robinhood76__04148-a-circus-jump-with-clarinet.wav');
                 // assasin
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
 

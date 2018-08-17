@@ -1,5 +1,6 @@
 import { Combatant, CombatantSide } from "./combatant";
 import { Styles, FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
+import { Special, LingeringType, EffectType } from "./special";
 
 const COLOR = {
     RED: '#990000',
@@ -14,12 +15,16 @@ export class Card {
     private _canvas: HTMLCanvasElement;
 
     private _mainSprite: Phaser.GameObjects.Sprite;
-    private _positiveEffect: Phaser.GameObjects.Sprite;
-    private _negativeEffect: Phaser.GameObjects.Sprite;
     private _attackText: Phaser.GameObjects.Text;
     private _defenseText: Phaser.GameObjects.Text;
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
+
+    // shards
+    private _positiveEffect: Phaser.GameObjects.Sprite;
+    private _negativeEffect: Phaser.GameObjects.Sprite;
+    private _stunnedEffect: Phaser.GameObjects.Sprite;
+    private _lingeringEffect: Phaser.GameObjects.Sprite;
 
     private _selectedTween: Phaser.Tweens.Tween;
     private _activeTween: Phaser.Tweens.Tween;
@@ -33,6 +38,12 @@ export class Card {
         }
         if (this._negativeEffect) {
             objects.push(this._negativeEffect);
+        }
+        if (this._stunnedEffect) {
+            objects.push(this._stunnedEffect);
+        }
+        if (this._lingeringEffect) {
+            objects.push(this._lingeringEffect);
         }
         
         return objects;
@@ -132,17 +143,6 @@ export class Card {
 
      public showDamage(amount: number, health: number) {
         var damageText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#ff0000', align: 'center' });
-        // this._scene.add.tween({
-        //     targets: damageText,
-        //     alpha: 0,
-        //     y: damageText.y - 60,
-        //     ease: 'Linear',
-        //     duration: 600,
-        //     onComplete: () => {
-        //         damageText.destroy();
-        //         this.updateHealth(health);
-        //     }
-        // });
         this.playVanishingEffect(damageText).then(() => {
             this.updateHealth(health);
         });
@@ -150,24 +150,43 @@ export class Card {
 
     public showHealing(amount: number, health: number) {
         var healingText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#00FF00', align: 'center' });
-        // this._scene.add.tween({
-        //     targets: healingText,
-        //     alpha: 0,
-        //     y: healingText.y - 60,
-        //     ease: 'Linear',
-        //     duration: 600,
-        //     onComplete: () => {
-        //         healingText.destroy();
-        //         this.updateHealth(health);
-        //     }
-        // });
         this.playVanishingEffect(healingText).then(() => {
             this.updateHealth(health);
         });
     }
 
-    public showEffect(name: string, modifier: string): Promise<any> {
-        var effect = this.addTextToCard(0, 0, [name, modifier], { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
+    public showEffect(effect: Special): Promise<any> {
+        var sprite: Phaser.GameObjects.Text;
+        if (effect.effectType === EffectType.stun) {
+            sprite = this.addTextToCard(0, 0, 'stunned', 
+                { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FF6A00', align: 'center' });
+        } else {
+            sprite = this.addTextToCard(0, 0, 
+                [EffectType[effect.effectType], effect.modifier > 0 ? '+' + effect.modifier : effect.modifier.toString()], 
+                { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
+        }
+        return this.playVanishingEffect(sprite);   
+    }
+
+    public showLingeringEffect(lingering: Special): Promise<any> {
+        var text = '', color = '';
+
+        switch (lingering.lingeringType) {
+            case LingeringType.bleeding:
+                text = 'bleeding';
+                color = '#BC0000';
+                break;
+            case LingeringType.poison:
+                text = 'poisoned';
+                color = '#007F46';
+                break;
+            case LingeringType.fire:
+                text = 'burned';
+                color = '#FF6A00';
+                break;
+        }
+
+        var effect = this.addTextToCard(0, 0, text, { font: '48px ' + FONT_FAMILY_BLOCK, fill: color, align: 'center' });
         return this.playVanishingEffect(effect);
     }
 
@@ -187,11 +206,11 @@ export class Card {
         });
     }
 
-    public updateEffects(showPositive: boolean, showNegative: boolean) {
+    public updateEffects(showPositive: boolean, showNegative: boolean, showStun: boolean) {
         
         if (showPositive && !this._positiveEffect) {
             // show positive since it's not displayed yet
-            this._positiveEffect = this.addSpriteToCard(-40, -60, 'card-effects', 0);
+            this._positiveEffect = this.addSpriteToCard(-40, -60, 'shards', 0);
             this._positiveEffect.setAlpha(0.5);
             this._scene.add.tween({
                 targets: [this._positiveEffect],
@@ -208,7 +227,7 @@ export class Card {
 
         if (showNegative && !this._negativeEffect) {
             // show positive since it's not displayed yet
-            this._negativeEffect = this.addSpriteToCard(40, -60, 'card-effects', 1);
+            this._negativeEffect = this.addSpriteToCard(40, -60, 'shards', 1);
             this._negativeEffect.setAlpha(0.5);
             this._scene.add.tween({
                 targets: [this._negativeEffect],
@@ -220,6 +239,24 @@ export class Card {
         } else if (!showNegative && this._negativeEffect) {
             // remove positive since it's displayed already
             this._negativeEffect.destroy();
+            this._negativeEffect = null;
+        }
+
+        if (showStun && !this._stunnedEffect) {
+            // show effect since it's not displayed yet
+            this._stunnedEffect = this.addSpriteToCard(40, 60, 'shards', 2);
+            this._stunnedEffect.setAlpha(0.5);
+            this._scene.add.tween({
+                targets: [this._stunnedEffect],
+                alpha: 1,
+                ease: 'Linear',
+                yoyo: true,
+                repeat: Infinity
+            });
+        } else if (!showStun && this._stunnedEffect) {
+            // remove effect since it's displayed already
+            this._stunnedEffect.destroy();
+            this._stunnedEffect = null;
         }
     }
 

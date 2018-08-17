@@ -5,6 +5,7 @@ import { Card } from "./card";
 import { Moves } from "./moves";
 import { Move } from "./move";
 import { SpecialService } from "../services/special.service";
+import { Effect } from "./effect";
 
 export enum CombatantType {
     Melee = 1,
@@ -29,7 +30,7 @@ export abstract class Combatant {
     weapon: Weapon;
     specials: Array<Special>;
 
-    effects: Array<Special>;
+    effects: Array<Effect>;
 
     card: Card;
 
@@ -97,25 +98,27 @@ export abstract class Combatant {
         this.killed = true;
     }
 
-    public addEffect(effect: Special) {
+    public addEffect(special: Special) {
         // search for similar effects, and overwrite it if the same
         this.effects.forEach((e, index) => {
-            if (e.effectType === effect.effectType) {
+            if (e.effectType === special.effectType) {
                 if (e.modifier) {
-                    if (e.modifier > 0 && effect.modifier > 0 || e.modifier < 0 && effect.modifier < 0) {
+                    if (e.modifier > 0 && special.modifier > 0 || e.modifier < 0 && special.modifier < 0) {
                         // it's the same effect, overwrite it with new one
                         this.effects.splice(index, 1);
                     }
                 } else {
-                    // it's the same effect, overwrite it with new one
+                    // it's the same effect, overwrite it with new one (e.g. stun)
                     this.effects.splice(index, 1);
                 }
             }
         });
 
+        var effect = new Effect(special);
+        effect.startingRound = true;
         this.effects.push(effect);
 
-        this.card.showEffect(EffectType[effect.effectType], effect.modifier > 0 ? '+' + effect.modifier : effect.modifier.toString())
+        this.card.showEffect(effect)
             .then(() => {
                 this.updateEffectsOnCard();
             });
@@ -124,10 +127,15 @@ export abstract class Combatant {
     public wearOffEffects() {
         // it happens before the combatant is playing his move, decreases all effects by one
         this.effects.forEach((e, index) => {
-            e.duration--;
-            if (e.duration <= 0) {
-                // remove the effect if it wore off completely
-                this.effects.splice(index, 1);
+            if (e.startingRound) {
+                // ignore wearing off, since it's still the round when the effect is initiated
+                e.startingRound = false;
+            } else {
+                e.duration--;
+                if (e.duration <= 0) {
+                    // remove the effect if it wore off completely
+                    this.effects.splice(index, 1);
+                }   
             }
         });
 
@@ -138,6 +146,7 @@ export abstract class Combatant {
         var eff = this.effects.filter(e => e.effectType === EffectType.attack || e.effectType === EffectType.defense);
         var positives = eff.some(e => e.modifier > 0);
         var negatives = eff.some(e => e.modifier < 0);
-        this.card.updateEffects(positives, negatives);
+        var stunned = this.effects.some(e => e.effectType === EffectType.stun);
+        this.card.updateEffects(positives, negatives, stunned);
     }
 }
