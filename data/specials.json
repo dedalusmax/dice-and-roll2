@@ -86,6 +86,17 @@
         "modifier": -15,
         "duration": 2
     },
+    "burning_flames": {
+        "name": "burning_flames",
+        "title": "Burning flames",
+        "description": "Burns close target with flames for 3 turns with 7 damage",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "lingering",
+        "lingeringType": "fire",
+        "duration": 3,
+        "modifier": 7
+    },
     "brass_shield": {
         "name": "brass_shield",
         "title": "Brass shield",
@@ -114,6 +125,26 @@
         "effectType": "heal",
         "modifier": 25
     },
+    "precision_shot": {
+        "name": "precision_shot",
+        "title": "Precision shot",
+        "description": "Heals wounded party member (20 HP + 1d10)",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 30
+    },
+    "bayonet_charge": {
+        "name": "bayonet_charge",
+        "title": "Bayonet change",
+        "description": "Causes bleeding of close target for 3 turns with 5 damage",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "lingering",
+        "lingeringType": "bleeding",
+        "duration": 3,
+        "modifier": 5
+    },
     "battle_cry": {
         "name": "battle_cry",
         "title": "Battle cry",
@@ -123,15 +154,6 @@
         "effectType": "attack",
         "modifier": 10,
         "duration": 2
-    },
-    "precision_shot": {
-        "name": "precision_shot",
-        "title": "Precision shot",
-        "description": "Heals wounded party member (20 HP + 1d10)",
-        "targetType": "anyEnemy",
-        "executionType": "singleTarget",
-        "effectType": "damage",
-        "modifier": 30
     },
     "ace": {
         "name": "ace",
@@ -179,5 +201,16 @@
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 15
+    },
+    "ripping_cut": {
+        "name": "ripping_cut",
+        "title": "Ripping cut",
+        "description": "Deals deep injury of that bleeds for 3 turns with 8 damage",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "lingering",
+        "lingeringType": "bleeding",
+        "duration": 3,
+        "modifier": 8
     }
 }

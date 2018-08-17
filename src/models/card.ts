@@ -159,11 +159,11 @@ export class Card {
         var sprite: Phaser.GameObjects.Text;
         if (effect.effectType === EffectType.stun) {
             sprite = this.addTextToCard(0, 0, 'stunned', 
-                { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FF6A00', align: 'center' });
+                { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FF6A00', align: 'center' });
         } else {
             sprite = this.addTextToCard(0, 0, 
                 [EffectType[effect.effectType], effect.modifier > 0 ? '+' + effect.modifier : effect.modifier.toString()], 
-                { font: '48px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
+                { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
         }
         return this.playVanishingEffect(sprite);   
     }
@@ -186,7 +186,7 @@ export class Card {
                 break;
         }
 
-        var effect = this.addTextToCard(0, 0, text, { font: '48px ' + FONT_FAMILY_BLOCK, fill: color, align: 'center' });
+        var effect = this.addTextToCard(0, 0, text, { font: '36px ' + FONT_FAMILY_BLOCK, fill: color, align: 'center' });
         return this.playVanishingEffect(effect);
     }
 

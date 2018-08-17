@@ -134,6 +134,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('sceptre', 'assets/sound/effects/weapons/Swords_Collide.mp3');
                 this.load.audio('poison', 'assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav');
                 // SPECIALS:
+                this.load.audio('heal', 'assets/sound/effects/specials/218561__phr4kture__last-scar-healed.wav');
                 // gunslinger
                 this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
                 this.load.audio('bullseye', 'assets/sound/effects/specials/351777__kennysvoice__sniper-rifle-m24-sfx-edit.wav');
@@ -141,15 +142,16 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('playing_dirty', 'assets/sound/effects/specials/434473__dersuperanton__sand-rattle.wav');
                 // automaton
                 this.load.audio('break_defense', 'assets/sound/effects/specials/423010__ogsoundfx__monster-bite-on-armor.wav');
+                this.load.audio('burning_flames', 'assets/sound/effects/specials/338685__natemarler__flame-thrower-varying-power.wav');
                 this.load.audio('brass_shield', 'assets/sound/effects/specials/352187__inspectorj__snapping-wooden-fence-i.wav');
                 this.load.audio('shake_ground', 'assets/sound/effects/specials/399656__bajko__sfx-thunder-blast.wav');
                 // alchemist
-                this.load.audio('heal', 'assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav');
                 this.load.audio('poisonous_gas', 'assets/sound/effects/specials/202629__alexmaxlle__gas.wav');
                 this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
                 this.load.audio('throw_acid', 'assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav');
                 // musketeer
                 this.load.audio('precision_shot', 'assets/sound/effects/specials/393651__eflexthesounddesigner__sniper-rifle-shot-gun-shot.wav');
+                this.load.audio('bayonet_charge', 'assets/sound/effects/specials/431757__schoggimousse__musket-massacre.wav');
                 this.load.audio('battle_cry', 'assets/sound/effects/specials/165492__chripei__victory-cry-reverb-1.wav');
                 // illusionist
                 this.load.audio('ace', 'assets/sound/effects/specials/121894__stephensaldanha__magical-effect.wav');
@@ -158,8 +160,9 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('magic_trick', 'assets/sound/effects/specials/179055__robinhood76__04148-a-circus-jump-with-clarinet.wav');
                 // assasin
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
+                this.load.audio('ripping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
 
-                // TODO: assort this!!
+                // TODO: assort this below!!
 
                 this.load.audio('hit', ['assets/sound/effects/Swoosh02.mp3']);
                 this.load.audio('multi-hit', ['assets/sound/effects/SwooshCombo1.mp3']);

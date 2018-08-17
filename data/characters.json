@@ -26,7 +26,7 @@
         "speciality": "Power strike",
         "armors": [ "brass_plating" ],
         "weapons": [ "steam_pipe", "pickaxe", "wrench", "forge_hammer" ],
-        "specials": [ "break_defense", "brass_shield", "shake_ground" ],
+        "specials": [ "break_defense", "burning_flames", "brass_shield", "shake_ground" ],
         "armor": "brass_plating",
         "weapon": "steam_pipe",
         "specialsUsed": 1
@@ -42,7 +42,7 @@
         "speciality": "Long-range firearms",
         "armors": [ "regiment_uniform" ],
         "weapons": [ "musket", "arquebus", "shotgun", "scoped_rifle" ],
-        "specials": [ "medikit", "battle_cry", "precision_shot" ],
+        "specials": [ "medikit", "precision_shot", "bayonet_charge", "battle_cry" ],
         "armor": "regiment_uniform",
         "weapon": "musket",
         "specialsUsed": 1
@@ -74,7 +74,7 @@
         "speciality": "Stealth",
         "armors": [ "cloak" ],
         "weapons": [ "dagger", "razor", "shadow_blade", "throat_slitter" ],
-        "specials": [ "backstab" ],
+        "specials": [ "backstab", "ripping_cut" ],
         "armor": "cloak",
         "weapon": "dagger",
         "specialsUsed": 1
