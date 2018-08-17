@@ -86,7 +86,7 @@ export class MainMenuScene extends Phaser.Scene {
         this.scene.start('LoadingScene', { loadScene: 'BattleScene', persistMusic: false,
             terrain: 'grass', skirmish: true, 
             playerParty: [ Assets.characters.gunslinger, Assets.characters.musketeer ],
-            enemyParty: [ Assets.monsters.puppeteer, Assets.monsters.harlequin ]
+            enemyParty: [ Assets.monsters.puppeteer, Assets.monsters.harlequin, Assets.monsters.plague_doctor ]
         });
 
         return;

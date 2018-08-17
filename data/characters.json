@@ -10,7 +10,7 @@
         "speciality": "Dual pistols",
         "armors": [ "leather_coat" ],
         "weapons": [ "revolvers", "hunting_revolvers", "sherrif_sidearm", "peacemaker" ],
-        "specials": [ "ricochet", "bullseye" ],
+        "specials": [ "ricochet", "bullseye", "disarm" ],
         "armor": "leather_coat",
         "weapon": "revolvers",
         "specialsUsed": 1

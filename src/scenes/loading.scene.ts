@@ -137,6 +137,7 @@ export class LoadingScene extends Phaser.Scene {
                 // specials
                 this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
                 this.load.audio('bullseye', 'assets/sound/effects/specials/351777__kennysvoice__sniper-rifle-m24-sfx-edit.wav');
+                this.load.audio('disarm', 'assets/sound/effects/specials/disarm-with-pistol.wav');
                 this.load.audio('heal', 'assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav');
                 this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
                 this.load.audio('precision_shot', 'assets/sound/effects/specials/393651__eflexthesounddesigner__sniper-rifle-shot-gun-shot.wav');

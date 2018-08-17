@@ -9,6 +9,16 @@
         "modifier": 10,
         "duration": 3
     },
+    "disarm": {
+        "name": "disarm",
+        "title": "Disarm",
+        "description": "dsdsdsdsasdsdsa",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "attack",
+        "modifier": -10,
+        "duration": 3
+    },
     "remedy": {
         "name": "remedy",
         "title": "Remedy",
