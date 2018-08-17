@@ -145,6 +145,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('shake_ground', 'assets/sound/effects/specials/399656__bajko__sfx-thunder-blast.wav');
                 // alchemist
                 this.load.audio('heal', 'assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav');
+                this.load.audio('poisonous_gas', 'assets/sound/effects/specials/202629__alexmaxlle__gas.wav');
                 this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
                 this.load.audio('throw_acid', 'assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav');
                 // musketeer

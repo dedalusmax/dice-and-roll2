@@ -112,6 +112,7 @@ export class BattleScene extends Phaser.Scene {
         this.checkIfBattleIsOver();
 
         if (this._turnNumber == 0 || this._turnNumber >= this._combatants.length) {
+            this.induceLingeringEffects();
             var round = this.initiateRound();
             round.then(() => {
                 this.startNextTurn();
@@ -415,6 +416,9 @@ export class BattleScene extends Phaser.Scene {
                 case EffectType.stun:
                     this.applyDurableEffect(actor.activeMove, target);
                     break;
+                case EffectType.lingering:
+                    this.applyLingeringEffect(actor.activeMove, target);
+                    break;
                 default:
                     alert('Not implemented!');
             }
@@ -515,5 +519,59 @@ export class BattleScene extends Phaser.Scene {
 
         // add effect to target (or overwrite if existing by type and course)
         target.addEffect(move);
+    }
+
+    private applyLingeringEffect(move: Special, target: Combatant) {
+        // play the sound
+        var sound = this.sound.add(move.name, { volume: Settings.sound.sfxVolume });
+        sound.play();
+
+        // add effect to target (or overwrite if existing by type and course)
+        target.addLingeringEffect(move);
+    }
+
+    private induceLingeringEffects() {
+        // this shall happen at the end of the round
+        this._combatants.forEach(efectee => {
+            if (!efectee.killed) {
+                var linger = efectee.effects.find(e => e.effectType === EffectType.lingering);
+                if (linger) {
+                    this.dealLingeringDamage(linger, efectee);
+                }
+            }
+        });
+    }
+
+    private dealLingeringDamage(effect: Special, target: Combatant) {
+
+        // calculate damage: 1d3 + EFFECT - DEF (+DEF MODs)
+        
+        var attack = Phaser.Math.RND.between(1, 3) + effect.modifier;
+        
+        var defense = target.defense;
+        var defMods = target.effects.filter(e => e.effectType == EffectType.defense);
+        defMods.forEach(m => defense += m.modifier);
+
+        var damage = attack - defense;
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        target.health = (target.health - damage) < 0 ? 0 : target.health - damage;
+
+        // TODO: add tween for hitting target
+
+        // play damage sound
+        var sound = this.sound.add(effect.name, { volume: Settings.sound.sfxVolume });
+        sound.play();
+
+        // add tween for displaying damage
+        // update target's card
+        target.card.showDamage(damage, target.health);
+
+        // mark target as killed if HP is now 0
+        if (target.health == 0) {
+            target.kill();
+        }
     }
 }

@@ -147,6 +147,34 @@ export abstract class Combatant {
         var positives = eff.some(e => e.modifier > 0);
         var negatives = eff.some(e => e.modifier < 0);
         var stunned = this.effects.some(e => e.effectType === EffectType.stun);
-        this.card.updateEffects(positives, negatives, stunned);
+        var anyLingering = this.effects.some(e => e.effectType === EffectType.lingering);
+        this.card.updateEffects(positives, negatives, stunned, anyLingering);
+    }
+
+    public addLingeringEffect(special: Special) {
+        // search for similar effects, and overwrite it if the same
+        this.effects.forEach((e, index) => {
+            if (e.effectType === special.effectType) {
+                // it's the similar effect, overwrite it with new one (e.g. fire with poison)
+                this.effects.splice(index, 1);
+            }
+        });
+
+        var effect = new Effect(special);
+        this.effects.push(effect);
+
+        this.card.showLingeringEffect(effect)
+            .then(() => {
+                this.updateEffectsOnCard();
+            });
+    }
+
+    public induceLingeringEffects() {
+        // roll through lingering effects (there should be only one actually)
+        this.effects.filter(e => e.effectType === EffectType.lingering).forEach((e, index) => {
+            
+            
+                this.effects.splice(index, 1);
+        });
     }
 }

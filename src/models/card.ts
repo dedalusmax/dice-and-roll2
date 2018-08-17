@@ -219,7 +219,7 @@ export class Card {
         }
     }
 
-    public updateEffects(showPositive: boolean, showNegative: boolean, showStun: boolean) {
+    public updateEffects(showPositive: boolean, showNegative: boolean, showStun: boolean, showAnyLingering: boolean) {
         
         if (showPositive && !this._positiveEffect) {
             // show positive since it's not displayed yet
@@ -273,6 +273,24 @@ export class Card {
             // remove effect since it's displayed already
             this._stunnedEffect.destroy();
             this._stunnedEffect = null;
+        }
+
+        if (showAnyLingering && !this._lingeringEffect) {
+            // show effect since it's not displayed yet
+            this._lingeringEffect = this.addSpriteToCard(-40, 60, 'shards', 3);
+            this._lingeringEffect.setAlpha(0.5);
+            this._scene.add.tween({
+                targets: [this._lingeringEffect],
+                alpha: 1,
+                ease: 'Linear',
+                yoyo: true,
+                repeat: Infinity
+            });
+            this.joinActiveTween();
+        } else if (!showAnyLingering && this._lingeringEffect) {
+            // remove effect since it's displayed already
+            this._lingeringEffect.destroy();
+            this._lingeringEffect = null;
         }
     }
 

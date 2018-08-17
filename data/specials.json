@@ -46,6 +46,17 @@
         "effectType": "heal",
         "modifier": 20
     },
+    "poisonous_gas": {
+        "name": "poisonous_gas",
+        "title": "Poisonous gas",
+        "description": "Poisons close target for 3 turns with 10 damage",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "lingering",
+        "lingeringType": "poison",
+        "duration": 3,
+        "modifier": 10
+    },
     "throw_acid": {
         "name": "throw_acid",
         "title": "Throw acid",
