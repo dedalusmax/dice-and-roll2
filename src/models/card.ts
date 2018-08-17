@@ -206,6 +206,19 @@ export class Card {
         });
     }
 
+    private joinActiveTween() {
+        if (this._activeTween && this._activeTween.isPlaying()) {
+            this._activeTween.stop(0);
+            this._activeTween = this._scene.tweens.add({
+                targets: this.allObjects,
+                y: '-=24',
+                ease: 'Sine.easeInOut',
+                yoyo: true,
+                repeat: Infinity
+            });
+        }
+    }
+
     public updateEffects(showPositive: boolean, showNegative: boolean, showStun: boolean) {
         
         if (showPositive && !this._positiveEffect) {
@@ -219,6 +232,7 @@ export class Card {
                 yoyo: true,
                 repeat: Infinity
             });
+            this.joinActiveTween();
         } else if (!showPositive && this._positiveEffect) {
             // remove positive since it's displayed already
             this._positiveEffect.destroy();
@@ -236,6 +250,7 @@ export class Card {
                 yoyo: true,
                 repeat: Infinity
             });
+            this.joinActiveTween();
         } else if (!showNegative && this._negativeEffect) {
             // remove positive since it's displayed already
             this._negativeEffect.destroy();
@@ -253,6 +268,7 @@ export class Card {
                 yoyo: true,
                 repeat: Infinity
             });
+            this.joinActiveTween();
         } else if (!showStun && this._stunnedEffect) {
             // remove effect since it's displayed already
             this._stunnedEffect.destroy();
