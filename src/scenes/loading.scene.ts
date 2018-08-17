@@ -53,6 +53,7 @@ export class LoadingScene extends Phaser.Scene {
                 }
                 // background screen
                 this.load.image('menu', 'assets/screens/menu.png');
+                this.load.image('paper', 'assets/common/paper-soften.png');
                 // ambient music
                 this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
