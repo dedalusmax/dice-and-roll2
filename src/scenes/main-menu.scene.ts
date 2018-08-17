@@ -2,7 +2,6 @@ import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { Assets } from "../models/assets";
 import { Styles } from "../models/styles";
-import { Soundsets } from "../models/soundsets";
 import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 
 export class MainMenuScene extends Phaser.Scene {
@@ -10,7 +9,6 @@ export class MainMenuScene extends Phaser.Scene {
     private _options: any;
     private _music: Phaser.Sound.BaseSound;
     private _activeMenu: Phaser.GameObjects.Group;
-    private _soundset: any;
 
     constructor() {
         super({
@@ -43,9 +41,6 @@ export class MainMenuScene extends Phaser.Scene {
         var logo = ImageService.stretchAndFitImage('logo', this);
         logo.setScale(0.12);
         logo.setOrigin(1, 1.4);
-
-        // set soundset for menus
-        this._soundset = Soundsets.sounds['sword'];
 
         // build up main menu
         this.createMainMenu();
@@ -231,7 +226,7 @@ export class MainMenuScene extends Phaser.Scene {
         item.setInteractive();
 
         item.on('pointerdown', e => {
-            if (this._soundset) this._soundset.play();
+            this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             if (action) {
                 item.setStyle(Styles.menu.menu_button_pressed);
                 action.call();

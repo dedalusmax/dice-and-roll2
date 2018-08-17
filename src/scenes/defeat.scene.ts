@@ -1,7 +1,6 @@
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
-import { Soundsets } from "../models/soundsets";
 import { Settings } from "../models/settings";
 
 export class DefeatScene extends Phaser.Scene {
@@ -25,7 +24,7 @@ export class DefeatScene extends Phaser.Scene {
 
         // quit victory button (visible only in skirmish mode)
         if (this._options.skirmish) {
-            var exit = TextualService.createTextButton(this, 'Exit', 0, 0, Styles.battle.backButton, Soundsets.sounds['sword'], a => {
+            var exit = TextualService.createTextButton(this, 'Exit', 0, 0, Styles.battle.backButton, a => {
                 var options = this._options;
                 options.loadScene = 'MainMenuScene';
                 this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });

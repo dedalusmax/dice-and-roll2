@@ -1,5 +1,4 @@
 import { Settings } from '../models/settings';
-import { Soundsets } from '../models/soundsets';
 import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
 import { FONT_FAMILY } from '../models/styles';
@@ -57,13 +56,8 @@ export class LoadingScene extends Phaser.Scene {
                 // ambient music
                 this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
+                this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
                 ArrowsService.init(this);
-                // sword audio set:
-                this.load.audio('sword', ['assets/sound/effects/sword-clang.ogg', 'assets/sound/effects/sword-clang.mp3']);
-                this.load.audio('sword2', ['assets/sound/effects/sword-clang2.ogg', 'assets/sound/effects/sword-clang2.mp3']);
-                this.load.audio('sword3', ['assets/sound/effects/sword-clang3.ogg', 'assets/sound/effects/sword-clang3.mp3']);
-                this.load.audio('sword4', ['assets/sound/effects/sword-clang4.ogg', 'assets/sound/effects/sword-clang4.mp3']);
-                this.load.audio('sword5', ['assets/sound/effects/sword-clang5.ogg', 'assets/sound/effects/sword-clang5.mp3']);
                 break;
             case 'NewGameScene':
                 break;
@@ -121,7 +115,7 @@ export class LoadingScene extends Phaser.Scene {
                 }
 
                 // round
-                this.load.audio('gong', ['assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3']);
+                this.load.audio('gong', 'assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3');
                 // weapons for characters
                 this.load.audio('revolvers', 'assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav');
                 this.load.audio('steam_pipe', 'assets/sound/effects/weapons/175180__yottasounds__clank-002.wav');
@@ -161,22 +155,7 @@ export class LoadingScene extends Phaser.Scene {
                 // assasin
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
                 this.load.audio('ripping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
-
-                // TODO: assort this below!!
-
-                this.load.audio('hit', ['assets/sound/effects/Swoosh02.mp3']);
-                this.load.audio('multi-hit', ['assets/sound/effects/SwooshCombo1.mp3']);
-                this.load.audio('multi-hit2', ['assets/sound/effects/SwooshCombo2.mp3']);
-                this.load.audio('click', ['assets/sound/effects/mechanical-clonk-1.mp3']);
-                this.load.audio('click2', ['assets/sound/effects/smack-1.mp3']);
-                // swing audio set:
-                this.load.audio('swing', ['assets/sound/effects/swing.ogg', 'assets/sound/effects/swing.mp3']);
-                this.load.audio('swing2', ['assets/sound/effects/swing2.ogg', 'assets/sound/effects/swing2.mp3']);
-                this.load.audio('swing3', ['assets/sound/effects/swing3.ogg', 'assets/sound/effects/swing3.mp3']);
-                this.load.audio('swoosh', ['assets/sound/effects/Swoosh02.ogg', 'assets/sound/effects/Swoosh02.mp3']);
-                // select audio set:
-                this.load.audio('swords', ['assets/sound/effects/Swords_Collide.ogg', 'assets/sound/effects/Swords_Collide.mp3']);
-                
+               
                 break;
             case 'VictoryScene':
                 this.load.image('victory', 'assets/screens/menu.png');
@@ -190,12 +169,6 @@ export class LoadingScene extends Phaser.Scene {
     }
 
     create(): void {
-        // create all soundsets for the game
-        var soundsets = new Soundsets(this);
-        soundsets.create('sword', ['sword', 'sword2', 'sword3', 'sword4', 'sword5']);
-        soundsets.create('page', ['page', 'page2', 'page3', 'page4']);
-        soundsets.create('select', ['swords']);
-        soundsets.create('swing', ['swing', 'swing2', 'swing3', 'swoosh']);                
     }
 
     update(): void {

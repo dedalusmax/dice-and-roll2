@@ -1,5 +1,4 @@
 import { Settings } from "../models/settings";
-import { Soundsets } from "../models/soundsets";
 
 export enum ArrowOrientation {
     left,
@@ -13,7 +12,6 @@ export class ArrowsService {
     static init(scene: Phaser.Scene) {
         scene.load.spritesheet('arrows', 'assets/common/arrows.png', { frameWidth: 100, frameHeight: 176 });
         scene.load.spritesheet('arrows-small', 'assets/common/arrows-small.png', { frameWidth: 30, frameHeight: 53 });
-        scene.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
     }
 
     static createArrow(scene: Phaser.Scene, x: number, y: number, orientation: ArrowOrientation, clickEventHandler: any, disable?: boolean) {

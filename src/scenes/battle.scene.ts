@@ -2,7 +2,6 @@ import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
-import { Soundsets } from "../models/soundsets";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
 import { Tweens } from "phaser";
 import { Player } from "../models/player";
@@ -20,7 +19,6 @@ export class BattleScene extends Phaser.Scene {
     private _options: any;
     private _canvas: HTMLCanvasElement;
     private _music: Phaser.Sound.BaseSound;
-    private _soundRound: Phaser.Sound.BaseSound;
     
     private _isTurnInProgress: boolean;
     private _turnNumber: number;
@@ -56,10 +54,6 @@ export class BattleScene extends Phaser.Scene {
             this._music.play('', { loop: true });    
         }
 
-        // add sounds
-
-        this._soundRound = this.sound.add('gong');
-
         this._turnNumber = 0;
         this._roundNumber = 0;
 
@@ -68,7 +62,7 @@ export class BattleScene extends Phaser.Scene {
 
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {
-            TextualService.createTextButton(this, 'Quit battle', 80, 20, Styles.battle.backButton, Soundsets.sounds['sword'], a => {
+            TextualService.createTextButton(this, 'Quit battle', 80, 20, Styles.battle.backButton, a => {
                 var options = this._options;
                 options.loadScene = 'MainMenuScene';
                 this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
@@ -150,7 +144,7 @@ export class BattleScene extends Phaser.Scene {
         this._activeCombatant = -1;
         this._roundNumber++;
 
-        this._soundRound.play('', { volume: Settings.sound.sfxVolume} );
+        this.sound.add('gong').play('', { volume: Settings.sound.sfxVolume} );
 
         // remove all killed combatants and reduce turns
         for (var combatant in this._combatants) {
