@@ -4,106 +4,62 @@ const MAX_MANA_VALUE = 100;
 
 export class Mana {
 
-    private _enemyMana: number;
-    get enemyMana(): number {
-        return this._enemyMana;
+    private _amount: number;
+    get amount(): number {
+        return this._amount;
     }
-    private _partyMana: number;
-    get partyMana(): number {
-        return this._partyMana;
-    }
-    
-    private _enemyValue: Phaser.GameObjects.Text;
-    private _enemyGraphics: Phaser.GameObjects.Graphics;
-    private _partyValue: Phaser.GameObjects.Text;
-    private _partyGraphics: Phaser.GameObjects.Graphics;
 
-    constructor(private _scene: Phaser.Scene, enemyAmount: number, partyAmount: number) {
+    private _text: Phaser.GameObjects.Text;
+    private _graphics: Phaser.GameObjects.Graphics;
 
-        this._enemyMana = enemyAmount;
-        this._partyMana = partyAmount;
+    constructor(private _scene: Phaser.Scene, private _isBottom: boolean, text: string, amount: number) {
+
+        this._amount = amount;
         
-        this.addBottle(_scene, partyAmount, true);
-        this.addBottle(_scene, enemyAmount, false);
-    }
+        var startX = _scene.cameras.main.width - 80;
+        var startY = _isBottom ? _scene.cameras.main.height - 100 : 60;
 
-    addBottle(scene: Phaser.Scene, manaTotal: number, isPartyMana: boolean) {
+        var manaBottle = _scene.add.sprite(startX, startY, 'mana-bottle');
 
-        var startX = scene.cameras.main.width - 80;
-        var startY = isPartyMana ? scene.cameras.main.height - 100 : 60;
-
-        var manaBottle = scene.add.sprite(startX, startY, 'mana-bottle');
-
-        var manaTitle = scene.add.text(startX, startY + manaBottle.height / 2, isPartyMana ? 'Party mana' : 'Enemy mana', 
+        var manaTitle = _scene.add.text(startX, startY + manaBottle.height / 2, text, 
             { font: '18px ' + FONT_FAMILY, fill: '#7766AF' });
         manaTitle.setShadow(1, 1, '#000', 2, false, true);
         manaTitle.setOrigin(0.5, 0.5);
 
-        this.displayMana(scene, isPartyMana, manaTotal);
+        this.displayMana();
     }
 
-    private displayMana(scene: Phaser.Scene, isPartyMana: boolean, amount: number) {
-
-        var startX = scene.cameras.main.width - 80;
-        var startY = isPartyMana ? scene.cameras.main.height - 100 : 60;
-
-        var value = scene.add.text(startX, startY + 10, amount.toString(), 
-            { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#13004F' });
-        value.setShadow(1, 1, '#FFFFFF', 2, false, true);
-        value.setOrigin(0.5, 0.5);
-
-        var graphics = scene.add.graphics();
-        graphics.clear();
-        graphics.fillStyle(0x13004F, 0.8);
-
-        var maxTop = startY - 20;
-        var maxHeight = 60;
-        var height = maxHeight * amount / MAX_MANA_VALUE;
-        var top = maxTop + (maxHeight - height);
-        graphics.fillRect(startX - 30, top, 60, height);
-
-        if (isPartyMana) {
-            this._partyValue = value;
-            this._partyGraphics = graphics;
-        } else {
-            this._enemyValue = value;
-            this._enemyGraphics = graphics;
-        }
-    }
-
-    private updateLiquid(graphics: Phaser.GameObjects.Graphics, amount: number, isPartyMana: boolean) {
+    private displayMana() {
 
         var startX = this._scene.cameras.main.width - 80;
-        var startY = isPartyMana ? this._scene.cameras.main.height - 100 : 60;
+        var startY = this._isBottom ? this._scene.cameras.main.height - 100 : 60;
 
+        var text = this._scene.add.text(startX, startY + 10, this._amount.toString(), 
+            { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#13004F' });
+        text.setShadow(1, 1, '#FFFFFF', 2, false, true);
+        text.setOrigin(0.5, 0.5);
+
+        var graphics = this._scene.add.graphics();
         graphics.clear();
         graphics.fillStyle(0x13004F, 0.8);
 
         var maxTop = startY - 20;
         var maxHeight = 60;
-        var height = maxHeight * amount / MAX_MANA_VALUE;
+        var height = maxHeight * this._amount / MAX_MANA_VALUE;
         var top = maxTop + (maxHeight - height);
         graphics.fillRect(startX - 30, top, 60, height);
+
+        this._text = text;
+        this._graphics = graphics;
     }
 
-    public updateMana(isPartyMana: boolean, amountSpent: number) {
+    public update(amountSpent: number) {
 
-        if (isPartyMana) {
-            this._partyMana -= amountSpent;
-            this._partyValue.setText(this._partyMana.toString());
-            this.playTween(this._partyValue);
-            this.updateLiquid(this._partyGraphics, this._partyMana, isPartyMana);
-        } else {
-            this._enemyMana -= amountSpent;
-            this._enemyValue.setText(this._enemyMana.toString());
-            this.playTween(this._enemyValue);
-            this.updateLiquid(this._enemyGraphics, this._enemyMana, isPartyMana);
-        }
-    }
+        this._amount -= amountSpent;
+        this._text.setText(this._amount.toString());
 
-    private playTween(target) {
         this._scene.tweens.add({
-            targets: [target],
+            targets: [this._text],
             duration: 800,
             scaleX: '2',
             scaleY: '2',
@@ -111,5 +67,22 @@ export class Mana {
             ease: 'Quad.easeIn',
             yoyo: true
         });
+
+        this.updateLiquid();
+    }
+
+    private updateLiquid() {
+
+        var startX = this._scene.cameras.main.width - 80;
+        var startY = this._isBottom ? this._scene.cameras.main.height - 100 : 60;
+
+        this._graphics.clear();
+        this._graphics.fillStyle(0x13004F, 0.8);
+
+        var maxTop = startY - 20;
+        var maxHeight = 60;
+        var height = maxHeight * this._amount / MAX_MANA_VALUE;
+        var top = maxTop + (maxHeight - height);
+        this._graphics.fillRect(startX - 30, top, 60, height);
     }
 }

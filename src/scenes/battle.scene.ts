@@ -28,7 +28,7 @@ export class BattleScene extends Phaser.Scene {
     private _combatants: Array<Combatant>;
     private _activeCombatant: number;
     private _activeProfile: Profile;
-    private _mana: Mana;
+    private _manaPool: Array<Mana>;
 
     constructor() {
         super({
@@ -71,7 +71,10 @@ export class BattleScene extends Phaser.Scene {
         }
         
         // manas
-        this._mana = new Mana(this, this._options.enemyMana, this._options.playerMana);
+        this._manaPool = [ 
+            new Mana(this, false, 'Enemy mana', this._options.enemyMana),
+            new Mana(this, true, 'Party mana', this._options.playerMana)
+        ];
 
         // prepare the battle:
 
@@ -254,7 +257,7 @@ export class BattleScene extends Phaser.Scene {
                 // perform action in delay because of AI
                 this.time.delayedCall(2000, () => {
                     var actor = combatant as Enemy;
-                    actor.activateRandomMove(this._mana.enemyMana);
+                    actor.activateRandomMove(this._manaPool[0].amount);
                     this.pickRandomTarget(actor);
                 }, null, this);
             }
@@ -270,11 +273,13 @@ export class BattleScene extends Phaser.Scene {
         var moves = new Moves(this, combatant.weapon.title, combatant.weapon.description);
         moves.addMoves(combatant.weapon, combatant.specials);
         moves.events.on('moveClicked', (moveIndex) => {
-            var manaLeft = combatant.side == CombatantSide.Friend ? this._mana.partyMana : this._mana.enemyMana;
+            var manaLeft = this._manaPool[combatant.side == CombatantSide.Friend ? 1 : 0].amount;
             combatant.selectMove(moveIndex, manaLeft);
             // check if mana is already exhausted
-            if (moveIndex > 0 && (combatant.activeMove as Special).manaCost <= manaLeft) {
+            if (moveIndex == 0 || (combatant.activeMove as Special).manaCost <= manaLeft) {
                 this.activateTargets(combatant);
+            } else {
+                this.resetTargetCards();
             }
         });
         combatant.addMoves(moves);
@@ -436,7 +441,7 @@ export class BattleScene extends Phaser.Scene {
         // reduce mana
         if (actor.activeMove instanceof Special) {
             var manaCost = (actor.activeMove as Special).manaCost;
-            this._mana.updateMana(actor.side == CombatantSide.Friend, manaCost);
+            this._manaPool[actor.side == CombatantSide.Friend ? 1 : 0].update(manaCost);
         }
 
         if (actor.activeMove.effectType === EffectType.damage) {
