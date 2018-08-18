@@ -6,6 +6,7 @@ export class Profile {
 
     private _background: Phaser.GameObjects.Sprite;
     private _objects: Array<Phaser.GameObjects.GameObject>;
+    private _paper: Phaser.GameObjects.Sprite;
 
     constructor(private _scene: Phaser.Scene, private _combatant: Combatant) {
 
@@ -20,35 +21,52 @@ export class Profile {
             ease: 'Quad.easeIn',
             duration: 800,
             x: 100,
+            alpha: 1
+        });
+
+        this.displayPaper();
+    }
+
+    private displayPaper() {
+        this._objects = [];
+
+        var backgroundPaper = this._scene.add.sprite(this._scene.cameras.main.width, this._scene.cameras.main.height / 2 + 50, 'paper');
+        backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height);
+        backgroundPaper.setScale(0.35, 0.35);
+        backgroundPaper.setAlpha(0);
+
+        this._scene.add.tween({
+            targets: [backgroundPaper],
+            ease: 'Quad.easeIn',
+            delay: 200,
+            duration: 600,
+            x: backgroundPaper.x - 320,
             alpha: 1,
             onComplete: () => {
+                this._paper = backgroundPaper;
                 this.displayStats();
             }
         });
+
+        this._objects.push(backgroundPaper);
     }
 
     private displayStats() {
-        this._objects = [];
 
-        var backgroundPaper = this._scene.add.sprite(-10, 530, 'paper');
-        backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height);
-        backgroundPaper.setScale(0.35, 0.35);
-        this._objects.push(backgroundPaper);
+        var startX = this._paper.x + 30;
+        var startY = this._paper.y - 180;
 
-        var title = this._scene.add.text(30, this._scene.cameras.main.height - 300, this._combatant.title, {
+        var title = this._scene.add.text(startX, startY, this._combatant.title, {
             font: '24px ' + FONT_FAMILY, fill: '#581B06'
         });
-        // title.setDisplayOrigin(backgroundPaper.x, backgroundPaper.height);
-        // title.setShadow(4, 4, '#333333', 4, true, true);
         this._objects.push(title);
 
-        var desc = this._scene.add.text(30, this._scene.cameras.main.height - 270, this._combatant.description, {
+        var desc = this._scene.add.text(startX, startY + 25, this._combatant.description, {
             font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 250 }
         });
-        // desc.setShadow(2, 2, '#000', 10, true, true);
         this._objects.push(desc);
 
-        var hpTitle = this._scene.add.text(30, this._scene.cameras.main.height - 220, 'HP', {
+        var hpTitle = this._scene.add.text(startX, startY + 70, 'HP', {
             font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FF0000'
         });
         hpTitle.setShadow(1, 1, '#000', 2, false, true);
@@ -56,8 +74,8 @@ export class Profile {
 
         var hpBox = this._scene.add.graphics();
         hpBox.fillStyle(0x6D2401, 0.8);
-        var boxLeft = 70;
-        var boxTop = this._scene.cameras.main.height - 220;
+        var boxLeft = startX + 40;
+        var boxTop = startY + 70;
         var boxWidth = 180;
         var boxHeight = 24;
         hpBox.strokeRect(boxLeft, boxTop, boxWidth, boxHeight);
@@ -79,7 +97,7 @@ export class Profile {
         });
         this._objects.push(hpMax);
 
-        var attackTitle = this._scene.add.text(30, this._scene.cameras.main.height - 190, 'Attack:', {
+        var attackTitle = this._scene.add.text(startX, startY + 100, 'Attack:', {
             font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
         });
         attackTitle.setShadow(1, 1, '#000', 2, false, true);
@@ -100,7 +118,7 @@ export class Profile {
             { font: '16px ' + FONT_FAMILY, fill: '#581B06' });
         this._objects.push(weaponName);
 
-        var defenseTitle = this._scene.add.text(30, this._scene.cameras.main.height - 150, 'Defense:', {
+        var defenseTitle = this._scene.add.text(startX, startY + 140, 'Defense:', {
             font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
         });
         defenseTitle.setShadow(1, 1, '#000', 2, false, true);
@@ -124,7 +142,7 @@ export class Profile {
             this._objects.push(armorName);  
         }
 
-        var effectsTitle = this._scene.add.text(30, this._scene.cameras.main.height - 110, 'Current effects:', {
+        var effectsTitle = this._scene.add.text(startX, startY + 180, 'Current effects:', {
             font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
         });
         effectsTitle.setShadow(1, 1, '#000', 2, false, true);
