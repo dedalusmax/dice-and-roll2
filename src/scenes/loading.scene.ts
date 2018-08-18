@@ -58,6 +58,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
                 // common assets
                 this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
+                this.load.audio('closed', 'assets/sound/effects/175662__simpsi__cant-open.wav');
                 ArrowsService.init(this);
                 break;
             case 'NewGameScene':

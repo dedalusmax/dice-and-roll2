@@ -19,6 +19,7 @@ export class SpecialService {
         result.lingeringType = prop.lingeringType ? LingeringType[prop.lingeringType as string] : null;
         result.duration = prop.duration;
         result.modifier = prop.modifier;
+        result.manaCost = prop.manaCost;
         return result;
     }
 }

@@ -13,7 +13,7 @@ import { Moves } from "../models/moves";
 import { SpecialService } from "../services/special.service";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Weapon } from "../models/weapon";
-import { ManaService } from "../services/mana.service";
+import { Mana } from "../models/mana";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -28,6 +28,7 @@ export class BattleScene extends Phaser.Scene {
     private _combatants: Array<Combatant>;
     private _activeCombatant: number;
     private _activeProfile: Profile;
+    private _mana: Mana;
 
     constructor() {
         super({
@@ -70,7 +71,7 @@ export class BattleScene extends Phaser.Scene {
         }
         
         // manas
-        ManaService.init(this, this._options.enemyMana, this._options.playerMana);
+        this._mana = new Mana(this, this._options.enemyMana, this._options.playerMana);
 
         // prepare the battle:
 
@@ -266,7 +267,7 @@ export class BattleScene extends Phaser.Scene {
     }
 
     private displayMoves(combatant: Combatant) {
-        var moves = new Moves(this, 'cards/emblem-' + combatant.weapon.type.toLowerCase(), combatant.weapon.title, combatant.weapon.description);
+        var moves = new Moves(this, combatant.weapon.title, combatant.weapon.description);
         moves.addMoves(combatant.weapon, combatant.specials);
         moves.events.on('moveClicked', (moveIndex) => {
             combatant.selectMove(moveIndex);

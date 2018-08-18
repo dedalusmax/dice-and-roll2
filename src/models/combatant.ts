@@ -89,7 +89,7 @@ export abstract class Combatant {
             this.moves.selectMove(index, this.weapon.title, this.weapon.description);
         } else {
             this.activeMove = this.specials[index - 1];
-            this.moves.selectMove(index, this.specials[index - 1].title, this.specials[index - 1].description);
+            this.moves.selectMove(index, this.activeMove.title, this.activeMove.description, (this.activeMove as Special).manaCost);
         }
     }
 
