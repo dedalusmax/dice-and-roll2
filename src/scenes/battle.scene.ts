@@ -254,7 +254,7 @@ export class BattleScene extends Phaser.Scene {
                 // perform action in delay because of AI
                 this.time.delayedCall(2000, () => {
                     var actor = combatant as Enemy;
-                    actor.activateRandomMove();
+                    actor.activateRandomMove(this._mana.enemyMana);
                     this.pickRandomTarget(actor);
                 }, null, this);
             }
@@ -270,15 +270,19 @@ export class BattleScene extends Phaser.Scene {
         var moves = new Moves(this, combatant.weapon.title, combatant.weapon.description);
         moves.addMoves(combatant.weapon, combatant.specials);
         moves.events.on('moveClicked', (moveIndex) => {
-            combatant.selectMove(moveIndex);
-            this.activateTargets(combatant);
+            var manaLeft = combatant.side == CombatantSide.Friend ? this._mana.partyMana : this._mana.enemyMana;
+            combatant.selectMove(moveIndex, manaLeft);
+            // check if mana is already exhausted
+            if (moveIndex > 0 && (combatant.activeMove as Special).manaCost <= manaLeft) {
+                this.activateTargets(combatant);
+            }
         });
         combatant.addMoves(moves);
     }
 
     private activateTargets(actor: Combatant) {
         this.resetTargetCards();
-
+        
         var myEnemy = actor.side === CombatantSide.Friend ? CombatantSide.Enemy: CombatantSide.Friend;
         var myFriend = actor.side === CombatantSide.Friend ? CombatantSide.Friend: CombatantSide.Enemy;
 
@@ -428,6 +432,12 @@ export class BattleScene extends Phaser.Scene {
         });
 
         // FINISH:
+
+        // reduce mana
+        if (actor.activeMove instanceof Special) {
+            var manaCost = (actor.activeMove as Special).manaCost;
+            this._mana.updateMana(actor.side == CombatantSide.Friend, manaCost);
+        }
 
         if (actor.activeMove.effectType === EffectType.damage) {
             // remove tween for active combatant

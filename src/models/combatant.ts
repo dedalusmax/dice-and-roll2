@@ -82,14 +82,15 @@ export abstract class Combatant {
         this.moves = moves;
     }
 
-    public selectMove(index: number) {
+    public selectMove(index: number, manaLeft?: number) {
         
         if (index === 0) {
             this.activeMove = this.weapon;
             this.moves.selectMove(index, this.weapon.title, this.weapon.description);
         } else {
             this.activeMove = this.specials[index - 1];
-            this.moves.selectMove(index, this.activeMove.title, this.activeMove.description, (this.activeMove as Special).manaCost);
+            var special = this.activeMove as Special;
+            this.moves.selectMove(index, special.title, special.description, special.manaCost, manaLeft);
         }
     }
 

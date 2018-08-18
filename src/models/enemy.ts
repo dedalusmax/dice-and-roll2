@@ -11,9 +11,9 @@ export class Enemy extends Combatant {
         
     }
 
-    public activateRandomMove() {
+    public activateRandomMove(manaLeft: number) {
         // TODO: take into account party mana!
         var randomMove = Phaser.Math.RND.between(0, this.specials.length);
-        this.selectMove(randomMove);
+        this.selectMove(randomMove, manaLeft);
     }
 }

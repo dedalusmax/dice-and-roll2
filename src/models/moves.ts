@@ -2,6 +2,7 @@ import { FONT_FAMILY } from "./styles";
 import { Special } from "./special";
 import { Weapon } from "./weapon";
 import { Move } from "./move";
+import { Settings } from "./settings";
 
 const SPECIAL_SIZE = 100,
     SPECIAL_ICON_SIZE = 100,
@@ -93,14 +94,21 @@ export class Moves {
         this._manaCostText.setText('');
     }
 
-    public selectMove(index: number, name: string, description: string, manaCost?: number) {
+    public selectMove(index: number, name: string, description: string, manaCost?: number, manaLeft?: number) {
         
         this._nameText.setText(name);
         this._descriptionText.setText(description);
+        
         if (manaCost) {
             this._manaCostText.setText('Mana cost: ' + manaCost);
+            if (manaCost <= manaLeft) {
+                this._scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
+            } else {
+                this._scene.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
+            }
         } else {
             this._manaCostText.setText('');
+            this._scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
         }
         
         this._activeTween = this._scene.add.tween({
