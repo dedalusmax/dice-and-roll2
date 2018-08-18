@@ -1,7 +1,7 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
-import { Styles } from "../models/styles";
+import { Styles, FONT_FAMILY } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
 import { Tweens } from "phaser";
 import { Player } from "../models/player";
@@ -13,6 +13,7 @@ import { Moves } from "../models/moves";
 import { SpecialService } from "../services/special.service";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Weapon } from "../models/weapon";
+import { ManaService } from "../services/mana.service";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -44,6 +45,8 @@ export class BattleScene extends Phaser.Scene {
     }
 
     create(): void {
+        // prepare the scene:
+
         this.cameras.main.setBackgroundColor(0x360602);
 
         // check if music is enabled
@@ -53,9 +56,6 @@ export class BattleScene extends Phaser.Scene {
             this._music = this.sound.add('battle_' + this._options.terrain);
             this._music.play('', { loop: true });    
         }
-
-        this._turnNumber = 0;
-        this._roundNumber = 0;
 
         // background image 
         ImageService.stretchAndFitImage('battle_' + this._options.terrain, this);
@@ -69,6 +69,14 @@ export class BattleScene extends Phaser.Scene {
             });
         }
         
+        // manas
+        ManaService.init(this, this._options.enemyMana, this._options.playerMana);
+
+        // prepare the battle:
+
+        this._turnNumber = 0;
+        this._roundNumber = 0;
+
         this._combatants = [];
 
         for (var index in this._options.playerParty) {
@@ -408,10 +416,10 @@ export class BattleScene extends Phaser.Scene {
                 case EffectType.attack:
                 case EffectType.defense:
                 case EffectType.stun:
-                    this.applyDurableEffect(actor.activeMove, target);
+                    this.applyDurableEffect(actor.activeMove as Special, target);
                     break;
                 case EffectType.lingering:
-                    this.applyLingeringEffect(actor.activeMove, target);
+                    this.applyLingeringEffect(actor.activeMove as Special, target);
                     break;
                 default:
                     alert('Not implemented!');

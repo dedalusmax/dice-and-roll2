@@ -54,7 +54,7 @@ export class Card {
         this._canvas = _scene.textures.game.canvas;
 
         // the main sprite, the card background
-        this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'cards/card');
+        this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'card');
 
         if ( combatant.side === CombatantSide.Friend) {
             this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name + '-head');

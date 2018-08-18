@@ -75,6 +75,9 @@ export class LoadingScene extends Phaser.Scene {
                 // this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
                 this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
               
+                // mana bottles
+                this.load.image('mana-bottle', 'assets/common/mana-bottle.png');
+
                 // load characters in party
                 this._options.playerParty.forEach(character => {
                     this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
@@ -86,11 +89,11 @@ export class LoadingScene extends Phaser.Scene {
                 });
 
                 // load card and effects
-                this.load.image('cards/card', 'assets/cards/card.png');
-                this.load.spritesheet('shards', 'assets/cards/shards.png', { frameWidth: 30, frameHeight: 53 });
+                this.load.image('card', 'assets/common/card.png');
+                this.load.spritesheet('shards', 'assets/common/shards.png', { frameWidth: 30, frameHeight: 53 });
 
                 // load specials
-                this.load.image('cards/special-card', 'assets/cards/special-card-s.png');
+                this.load.image('special-card', 'assets/common/special-card-s.png');
                 for (var special in Assets.specials) {
                     this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
                 }

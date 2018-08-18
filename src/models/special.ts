@@ -39,4 +39,5 @@ export class Special extends Move {
     // from the JSON file:
     lingeringType?: LingeringType;
     duration?: number; // how many turns it effects (0 if immediate effect)
+    manaCost: number;
 }
