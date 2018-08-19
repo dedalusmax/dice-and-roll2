@@ -45,7 +45,7 @@ export class Moves {
         var leftMostPosition = (this._canvas.width - ((movesCount - 1) * SPECIAL_ICON_SIZE) - ((movesCount - 1) * 10)) / 2;
         var y = this._canvas.height / 2 - 20;
 
-        this.addAction(leftMostPosition, y, 'cards/emblem-' + weapon.type.toLowerCase(), 0);
+        this.addAction(leftMostPosition, y, 'weapons/' + weapon.name, 0);
 
         specials.forEach((special, i) => {
             var index = i + 1;
@@ -117,8 +117,8 @@ export class Moves {
             duration: 700,
             scaleX: '-=.15',
             scaleY: '-=.15',
-            // y: '-=10',
-            // angle: '+=30',
+            y: '-=10',
+            angle: '-=10',
             yoyo: true,
             repeat: Infinity
         });

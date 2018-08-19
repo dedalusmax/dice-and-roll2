@@ -10,7 +10,7 @@ export enum ArrowOrientation {
 export class ArrowsService {
 
     static init(scene: Phaser.Scene) {
-        scene.load.spritesheet('arrows', 'assets/common/arrows.png', { frameWidth: 100, frameHeight: 176 });
+        //scene.load.spritesheet('arrows', 'assets/common/arrows.png', { frameWidth: 100, frameHeight: 176 });
         scene.load.spritesheet('arrows-small', 'assets/common/arrows-small.png', { frameWidth: 30, frameHeight: 53 });
     }
 

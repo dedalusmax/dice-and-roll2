@@ -93,20 +93,16 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('card', 'assets/common/card.png');
                 this.load.spritesheet('shards', 'assets/common/shards.png', { frameWidth: 30, frameHeight: 53 });
 
+                // load weapons
+                for (var weapon in Assets.weapons) {
+                    this.load.image('weapons/' + weapon, 'assets/weapons/' + weapon + '.png');
+                }
+
                 // load specials
                 this.load.image('special-card', 'assets/common/special-card-s.png');
                 for (var special in Assets.specials) {
                     this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
                 }
-
-                // TODO: sort it out!!!
-                this.load.image('cards/emblem-shield', 'assets/cards/card-shield.png');
-                this.load.image('cards/emblem-sword', 'assets/cards/card-sword.png');
-                this.load.image('cards/emblem-blade', 'assets/cards/card-blade.png');
-                this.load.image('cards/emblem-blunt', 'assets/cards/card-blunt.png');
-                this.load.image('cards/emblem-potion', 'assets/cards/card-potion.png');
-                this.load.image('cards/emblem-firearms', 'assets/cards/card-firearms.png');
-                this.load.image('cards/emblem-missile', 'assets/cards/card-missile.png');
 
                 // SOUND EFFECTS:
 

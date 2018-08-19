@@ -9,7 +9,7 @@
         "type": "MELEE",
         "speciality": "Dual pistols",
         "armors": [ "leather_coat" ],
-        "weapons": [ "revolvers", "hunting_revolvers", "sherrif_sidearm", "peacemaker" ],
+        "weapons": [ "revolvers", "hunting_revolvers", "sherrifs_sidearm", "peacemaker" ],
         "specials": [ "ricochet", "bullseye", "disarm", "playing_dirty" ],
         "armor": "leather_coat",
         "weapon": "revolvers",
