@@ -213,6 +213,17 @@
         "duration": 3,
         "manaCost": 70
     },
+    "disappear": {
+        "name": "disappear",
+        "title": "Disappear",
+        "description": "xxxxx",
+        "targetType": "self",
+        "executionType": "singleTarget",
+        "effectType": "defense",
+        "modifier": 40,
+        "duration": 1,
+        "manaCost": 35
+    },
     "backstab": {
         "name": "backstab",
         "title": "Backstab",
@@ -223,9 +234,9 @@
         "modifier": 15,
         "manaCost": 50
     },
-    "ripping_cut": {
-        "name": "ripping_cut",
-        "title": "Ripping cut",
+    "reaping_cut": {
+        "name": "reaping_cut",
+        "title": "Reaping cut",
         "description": "Deals deep injury of that bleeds for 3 turns with 8 damage",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
@@ -234,5 +245,15 @@
         "duration": 3,
         "modifier": 8,
         "manaCost": 40
+    },
+    "throwing_knives": {
+        "name": "throwing_knives",
+        "title": "Throwing knives",
+        "description": "Strikes two targets with deadly knives",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "twoTargets",
+        "effectType": "damage",
+        "modifier": 20,
+        "manaCost": 50
     }
 }

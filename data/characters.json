@@ -74,7 +74,7 @@
         "speciality": "Stealth",
         "armors": [ "cloak" ],
         "weapons": [ "dagger", "razor", "shadow_blade", "throat_slitter" ],
-        "specials": [ "backstab", "ripping_cut" ],
+        "specials": [ "disappear", "backstab", "reaping_cut", "throwing_knives" ],
         "armor": "cloak",
         "weapon": "dagger",
         "specialsUsed": 1

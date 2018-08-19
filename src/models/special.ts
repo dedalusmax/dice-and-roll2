@@ -23,9 +23,7 @@ export enum EffectType {
     attack, // effects positively or negatively on attack modifier, e.g. Bullseye (+ATT), Disarm (-ATT)
     defense, // effects positively or negatively on defense modifier, e.g. Brass shield (+DEF), Throw acid (-DEF)
     stun, // stuns opponent, skips next turn, e.g. Playing dirty
-    lingering, // deals smaller damage in several rounds, effects when the round completes, ignores armor, e.g. Poisonous gas (POISON)
-    instantKill, // deals max damage (kills) opponent, e.g. Cutthroat
-    hide // temporary hides the character, e.g. hide
+    lingering // deals smaller damage in several rounds, effects when the round completes, ignores armor, e.g. Poisonous gas (POISON)
 }
 
 // explains which type of lingering damage it is (for sake of graphics)
