@@ -60,7 +60,7 @@
         "weapons": [ "explosive_bomb", "molotov_coctail", "frag_grenade", "dragon_breath" ],
         "specials": [ "remedy", "poisonous_gas", "throw_acid", "catalitic_bomb" ],
         "armor": "lab_coat",
-        "weapon": "dragon_breath",
+        "weapon": "explosive_bomb",
         "specialsUsed": 1
     },
     "assasin": {
