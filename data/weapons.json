@@ -91,9 +91,9 @@
         "type": "MISSILE",
         "attack": 1
     },  
-    "incendiary_grenade": {
-        "name": "incendiary_grenade",
-        "title": "Incendiary grenade",
+    "molotov_coctail": {
+        "name": "molotov_coctail",
+        "title": "Molotov coctail",
         "desc": "",
         "type": "MISSILE",
         "attack": 2
@@ -105,9 +105,9 @@
         "type": "MISSILE",
         "attack": 3
     },  
-    "termite_grenade": {
-        "name": "termite_grenade",
-        "title": "Termite grenade",
+    "dragon_breath": {
+        "name": "dragon_breath",
+        "title": "Dragon breath",
         "desc": "",
         "type": "MISSILE",
         "attack": 4
