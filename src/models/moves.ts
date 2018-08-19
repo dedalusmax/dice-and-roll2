@@ -51,7 +51,7 @@ export class Moves {
             var index = i + 1;
             var x = leftMostPosition + (index * SPECIAL_ICON_SIZE) + ((index - 1) * 10);
 
-            var specialCard = this._scene.add.sprite(x, y, 'cards/special-card');
+            var specialCard = this._scene.add.sprite(x, y, 'special-card');
             this._images.push(specialCard);
 
             this.addAction(x, y, 'specials/' + special.name, i + 1);
