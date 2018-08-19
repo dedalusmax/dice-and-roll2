@@ -156,7 +156,7 @@ export class LoadingScene extends Phaser.Scene {
                 // assasin
                 this.load.audio('disappear', 'assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav');
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
-                this.load.audio('ripping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
+                this.load.audio('reaping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
                 this.load.audio('throwing_knives', 'assets/sound/effects/specials/SwooshCombo1.wav');
                
                 break;
