@@ -167,6 +167,10 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('defeat', 'assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav');
                 break;
             case 'MapScene':
+                if (this.textures.exists('map')) {
+                    this._loadingFinished = true;
+                    break;
+                }
                 this.load.image('map', 'assets/screens/world-map-full.png');
                 break;
         }

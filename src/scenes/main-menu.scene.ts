@@ -81,7 +81,7 @@ export class MainMenuScene extends Phaser.Scene {
     };
 
     openWorldMap() {
-        this.scene.start('LoadingScene', { loadScene: 'MapScene', persistMusic: true });
+        this.scene.start('LoadingScene', { loadScene: 'MapScene', persistMusic: true, worldMap: true });
     }
 
     createSkirmishMenu() {
