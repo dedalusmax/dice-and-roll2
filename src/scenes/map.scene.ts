@@ -4,7 +4,7 @@ import { Styles } from "../models/styles";
 export class MapScene extends Phaser.Scene {
 
     private _options: any;
-    private _controls: any;
+    private _controls: Phaser.Cameras.Controls.SmoothedKeyControl;
     private _uiCamera: Phaser.Cameras.Scene2D.Camera;
     private _minimap: Phaser.Cameras.Scene2D.Camera;
     private _map: Phaser.GameObjects.Image;
@@ -29,6 +29,16 @@ export class MapScene extends Phaser.Scene {
         // background image 
         this._map = this.add.image(0, 0, 'map');
         this._map.setOrigin(0);
+        this._map.setInteractive();
+
+        this.input.setDraggable(this._map);
+        this.input.dragTimeThreshold = 100;
+        this.input.dragDistanceThreshold = 10;
+
+        this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+            this.cameras.main.scrollX += dragX;
+            this.cameras.main.scrollY += dragY;
+        });
 
          // Set the camera bounds to be the size of the image
         this.cameras.main.setBounds(0, 0, this._map.width, this._map.height);
@@ -45,13 +55,15 @@ export class MapScene extends Phaser.Scene {
             right: cursors.right,
             up: cursors.up,
             down: cursors.down,
+            // zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
+            // zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
             acceleration: 0.06,
             drag: 0.0005,
             maxSpeed: 1.0
         };
     
         this._controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
-    
+
         var size = new Phaser.Geom.Point(250, 250);
         this._minimap = this.cameras.add(this.cameras.main.width - size.x - 20, 20, size.x, size.y).setZoom(0.2);
         this._minimap.setBackgroundColor(0x002244);
