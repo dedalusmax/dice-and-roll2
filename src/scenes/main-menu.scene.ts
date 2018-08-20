@@ -6,7 +6,6 @@ import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 
 export class MainMenuScene extends Phaser.Scene {
 
-    private _options: any;
     private _music: Phaser.Sound.BaseSound;
     private _paper: Phaser.GameObjects.Sprite;
     private _activeMenu: Phaser.GameObjects.Group;
@@ -17,12 +16,10 @@ export class MainMenuScene extends Phaser.Scene {
         });
     }
 
-    init(data): void {
-        this._options = data;
+    init(): void {
     }
 
     preload(): void {
-        // this.loadGameData();
     }
 
     create(): void {
@@ -30,15 +27,14 @@ export class MainMenuScene extends Phaser.Scene {
 
         this.cameras.main.setBackgroundColor(0xFFFFFF);
 
-        var music;
         if (Settings.sound.musicVolume > 0) {
             this.sound.stopAll();
             this._music = this.sound.add('theme');
-            music = this._music.play('', { loop: true });
+            this._music.play('', { loop: true });
         }
 
         // set screen background
-        var menu = ImageService.stretchAndFitImage('menu', this);
+        ImageService.stretchAndFitImage('menu', this);
         var logo = ImageService.stretchAndFitImage('logo', this);
         logo.setScale(0.12);
         logo.setOrigin(1, 1.4);
@@ -72,13 +68,21 @@ export class MainMenuScene extends Phaser.Scene {
         var position = 1;
 
         menu.add(this.createMenuItem('New Game', position++, Styles.menu.menu_button, this.newGame.bind(this)));
-        // if (this.game.saveData) this.mainMenu.add(this.createMenuItem('Continue', position++, MENU_BUTTON_STYLE, soundset, this.continueGame.bind(this)));
+        // if (this.game.saveData) {
+            // menu.add(this.createMenuItem('Continue', position++, Styles.menu.menu_button)); // TODO: implement this!
+        // }
         menu.add(this.createMenuItem('Skirmish', position++, Styles.menu.menu_button, this.createSkirmishMenu.bind(this)));
+        menu.add(this.createMenuItem('World Map', position++, Styles.menu.menu_button, this.openWorldMap.bind(this)));
+        menu.add(this.createMenuItem('Bestiary', position++, Styles.menu.menu_button));
         menu.add(this.createMenuItem('Settings', position++, Styles.menu.menu_button, this.createSettingsMenu.bind(this)));
         menu.add(this.createMenuItem('Credits', position++, Styles.menu.menu_button, this.createCreditsMenu.bind(this)));
 
         this._activeMenu = menu;
     };
+
+    openWorldMap() {
+        this.scene.start('LoadingScene', { loadScene: 'MapScene', persistMusic: true });
+    }
 
     createSkirmishMenu() {
 
@@ -227,7 +231,7 @@ export class MainMenuScene extends Phaser.Scene {
         style = style || Styles.menu.menu_button_pressed;
 
         var x = this._paper.x;
-        var y = 50 + position * 70;
+        var y = 50 + position * 60;
         var item = this.add.text(x, y, text, style);
         item.setOrigin(0.5, 0.5);
 

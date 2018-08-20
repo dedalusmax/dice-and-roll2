@@ -1,18 +1,14 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
-import { Styles, FONT_FAMILY } from "../models/styles";
+import { Styles } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
-import { Tweens } from "phaser";
 import { Player } from "../models/player";
 import { Enemy } from "../models/enemy";
 import { Profile } from "../models/profile";
 import { Card } from "../models/card";
-import { WeaponService } from "../services/weapon.service";
 import { Moves } from "../models/moves";
-import { SpecialService } from "../services/special.service";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
-import { Weapon } from "../models/weapon";
 import { Mana } from "../models/mana";
 
 export class BattleScene extends Phaser.Scene {

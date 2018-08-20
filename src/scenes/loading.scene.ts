@@ -63,8 +63,6 @@ export class LoadingScene extends Phaser.Scene {
                 break;
             case 'NewGameScene':
                 break;
-            case 'MapScene':
-                break;
             case 'BattleScene':
                 if (this.textures.exists('battle_grass')) {
                     this._loadingFinished = true;
@@ -167,6 +165,9 @@ export class LoadingScene extends Phaser.Scene {
             case 'DefeatScene':
                 this.load.image('defeat', 'assets/screens/menu.png');
                 this.load.audio('defeat', 'assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav');
+                break;
+            case 'MapScene':
+                this.load.image('map', 'assets/screens/world-map-full.png');
                 break;
         }
     }
