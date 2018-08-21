@@ -78,6 +78,8 @@ export class MapScene extends Phaser.Scene {
             this._minimap.ignore(exit);
             this.cameras.main.ignore(exit);
         }    
+
+        this.displayLocations();
     }
 
     update(time, delta) {
@@ -87,5 +89,14 @@ export class MapScene extends Phaser.Scene {
             this._minimap.scrollX = Phaser.Math.Clamp(this.cameras.main.scrollX + 500, 500, this._map.width);
             this._minimap.scrollY = Phaser.Math.Clamp(this.cameras.main.scrollY - 200, 500, this._map.height);    
         }
+    }
+
+    displayLocations() {
+
+        
+    }
+
+    displayLocationInfo() {
+
     }
 }

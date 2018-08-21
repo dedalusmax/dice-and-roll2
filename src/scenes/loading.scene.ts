@@ -171,7 +171,7 @@ export class LoadingScene extends Phaser.Scene {
                     this._loadingFinished = true;
                     break;
                 }
-                this.load.image('map', 'assets/screens/world-map-full.png');
+                this.load.image('map', 'assets/screens/world-map-locations.png');
                 break;
         }
     }
