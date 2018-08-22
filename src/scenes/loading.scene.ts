@@ -172,6 +172,7 @@ export class LoadingScene extends Phaser.Scene {
                     break;
                 }
                 this.load.image('map', 'assets/screens/world-map-locations.png');
+                this.load.spritesheet('locations', 'assets/common/locations_s.png', { frameWidth: 50, frameHeight: 88 });
                 break;
         }
     }

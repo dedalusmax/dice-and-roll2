@@ -18,6 +18,9 @@ const config: GameConfig = {
     // height: A4.width * 4,
     // width: window.innerWidth,
     // height: window.innerHeight,
+    physics: {
+      default: 'arcade' // , arcade: { debug: true }
+     },
     width: window.innerWidth * window.devicePixelRatio - 4,
     height: window.innerHeight * window.devicePixelRatio - 4,
     type: Phaser.CANVAS,
