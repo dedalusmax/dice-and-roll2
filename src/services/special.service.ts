@@ -8,7 +8,7 @@ export class SpecialService {
         return this.matchSpecial(Assets.specials[key]);
     }
 
-    static matchSpecial(prop: any): Special {
+    private static matchSpecial(prop: any): Special {
         var result = new Special();
         result.name = prop.name;
         result.title = prop.title;

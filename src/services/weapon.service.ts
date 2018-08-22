@@ -1,6 +1,5 @@
 import { Weapon } from "../models/weapon";
 import { Assets } from "../models/assets";
-import { Combatant, CombatantType } from "../models/combatant";
 import { TargetType, ExecutionType, EffectType } from "../models/special";
 
 export class WeaponService {
@@ -18,7 +17,7 @@ export class WeaponService {
         return this.matchWeapon(Assets.weapons[key]);
     }
 
-    static matchWeapon(prop: any): Weapon {
+    private static matchWeapon(prop: any): Weapon {
         var result = new Weapon();
         result.name = prop.name;
         result.title = prop.title;

@@ -1,5 +1,6 @@
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
+import { LocationService } from "../services/location.service";
 
 export class MapScene extends Phaser.Scene {
 
@@ -17,7 +18,6 @@ export class MapScene extends Phaser.Scene {
 
     init(data): void {
         this._options = data;
-
     }
 
     preload(): void {
@@ -31,14 +31,14 @@ export class MapScene extends Phaser.Scene {
         this._map.setOrigin(0);
         this._map.setInteractive();
 
-        this.input.setDraggable(this._map);
-        this.input.dragTimeThreshold = 100;
-        this.input.dragDistanceThreshold = 10;
+        // this.input.setDraggable(this._map);
+        // this.input.dragTimeThreshold = 100;
+        // this.input.dragDistanceThreshold = 10;
 
-        this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            this.cameras.main.scrollX += dragX;
-            this.cameras.main.scrollY += dragY;
-        });
+        // this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+        //     this.cameras.main.scrollX += dragX;
+        //     this.cameras.main.scrollY += dragY;
+        // });
 
          // Set the camera bounds to be the size of the image
         this.cameras.main.setBounds(0, 0, this._map.width, this._map.height);
@@ -92,8 +92,20 @@ export class MapScene extends Phaser.Scene {
     }
 
     displayLocations() {
+        if (this._options.worldMap) {
+            // display only the general properties of the locations
 
-        
+            var circle = new Phaser.Geom.Circle(0, 0, 18);
+
+            var graphics = this.add.graphics();
+            graphics.fillStyle(0xff0000, 0.5);
+
+            LocationService.getAll().forEach(location => {
+
+                circle.setPosition(location.x, location.y);
+                graphics.fillCircleShape(circle);
+            });
+        }
     }
 
     displayLocationInfo() {

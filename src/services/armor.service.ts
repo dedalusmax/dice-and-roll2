@@ -16,7 +16,7 @@ export class ArmorService {
         return this.matchArmor(Assets.armors[key]);
     }
 
-    static matchArmor(prop: any): Armor {
+    private static matchArmor(prop: any): Armor {
         var result = new Armor();
         result.name = prop.name;
         result.title = prop.title;

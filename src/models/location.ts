@@ -4,7 +4,14 @@ export enum TerrainType {
 
 export enum LocationType {
     camp = 0,
-    encounter
+    encounter,
+    end
+}
+
+export enum LocationStatus {
+    unknown = 0,
+    current,
+    visited
 }
 
 export class Location {
@@ -16,4 +23,6 @@ export class Location {
     type: LocationType;
     x: number;
     y: number;
+    connectsTo?: Array<string>;
+    status: LocationStatus;
 }

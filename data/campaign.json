@@ -6,8 +6,8 @@
             "description": "blablabla",
             "type": "camp",
             "terrain": "beach",
-            "x": 12,
-            "y": 12,
+            "x": 428,
+            "y": 2152,
             "connectsTo": [
                 "fishermans_village"
             ]
@@ -17,8 +17,8 @@
             "title": "Fisherman's village",
             "description": "blablabla",
             "type": "encounter",
-            "x": 50,
-            "y": 24,
+            "x": 606,
+            "y": 1788,
             "connectsTo": [
                 "cliffside_keep"
             ],
@@ -32,8 +32,8 @@
             "title": "Cliffside keep",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 877,
+            "y": 1885,
             "connectsTo": [
                 "fallen_tower",
                 "shipwreck"
@@ -44,8 +44,8 @@
             "title": "Shipwreck",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1002,
+            "y": 2148,
             "connectsTo": [
                 "cliffside_keep",
                 "sirens_cove"
@@ -56,10 +56,10 @@
             "title": "Siren's cove",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 983,
+            "y": 2259,
             "connectsTo": [
-                "shipwreck",
+                "cliffside_keep",
                 "screaming_grotto"
             ]
         },
@@ -68,8 +68,8 @@
             "title": "Screaming grotto",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 519,
+            "y": 2443,
             "connectsTo": [
                 "cliffside_keep"
             ]
@@ -79,8 +79,8 @@
             "title": "Fallen tower",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1070,
+            "y": 1682,
             "connectsTo": [
                 "cliffside_keep",
                 "redwood_crossing",
@@ -92,8 +92,8 @@
             "title": "Redwood crossing",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1161,
+            "y": 1470,
             "connectsTo": [
                 "scorched_windmill",
                 "thorn_gate",
@@ -105,8 +105,8 @@
             "title": "Scorched windmill",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 852,
+            "y": 1480,
             "connectsTo": [
                 "hunters_lodge"
             ]
@@ -116,10 +116,9 @@
             "title": "Hunter's lodge",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 859,
+            "y": 1313,
             "connectsTo": [
-                "scorched_windmill",
                 "redwood_crossing"
             ]
         },
@@ -128,10 +127,11 @@
             "title": "Thorn gate",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1434,
+            "y": 1360,
             "connectsTo": [
-                "old_willow"
+                "old_willow",
+                "redwood_crossing"
             ]
         },
         {
@@ -139,8 +139,8 @@
             "title": "Old willow",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1525,
+            "y": 1031,
             "connectsTo": [
                 "tainted_well"
             ]
@@ -150,8 +150,8 @@
             "title": "Tainted well",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1821,
+            "y": 839,
             "connectsTo": [
                 "madmans_bridge"
             ]
@@ -161,8 +161,8 @@
             "title": "Madman's bridge",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1909,
+            "y": 437,
             "connectsTo": [
                 "old_theatre"
             ]
@@ -172,8 +172,8 @@
             "title": "Old theatre",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 2137,
+            "y": 309,
             "connectsTo": [
                 "lonely_cabin"
             ]
@@ -183,8 +183,8 @@
             "title": "Lonely cabin",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 2395,
+            "y": 553,
             "connectsTo": [
                 "the_hollow"
             ]
@@ -194,8 +194,8 @@
             "title": "The hollow",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 2382,
+            "y": 818,
             "connectsTo": [
                 "the_western_gate"
             ]
@@ -205,8 +205,8 @@
             "title": "The western gate",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 2154,
+            "y": 1192,
             "connectsTo": [
                 "hagville"
             ]
@@ -216,19 +216,8 @@
             "title": "Hagville",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
-            "connectsTo": [
-                "hagville"
-            ]
-        },
-        {
-            "name": "hagville",
-            "title": "Hagville",
-            "description": "blablabla",
-            "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 2245,
+            "y": 1492,
             "connectsTo": [
                 "eldridge_ruins",
                 "city_gate"
@@ -239,10 +228,11 @@
             "title": "Eldridge ruins",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1842,
+            "y": 1475,
             "connectsTo": [
-                "bog_crossing"
+                "bog_crossing",
+                "hagville"
             ]
         },
         {
@@ -250,11 +240,12 @@
             "title": "Bog crossing",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1807,
+            "y": 1687,
             "connectsTo": [
                 "delmond_keep",
-                "sunken_graveyard"
+                "sunken_graveyard",
+                "eldridge_ruins"
             ]
         },
         {
@@ -262,8 +253,8 @@
             "title": "Delmond keep",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1511,
+            "y": 1870,
             "connectsTo": [
                 "fallen_tower",
                 "bog_crossing"
@@ -274,10 +265,206 @@
             "title": "Sunken graveyard",
             "description": "blablabla",
             "type": "camp",
-            "x": 50,
-            "y": 24,
+            "x": 1892,
+            "y": 1898,
             "connectsTo": [
                 "snatchers_hideout"
+            ]
+        },
+        {
+            "name": "snatchers_hideout",
+            "title": "Snatcher's hideout",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 1795,
+            "y": 2048,
+            "connectsTo": [
+                "old_battlefield"
+            ]
+        },
+        {
+            "name": "old_battlefield",
+            "title": "Old battlefield",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 1994,
+            "y": 2023,
+            "connectsTo": [
+                "krones_nest"
+            ]
+        },
+        {
+            "name": "krones_nest",
+            "title": "Krone's nest",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 1996,
+            "y": 2183,
+            "connectsTo": [
+                "farnath",
+                "candlelight"
+            ]
+        },
+        {
+            "name": "candlelight",
+            "title": "Candlelight",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2321,
+            "y": 2334,
+            "connectsTo": [
+                "krones_nest",
+                "farnath",
+                "southern_beacon",
+                "the_red_keep"
+            ]
+        },
+        {
+            "name": "southern_beacon",
+            "title": "Southern beacon",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2076,
+            "y": 2495,
+            "connectsTo": [
+                "candlelight"
+            ]
+        },
+        {
+            "name": "the_red_keep",
+            "title": "The red keep",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2545,
+            "y": 2515,
+            "connectsTo": [
+                "candlelight"
+            ]
+        },
+        {
+            "name": "farnath",
+            "title": "Farnath",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2281,
+            "y": 2059,
+            "connectsTo": [
+                "candlelight",
+                "karon_keep"
+            ]
+        },
+        {
+            "name": "karon_keep",
+            "title": "Karon keep",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2604,
+            "y": 1953,
+            "connectsTo": [
+                "bog_crossing"
+            ]
+        },
+        {
+            "name": "city_gate",
+            "title": "City gate",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2703,
+            "y": 1446,
+            "connectsTo": [
+                "kings_bridge"
+            ]
+        },
+        {
+            "name": "kings_bridge",
+            "title": "King's bridge",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2944,
+            "y": 1520,
+            "connectsTo": [
+                "citadel",
+                "bazaar"
+            ]
+        },
+        {
+            "name": "citadel",
+            "title": "Citadel",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 2782,
+            "y": 1580,
+            "connectsTo": [
+                "bazaar"
+            ]
+        },
+        {
+            "name": "bazaar",
+            "title": "Bazaar",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 3155,
+            "y": 1457,
+            "connectsTo": [
+                "kings_bridge",
+                "citadel",
+                "the_slums",
+                "college_courtyard",
+                "northern_passage"
+            ]
+        },
+        {
+            "name": "the_slums",
+            "title": "The slums",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 3184,
+            "y": 1567,
+            "connectsTo": [
+                "bazaar"
+            ]
+        },
+        {
+            "name": "college_courtyard",
+            "title": "College courtyard",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 3307,
+            "y": 1571,
+            "connectsTo": [
+                "bazaar"
+            ]
+        },
+        {
+            "name": "northern_passage",
+            "title": "Northern passage",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 3229,
+            "y": 1276,
+            "connectsTo": [
+                "mountain_pass"
+            ]
+        },
+        {
+            "name": "mountain_pass",
+            "title": "Mountain pass",
+            "description": "blablabla",
+            "type": "camp",
+            "x": 3521,
+            "y": 1163,
+            "connectsTo": [
+                "fort_sibros"
+            ]
+        },
+        {
+            "name": "fort_sibros",
+            "title": "Fort sibros",
+            "description": "blablabla",
+            "type": "end",
+            "x": 3657,
+            "y": 844,
+            "connectsTo": [
             ]
         }
     ]
