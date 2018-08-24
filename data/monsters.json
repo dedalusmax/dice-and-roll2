@@ -26,7 +26,7 @@
         "title": "Seabound captain",
         "desc": "erewewre wrewre wr ewrewre wr wes.",
         "health": 80,
-        "defense": 4,
+        "defense": 6,
         "attack": 17,
         "type": "RANGED",
         "weapon": "arquebus",
