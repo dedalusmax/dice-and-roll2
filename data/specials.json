@@ -255,5 +255,25 @@
         "effectType": "damage",
         "modifier": 20,
         "manaCost": 50
+    },
+    "enchanting_song": {
+        "name": "enchanting_song",
+        "title": "Enchanting song",
+        "description": "dsdsdsdsasdsdsa",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "stun",
+        "duration": 1,
+        "manaCost": 35
+    },
+    "tidal_wave": {
+        "name": "tidal_wave",
+        "title": "Tidal wave",
+        "description": "blabla",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "allTargetsInRank",
+        "effectType": "damage",
+        "modifier": 10,
+        "manaCost": 40
     }
 }

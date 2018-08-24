@@ -160,7 +160,9 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
                 this.load.audio('reaping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
                 this.load.audio('throwing_knives', 'assets/sound/effects/specials/SwooshCombo1.wav');
-               
+                // specials for monsters
+                this.load.audio('enchanting_song', 'assets/sound/effects/specials/345504__cormi__mermaids.wav');
+                this.load.audio('tidal_wave', 'assets/sound/effects/specials/412308__straget__big-waves-hit-land.wav');
                 break;
             case 'VictoryScene':
                 this.load.image('victory', 'assets/screens/menu.png');

@@ -448,8 +448,17 @@ export class BattleScene extends Phaser.Scene {
             this.endTurn();
         } else {
             actor.moves.removeSpecialMoves();
-            actor.selectMove(0);
-            this.activateTargets(actor);
+
+            if (actor.side === CombatantSide.Friend) {
+                actor.selectMove(0);
+                this.activateTargets(actor);
+            } else {
+                // perform action in delay because of AI
+                this.time.delayedCall(2000, () => {
+                    actor.selectMove(0);
+                    this.pickRandomTarget(actor as Enemy);
+                }, null, this);
+            }
         }
     }
 
