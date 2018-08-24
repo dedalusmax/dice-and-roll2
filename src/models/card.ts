@@ -59,7 +59,7 @@ export class Card {
         if ( combatant.side === CombatantSide.Friend) {
             this._image = this.addSpriteToCard(0, 0, 'characters/' + combatant.name + '-head');
         } else {
-            this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name);
+            this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name + '-head');
         }
 
         this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString(), 

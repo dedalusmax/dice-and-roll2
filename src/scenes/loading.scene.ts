@@ -85,6 +85,7 @@ export class LoadingScene extends Phaser.Scene {
                 // load monsters in battle
                 this._options.enemyParty.forEach(monster => {
                     this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
+                    this.load.image('monsters/' + monster.name + '-head', 'assets/monsters/' + monster.name + '-head.png');
                 });
 
                 // load card and effects

@@ -1,4 +1,15 @@
 {
+    "siren": {
+        "name": "siren",
+        "title": "Siren",
+        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "health": 60,
+        "defense": 3,
+        "attack": 15,
+        "type": "MELEE",
+        "weapon": "claws",
+        "specials": [ ]
+    },
 	"puppeteer": {
         "name": "puppeteer",
         "title": "Puppeteer",

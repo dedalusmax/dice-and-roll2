@@ -169,6 +169,13 @@
         "attack": 4
     },
 
+    "claws": {
+        "name": "claws",
+        "title": "Claws",
+        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "type": "BLADE",
+        "attack": 2
+    },
     "strings": {
         "name": "strings",
         "title": "Strings",
