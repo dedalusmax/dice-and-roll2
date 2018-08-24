@@ -10,6 +10,17 @@
         "weapon": "claws",
         "specials": [ ]
     },
+    "seabound_sailor": {
+        "name": "seabound_sailor",
+        "title": "Seabound sailor",
+        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "health": 60,
+        "defense": 3,
+        "attack": 15,
+        "type": "MELEE",
+        "weapon": "cutlass",
+        "specials": [ ]
+    },
     "seabound_captain": {
         "name": "seabound_captain",
         "title": "Seabound captain",

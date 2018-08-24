@@ -176,6 +176,13 @@
         "type": "BLADE",
         "attack": 2
     },
+    "cutlass": {
+        "name": "cutlass",
+        "title": "Cutlass",
+        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "type": "BLADE",
+        "attack": 2
+    },
     "strings": {
         "name": "strings",
         "title": "Strings",
