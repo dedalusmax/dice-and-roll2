@@ -10,6 +10,17 @@
         "weapon": "claws",
         "specials": [ ]
     },
+    "seabound_captain": {
+        "name": "seabound_captain",
+        "title": "Seabound captain",
+        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "health": 80,
+        "defense": 4,
+        "attack": 17,
+        "type": "RANGED",
+        "weapon": "arquebus",
+        "specials": [ ]
+    },
 	"puppeteer": {
         "name": "puppeteer",
         "title": "Puppeteer",

@@ -124,6 +124,8 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('deck_of_cards', 'assets/sound/effects/weapons/434472__dersuperanton__taking-card.wav');
                 this.load.audio('dagger', 'assets/sound/effects/weapons/sword-clang5.wav');
                 // weapons for monsters
+                this.load.audio('claws', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
+                this.load.audio('arquebus', 'assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav');
                 this.load.audio('strings', 'assets/sound/effects/weapons/336859__borque__zoiing-display-wires.wav');
                 this.load.audio('sceptre', 'assets/sound/effects/weapons/Swords_Collide.mp3');
                 this.load.audio('poison', 'assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav');
