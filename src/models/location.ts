@@ -10,8 +10,9 @@ export enum LocationType {
 
 export enum LocationStatus {
     unknown = 0,
-    current,
-    visited
+    end,
+    visited,
+    available
 }
 
 export class Location {
@@ -23,6 +24,6 @@ export class Location {
     type: LocationType;
     x: number;
     y: number;
-    connectsTo?: Array<string>;
+    connectsTo: Array<string>;
     status: LocationStatus;
 }
