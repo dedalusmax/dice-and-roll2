@@ -77,7 +77,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('mana-bottle', 'assets/common/mana-bottle.png');
 
                 // load characters in party
-                this._options.playerParty.forEach(character => {
+                this._options.playerParty.members.forEach(character => {
                     this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
                     this.load.image('characters/' + character.name + '-head', 'assets/characters/' + character.name + '-head-s.png');
                 });

@@ -3,7 +3,6 @@ import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
-import { Player } from "../models/player";
 import { Enemy } from "../models/enemy";
 import { Profile } from "../models/profile";
 import { Card } from "../models/card";
@@ -69,7 +68,7 @@ export class BattleScene extends Phaser.Scene {
         // manas
         this._manaPool = [ 
             new Mana(this, false, 'Enemy mana', this._options.enemyMana),
-            new Mana(this, true, 'Party mana', this._options.playerMana)
+            new Mana(this, true, 'Party mana', this._options.playerParty.totalMana)
         ];
 
         // prepare the battle:
@@ -79,16 +78,17 @@ export class BattleScene extends Phaser.Scene {
 
         this._combatants = [];
 
-        for (var index in this._options.playerParty) {
-            var character = new Player(this._options.playerParty[index]);
-            this._combatants.push(character);
-            this.displayCard(character, +index);
+        for (var index in this._options.playerParty.members) {
+            //var character = new Player(this._options.playerParty[index]);
+            var player = this._options.playerParty.members[index];
+            this._combatants.push(player);
+            this.displayCard(player, +index, this._options.playerParty.members.length);
         };
 
         for (var index in this._options.enemyParty) {
             var monster = new Enemy(this._options.enemyParty[index]);
             this._combatants.push(monster);
-            this.displayCard(monster, +index);
+            this.displayCard(monster, +index, this._options.enemyParty.length);
         };
 
         this._combatants.sort((left, right) => {
@@ -189,9 +189,9 @@ export class BattleScene extends Phaser.Scene {
             numInEnemyTeam = this._combatants.filter(c => c.side === CombatantSide.Enemy && !c.killed).length;
 
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
-            // this._options.combatResult = (numInEnemyTeam === 0) ? 'VICTORY' : 'DEFEAT';
             this.time.delayedCall(1000, () => {
-                this.scene.start('LoadingScene', { loadScene: (numInEnemyTeam === 0) ? 'VictoryScene' : 'DefeatScene', skirmish: this._options.skirmish });
+                this._options.loadScene = (numInEnemyTeam === 0) ? 'VictoryScene' : 'DefeatScene';
+                this.scene.start('LoadingScene', this._options);
             }, null, this);
         }
     };
@@ -207,9 +207,9 @@ export class BattleScene extends Phaser.Scene {
         this._isTurnInProgress = false;
     };
 
-    private displayCard(combatant: Combatant, index: number) {
+    private displayCard(combatant: Combatant, index: number, numberOfBeligerents: number) {
         var cardPosition = this.calculateCombatantPosition(combatant.side, combatant.type, 
-            index, this._options.playerParty.length, this._canvas.width, this._canvas.height);
+            index, numberOfBeligerents, this._canvas.width, this._canvas.height);
         combatant.addCard(new Card(this, combatant, cardPosition));
     }
 

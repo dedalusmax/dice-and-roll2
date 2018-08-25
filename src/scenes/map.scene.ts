@@ -4,6 +4,7 @@ import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
 import { LocationStatus, TerrainType } from "../models/location";
 import { Assets } from "../models/assets";
+import { Party } from "../models/party";
 
 export class MapScene extends Phaser.Scene {
 
@@ -24,6 +25,18 @@ export class MapScene extends Phaser.Scene {
 
     init(data): void {
         this._options = data;
+
+        if (this._options.worldMap) {
+
+            // TODO: this is just for testing the map with battles
+
+            var party = new Party();
+            party.add(Assets.characters.musketeer);
+            party.add(Assets.characters.assasin);
+            party.add(Assets.characters.illusionist);
+                
+            this._options.party = party;
+        }
     }
 
     preload(): void {
@@ -209,9 +222,8 @@ export class MapScene extends Phaser.Scene {
                         });
             
                         this.scene.start('LoadingScene', { loadScene: 'BattleScene', terrain: TerrainType[pinpoint.location.terrain],
-                        playerParty: [ Assets.characters.assasin, Assets.characters.musketeer, Assets.characters.automaton ], //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
-                        enemyParty: enemies, 
-                        playerMana: 100, enemyMana: 100
+                        playerParty: this._options.party,
+                        enemyParty: enemies, enemyMana: 100
                     });
             
                     } else {

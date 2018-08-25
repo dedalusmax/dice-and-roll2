@@ -3,6 +3,7 @@ import { ImageService } from "../services/image.service";
 import { Assets } from "../models/assets";
 import { Styles } from "../models/styles";
 import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
+import { Party } from "../models/party";
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -86,11 +87,16 @@ export class MainMenuScene extends Phaser.Scene {
 
     createSkirmishMenu() {
 
+        var party = new Party();
+        party.add(Assets.characters.musketeer);
+        party.add(Assets.characters.assasin);
+        party.add(Assets.characters.illusionist);
+
         this.scene.start('LoadingScene', { loadScene: 'BattleScene', persistMusic: false,
             terrain: 'beach', skirmish: true, 
-            playerParty: [ Assets.characters.assasin, Assets.characters.musketeer, Assets.characters.automaton ], //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
+            playerParty: party, //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
             enemyParty: [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ], 
-            playerMana: 100, enemyMana: 100
+            enemyMana: 100
         });
 
         return;

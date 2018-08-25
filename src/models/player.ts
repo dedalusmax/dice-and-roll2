@@ -5,7 +5,8 @@ import { ArmorService } from "../services/armor.service";
 export class Player extends Combatant {
     
     armor: Armor;
-
+    specialsUsed: number;
+    
     get defense(): number {
         return this.baseDefense + this.armor.defense;
     }
