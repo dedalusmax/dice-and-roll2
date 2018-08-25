@@ -35,7 +35,7 @@ export class MapScene extends Phaser.Scene {
             party.add(Assets.characters.assasin);
             party.add(Assets.characters.illusionist);
                 
-            this._options.party = party;
+            this._options.playerParty = party;
         }
     }
 
@@ -139,63 +139,56 @@ export class MapScene extends Phaser.Scene {
 
     displayLocations() {
         if (this._options.worldMap) {
-            // display only the general properties of the locations
-
-            // var circle = new Phaser.Geom.Circle(0, 0, 18);
-            // var graphics = this.add.graphics();
-            // graphics.fillStyle(0xff0000, 0.5);
-            
+            // display only the general properties of the locations           
             LocationService.getAll().forEach(location => {
-                // circle.setPosition(location.x, location.y);
-                // graphics.fillCircleShape(circle);
-                
+               
                 var pinpoint = new Pinpoint(this, location);
                 pinpoint.events.on('travel', (fight) => {
                     this.travelTo(pinpoint, fight);
                 });
 
-                // var pinpoint = this.add.sprite(location.x, location.y, 'locations', 0);
-                // pinpoint.setAlpha(0.5);
-
-                // if (this._minimap) {
-                //     this._minimap.ignore(pinpoint);
-                // }
-
-                // if (this._uiCamera) {
-                //     this._uiCamera.ignore(pinpoint);
-                // }
-
                 this._pinpoints.push(pinpoint);
             });
         }
-
-        //this.setPinpoint(this._pinpoints[0]);
     }
 
     displayParty() {
+        // appearance of the party from the sea
         var firstLocation = this._pinpoints[0];
-        var party = this.physics.add.sprite(firstLocation.location.x, firstLocation.location.y, 'party');
+        var party = this.physics.add.sprite(firstLocation.location.x - 500, firstLocation.location.y - 200, 'party');
+        party.setAlpha(0);
+        this.cameras.main.startFollow(party, false, 0.5, 0.5);
 
         this.add.tween({
             targets: [ party ],
-            ease: 'Sine.easeInOut',
-            duration: 700,
-            scaleX: '-=.15',
-            scaleY: '-=.15',
-            angle: '-=10',
-            yoyo: true,
-            repeat: Infinity
+            ease: 'Linear',
+            duration: 1600,
+            x: firstLocation.location.x,
+            y: firstLocation.location.y,
+            alpha: 1,
+            onComplete: () => {
+                // the party has come to the lighthouse
+                this.cameras.main.stopFollow();
+                this.add.tween({
+                    targets: [ party ],
+                    ease: 'Sine.easeInOut',
+                    duration: 700,
+                    scaleX: '-=.15',
+                    scaleY: '-=.15',
+                    angle: '-=10',
+                    yoyo: true,
+                    repeat: Infinity
+                });
+        
+                if (this._uiCamera) {
+                    this._uiCamera.ignore(party);
+                }
+        
+                this._party = party;
+        
+                this.setPinpoint(firstLocation);
+              }
         });
-
-        if (this._uiCamera) {
-            this._uiCamera.ignore(party);
-        }
-
-        this._party = party;
-        //  this.cameras.main.startFollow(this._party, false, 0.2, 0.2, 250, 250);
-        //this.cameras.main.startFollow(this._party, false);
-
-        this.setPinpoint(firstLocation);
     }
 
     travelTo(pinpoint: Pinpoint, fight: boolean) {
@@ -222,7 +215,7 @@ export class MapScene extends Phaser.Scene {
                         });
             
                         this.scene.start('LoadingScene', { loadScene: 'BattleScene', terrain: TerrainType[pinpoint.location.terrain],
-                        playerParty: this._options.party,
+                        playerParty: this._options.playerParty,
                         enemyParty: enemies, enemyMana: 100
                     });
             
