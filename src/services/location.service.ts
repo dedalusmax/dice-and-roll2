@@ -15,7 +15,7 @@ export class LocationService {
         var result = new Location();
         result.name = prop.name;
         result.title = prop.title;
-        result.description = prop.desc;
+        result.description = prop.description;
         result.type = prop.type;
 
         result.terrain = prop.terrain ? TerrainType[prop.terrain as string] : TerrainType.beach;
@@ -25,6 +25,7 @@ export class LocationService {
         
         result.connectsTo = prop.connectsTo;
         result.status = LocationStatus.unknown;
+        result.enemies = prop.enemies ? prop.enemies : [];
 
         return result;
     }

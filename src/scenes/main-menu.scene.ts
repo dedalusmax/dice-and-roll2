@@ -81,13 +81,13 @@ export class MainMenuScene extends Phaser.Scene {
     };
 
     openWorldMap() {
-        this.scene.start('LoadingScene', { loadScene: 'MapScene', persistMusic: true, worldMap: true });
+        this.scene.start('LoadingScene', { loadScene: 'MapScene', worldMap: true });
     }
 
     createSkirmishMenu() {
 
         this.scene.start('LoadingScene', { loadScene: 'BattleScene', persistMusic: false,
-            terrain: 'grass', skirmish: true, 
+            terrain: 'beach', skirmish: true, 
             playerParty: [ Assets.characters.assasin, Assets.characters.musketeer, Assets.characters.automaton ], //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
             enemyParty: [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ], 
             playerMana: 100, enemyMana: 100

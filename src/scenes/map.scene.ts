@@ -1,8 +1,9 @@
 import { TextualService } from "../services/textual.service";
-import { Styles } from "../models/styles";
+import { Styles, FONT_FAMILY } from "../models/styles";
 import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
-import { LocationStatus } from "../models/location";
+import { LocationStatus, TerrainType } from "../models/location";
+import { Assets } from "../models/assets";
 
 export class MapScene extends Phaser.Scene {
 
@@ -34,7 +35,9 @@ export class MapScene extends Phaser.Scene {
         // background image 
         this._map = this.add.image(0, 0, 'map');
         this._map.setOrigin(0);
-        this._map.setInteractive();
+        this._map.setName('map');
+
+        //this._map.setInteractive();
 
         // this.input.setDraggable(this._map);
         // this.input.dragTimeThreshold = 100;
@@ -134,6 +137,10 @@ export class MapScene extends Phaser.Scene {
                 // graphics.fillCircleShape(circle);
                 
                 var pinpoint = new Pinpoint(this, location);
+                pinpoint.events.on('travel', (fight) => {
+                    this.travelTo(pinpoint, fight);
+                });
+
                 // var pinpoint = this.add.sprite(location.x, location.y, 'locations', 0);
                 // pinpoint.setAlpha(0.5);
 
@@ -172,13 +179,13 @@ export class MapScene extends Phaser.Scene {
         }
 
         this._party = party;
-        this.cameras.main.startFollow(this._party, false, 0.2, 0.2, 250, 250);
+        //  this.cameras.main.startFollow(this._party, false, 0.2, 0.2, 250, 250);
         //this.cameras.main.startFollow(this._party, false);
 
         this.setPinpoint(firstLocation);
     }
 
-    travelTo(pinpoint: Pinpoint) {
+    travelTo(pinpoint: Pinpoint, fight: boolean) {
 
         //this.physics.moveToObject(this._party, location, 200);
 
@@ -188,16 +195,33 @@ export class MapScene extends Phaser.Scene {
 
             this.add.tween({
                 targets: [ this._party ],
-                duration: 300,
+                duration: 500,
                 x: pinpoint.location.x,
                 y: pinpoint.location.y,
-                ease: 'Power2'
+                ease: 'Power2',
+                onComplete: () => {
+
+                    if (fight) {
+
+                        var enemies = [];
+                        pinpoint.location.enemies.forEach(e => {
+                            enemies.push(Assets.monsters[e]);
+                        });
+            
+                        this.scene.start('LoadingScene', { loadScene: 'BattleScene', terrain: TerrainType[pinpoint.location.terrain],
+                        playerParty: [ Assets.characters.assasin, Assets.characters.musketeer, Assets.characters.automaton ], //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
+                        enemyParty: enemies, 
+                        playerMana: 100, enemyMana: 100
+                    });
+            
+                    } else {
+                        this.setPinpoint(pinpoint);
+                    }
+                }
             });
             // this._party.setPosition(location.x, location.y);
 
         // }, null);
-
-        this.setPinpoint(pinpoint);
     }
 
     setPinpoint(pinpoint: Pinpoint) {
@@ -209,9 +233,11 @@ export class MapScene extends Phaser.Scene {
             if (connection.location.status == LocationStatus.unknown) {
                 connection.location.status = LocationStatus.available;
             }
-            connection.activate().then(sprite => {
-                this.travelTo(sprite);
-            });
+            connection.activate();
+            // connection.activate().then(sprite => {
+            //     // connection.(connection);
+            //     // this.travelTo(sprite);
+            // });
         });
 
         // var firstLocation = this._pinpoints[0];
@@ -220,9 +246,5 @@ export class MapScene extends Phaser.Scene {
         // this.cameras.main.startFollow(this._activeLocation, false, 0.5, 0.5);
 
         //this.cameras.main.setScroll(firstLocation.x, firstLocation.y);
-    }
-
-    displayLocationInfo() {
-
     }
 }

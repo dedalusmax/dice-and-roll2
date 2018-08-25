@@ -23,13 +23,18 @@ export class VictoryScene extends Phaser.Scene {
         logo.setOrigin(0.5, 0.5);   
 
         // quit victory button (visible only in skirmish mode)
-        if (this._options.skirmish) {
+        // if (this._options.skirmish) {
             var exit = TextualService.createTextButton(this, 'Exit', 0, 0, Styles.battle.backButton, a => {
                 var options = this._options;
                 options.loadScene = 'MainMenuScene';
-                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+
+                if (this._options.skirmish) {
+                    this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                } else {
+                    this.scene.start('MapScene', { worldMap: false });
+                }
             });
-        }
+        // }
 
         if (Settings.sound.musicVolume > 0) {
             this.sound.stopAll();

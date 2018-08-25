@@ -64,16 +64,15 @@ export class LoadingScene extends Phaser.Scene {
             case 'NewGameScene':
                 break;
             case 'BattleScene':
-                if (this.textures.exists('battle_grass')) {
+                if (this.textures.exists('mana-bottle')) {
                     this._loadingFinished = true;
                     break;
                 }
                 // GRAPHICS:
 
                 // background screen
-                // this.load.image('battle_' + this._options.terrain, 'assets/screens/battle_' + this._options.terrain + '_noir.png');
-                this.load.image('battle_' + this._options.terrain, 'assets/screens/menu.png');
-              
+                this.load.image('battle_' + this._options.terrain, 'assets/screens/terrain-' + this._options.terrain + '.png');
+                
                 // mana bottles
                 this.load.image('mana-bottle', 'assets/common/mana-bottle.png');
 
@@ -106,7 +105,7 @@ export class LoadingScene extends Phaser.Scene {
                 // SOUND EFFECTS:
 
                 // ambient music
-                if (this._options.terrain === 'grass') {
+                if (this._options.terrain === 'beach') {
                     this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
                 } else if (this._options.terrain === 'dirt') {
                     this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
@@ -177,9 +176,15 @@ export class LoadingScene extends Phaser.Scene {
                     this._loadingFinished = true;
                     break;
                 }
+
                 this.load.image('map', 'assets/screens/world-map-locations.png');
+
                 this.load.spritesheet('locations', 'assets/common/locations-colors-soft.png', { frameWidth: 36, frameHeight: 36 });
+                this.load.spritesheet('location-buttons', 'assets/common/location-buttons.png', { frameWidth: 68, frameHeight: 46 });
                 this.load.image('party', 'assets/common/party-small.png');
+
+                this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
+
                 break;
         }
     }

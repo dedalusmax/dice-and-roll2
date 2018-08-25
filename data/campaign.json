@@ -15,16 +15,17 @@
         {
             "name": "fishermans_village",
             "title": "Fisherman's village",
-            "description": "blablabla",
+            "description": "erewrewr ewr ere re re ewre wre ew rew re rew rew rewr ew rew rew rew rew rew ewr ewre wr ewr ewr ewr ew ewr ewre wrew re ewrewrew rew rew rew",
             "type": "encounter",
+            "terrain": "beach",
             "x": 606,
             "y": 1788,
             "connectsTo": [
                 "cliffside_keep"
             ],
             "enemies": [
-                "seabound",
-                "seabound"
+                "seabound_sailor",
+                "seabound_sailor"
             ]
         },
         {

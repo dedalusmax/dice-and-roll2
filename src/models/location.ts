@@ -10,9 +10,9 @@ export enum LocationType {
 
 export enum LocationStatus {
     unknown = 0,
-    end,
+    available,
     visited,
-    available
+    end
 }
 
 export class Location {
@@ -25,5 +25,6 @@ export class Location {
     x: number;
     y: number;
     connectsTo: Array<string>;
+    enemies?: Array<string>;
     status: LocationStatus;
 }
