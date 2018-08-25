@@ -5,10 +5,13 @@ import { Pinpoint } from "../models/pinpoint";
 import { LocationStatus, TerrainType } from "../models/location";
 import { Assets } from "../models/assets";
 import { Party } from "../models/party";
+import { Settings } from "../models/settings";
 
 export class MapScene extends Phaser.Scene {
 
     private _options: any;
+    private _ambientMusic: Phaser.Sound.BaseSound;
+
     private _controls: Phaser.Cameras.Controls.SmoothedKeyControl;
     private _uiCamera: Phaser.Cameras.Scene2D.Camera;
     private _minimap: Phaser.Cameras.Scene2D.Camera;
@@ -44,7 +47,14 @@ export class MapScene extends Phaser.Scene {
 
     create(): void {
         // prepare the scene (must be in perfect order of the cameras that are added!):
+        this.cameras.main.fadeIn(1000);
 
+        // check if music is enabled
+        if (Settings.sound.musicVolume > 0) {
+            // introductory fade in of theme music
+            this.sound.stopAll();
+        }
+        
         // background image 
         this._map = this.add.image(0, 0, 'map');
         this._map.setOrigin(0);
@@ -154,10 +164,19 @@ export class MapScene extends Phaser.Scene {
 
     displayParty() {
         // appearance of the party from the sea
+        this._ambientMusic = this.sound.add('arrival', { volume: Settings.sound.sfxVolume });
+        this._ambientMusic.play('', { loop: true });
+
         var firstLocation = this._pinpoints[0];
         var party = this.physics.add.sprite(firstLocation.location.x - 500, firstLocation.location.y - 200, 'party');
         party.setAlpha(0);
         this.cameras.main.startFollow(party, false, 0.5, 0.5);
+
+        // for (var i = 1; i < 10; i++) {
+        //     //this.time.delayedCall(500, () => {
+        //         this.cameras.main.flash();
+        //     //}, null, this);
+        // }
 
         this.add.tween({
             targets: [ party ],
@@ -169,6 +188,11 @@ export class MapScene extends Phaser.Scene {
             onComplete: () => {
                 // the party has come to the lighthouse
                 this.cameras.main.stopFollow();
+
+                this.time.delayedCall(500, () => {
+                    this.cameras.main.flash();
+                }, null, this);
+
                 this.add.tween({
                     targets: [ party ],
                     ease: 'Sine.easeInOut',
@@ -201,7 +225,8 @@ export class MapScene extends Phaser.Scene {
 
             this.add.tween({
                 targets: [ this._party ],
-                duration: 500,
+                duration: 1200,
+                delay: 200,
                 x: pinpoint.location.x,
                 y: pinpoint.location.y,
                 ease: 'Power2',

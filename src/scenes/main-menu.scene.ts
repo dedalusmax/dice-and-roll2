@@ -89,8 +89,8 @@ export class MainMenuScene extends Phaser.Scene {
 
         var party = new Party();
         // beef them with all specials
-        var p1 = Assets.characters.musketeer; p1.specialsUsed = 4;
-        var p2 = Assets.characters.assasin; p2.specialsUsed = 4;
+        var p1 = Assets.characters.alchemist; p1.specialsUsed = 4;
+        var p2 = Assets.characters.gunslinger; p2.specialsUsed = 4;
         var p3 = Assets.characters.illusionist; p3.specialsUsed = 4;
         party.add(p1);
         party.add(p2);

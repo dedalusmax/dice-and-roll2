@@ -185,6 +185,11 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
 
+                this.load.audio('arrival', 'assets/sound/ambient/331435__codeine__storm-at-sea.wav');
+                this.load.audio('ambient-beach', 'assets/sound/ambient/ocean-wave-1.mp3');
+                this.load.audio('page', 'assets/sound/effects/page-flip-01a.mp3');
+                this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
+                this.load.audio('battle', 'assets/sound/effects/347981__madmanmusic__battle-preparations.wav');
                 break;
         }
     }

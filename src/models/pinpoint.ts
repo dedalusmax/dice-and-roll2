@@ -1,5 +1,6 @@
 import { Location, LocationStatus, TerrainType } from "../models/location";
 import { FONT_FAMILY } from "./styles";
+import { Settings } from "./settings";
 
 export class Pinpoint {
 
@@ -18,6 +19,7 @@ export class Pinpoint {
 
     activate() {
         this._sprite.setFrame(this.location.status);
+        this._scene.sound.add('card', { volume: Settings.sound.sfxVolume }).play();
 
         if (!this._selectedTween) {
             this._selectedTween = this._scene.tweens.add({
@@ -35,6 +37,7 @@ export class Pinpoint {
         this._sprite.setInteractive({ cursor: 'pointer' });
 
         this._sprite.on('pointerdown', e => {
+            this._scene.sound.add('page', { volume: Settings.sound.sfxVolume }).play();
             this.displayInfo();
         });
     }
@@ -103,6 +106,7 @@ export class Pinpoint {
         back.setOrigin(0, 0);
         back.setInteractive({ cursor: 'pointer' });
         back.on('pointerdown', e => {
+            this._scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             this.closeLocationInfo();
         });
         var backTitle = this._scene.add.text(back.x + 10, back.y + 40, 'Back', {
@@ -115,6 +119,7 @@ export class Pinpoint {
         action.setOrigin(0, 0);
         action.setInteractive({ cursor: 'pointer' });
         action.on('pointerdown', e => {
+            this._scene.sound.add('battle', { volume: Settings.sound.sfxVolume }).play();
             this.closeLocationInfo().then(() => {
                 this.events.emit('travel', !alreadyVisited);
             });
