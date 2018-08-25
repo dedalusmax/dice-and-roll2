@@ -61,8 +61,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('closed', 'assets/sound/effects/175662__simpsi__cant-open.wav');
                 ArrowsService.init(this);
                 break;
-            case 'NewGameScene':
-                break;
+
             case 'BattleScene':
                 if (this.textures.exists('mana-bottle')) {
                     this._loadingFinished = true;
@@ -190,6 +189,34 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('page', 'assets/sound/effects/page-flip-01a.mp3');
                 this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
                 this.load.audio('battle', 'assets/sound/effects/347981__madmanmusic__battle-preparations.wav');
+                break;
+
+            case 'NewGameScene':
+                if (this.textures.exists('special-card')) {
+                    this._loadingFinished = true;
+                    break;
+                }
+                
+                this.load.image('paper', 'assets/common/paper-soften.png');
+
+                // load characters in party
+                for (var character in Assets.characters) {
+                    var player = Assets.characters[character];
+                    this.load.image('characters/' + player.name, 'assets/characters/' + player.name + '.png');
+                }
+
+                // load weapons
+                for (var weapon in Assets.weapons) {
+                    this.load.image('weapons/' + weapon, 'assets/weapons/' + weapon + '.png');
+                }
+
+                // load specials
+                this.load.image('special-card', 'assets/common/special-card-s.png');
+                for (var special in Assets.specials) {
+                    this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
+                }
+
+                this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
                 break;
         }
     }

@@ -5,6 +5,7 @@ import { Special } from "./special";
 
 export class Player extends Combatant {
     
+    story: string;
     armor: Armor;
     
     definedSpecials: Array<Special>;
@@ -20,6 +21,7 @@ export class Player extends Combatant {
     }
 
     private setPlayerData(data: any) {
+        this.story = data.story;
         this.armor = ArmorService.get(data.armor);
         
         // remove specials if they are not purchased

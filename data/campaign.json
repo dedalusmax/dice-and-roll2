@@ -32,12 +32,17 @@
             "name": "cliffside_keep",
             "title": "Cliffside keep",
             "description": "blablabla",
-            "type": "camp",
+            "type": "encounter",
+            "terrain": "beach",
             "x": 877,
             "y": 1885,
             "connectsTo": [
                 "fallen_tower",
                 "shipwreck"
+            ],
+            "enemies": [
+                "seabound_sailor",
+                "seabound_captain"
             ]
         },
         {

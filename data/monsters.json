@@ -2,7 +2,7 @@
     "siren": {
         "name": "siren",
         "title": "Siren",
-        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "description": "erewewre wrewre wr ewrewre wr wes.",
         "health": 60,
         "defense": 3,
         "attack": 15,
@@ -13,7 +13,7 @@
     "seabound_sailor": {
         "name": "seabound_sailor",
         "title": "Seabound sailor",
-        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "description": "erewewre wrewre wr ewrewre wr wes.",
         "health": 60,
         "defense": 3,
         "attack": 15,
@@ -24,7 +24,7 @@
     "seabound_captain": {
         "name": "seabound_captain",
         "title": "Seabound captain",
-        "desc": "erewewre wrewre wr ewrewre wr wes.",
+        "description": "erewewre wrewre wr ewrewre wr wes.",
         "health": 80,
         "defense": 6,
         "attack": 17,
@@ -35,7 +35,7 @@
 	"puppeteer": {
         "name": "puppeteer",
         "title": "Puppeteer",
-        "desc": "Master of strings and manipulation. Don't get too close to him, or he will turn you into one of his puppets.",
+        "description": "Master of strings and manipulation. Don't get too close to him, or he will turn you into one of his puppets.",
         "health": 70,
         "defense": 3,
         "attack": 15,
@@ -46,7 +46,7 @@
 	"harlequin": {
         "name": "harlequin",
         "title": "Harlequin",
-        "desc": "He may seems joyful, but he is filled with ill content. His laughter brings madness to men.",
+        "description": "He may seems joyful, but he is filled with ill content. His laughter brings madness to men.",
         "health": 60,
         "defense": 2,
         "attack": 18,
@@ -57,7 +57,7 @@
     "plague_doctor": {
         "name": "plague_doctor",
         "title": "Plague doctor",
-        "desc": "Once doctor helping the sick, now a shadow of their former selves.",
+        "description": "Once doctor helping the sick, now a shadow of their former selves.",
         "health": 80,
         "defense": 2,
         "attack": 20,

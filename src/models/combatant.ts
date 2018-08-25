@@ -56,7 +56,7 @@ export abstract class Combatant {
     private setCommonData(data: any) {
         this.name = data.name;
         this.title = data.title;
-        this.description = data.desc;
+        this.description = data.description;
         this.baseHealth = data.health;
         this.baseAttack = data.attack;
         this.baseDefense = data.defense;
