@@ -17,12 +17,6 @@ export class MainMenuScene extends Phaser.Scene {
         });
     }
 
-    init(): void {
-    }
-
-    preload(): void {
-    }
-
     create(): void {
         this.cameras.main.fadeIn(1000);
 
@@ -74,7 +68,7 @@ export class MainMenuScene extends Phaser.Scene {
         // }
         menu.add(this.createMenuItem('Skirmish', position++, Styles.menu.menu_button, this.createSkirmishMenu.bind(this)));
         menu.add(this.createMenuItem('World Map', position++, Styles.menu.menu_button, this.openWorldMap.bind(this)));
-        menu.add(this.createMenuItem('Bestiary', position++, Styles.menu.menu_button));
+        menu.add(this.createMenuItem('Bestiary', position++, Styles.menu.menu_button, this.openBestiary.bind(this)));
         menu.add(this.createMenuItem('Settings', position++, Styles.menu.menu_button, this.createSettingsMenu.bind(this)));
         menu.add(this.createMenuItem('Credits', position++, Styles.menu.menu_button, this.createCreditsMenu.bind(this)));
 
@@ -260,5 +254,9 @@ export class MainMenuScene extends Phaser.Scene {
 
     newGame() {
         this.scene.start('LoadingScene', { loadScene: 'NewGameScene', persistMusic: true });
+    };
+
+    openBestiary() {
+        this.scene.start('LoadingScene', { loadScene: 'BestiaryScene', persistMusic: true });
     };
 }

@@ -218,6 +218,10 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
                 break;
+
+            case 'BestiaryScene':
+                this._loadingFinished = true;
+                break;
         }
     }
 
