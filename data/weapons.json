@@ -9,22 +9,22 @@
     "hunting_revolvers": {
         "name": "hunting_revolvers",
         "title": "Hunting revolvers",
-        "desc": "",
+        "desc": "Used for shooting in the wild, give power shots",
         "type": "FIREARMS",
         "attack": 2,
         "sound": ""
     }, 
     "sherrifs_sidearm": {
         "name": "sherrifs_sidearm",
-        "title": "Sherrif sidearm",
-        "desc": "",
+        "title": "Sherrif's sidearm",
+        "desc": "Can't beat the sherrif's power when comes the shooting",
         "type": "FIREARMS",
         "attack": 3
     }, 
     "peacemaker": {
         "name": "peacemaker",
         "title": "Peacemaker",
-        "desc": "",
+        "desc": "There is a reason this thing is called that, peace be with their souls",
         "type": "FIREARMS",
         "attack": 4
     }, 

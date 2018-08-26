@@ -2,7 +2,7 @@
     "ricochet": {
         "name": "ricochet",
         "title": "Ricochet",
-        "description": "Heals wounded party member (20 HP + 1d10)",
+        "description": "Shots an enemy at range and deals +8 Att damage to random enemy.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "twoTargets",
         "effectType": "damage",
@@ -12,7 +12,7 @@
     "bullseye": {
         "name": "bullseye",
         "title": "Bullseye",
-        "description": "dssdsdsa",
+        "description": "Concentrates on precision of shooting by increasing attack modifier for +10 on 3 turns.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "attack",
@@ -23,7 +23,7 @@
     "disarm": {
         "name": "disarm",
         "title": "Disarm",
-        "description": "dsdsdsdsasdsdsa",
+        "description": "Shoots an enemy in its weapon, thus decreasing its attack modifier by -10 on 3 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
@@ -34,7 +34,7 @@
     "playing_dirty": {
         "name": "playing_dirty",
         "title": "Playing dirty",
-        "description": "dsdsdsdsasdsdsa",
+        "description": "Improvise when shoot, that's the style of playing dirty. Stuns enemy for 1 turn.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "stun",
@@ -44,7 +44,7 @@
     "remedy": {
         "name": "remedy",
         "title": "Remedy",
-        "description": "Heals wounded party member (20 HP + 1d10)",
+        "description": "Makes a herbal remedy, which heals wounded party member with 20 HP.",
         "targetType": "anyFriend",
         "executionType": "singleTarget",
         "effectType": "heal",
@@ -54,7 +54,7 @@
     "poisonous_gas": {
         "name": "poisonous_gas",
         "title": "Poisonous gas",
-        "description": "Poisons close target for 3 turns with 10 damage",
+        "description": "Throws a poison gas to close target which lingers for 3 turns dealing 10 damage.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "lingering",
@@ -66,7 +66,7 @@
     "throw_acid": {
         "name": "throw_acid",
         "title": "Throw acid",
-        "description": "xxxxx",
+        "description": "Preparation of the alchemy weakens the enemy for 3 turns by decreasing defense by -10.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
@@ -77,7 +77,7 @@
     "catalitic_bomb": {
         "name": "catalitic_bomb",
         "title": "Catalitic bomb",
-        "description": "blabla",
+        "description": "Throws powerful bomb that deals damage of 16 to all targets in closest rank.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "allTargetsInRank",
         "effectType": "damage",
@@ -87,7 +87,7 @@
     "break_defense": {
         "name": "break_defense",
         "title": "Break defense",
-        "description": "xxxxx",
+        "description": "Armor of enemy is weakened, thus decreasing its defense with -15 by 2 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
@@ -98,7 +98,7 @@
     "burning_flames": {
         "name": "burning_flames",
         "title": "Burning flames",
-        "description": "Burns close target with flames for 3 turns with 7 damage",
+        "description": "Mechanical combustion burns close target with flames inflicting 7 damage in 3 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "lingering",
@@ -110,7 +110,7 @@
     "brass_shield": {
         "name": "brass_shield",
         "title": "Brass shield",
-        "description": "xxxxx",
+        "description": "Made by engineering marvel, his poweful shield pertains defense +8 for 3 turns.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "defense",
@@ -121,7 +121,7 @@
     "shake_ground": {
         "name": "shake_ground",
         "title": "Shake ground",
-        "description": "dsdsdsdsasdsdsa",
+        "description": "By using all of his might, powerful stomp stuns all enemies for 1 turn.",
         "targetType": "anyEnemy",
         "executionType": "allTargets",
         "effectType": "stun",
@@ -131,7 +131,7 @@
     "medikit": {
         "name": "medikit",
         "title": "Medikit",
-        "description": "Heals wounded party member (20 HP + 1d10)",
+        "description": "Army medikit bag contains bandages that heal party member for +25 HP.",
         "targetType": "anyFriend",
         "executionType": "singleTarget",
         "effectType": "heal",
@@ -141,7 +141,7 @@
     "precision_shot": {
         "name": "precision_shot",
         "title": "Precision shot",
-        "description": "Heals wounded party member (20 HP + 1d10)",
+        "description": "By high discipline, sharpshooter uses concentration to deal 30 damage to enemy.",
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
@@ -151,7 +151,7 @@
     "bayonet_charge": {
         "name": "bayonet_charge",
         "title": "Bayonet change",
-        "description": "Causes bleeding of close target for 3 turns with 5 damage",
+        "description": "Using a bayonet, attack causes bleeding of close target for 3 turns with 5 damage.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "lingering",
@@ -163,7 +163,7 @@
     "battle_cry": {
         "name": "battle_cry",
         "title": "Battle cry",
-        "description": "xxxxx",
+        "description": "Encouraging his comrades, all party members increase their attack by +10 for 2 turns.",
         "targetType": "anyFriend",
         "executionType": "allTargets",
         "effectType": "attack",
@@ -174,7 +174,7 @@
     "ace": {
         "name": "ace",
         "title": "Ace",
-        "description": "acacacacaca",
+        "description": "Every good magician has his extra card in her sleeve, and damage the opponent hard with 20.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "damage",
@@ -184,7 +184,7 @@
     "blind": {
         "name": "blind",
         "title": "Blind",
-        "description": "xxxxx",
+        "description": "Using her wits, a caster spells an enemy with blindness which lower its attack by -15 for 2 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
@@ -195,7 +195,7 @@
     "performance": {
         "name": "performance",
         "title": "Performance",
-        "description": "xxxxx",
+        "description": "Distraction is best when an enemy is fool, thus lowering its defense by -15 for 2 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
@@ -206,7 +206,7 @@
     "magic_trick": {
         "name": "magic_trick",
         "title": "Magic trick",
-        "description": "dsdsdsdsasdsdsa",
+        "description": "A hare in her hat, a magic trick for delusioned opponent makes it bedazzled for 3 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "stun",
@@ -216,7 +216,7 @@
     "disappear": {
         "name": "disappear",
         "title": "Disappear",
-        "description": "xxxxx",
+        "description": "Using her stealth, she dissapears increasing her defense this turn for +40.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "defense",
@@ -227,7 +227,7 @@
     "backstab": {
         "name": "backstab",
         "title": "Backstab",
-        "description": "sdsadsdas",
+        "description": "Cunning ability makes it possible to sneak through and deal 15 damage to any of the foes.",
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
@@ -237,7 +237,7 @@
     "reaping_cut": {
         "name": "reaping_cut",
         "title": "Reaping cut",
-        "description": "Deals deep injury of that bleeds for 3 turns with 8 damage",
+        "description": "Deals deep injury to the opponent in close combat that bleeds for 3 turns with 8 damage.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "lingering",
@@ -249,7 +249,7 @@
     "throwing_knives": {
         "name": "throwing_knives",
         "title": "Throwing knives",
-        "description": "Strikes two targets with deadly knives",
+        "description": "Deadly knives strike two targets at once dealing 20 damage to the opponents.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "twoTargets",
         "effectType": "damage",
@@ -259,7 +259,7 @@
     "enchanting_song": {
         "name": "enchanting_song",
         "title": "Enchanting song",
-        "description": "dsdsdsdsasdsdsa",
+        "description": "The song of mermaids enchant sailors and men and they are stunned for 1 turn.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "stun",
@@ -269,7 +269,7 @@
     "tidal_wave": {
         "name": "tidal_wave",
         "title": "Tidal wave",
-        "description": "blabla",
+        "description": "A cursed seabound creature calls the tidal wave which deals 10 damage to all in rank.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "allTargetsInRank",
         "effectType": "damage",
