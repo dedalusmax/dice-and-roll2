@@ -10,7 +10,6 @@ export class TextualService {
         item.setInteractive();
         item.on('pointerdown', e => {
             scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
-            item.setStyle({ font: style.font, fill: '#DDDD00', align: style.align });
             if (action) action.call();
         });
 

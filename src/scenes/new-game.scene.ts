@@ -19,14 +19,15 @@ const TITLE_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
     WEAPON_DESCRIPTION_STYLE = { font: '16px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 220 }},
     SPECIAL_NAME_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#FFEEBC', align: 'center'},
     SPECIAL_DESCRIPTION_STYLE = { font: '14px ' + FONT_FAMILY_BLOCK, fill: '#BBBBBB', wordWrap: { width: 300 }},
-    MANA_COST_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#B770FF', align: 'center'};
+    MANA_COST_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#B770FF', align: 'center'},
+    CHOOSE_STYLE = { font: '32px Old English Text MT' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class NewGameScene extends Phaser.Scene {
 
     private _options: any;
     private _characters: Array<Player>;
     private _activeCharacter: number;
-    private _selectedCharacters: Array<Player>;
+    private _selectedCharacters: Array<string>;
 
     private _image: Phaser.GameObjects.Sprite;
     private _title: Phaser.GameObjects.Text;
@@ -45,20 +46,8 @@ export class NewGameScene extends Phaser.Scene {
     private _specialsDescriptions: Phaser.GameObjects.Group;
     private _manaCosts: Phaser.GameObjects.Group;
 
-    get getObjects(): Array<Phaser.GameObjects.GameObject> {
-        var objects: Array<Phaser.GameObjects.GameObject> = [
-            this._image, this._title, this._story, this._description,
-            this._health, this._attack, this._defense, this._armor
-        ];
-        objects = objects.concat(this._weapons.getChildren());
-        objects = objects.concat(this._weaponsTitles.getChildren());
-        objects = objects.concat(this._weaponsDescriptions.getChildren());
-        objects = objects.concat(this._specials.getChildren());
-        objects = objects.concat(this._specialsTitles.getChildren());
-        objects = objects.concat(this._specialsDescriptions.getChildren());
-        objects = objects.concat(this._manaCosts.getChildren());
-        return objects;
-    }
+    private _status: Phaser.GameObjects.Text;
+    private _selectionText: Phaser.GameObjects.Text;
 
     constructor() {
         super({
@@ -80,10 +69,10 @@ export class NewGameScene extends Phaser.Scene {
         this.cameras.main.fadeIn(1000);
         this.cameras.main.setBackgroundColor(0x141414);
 
-        var title = this.add.text(this.cameras.main.width / 2, 20, 'Choose your heroes', TITLE_STYLE);
-        title.setOrigin(0.5, 0.5);
+        this._status = this.add.text(this.cameras.main.width / 2, 20, '', TITLE_STYLE);
+        this._status.setOrigin(0.5, 0.5);
         this.add.tween({
-            targets: [ title ],
+            targets: [ this._status ],
             ease: 'Sine.easeInOut',
             duration: 700,
             scaleX: '-=.05',
@@ -130,6 +119,7 @@ export class NewGameScene extends Phaser.Scene {
 
         this.createControls();
         this.displayCharacter();
+        this.updateStatus();
     }
 
     private createControls() {
@@ -223,6 +213,25 @@ export class NewGameScene extends Phaser.Scene {
             var manaCost = this.add.text(specials.x + 80, specials.y + 75 + 90 * i, '', MANA_COST_STYLE);
             this._manaCosts.add(manaCost, true);
         }
+
+        // selection
+
+        this._selectionText = this.add.text(220, this.cameras.main.height / 2, 'Choose', CHOOSE_STYLE);
+        this._selectionText.setOrigin(0.5, 0.5);
+
+        this.add.tween({
+            targets: [ this._selectionText ],
+            ease: 'Sine.easeInOut',
+            duration: 700,
+            scaleX: '+=.3',
+            scaleY: '+=.1',
+            alpha: '-=0.3',
+            yoyo: true,
+            repeat: Infinity
+        });
+
+        this._selectionText.setInteractive();
+        this._selectionText.on('pointerdown', this.characterSelected.bind(this));
     }
 
     private displayCharacter() {
@@ -267,11 +276,32 @@ export class NewGameScene extends Phaser.Scene {
         }
 
         this.add.tween({
-            targets: this.getObjects,
+            targets: [ this._image ],
             ease: 'Quad.easeIn',
             duration: 800,
             alpha: 1
         });
+
+        var selected = this._selectedCharacters.find(s => s === player.name);
+        this._selectionText.setText(selected ? 'Selected' : 'Choose');
+    }
+
+    private characterSelected() {
+        var player = this._characters[this._activeCharacter];
+        var selectedIndex = this._selectedCharacters.findIndex(s => s === player.name);
+        if (selectedIndex > -1) {
+            this._selectedCharacters.splice(selectedIndex, 1);
+            this._selectionText.setText('Choose');
+        } else if (this._selectedCharacters.length < 3) {
+            this._selectedCharacters.push(this._characters[this._activeCharacter].name);
+            this._selectionText.setText('Selected');
+        }
+        this.updateStatus();
+    }
+
+    private updateStatus() {
+        var slotsLeft = 3 - this._selectedCharacters.length;
+        this._status.setText('Choose your heroes (' + slotsLeft + ' slots left)');
     }
 
     update(): void {
