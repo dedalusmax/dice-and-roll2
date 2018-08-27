@@ -14,7 +14,7 @@ export class Pinpoint {
 
     constructor(private _scene: Phaser.Scene, public location: Location) {
         this._sprite = _scene.add.sprite(location.x, location.y, 'locations', location.status);
-        this._sprite.setAlpha(0.5);
+        this._sprite.setAlpha(1);
     }
 
     activate() {
@@ -32,6 +32,8 @@ export class Pinpoint {
                 yoyo: true,
                 repeat: Infinity
             });
+        } else if (!this._selectedTween.isPlaying()) {
+            this._selectedTween.restart();
         }
 
         this._sprite.setInteractive({ cursor: 'pointer' });
@@ -43,6 +45,8 @@ export class Pinpoint {
     }
 
     deactivate() {
+        this._sprite.setFrame(this.location.status);
+
         if (this._selectedTween && this._selectedTween.isPlaying()) {
             this._selectedTween.stop(0);
         }

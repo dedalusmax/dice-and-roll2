@@ -184,8 +184,14 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
 
-                this.load.audio('arrival', 'assets/sound/ambient/331435__codeine__storm-at-sea.wav');
+                this.load.audio('ambient-arrival', 'assets/sound/ambient/331435__codeine__storm-at-sea.wav');
                 this.load.audio('ambient-beach', 'assets/sound/ambient/ocean-wave-1.mp3');
+                this.load.audio('ambient-swamp', 'assets/sound/ambient/lake-waves-01.mp3');
+                this.load.audio('ambient-hills', 'assets/sound/ambient/405561__inspectorj__wind-realistic-a.wav');
+                this.load.audio('ambient-forest', 'assets/sound/ambient/385279__bajko__sfx-amb-forest-spring-afternoon-02.wav');
+                this.load.audio('ambient-mine', 'assets/sound/ambient/89448__bkamuse__dangerous-mine-shaft.wav');
+                this.load.audio('ambient-city', 'assets/sound/ambient/75076__nupton__abandoned.wav');
+
                 this.load.audio('page', 'assets/sound/effects/page-flip-01a.mp3');
                 this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
                 this.load.audio('battle', 'assets/sound/effects/347981__madmanmusic__battle-preparations.wav');

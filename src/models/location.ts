@@ -1,5 +1,11 @@
 export enum TerrainType {
-    beach = 1
+    start = 0,
+    beach = 1,
+    hills, 
+    swamp,
+    forest,
+    mine,
+    city
 }
 
 export enum LocationType {

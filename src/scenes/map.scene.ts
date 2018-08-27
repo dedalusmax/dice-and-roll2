@@ -2,7 +2,7 @@ import { TextualService } from "../services/textual.service";
 import { Styles, FONT_FAMILY } from "../models/styles";
 import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
-import { LocationStatus, TerrainType } from "../models/location";
+import { LocationStatus, TerrainType, LocationType } from "../models/location";
 import { Assets } from "../models/assets";
 import { Party } from "../models/party";
 import { Settings } from "../models/settings";
@@ -164,7 +164,7 @@ export class MapScene extends Phaser.Scene {
 
     displayParty() {
         // appearance of the party from the sea
-        this._ambientMusic = this.sound.add('arrival', { volume: Settings.sound.sfxVolume });
+        this._ambientMusic = this.sound.add('ambient-arrival', { volume: Settings.sound.sfxVolume });
         this._ambientMusic.play('', { loop: true });
 
         var firstLocation = this._pinpoints[0];
@@ -218,6 +218,7 @@ export class MapScene extends Phaser.Scene {
     travelTo(pinpoint: Pinpoint, fight: boolean) {
 
         //this.physics.moveToObject(this._party, location, 200);
+        this.cameras.main.startFollow(this._party, false, 0.5, 0.5);
 
         // var collider = this.physics.add.overlap(this._party, location, party => {
         //     party.body.stop();
@@ -231,8 +232,12 @@ export class MapScene extends Phaser.Scene {
                 y: pinpoint.location.y,
                 ease: 'Power2',
                 onComplete: () => {
+                    this.cameras.main.stopFollow();
 
                     if (fight) {
+
+                        this.setPinpoint(pinpoint);
+                        return;
 
                         var enemies = [];
                         pinpoint.location.enemies.forEach(e => {
@@ -256,6 +261,8 @@ export class MapScene extends Phaser.Scene {
 
     setPinpoint(pinpoint: Pinpoint) {
 
+        pinpoint.location.status = LocationStatus.visited;
+        
         this._pinpoints.forEach(p => p.deactivate());
 
         pinpoint.location.connectsTo.forEach(l => {
@@ -264,17 +271,12 @@ export class MapScene extends Phaser.Scene {
                 connection.location.status = LocationStatus.available;
             }
             connection.activate();
-            // connection.activate().then(sprite => {
-            //     // connection.(connection);
-            //     // this.travelTo(sprite);
-            // });
         });
 
-        // var firstLocation = this._pinpoints[0];
-        // this.cameras.main.scrollX = firstLocation.x;
-        // this.cameras.main.scrollY = firstLocation.y;        
-        // this.cameras.main.startFollow(this._activeLocation, false, 0.5, 0.5);
-
-        //this.cameras.main.setScroll(firstLocation.x, firstLocation.y);
+        if (pinpoint.location.terrain !== TerrainType.start) {
+            this._ambientMusic.stop();
+            this._ambientMusic = this.sound.add('ambient-' + TerrainType[pinpoint.location.terrain], { volume: Settings.sound.sfxVolume });
+            this._ambientMusic.play('', { loop: true });
+        }
     }
 }
