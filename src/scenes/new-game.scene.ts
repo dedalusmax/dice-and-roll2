@@ -20,7 +20,8 @@ const TITLE_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
     SPECIAL_NAME_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#FFEEBC', align: 'center'},
     SPECIAL_DESCRIPTION_STYLE = { font: '14px ' + FONT_FAMILY_BLOCK, fill: '#BBBBBB', wordWrap: { width: 300 }},
     MANA_COST_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#B770FF', align: 'center'},
-    CHOOSE_STYLE = { font: '32px Old English Text MT' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
+    CHOOSE_STYLE = { font: '48px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 },
+    SELECTED_STYLE = { font: '48px ' + FONT_FAMILY, fill: '#00990F', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class NewGameScene extends Phaser.Scene {
 
@@ -47,7 +48,8 @@ export class NewGameScene extends Phaser.Scene {
     private _manaCosts: Phaser.GameObjects.Group;
 
     private _status: Phaser.GameObjects.Text;
-    private _selectionText: Phaser.GameObjects.Text;
+    private _selectedText: Phaser.GameObjects.Text;
+    private _notSelectedText: Phaser.GameObjects.Text;
 
     constructor() {
         super({
@@ -60,9 +62,6 @@ export class NewGameScene extends Phaser.Scene {
         this._characters = [];
         this._activeCharacter = 0;
         this._selectedCharacters = [];
-    }
-
-    preload(): void {
     }
 
     create(): void {
@@ -216,22 +215,17 @@ export class NewGameScene extends Phaser.Scene {
 
         // selection
 
-        this._selectionText = this.add.text(220, this.cameras.main.height / 2, 'Choose', CHOOSE_STYLE);
-        this._selectionText.setOrigin(0.5, 0.5);
+        this._selectedText = this.add.text(240, this.cameras.main.height / 2, 'Selected', SELECTED_STYLE);
+        this._selectedText.setOrigin(0.5, 0.5);
+        this._selectedText.setAngle(-30);
+        this._selectedText.setInteractive();
+        this._selectedText.on('pointerdown', this.unselect.bind(this));
 
-        this.add.tween({
-            targets: [ this._selectionText ],
-            ease: 'Sine.easeInOut',
-            duration: 700,
-            scaleX: '+=.3',
-            scaleY: '+=.1',
-            alpha: '-=0.3',
-            yoyo: true,
-            repeat: Infinity
-        });
-
-        this._selectionText.setInteractive();
-        this._selectionText.on('pointerdown', this.characterSelected.bind(this));
+        this._notSelectedText = this.add.text(240, this.cameras.main.height / 2, 'Choose', CHOOSE_STYLE);
+        this._notSelectedText.setOrigin(0.5, 0.5);
+        this._notSelectedText.setAngle(-30);
+        this._notSelectedText.setInteractive();
+        this._notSelectedText.on('pointerdown', this.select.bind(this));
     }
 
     private displayCharacter() {
@@ -283,28 +277,47 @@ export class NewGameScene extends Phaser.Scene {
         });
 
         var selected = this._selectedCharacters.find(s => s === player.name);
-        this._selectionText.setText(selected ? 'Selected' : 'Choose');
+        this._selectedText.setVisible(selected != null);
+        this._notSelectedText.setVisible(selected == null);
     }
 
-    private characterSelected() {
+    private select() {
+        var player = this._characters[this._activeCharacter];
+        if (this._selectedCharacters.length < 3) {
+            this.sound.add('card', { volume: Settings.sound.sfxVolume }).play();
+            this.add.tween({
+                targets: [ this._selectedText ],
+                ease: 'Quad.easeIn',
+                duration: 500,
+                scaleX: '+=.3',
+                scaleY: '+=.3',
+                yoyo: true
+            });
+            this._selectedCharacters.push(this._characters[this._activeCharacter].name);
+            this.setSelectedLabel(player);
+            this.updateStatus();    
+        }
+    }
+
+    private unselect() {
         var player = this._characters[this._activeCharacter];
         var selectedIndex = this._selectedCharacters.findIndex(s => s === player.name);
         if (selectedIndex > -1) {
+            this.sound.add('card', { volume: Settings.sound.sfxVolume }).play();
             this._selectedCharacters.splice(selectedIndex, 1);
-            this._selectionText.setText('Choose');
-        } else if (this._selectedCharacters.length < 3) {
-            this._selectedCharacters.push(this._characters[this._activeCharacter].name);
-            this._selectionText.setText('Selected');
+            this.setSelectedLabel(player);
+            this.updateStatus();
         }
-        this.updateStatus();
+    }
+
+    setSelectedLabel(player) {
+        var selected = this._selectedCharacters.find(s => s === player.name);
+        this._selectedText.setVisible(selected != null);
+        this._notSelectedText.setVisible(selected == null);
     }
 
     private updateStatus() {
         var slotsLeft = 3 - this._selectedCharacters.length;
         this._status.setText('Choose your heroes (' + slotsLeft + ' slots left)');
-    }
-
-    update(): void {
-
     }
 }

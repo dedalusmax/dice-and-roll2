@@ -223,6 +223,8 @@ export class LoadingScene extends Phaser.Scene {
                 }
 
                 this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
+                this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
+                this.load.audio('closed', 'assets/sound/effects/175662__simpsi__cant-open.wav');
                 break;
 
             case 'BestiaryScene':
