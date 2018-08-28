@@ -31,6 +31,8 @@ export class MapScene extends Phaser.Scene {
 
     init(data): void {
         this._options = data;
+        this._pinpoints = [];
+        this._party = null;
 
         if (this._options.worldMap) {
 
@@ -98,23 +100,6 @@ export class MapScene extends Phaser.Scene {
         };
     
         this._controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
-
-        //this.displayControls();
-        // this.input.on('pointermove', (pointer) => {
-
-
-
-        // });
-
-        // this.input.on('gameobjectover', function (pointer, gameObject) {
-
-        //     gameObject.setTint(0xff0000);
-        // });
-    
-        // this.input.on('gameobjectout', function (pointer, gameObject) {
-    
-        //     gameObject.clearTint();
-        // });
     }
 
     displayMinimap() {
@@ -149,71 +134,89 @@ export class MapScene extends Phaser.Scene {
     }
 
     displayLocations() {
-        if (this._options.worldMap) {
-            // display only the general properties of the locations           
-            LocationService.getAll().forEach(location => {
-               
-                var pinpoint = new Pinpoint(this, location);
-                pinpoint.events.on('travel', (fight) => {
-                    this.travelTo(pinpoint, fight);
-                });
+        LocationService.getAll().forEach(location => {
 
-                this._pinpoints.push(pinpoint);
+            if (this._options.playerParty.alreadyThere(location)) {
+                location.status = LocationStatus.visited;
+            }
+
+            var pinpoint = new Pinpoint(this, location);
+            pinpoint.events.on('travel', (fight) => {
+                this.travelTo(pinpoint, fight);
             });
-        }
+
+            this._pinpoints.push(pinpoint);
+        });
     }
 
     displayParty() {
-        // appearance of the party from the sea
-        this._ambientMusic = this.sound.add('ambient-arrival', { volume: Settings.sound.sfxVolume });
-        this._ambientMusic.play('', { loop: true });
+        if (!this._options.playerParty.activeLocation) {
+            // appearance of the party from the sea
+            this._ambientMusic = this.sound.add('ambient-arrival', { volume: Settings.sound.sfxVolume });
+            this._ambientMusic.play('', { loop: true });
 
-        var firstLocation = this._pinpoints[0];
-        var party = this.physics.add.sprite(firstLocation.location.x - 500, firstLocation.location.y - 200, 'party');
-        party.setAlpha(0);
-        this.cameras.main.startFollow(party, false, 0.5, 0.5);
+            var firstLocation = this._pinpoints[0];
+            var party = this.physics.add.sprite(firstLocation.location.x - 500, firstLocation.location.y - 200, 'party');
+            party.setAlpha(0);
+            this.cameras.main.startFollow(party, false, 0.5, 0.5);
 
-        // for (var i = 1; i < 10; i++) {
-        //     //this.time.delayedCall(500, () => {
-        //         this.cameras.main.flash();
-        //     //}, null, this);
-        // }
+            this.add.tween({
+                targets: [party],
+                ease: 'Linear',
+                duration: 1600,
+                x: firstLocation.location.x,
+                y: firstLocation.location.y,
+                alpha: 1,
+                onComplete: () => {
+                    // the party has come to the lighthouse
+                    this.cameras.main.stopFollow();
 
-        this.add.tween({
-            targets: [ party ],
-            ease: 'Linear',
-            duration: 1600,
-            x: firstLocation.location.x,
-            y: firstLocation.location.y,
-            alpha: 1,
-            onComplete: () => {
-                // the party has come to the lighthouse
-                this.cameras.main.stopFollow();
+                    this.time.delayedCall(500, () => {
+                        this.cameras.main.flash();
+                    }, null, this);
 
-                this.time.delayedCall(500, () => {
-                    this.cameras.main.flash();
-                }, null, this);
+                    this.add.tween({
+                        targets: [party],
+                        ease: 'Sine.easeInOut',
+                        duration: 700,
+                        scaleX: '-=.15',
+                        scaleY: '-=.15',
+                        angle: '-=10',
+                        yoyo: true,
+                        repeat: Infinity
+                    });
 
-                this.add.tween({
-                    targets: [ party ],
-                    ease: 'Sine.easeInOut',
-                    duration: 700,
-                    scaleX: '-=.15',
-                    scaleY: '-=.15',
-                    angle: '-=10',
-                    yoyo: true,
-                    repeat: Infinity
-                });
-        
-                if (this._uiCamera) {
-                    this._uiCamera.ignore(party);
+                    if (this._uiCamera) {
+                        this._uiCamera.ignore(party);
+                    }
+
+                    this._party = party;
+                    this.setPinpoint(firstLocation);
                 }
-        
-                this._party = party;
-        
-                this.setPinpoint(firstLocation);
-              }
-        });
+            });
+        } else {
+            var location = this._options.playerParty.activeLocation;
+            var party = this.physics.add.sprite(location.x, location.y, 'party');
+
+            this.add.tween({
+                targets: [party],
+                ease: 'Sine.easeInOut',
+                duration: 700,
+                scaleX: '-=.15',
+                scaleY: '-=.15',
+                angle: '-=10',
+                yoyo: true,
+                repeat: Infinity
+            });
+
+            this.cameras.main.startFollow(party, false, 0.5, 0.5);
+            this.cameras.main.stopFollow();
+
+            this._party = party;
+
+            var pinpoint = this._pinpoints.find(p => p.location.name === location.name);
+            this.setPinpoint(pinpoint);
+        }
     }
 
     travelTo(pinpoint: Pinpoint, fight: boolean) {
@@ -237,14 +240,13 @@ export class MapScene extends Phaser.Scene {
 
                     if (fight) {
 
-                        this.setPinpoint(pinpoint);
-                        return;
-
                         var enemies = [];
                         pinpoint.location.enemies.forEach(e => {
                             enemies.push(Assets.monsters[e]);
                         });
             
+                        this._options.playerParty.startFight(pinpoint.location);
+
                         var options = new BattleSceneOptions();
                         options.terrain = TerrainType[pinpoint.location.terrain];
                         options.playerParty = this._options.playerParty;
@@ -265,7 +267,7 @@ export class MapScene extends Phaser.Scene {
     setPinpoint(pinpoint: Pinpoint) {
 
         pinpoint.location.status = LocationStatus.visited;
-        
+
         this._pinpoints.forEach(p => p.deactivate());
 
         pinpoint.location.connectsTo.forEach(l => {

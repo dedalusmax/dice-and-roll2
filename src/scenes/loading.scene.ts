@@ -107,13 +107,9 @@ export class LoadingScene extends Phaser.Scene {
                 // SOUND EFFECTS:
 
                 // ambient music
-                if (options.terrain === 'beach') {
-                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
-                } else if (options.terrain === 'dirt') {
-                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
-                } else if (options.terrain === 'siege') {
-                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
-                }
+                this.load.audio('battle_beach', 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
+                this.load.audio('battle_hills', 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
+                this.load.audio('battle_forest', 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
 
                 // round
                 this.load.audio('gong', 'assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3');

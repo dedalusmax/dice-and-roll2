@@ -49,26 +49,35 @@
             "name": "shipwreck",
             "title": "Shipwreck",
             "description": "blablabla",
-            "type": "camp",
+            "type": "encounter",
             "terrain": "beach",
             "x": 1002,
             "y": 2148,
             "connectsTo": [
                 "cliffside_keep",
                 "sirens_cove"
+            ],
+            "enemies": [
+                "seabound_sailor",
+                "seabound_sailor",
+                "seabound_captain"
             ]
         },
         {
             "name": "sirens_cove",
             "title": "Siren's cove",
             "description": "blablabla",
-            "type": "camp",
+            "type": "encounter",
             "terrain": "beach",
             "x": 983,
             "y": 2259,
             "connectsTo": [
                 "cliffside_keep",
                 "screaming_grotto"
+            ],
+            "enemies": [
+                "siren",
+                "siren"    
             ]
         },
         {
@@ -81,6 +90,12 @@
             "y": 2443,
             "connectsTo": [
                 "cliffside_keep"
+            ],
+            "enemies": [
+                "siren",
+                "seabound_sailor",
+                "seabound_captain",
+                "siren"    
             ]
         },
         {

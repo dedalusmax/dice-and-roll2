@@ -93,13 +93,14 @@ export class NewGameScene extends Phaser.Scene {
         var startGame = TextualService.createTextButton(this, 'Start game', this.cameras.main.width - 100, 30, START_GAME_STYLE, a => {
                 if (this._selectedCharacters.length === 3) {
                     
-                    var options = new MapSceneOptions();
-                    options.worldMap = false;
                     var party = new Party();
                     this._selectedCharacters.forEach(character => { 
                         var player = this._characters.find(c => c.name === character);
                         party.addPlayer(player);
                     });
+
+                    var options = new MapSceneOptions();
+                    options.worldMap = false;
                     options.playerParty = party;
                     
                     SceneService.run(this, new MapScene(), false, options);

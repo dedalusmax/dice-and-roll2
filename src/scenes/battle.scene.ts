@@ -9,10 +9,9 @@ import { Card } from "../models/card";
 import { Moves } from "../models/moves";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Mana } from "../models/mana";
-import { BattleSceneOptions } from "./scene-options";
+import { BattleSceneOptions, MapSceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
-import { VictoryScene } from "./victory.scene";
-import { DefeatScene } from "./defeat.scene";
+import { MapScene } from "./map.scene";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -192,7 +191,16 @@ export class BattleScene extends Phaser.Scene {
 
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
             this.time.delayedCall(1000, () => {
-                SceneService.run(this, (numInEnemyTeam === 0) ? new VictoryScene() : new DefeatScene());
+                // SceneService.run(this, (numInEnemyTeam === 0) ? new VictoryScene() : new DefeatScene());
+
+                this._options.playerParty.doneFighting();
+                
+                var options = new MapSceneOptions();
+                options.worldMap = false;
+                options.playerParty = this._options.playerParty;
+                
+                SceneService.run(this, new MapScene(), false, options);
+
             }, null, this);
         }
     };
