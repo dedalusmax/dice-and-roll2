@@ -11,7 +11,6 @@ import { Special, TargetType, ExecutionType, EffectType } from "../models/specia
 import { Mana } from "../models/mana";
 import { BattleSceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
-import { MainMenuScene } from "./main-menu.scene";
 import { VictoryScene } from "./victory.scene";
 import { DefeatScene } from "./defeat.scene";
 
