@@ -36,7 +36,8 @@ export class MainMenuScene extends Phaser.Scene {
         logo.setScale(0.12);
         logo.setOrigin(1, 1.4);
 
-        this._paper = this.add.sprite(this.cameras.main.width * 0.7, this.cameras.main.height * 0.5, 'paper');
+        this._paper = this.add.sprite(this.cameras.main.width / 2 + 200, this.cameras.main.height / 2, 'paper');
+        this._paper.setOrigin(0.5);
         this._paper.setScale(0.5, 0.7);
 
         // build up main menu
@@ -49,14 +50,7 @@ export class MainMenuScene extends Phaser.Scene {
         } 
     }
 
-    setImage(area, image) {
-        var asset = this.add.sprite(area.x, area.y, image);
-        var ratio = Math.min(area.width / asset.width, area.height / asset.height);
-        asset.setScale(ratio, ratio);
-        return asset;
-    };
-
-    createMainMenu() {
+    private createMainMenu() {
         if (this._activeMenu) {
             this._activeMenu.toggleVisible();
         }
@@ -77,11 +71,32 @@ export class MainMenuScene extends Phaser.Scene {
         this._activeMenu = menu;
     };
 
-    openWorldMap() {
+    private createMenuItem(text, position, style, action?) {
+        style = style || Styles.menu.menu_button_pressed;
+
+        var x = this._paper.x;
+        var y = this._paper.y - this._paper.displayHeight / 2 + 60 + position * 60;
+        var item = this.add.text(x, y, text, style);
+        item.setOrigin(0.5);
+
+        item.setInteractive();
+
+        item.on('pointerdown', e => {
+            this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
+            if (action) {
+                item.setStyle(Styles.menu.menu_button_pressed);
+                action.call();
+            }
+        });
+
+        return item;
+    };
+    
+    private openWorldMap() {
         this.scene.start('LoadingScene', { loadScene: 'MapScene', worldMap: true, playerParty: null });
     }
 
-    createSkirmishMenu() {
+    private createSkirmishMenu() {
 
         var party = new Party();
         // beef them with all specials
@@ -134,21 +149,26 @@ export class MainMenuScene extends Phaser.Scene {
         }
     };
 
-    createSettingsMenu() {
+    private createSettingsMenu() {
         if (this._activeMenu) {
             this._activeMenu.toggleVisible();
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game settings:', 0.2, Styles.menu.header));
+        var position = 1;
+        menu.add(this.createMenuItem('Game settings:', position, Styles.menu.header));
 
-        menu.add(this.createMenuItem('Music volume', 1, Styles.menu.submenu));
+        position += 0.8;
+        menu.add(this.createMenuItem('Music volume', position, Styles.menu.submenu));
 
-        var musicLevel = this.createMenuItem('', 1.8, Styles.menu.volume);
+        position += 0.8;
+        var musicLevel = this.createMenuItem('', position, Styles.menu.volume);
         musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
         menu.add(musicLevel);
 
-        var lessMusic = ArrowsService.createArrow(this, musicLevel.x - musicLevel.width - 10, musicLevel.y + 5, ArrowOrientation.left, () => {
+        var ARROW_OFFSET = 60;
+
+        var lessMusic = ArrowsService.createArrow(this, musicLevel.x - ARROW_OFFSET, musicLevel.y + 5, ArrowOrientation.left, () => {
             if (Settings.sound.musicVolume > 0) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume - 0.1) * 10) / 10;
                 musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
@@ -162,7 +182,7 @@ export class MainMenuScene extends Phaser.Scene {
         });
         menu.add(lessMusic);
 
-        var moreMusic = ArrowsService.createArrow(this, musicLevel.x + musicLevel.width + 10, musicLevel.y + 5, ArrowOrientation.right, () => {
+        var moreMusic = ArrowsService.createArrow(this, musicLevel.x + ARROW_OFFSET, musicLevel.y + 5, ArrowOrientation.right, () => {
             if (Settings.sound.musicVolume < 1) {
                 Settings.sound.musicVolume = Math.round((Settings.sound.musicVolume + 0.1) * 10) / 10;
                 musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
@@ -176,13 +196,15 @@ export class MainMenuScene extends Phaser.Scene {
         }, true);
         menu.add(moreMusic);
 
-        menu.add(this.createMenuItem('Sound FX volume', 3, Styles.menu.submenu));
+        position += 0.8;
+        menu.add(this.createMenuItem('Sound FX volume', position, Styles.menu.submenu));
 
-        var sfxLevel = this.createMenuItem('', 3.8, Styles.menu.volume);
+        position += 0.8;
+        var sfxLevel = this.createMenuItem('', position, Styles.menu.volume);
         sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
         menu.add(sfxLevel);
 
-        var lessSfx = ArrowsService.createArrow(this, sfxLevel.x - sfxLevel.width - 10, sfxLevel.y + 5, ArrowOrientation.left, () => {
+        var lessSfx = ArrowsService.createArrow(this, sfxLevel.x - ARROW_OFFSET, sfxLevel.y + 5, ArrowOrientation.left, () => {
             if (Settings.sound.sfxVolume > 0) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume - 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
@@ -195,7 +217,7 @@ export class MainMenuScene extends Phaser.Scene {
         });
         menu.add(lessSfx);
 
-        var moreSfx = ArrowsService.createArrow(this, sfxLevel.x + sfxLevel.width + 10, sfxLevel.y + 5, ArrowOrientation.right, () => {
+        var moreSfx = ArrowsService.createArrow(this, sfxLevel.x + ARROW_OFFSET, sfxLevel.y + 5, ArrowOrientation.right, () => {
             if (Settings.sound.sfxVolume < 1) {
                 Settings.sound.sfxVolume = Math.round((Settings.sound.sfxVolume + 0.1) * 10) / 10;
                 sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
@@ -208,12 +230,13 @@ export class MainMenuScene extends Phaser.Scene {
         }, true);
         menu.add(moreSfx);
 
-        menu.add(this.createMenuItem('Back', 5.4, Styles.text.backButton, this.createMainMenu.bind(this)));
+        position += 1.6;
+        menu.add(this.createMenuItem('Back', position, Styles.text.backButton, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     };
 
-    createCreditsMenu() {
+    private createCreditsMenu() {
         if (this._activeMenu) {
             this._activeMenu.toggleVisible();
         }
@@ -233,32 +256,11 @@ export class MainMenuScene extends Phaser.Scene {
         this._activeMenu = menu;
     }
 
-    createMenuItem(text, position, style, action?) {
-        style = style || Styles.menu.menu_button_pressed;
-
-        var x = this._paper.x;
-        var y = 50 + position * 60;
-        var item = this.add.text(x, y, text, style);
-        item.setOrigin(0.5, 0.5);
-
-        item.setInteractive();
-
-        item.on('pointerdown', e => {
-            this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
-            if (action) {
-                item.setStyle(Styles.menu.menu_button_pressed);
-                action.call();
-            }
-        });
-
-        return item;
-    };
-
-    newGame() {
+    private newGame() {
         this.scene.start('LoadingScene', { loadScene: 'NewGameScene', persistMusic: true });
     };
 
-    openBestiary() {
+    private openBestiary() {
         this.scene.start('LoadingScene', { loadScene: 'BestiaryScene', persistMusic: true });
     };
 }
