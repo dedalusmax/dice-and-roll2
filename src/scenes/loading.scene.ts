@@ -3,11 +3,20 @@ import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
 import { FONT_FAMILY, FONT_FAMILY_BLOCK } from '../models/styles';
 import { ArrowsService } from '../services/arrows.service';
+import { Party } from '../models/party';
+import { Enemy } from '../models/enemy';
+
+export class LoadingSceneOptions {
+    persistMusic: boolean;
+    terrain: string;
+    playerParty: Party;
+    enemyParty: Array<Enemy>;
+}
 
 export class LoadingScene extends Phaser.Scene {
 
     private _loadScene: string;
-    private _options: any;
+    private _options: LoadingSceneOptions;
 
     private _loadingFinished: boolean;
     private _music: Phaser.Sound.BaseSound;

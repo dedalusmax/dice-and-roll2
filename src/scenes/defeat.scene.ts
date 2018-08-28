@@ -5,16 +5,13 @@ import { Settings } from "../models/settings";
 
 export class DefeatScene extends Phaser.Scene {
 
-    private _options: any;
-
     constructor() {
         super({
             key: "DefeatScene"
         });
     }
 
-    init(data): void {
-        this._options = data;
+    init(): void {
     }
 
     create() {

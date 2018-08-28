@@ -1,15 +1,20 @@
 import { TextualService } from "../services/textual.service";
-import { Styles, FONT_FAMILY } from "../models/styles";
+import { Styles } from "../models/styles";
 import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
-import { LocationStatus, TerrainType, LocationType } from "../models/location";
+import { LocationStatus, TerrainType } from "../models/location";
 import { Assets } from "../models/assets";
 import { Party } from "../models/party";
 import { Settings } from "../models/settings";
 
+export class MapSceneOptions {
+    worldMap: boolean;
+    playerParty: Party;
+}
+
 export class MapScene extends Phaser.Scene {
 
-    private _options: any;
+    private _options: MapSceneOptions;
     private _ambientMusic: Phaser.Sound.BaseSound;
 
     private _controls: Phaser.Cameras.Controls.SmoothedKeyControl;
@@ -127,8 +132,6 @@ export class MapScene extends Phaser.Scene {
         // quit battle button (visible only in skirmish mode)
         if (this._options.worldMap) {
             var exit = TextualService.createTextButton(this, 'Exit', 80, 20, Styles.battle.backButton, a => {
-                var options = this._options;
-                options.loadScene = 'MainMenuScene';
                 this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
             });
             if (this._minimap) {

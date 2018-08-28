@@ -17,6 +17,8 @@ export class MainMenuScene extends Phaser.Scene {
         });
     }
 
+    // no init, since no scene parameters passed
+
     create(): void {
         this.cameras.main.fadeIn(1000);
 

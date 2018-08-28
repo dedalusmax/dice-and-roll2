@@ -9,10 +9,20 @@ import { Card } from "../models/card";
 import { Moves } from "../models/moves";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Mana } from "../models/mana";
+import { Party } from "../models/party";
+
+export class BattleSceneOptions {
+    loadScene: string;
+    skirmish: boolean;
+    terrain: string;
+    playerParty: Party;
+    enemyParty: Array<any>;
+    enemyMana: number;
+}
 
 export class BattleScene extends Phaser.Scene {
 
-    private _options: any;
+    private _options: BattleSceneOptions;
     private _canvas: HTMLCanvasElement;
     private _music: Phaser.Sound.BaseSound;
     

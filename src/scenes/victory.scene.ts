@@ -3,9 +3,15 @@ import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
 import { Settings } from "../models/settings";
 
+export class VictorySceneOptions {
+    loadScene: string;
+    skirmish: boolean;
+    worldMap: boolean;
+}
+
 export class VictoryScene extends Phaser.Scene {
 
-    private _options: any;
+    private _options: VictorySceneOptions;
 
     constructor() {
         super({

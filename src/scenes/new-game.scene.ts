@@ -25,7 +25,6 @@ const TITLE_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
 
 export class NewGameScene extends Phaser.Scene {
 
-    private _options: any;
     private _characters: Array<Player>;
     private _activeCharacter: number;
     private _selectedCharacters: Array<string>;
@@ -57,8 +56,9 @@ export class NewGameScene extends Phaser.Scene {
         });
     }
 
-    init(data): void {
-        this._options = data;
+    // no init, since no scene parameters passed
+
+    init(): void {
         this._characters = [];
         this._activeCharacter = 0;
         this._selectedCharacters = [];

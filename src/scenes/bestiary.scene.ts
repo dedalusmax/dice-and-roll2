@@ -6,6 +6,8 @@ export class BestiaryScene extends Phaser.Scene {
         });
     }
 
+    // no init, since no scene parameters passed
+    
     create(): void {
     }
 }

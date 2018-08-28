@@ -10,6 +10,8 @@ export class BootScene extends Phaser.Scene {
         });
     }
 
+    // no init, since no scene parameters passed
+
     preload(): void {        
         this._loadingFinished = false;
 
