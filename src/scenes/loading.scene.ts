@@ -3,19 +3,11 @@ import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
 import { FONT_FAMILY, FONT_FAMILY_BLOCK } from '../models/styles';
 import { ArrowsService } from '../services/arrows.service';
-import { Party } from '../models/party';
-import { Enemy } from '../models/enemy';
-
-export class LoadingSceneOptions {
-    persistMusic: boolean;
-    terrain: string;
-    playerParty: Party;
-    enemyParty: Array<Enemy>;
-}
+import { LoadingSceneOptions, BattleSceneOptions } from './scene-options';
+import { SceneService } from '../services/scene.service';
 
 export class LoadingScene extends Phaser.Scene {
 
-    private _loadScene: string;
     private _options: LoadingSceneOptions;
 
     private _loadingFinished: boolean;
@@ -29,7 +21,6 @@ export class LoadingScene extends Phaser.Scene {
     }
 
     init(data): void {
-        this._loadScene = data.loadScene;
         this._options = data;
     }
 
@@ -54,7 +45,7 @@ export class LoadingScene extends Phaser.Scene {
 
         this.setProgress();
 
-        switch (this._loadScene) {
+        switch (this._options.loadScene) {
             case 'MainMenuScene':
                 if (this.textures.exists('menu')) {
                     this._loadingFinished = true;
@@ -76,21 +67,24 @@ export class LoadingScene extends Phaser.Scene {
                     this._loadingFinished = true;
                     break;
                 }
+
+                var options = this._options.sceneOptions as BattleSceneOptions;
+
                 // GRAPHICS:
 
                 // background screen
-                this.load.image('battle_' + this._options.terrain, 'assets/screens/terrain-' + this._options.terrain + '.png');
+                this.load.image('battle_' + options.terrain, 'assets/screens/terrain-' + options.terrain + '.png');
                 
                 // mana bottles
                 this.load.image('mana-bottle', 'assets/common/mana-bottle.png');
 
                 // load characters in party
-                this._options.playerParty.members.forEach(character => {
+                options.playerParty.members.forEach(character => {
                     this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
                     this.load.image('characters/' + character.name + '-head', 'assets/characters/' + character.name + '-head-s.png');
                 });
                 // load monsters in battle
-                this._options.enemyParty.forEach(monster => {
+                options.enemyParty.forEach(monster => {
                     this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
                     this.load.image('monsters/' + monster.name + '-head', 'assets/monsters/' + monster.name + '-head.png');
                 });
@@ -113,12 +107,12 @@ export class LoadingScene extends Phaser.Scene {
                 // SOUND EFFECTS:
 
                 // ambient music
-                if (this._options.terrain === 'beach') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
-                } else if (this._options.terrain === 'dirt') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
-                } else if (this._options.terrain === 'siege') {
-                    this.load.audio('battle_' + this._options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
+                if (options.terrain === 'beach') {
+                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
+                } else if (options.terrain === 'dirt') {
+                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
+                } else if (options.terrain === 'siege') {
+                    this.load.audio('battle_' + options.terrain, 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
                 }
 
                 // round
@@ -254,9 +248,7 @@ export class LoadingScene extends Phaser.Scene {
         // check if the loading is over and prepare transition (with some sound loading sync)
         if (this._loadingFinished) {
             this._loadingText.setText('Loading complete');
-            //this.time.delayedCall(2000, () => {
-                this.scene.start(this._loadScene, this._options);
-            //}, null, this);
+                SceneService.runLoadedScene(this, this._options);
         }
     }
 

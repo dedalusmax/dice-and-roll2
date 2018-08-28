@@ -9,16 +9,11 @@ import { Card } from "../models/card";
 import { Moves } from "../models/moves";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Mana } from "../models/mana";
-import { Party } from "../models/party";
-
-export class BattleSceneOptions {
-    loadScene: string;
-    skirmish: boolean;
-    terrain: string;
-    playerParty: Party;
-    enemyParty: Array<any>;
-    enemyMana: number;
-}
+import { BattleSceneOptions } from "./scene-options";
+import { SceneService } from "../services/scene.service";
+import { MainMenuScene } from "./main-menu.scene";
+import { VictoryScene } from "./victory.scene";
+import { DefeatScene } from "./defeat.scene";
 
 export class BattleScene extends Phaser.Scene {
 
@@ -69,9 +64,7 @@ export class BattleScene extends Phaser.Scene {
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {
             TextualService.createTextButton(this, 'Quit battle', 80, 20, Styles.battle.backButton, a => {
-                var options = this._options;
-                options.loadScene = 'MainMenuScene';
-                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                SceneService.backToMenu(this);
             });
         }
         
@@ -200,8 +193,7 @@ export class BattleScene extends Phaser.Scene {
 
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
             this.time.delayedCall(1000, () => {
-                this._options.loadScene = (numInEnemyTeam === 0) ? 'VictoryScene' : 'DefeatScene';
-                this.scene.start('LoadingScene', this._options);
+                SceneService.run(this, (numInEnemyTeam === 0) ? new VictoryScene() : new DefeatScene());
             }, null, this);
         }
     };

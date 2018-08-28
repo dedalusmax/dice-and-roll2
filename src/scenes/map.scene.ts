@@ -6,11 +6,9 @@ import { LocationStatus, TerrainType } from "../models/location";
 import { Assets } from "../models/assets";
 import { Party } from "../models/party";
 import { Settings } from "../models/settings";
-
-export class MapSceneOptions {
-    worldMap: boolean;
-    playerParty: Party;
-}
+import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
+import { SceneService } from "../services/scene.service";
+import { BattleScene } from "./battle.scene";
 
 export class MapScene extends Phaser.Scene {
 
@@ -132,7 +130,7 @@ export class MapScene extends Phaser.Scene {
         // quit battle button (visible only in skirmish mode)
         if (this._options.worldMap) {
             var exit = TextualService.createTextButton(this, 'Exit', 80, 20, Styles.battle.backButton, a => {
-                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                SceneService.backToMenu(this);
             });
             if (this._minimap) {
                 this._minimap.ignore(exit);
@@ -247,11 +245,13 @@ export class MapScene extends Phaser.Scene {
                             enemies.push(Assets.monsters[e]);
                         });
             
-                        this.scene.start('LoadingScene', { loadScene: 'BattleScene', terrain: TerrainType[pinpoint.location.terrain],
-                        playerParty: this._options.playerParty,
-                        enemyParty: enemies, enemyMana: 100
-                    });
-            
+                        var options = new BattleSceneOptions();
+                        options.terrain = TerrainType[pinpoint.location.terrain];
+                        options.playerParty = this._options.playerParty;
+                        options.enemyParty = enemies;
+                        options.enemyMana = 100;
+
+                        SceneService.run(this, new BattleScene(), false, options);
                     } else {
                         this.setPinpoint(pinpoint);
                     }

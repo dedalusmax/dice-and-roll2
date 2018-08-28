@@ -4,6 +4,12 @@ import { Assets } from "../models/assets";
 import { Styles } from "../models/styles";
 import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 import { Party } from "../models/party";
+import { SceneService } from "../services/scene.service";
+import { MapScene } from "./map.scene";
+import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
+import { BattleScene } from "./battle.scene";
+import { NewGameScene } from "./new-game.scene";
+import { BestiaryScene } from "./bestiary.scene";
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -93,7 +99,9 @@ export class MainMenuScene extends Phaser.Scene {
     };
     
     private openWorldMap() {
-        this.scene.start('LoadingScene', { loadScene: 'MapScene', worldMap: true, playerParty: null });
+        var options = new MapSceneOptions();
+        options.worldMap = true;
+        SceneService.run(this, new MapScene(), false, options);
     }
 
     private createSkirmishMenu() {
@@ -107,12 +115,13 @@ export class MainMenuScene extends Phaser.Scene {
         party.add(p2);
         party.add(p3);
 
-        this.scene.start('LoadingScene', { loadScene: 'BattleScene', persistMusic: false,
-            terrain: 'beach', skirmish: true, 
-            playerParty: party, //, Assets.characters.musketeer, Assets.characters.assasin, Assets.characters.illusionist ],
-            enemyParty: [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ], 
-            enemyMana: 100
-        });
+        var options = new BattleSceneOptions();
+        options.playerParty = party;
+        options.terrain = 'beach';
+        options.skirmish = true;
+        options.enemyParty = [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
+        options.enemyMana = 100;
+        SceneService.run(this, new BattleScene(), false, options);
 
         return;
 
@@ -257,10 +266,10 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     private newGame() {
-        this.scene.start('LoadingScene', { loadScene: 'NewGameScene', persistMusic: true });
+        SceneService.run(this, new NewGameScene(), true);
     };
 
     private openBestiary() {
-        this.scene.start('LoadingScene', { loadScene: 'BestiaryScene', persistMusic: true });
+        SceneService.run(this, new BestiaryScene(), true);
     };
 }

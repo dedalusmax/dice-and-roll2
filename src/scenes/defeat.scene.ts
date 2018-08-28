@@ -2,7 +2,9 @@ import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
 import { Settings } from "../models/settings";
+import { SceneService } from "../services/scene.service";
 
+// TODO: delete this!!
 export class DefeatScene extends Phaser.Scene {
 
     constructor() {
@@ -22,7 +24,7 @@ export class DefeatScene extends Phaser.Scene {
         // quit victory button (visible only in skirmish mode)
         // if (this._options.skirmish) {
             var exit = TextualService.createTextButton(this, 'Exit', 0, 0, Styles.battle.backButton, a => {
-                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                SceneService.backToMenu(this);
             });
         // }
 

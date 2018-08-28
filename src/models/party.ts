@@ -16,4 +16,8 @@ export class Party {
     add(data: any) {
         this.members.push(new Player(data));
     }
+
+    addPlayer(player: Player) {
+        this.members.push(player);
+    }
 }

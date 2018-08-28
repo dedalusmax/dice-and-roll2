@@ -1,4 +1,5 @@
 import { Assets } from "../models/assets";
+import { SceneService } from "../services/scene.service";
 
 export class BootScene extends Phaser.Scene {
   
@@ -39,7 +40,7 @@ export class BootScene extends Phaser.Scene {
 
     update(): void {    
         if (this._loadingFinished) {
-            this.scene.start("LoadingScene", { loadScene: 'MainMenuScene' });
+            SceneService.backToMenu(this);
         }
     }
 }

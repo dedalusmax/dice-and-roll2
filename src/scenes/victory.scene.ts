@@ -2,16 +2,12 @@ import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { Styles } from "../models/styles";
 import { Settings } from "../models/settings";
+import { SceneService } from "../services/scene.service";
 
-export class VictorySceneOptions {
-    loadScene: string;
-    skirmish: boolean;
-    worldMap: boolean;
-}
-
+// TODO: delete this!!
 export class VictoryScene extends Phaser.Scene {
 
-    private _options: VictorySceneOptions;
+    private _options: any;
 
     constructor() {
         super({
@@ -32,12 +28,9 @@ export class VictoryScene extends Phaser.Scene {
         // if (this._options.skirmish) {
             var exit = TextualService.createTextButton(this, 'Exit', 0, 0, Styles.battle.backButton, a => {
                 if (this._options.skirmish) {
-                    this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                    SceneService.backToMenu(this);
                 } else {
-                    this._options.worldMap = false;
-                    this._options.loadScene = 'MapScene';
-                    this.scene.start('LoadingScene', this._options);
-                }
+                    SceneService.backToMenu(this);                }
             });
         // }
 

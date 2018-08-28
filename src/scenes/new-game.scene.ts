@@ -5,6 +5,10 @@ import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 import { TextualService } from "../services/textual.service";
 import { Settings } from "../models/settings";
 import { CombatantType } from "../models/combatant";
+import { Party } from "../models/party";
+import { SceneService } from "../services/scene.service";
+import { MapSceneOptions } from "./scene-options";
+import { MapScene } from "./map.scene";
 
 const TITLE_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
@@ -83,12 +87,22 @@ export class NewGameScene extends Phaser.Scene {
 
         var exit = TextualService.createTextButton(this, 'Back', 50, 30, BACK_STYLE, a => {
                 this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
-                this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                SceneService.backToMenu(this);
             });
 
         var startGame = TextualService.createTextButton(this, 'Start game', this.cameras.main.width - 100, 30, START_GAME_STYLE, a => {
                 if (this._selectedCharacters.length === 3) {
-                    this.scene.start('LoadingScene', { loadScene: 'MainMenuScene' });
+                    
+                    var options = new MapSceneOptions();
+                    options.worldMap = false;
+                    var party = new Party();
+                    this._selectedCharacters.forEach(character => { 
+                        var player = this._characters.find(c => c.name === character);
+                        party.addPlayer(player);
+                    });
+                    options.playerParty = party;
+                    
+                    SceneService.run(this, new MapScene(), false, options);
                 } else {
                     this.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
                 }
