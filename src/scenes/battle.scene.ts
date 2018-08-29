@@ -426,7 +426,7 @@ export class BattleScene extends Phaser.Scene {
                     this.dealDamage(actor, target);
                     break;
                 case EffectType.heal:
-                    this.heal(actor.activeMove.modifier, target);
+                    this.heal(actor.activeMove as Special, target);
                     break;
                 case EffectType.attack:
                 case EffectType.defense:
@@ -523,9 +523,9 @@ export class BattleScene extends Phaser.Scene {
         }
     }
 
-    private heal(modifier: number, target: Combatant) {
+    private heal(special: Special, target: Combatant) {
         // calculate healing: 1d10 + MOD
-        var healing = Phaser.Math.RND.between(1, 10) + modifier;
+        var healing = Phaser.Math.RND.between(1, 10) + special.modifier;
 
         if (target.health + healing > target.baseHealth) {
             target.health = target.baseHealth;
@@ -536,7 +536,7 @@ export class BattleScene extends Phaser.Scene {
         // TODO: add tween for healing target
         
         // play healing sound
-        var sound = this.sound.add('heal');
+        var sound = this.sound.add(special.name);
         sound.play('', { volume: Settings.sound.sfxVolume} );
         
         // display healing and update card

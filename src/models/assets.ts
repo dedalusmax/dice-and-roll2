@@ -6,6 +6,7 @@ export class Assets {
     public static weapons: any;
     public static armors: any;
     public static specials: any;
+    public static sounds: any;
 
     constructor(game: Phaser.Game) {
         Assets.characters = JSON.parse(game.cache.text.get('characters'));
@@ -14,5 +15,6 @@ export class Assets {
         Assets.weapons = JSON.parse(game.cache.text.get('weapons'));
         Assets.armors = JSON.parse(game.cache.text.get('armors'));
         Assets.specials = JSON.parse(game.cache.text.get('specials'));
+        Assets.sounds = JSON.parse(game.cache.text.get('sounds'));
     }
 }

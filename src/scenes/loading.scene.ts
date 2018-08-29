@@ -33,7 +33,6 @@ export class LoadingScene extends Phaser.Scene {
         var logo = ImageService.stretchAndFitImage('logo', this);
         logo.setScale(0.2);
         logo.setOrigin(0.5, 0.8);   
-        // Settings.sound.musicVolume = 0;
         
         if (!this._options.persistMusic) {
             this.sound.stopAll();
@@ -55,18 +54,18 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('menu', 'assets/screens/menu.png');
                 this.load.image('paper', 'assets/common/paper-soften.png');
                 // ambient music
-                this.load.audio('theme', 'assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav');
+                this.load.audio('theme', Assets.sounds.theme);
                 // common assets
-                this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
-                this.load.audio('closed', 'assets/sound/effects/175662__simpsi__cant-open.wav');
+                this.load.audio('click', Assets.sounds.effects.click);
+                this.load.audio('closed', Assets.sounds.effects.closed);
                 ArrowsService.init(this);
                 break;
 
             case 'BattleScene':
-                if (this.textures.exists('mana-bottle')) {
-                    this._loadingFinished = true;
-                    break;
-                }
+                // if (this.textures.exists('mana-bottle')) {
+                //     this._loadingFinished = true;
+                //     break;
+                // }
 
                 var options = this._options.sceneOptions as BattleSceneOptions;
 
@@ -107,67 +106,35 @@ export class LoadingScene extends Phaser.Scene {
                 // SOUND EFFECTS:
 
                 // ambient music
-                this.load.audio('battle_beach', 'assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav');
-                this.load.audio('battle_hills', 'assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav');
-                this.load.audio('battle_forest', 'assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav');
+                this.load.audio('battle_' + options.terrain, Assets.sounds.terrain[options.terrain]);
 
                 // round
-                this.load.audio('gong', 'assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3');
-                // weapons for characters
-                this.load.audio('revolvers', 'assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav');
-                this.load.audio('steam_pipe', 'assets/sound/effects/weapons/175180__yottasounds__clank-002.wav');
-                this.load.audio('explosive_bomb', 'assets/sound/effects/weapons/155235__zangrutz__bomb-small.wav');
-                this.load.audio('musket', 'assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav');
-                this.load.audio('deck_of_cards', 'assets/sound/effects/weapons/434472__dersuperanton__taking-card.wav');
-                this.load.audio('dagger', 'assets/sound/effects/weapons/sword-clang5.wav');
-                // weapons for monsters
-                this.load.audio('claws', 'assets/sound/effects/weapons/435238__aris621__nasty-knife-stab.wav');
-                this.load.audio('cutlass', 'assets/sound/effects/weapons/sword-clang.mp3');
-                this.load.audio('arquebus', 'assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav');
-                this.load.audio('strings', 'assets/sound/effects/weapons/336859__borque__zoiing-display-wires.wav');
-                this.load.audio('sceptre', 'assets/sound/effects/weapons/Swords_Collide.mp3');
-                this.load.audio('poison', 'assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav');
-                // SPECIALS:
-                this.load.audio('heal', 'assets/sound/effects/specials/218561__phr4kture__last-scar-healed.wav');
-                // gunslinger
-                this.load.audio('ricochet', 'assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav');
-                this.load.audio('bullseye', 'assets/sound/effects/specials/351777__kennysvoice__sniper-rifle-m24-sfx-edit.wav');
-                this.load.audio('disarm', 'assets/sound/effects/specials/disarm-with-pistol.wav');
-                this.load.audio('playing_dirty', 'assets/sound/effects/specials/434473__dersuperanton__sand-rattle.wav');
-                // automaton
-                this.load.audio('break_defense', 'assets/sound/effects/specials/423010__ogsoundfx__monster-bite-on-armor.wav');
-                this.load.audio('burning_flames', 'assets/sound/effects/specials/338685__natemarler__flame-thrower-varying-power.wav');
-                this.load.audio('brass_shield', 'assets/sound/effects/specials/352187__inspectorj__snapping-wooden-fence-i.wav');
-                this.load.audio('shake_ground', 'assets/sound/effects/specials/399656__bajko__sfx-thunder-blast.wav');
-                // alchemist
-                this.load.audio('poisonous_gas', 'assets/sound/effects/specials/202629__alexmaxlle__gas.wav');
-                this.load.audio('catalitic_bomb', 'assets/sound/effects/specials/129281__sanitysprime__grende-with-falling-earth.wav');
-                this.load.audio('throw_acid', 'assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav');
-                // musketeer
-                this.load.audio('precision_shot', 'assets/sound/effects/specials/393651__eflexthesounddesigner__sniper-rifle-shot-gun-shot.wav');
-                this.load.audio('bayonet_charge', 'assets/sound/effects/specials/431757__schoggimousse__musket-massacre.wav');
-                this.load.audio('battle_cry', 'assets/sound/effects/specials/165492__chripei__victory-cry-reverb-1.wav');
-                // illusionist
-                this.load.audio('ace', 'assets/sound/effects/specials/121894__stephensaldanha__magical-effect.wav');
-                this.load.audio('blind', 'assets/sound/effects/specials/360830__tec-studios__fantasy-sfx-003.wav');
-                this.load.audio('performance', 'assets/sound/effects/specials/12896__harri__circus-short.wav');
-                this.load.audio('magic_trick', 'assets/sound/effects/specials/179055__robinhood76__04148-a-circus-jump-with-clarinet.wav');
-                // assasin
-                this.load.audio('disappear', 'assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav');
-                this.load.audio('backstab', 'assets/sound/effects/specials/435238__aris621__nasty-knife-stab.wav');
-                this.load.audio('reaping_cut', 'assets/sound/effects/specials/175953__freefire66__dagger-drawn2.wav');
-                this.load.audio('throwing_knives', 'assets/sound/effects/specials/SwooshCombo1.wav');
-                // specials for monsters
-                this.load.audio('enchanting_song', 'assets/sound/effects/specials/345504__cormi__mermaids.wav');
-                this.load.audio('tidal_wave', 'assets/sound/effects/specials/412308__straget__big-waves-hit-land.wav');
+                this.load.audio('gong', Assets.sounds.effects.gong);
+                
+                // weapons and specials for characters
+                options.playerParty.members.forEach(character => {                   
+                    this.load.audio(character.weapon.name, Assets.sounds.weapons[character.weapon.name]);
+                    character.specials.forEach(special => {
+                        this.load.audio(special.name, Assets.sounds.specials[special.name]);
+                    });
+                });
+
+                // weapons and specials for monsters
+                options.enemyParty.forEach(monster => {
+                    this.load.audio(monster.weapon, Assets.sounds.weapons[monster.weapon]);
+                    monster.specials.forEach(special => {
+                        this.load.audio(special, Assets.sounds.specials[special]);
+                    });
+                });
+
                 break;
             case 'VictoryScene':
                 this.load.image('victory', 'assets/screens/menu.png');
-                this.load.audio('victory', 'assets/sound/loops/looperman-l-0173301-0131687-eepic.wav');
+                this.load.audio('victory', Assets.sounds.victory);
                 break;
             case 'DefeatScene':
                 this.load.image('defeat', 'assets/screens/menu.png');
-                this.load.audio('defeat', 'assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav');
+                this.load.audio('defeat', Assets.sounds.defeat);
                 break;
             case 'MapScene':
                 if (this.textures.exists('map')) {
@@ -183,17 +150,17 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
 
-                this.load.audio('ambient-arrival', 'assets/sound/ambient/331435__codeine__storm-at-sea.wav');
-                this.load.audio('ambient-beach', 'assets/sound/ambient/ocean-wave-1.mp3');
-                this.load.audio('ambient-swamp', 'assets/sound/ambient/lake-waves-01.mp3');
-                this.load.audio('ambient-hills', 'assets/sound/ambient/405561__inspectorj__wind-realistic-a.wav');
-                this.load.audio('ambient-forest', 'assets/sound/ambient/385279__bajko__sfx-amb-forest-spring-afternoon-02.wav');
-                this.load.audio('ambient-mine', 'assets/sound/ambient/89448__bkamuse__dangerous-mine-shaft.wav');
-                this.load.audio('ambient-city', 'assets/sound/ambient/75076__nupton__abandoned.wav');
+                this.load.audio('ambient-arrival', Assets.sounds.ambient.arrival);
+                this.load.audio('ambient-beach', Assets.sounds.ambient.beach);
+                this.load.audio('ambient-swamp', Assets.sounds.ambient.swamp);
+                this.load.audio('ambient-hills', Assets.sounds.ambient.hills);
+                this.load.audio('ambient-forest', Assets.sounds.ambient.forest);
+                this.load.audio('ambient-mine', Assets.sounds.ambient.mine);
+                this.load.audio('ambient-city', Assets.sounds.ambient.city);
 
-                this.load.audio('page', 'assets/sound/effects/page-flip-01a.mp3');
-                this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
-                this.load.audio('battle', 'assets/sound/effects/347981__madmanmusic__battle-preparations.wav');
+                this.load.audio('page', Assets.sounds.effects.page);
+                this.load.audio('card', Assets.sounds.effects.card);
+                this.load.audio('battle', Assets.sounds.effects.battle);
                 break;
 
             case 'NewGameScene':
@@ -221,9 +188,9 @@ export class LoadingScene extends Phaser.Scene {
                     this.load.image('specials/' + special, 'assets/specials/' + special + '.png');
                 }
 
-                this.load.audio('click', 'assets/sound/effects/mechanical-clonk-1.mp3');
-                this.load.audio('card', 'assets/sound/effects/434472__dersuperanton__taking-card.wav');
-                this.load.audio('closed', 'assets/sound/effects/175662__simpsi__cant-open.wav');
+                this.load.audio('click', Assets.sounds.effects.click);
+                this.load.audio('closed', Assets.sounds.effects.closed);
+                this.load.audio('card', Assets.sounds.effects.card);
                 break;
 
             case 'BestiaryScene':

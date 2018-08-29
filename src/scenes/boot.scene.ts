@@ -27,6 +27,7 @@ export class BootScene extends Phaser.Scene {
         this.load.text('specials', 'data/specials.json');
         this.load.text('weapons', 'data/weapons.json');
         this.load.text('armors', 'data/armors.json');
+        this.load.text('sounds', 'data/sounds.json');
 
         this.load.on("complete", f => {
             this._loadingFinished = true;
