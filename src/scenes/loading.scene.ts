@@ -6,6 +6,10 @@ import { ArrowsService } from '../services/arrows.service';
 import { LoadingSceneOptions, BattleSceneOptions } from './scene-options';
 import { SceneService } from '../services/scene.service';
 
+const LOADING_TEXT_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#D4915C' },
+    PERCENT_TEXT_STYLE = { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#EDEAD9' },
+    ASSET_TEXT_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#884825' };
+
 export class LoadingScene extends Phaser.Scene {
 
     private _options: LoadingSceneOptions;
@@ -206,51 +210,37 @@ export class LoadingScene extends Phaser.Scene {
         var height = this.cameras.main.height;
 
         var progressBar = this.add.graphics();
+
+        var boxWidth = 320, boxHeight = 50;
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x6D2401, 0.8);
-        var boxWidth = 320;
-        var boxHeight = 50;
         progressBox.fillRect(width / 2 - boxWidth / 2, height - 200 - boxHeight / 2 - 5, boxWidth, boxHeight);
 
-        this._loadingText = this.make.text({
-            x: width / 2,
-            y: height - 250,
-            text: 'Loading...',
-            style: {
-                font: '20px ' + FONT_FAMILY,
-                fill: '#D4915C'
-            }
-        });
-        this._loadingText.setOrigin(0.5, 0.5);
+        this._loadingText = this.make.text({x: width / 2, y: height - 250, text: '', style: LOADING_TEXT_STYLE});
+        this._loadingText.setOrigin(0.5);
 
-        var percentText = this.make.text({
-            x: width / 2,
-            y: height - 205,
-            text: '0%',
-            style: {
-                font: '18px ' + FONT_FAMILY_BLOCK,
-                fill: '#EDEAD9'
-            }
-        });
-        percentText.setOrigin(0.5, 0.5);
+        var percentText = this.make.text({x: width / 2, y: height - 205, text: '', style: PERCENT_TEXT_STYLE});
+        percentText.setOrigin(0.5);
 
-        var assetText = this.make.text({
-            x: width / 2,
-            y: height - 160,
-            text: '',
-            style: {
-                font: '18px ' + FONT_FAMILY,
-                fill: '#884825'
-            }
-        });
-        assetText.setOrigin(0.5, 0.5);
+        var assetText = this.make.text({ x: width / 2, y: height - 160, text: '', style: ASSET_TEXT_STYLE});
+        assetText.setOrigin(0.5);
 
         var barWidth = 300;
         var barHeight = 30;
 
+        progressBar.clear();
+        progressBar.fillStyle(0xffffff, 1);
+
         // pass value to change the loading bar fill
         this.load.on("progress", (value: number) => {
+            if (!this._loadingInitiated) {
+                // initialize progress indicator
+                this._loadingText.setText('Loading...');
+                percentText.setText('0%');
+                progressBox.fillRect(width / 2 - boxWidth / 2, height - 200 - boxHeight / 2 - 5, boxWidth, boxHeight);       
+            }
             this._loadingInitiated = true; // this indicates that there are some freshly added assets to load
+
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(width / 2 - barWidth / 2, height - 200 - barHeight / 2 - 5, barWidth * value, barHeight);
@@ -267,7 +257,7 @@ export class LoadingScene extends Phaser.Scene {
             progressBox.destroy();
             percentText.destroy();
             assetText.destroy();
-            this._loadingText.setText('Loading complete');
+            this._loadingText.setText('Loading completed');
             this._loadingFinished = true;
         });
     }
