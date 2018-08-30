@@ -107,10 +107,13 @@ export class MainMenuScene extends Phaser.Scene {
     private createSkirmishMenu() {
 
         var party = new Party();
+        var p1 = Assets.characters.musketeer; 
+        var p2 = Assets.characters.gunslinger; 
+        var p3 = Assets.characters.illusionist; 
         // beef them with all specials
-        var p1 = Assets.characters.musketeer; p1.specialsUsed = 4;
-        var p2 = Assets.characters.gunslinger; p2.specialsUsed = 4;
-        var p3 = Assets.characters.illusionist; p3.specialsUsed = 4;
+        // p1.specialsUsed = 4;
+        // p2.specialsUsed = 4;
+        // p3.specialsUsed = 4;
         party.add(p1);
         party.add(p2);
         party.add(p3);
@@ -119,7 +122,7 @@ export class MainMenuScene extends Phaser.Scene {
         options.playerParty = party;
         options.terrain = 'beach';
         options.skirmish = true;
-        options.enemyParty = [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
+        options.enemyParty = [ Assets.monsters.seabound_sailor ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
         options.enemyMana = 100;
         SceneService.run(this, new BattleScene(), false, options);
 

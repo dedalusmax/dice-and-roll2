@@ -128,6 +128,8 @@ export class LoadingScene extends Phaser.Scene {
                 break;
             case 'VictoryScene':
                 this.load.image('victory', 'assets/screens/menu.png');
+                this.load.image('paper', 'assets/common/paper-soften.png');
+
                 this.load.audio('victory', Assets.sounds.victory);
                 break;
             case 'DefeatScene':
