@@ -10,7 +10,9 @@ export class LoadingScene extends Phaser.Scene {
 
     private _options: LoadingSceneOptions;
 
-    private _loadingFinished: boolean;
+    private _loadingInitiated: boolean; // this indicates that the loading has been started (some assets are not loaded before)
+    private _loadingFinished: boolean; // this is _loadingInitiated, together with the notion that the loading has finished completely
+
     private _music: Phaser.Sound.BaseSound;
     private _loadingText: Phaser.GameObjects.Text;
 
@@ -25,8 +27,9 @@ export class LoadingScene extends Phaser.Scene {
     }
 
     preload(): void {
+        this._loadingInitiated = false;
         this._loadingFinished = false;
-               
+
         this.cameras.main.fadeIn(500);
         this.cameras.main.setBackgroundColor(0x360602);
 
@@ -46,10 +49,6 @@ export class LoadingScene extends Phaser.Scene {
 
         switch (this._options.loadScene) {
             case 'MainMenuScene':
-                if (this.textures.exists('menu')) {
-                    this._loadingFinished = true;
-                    break;
-                }
                 // background screen
                 this.load.image('menu', 'assets/screens/menu.png');
                 this.load.image('paper', 'assets/common/paper-soften.png');
@@ -62,11 +61,6 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'BattleScene':
-                // if (this.textures.exists('mana-bottle')) {
-                //     this._loadingFinished = true;
-                //     break;
-                // }
-
                 var options = this._options.sceneOptions as BattleSceneOptions;
 
                 // GRAPHICS:
@@ -137,13 +131,8 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('defeat', Assets.sounds.defeat);
                 break;
             case 'MapScene':
-                if (this.textures.exists('map')) {
-                    this._loadingFinished = true;
-                    break;
-                }
-
+                // the big map and small locations assets
                 this.load.image('map', 'assets/screens/world-map-locations.png');
-
                 this.load.spritesheet('locations', 'assets/common/locations-colors-soft.png', { frameWidth: 36, frameHeight: 36 });
                 this.load.spritesheet('location-buttons', 'assets/common/location-buttons.png', { frameWidth: 68, frameHeight: 46 });
                 this.load.image('party', 'assets/common/party-small.png');
@@ -164,11 +153,7 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'NewGameScene':
-                if (this.textures.exists('special-card')) {
-                    this._loadingFinished = true;
-                    break;
-                }
-                
+                // generally usable background ;)
                 this.load.image('paper', 'assets/common/paper-soften.png');
 
                 // load characters in party
@@ -194,7 +179,6 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'BestiaryScene':
-                this._loadingFinished = true;
                 break;
         }
     }
@@ -208,15 +192,16 @@ export class LoadingScene extends Phaser.Scene {
             this.sound.volume += 0.005;
         }
 
-        // check if the loading is over and prepare transition (with some sound loading sync)
-        if (this._loadingFinished) {
-            this._loadingText.setText('Loading complete');
+        this.time.delayedCall(800, () => { // this must be a little bit postponed because of the check whether there are any not cached assets to load!
+            // check if the loading is over or not started at all, and then prepare transition (with some sound loading sync)
+            if (this._loadingFinished || !this._loadingInitiated) {
                 SceneService.runLoadedScene(this, this._options);
-        }
+            }
+        }, null, this);
     }
 
     private setProgress() {
-
+       
         var width = this.cameras.main.width;
         var height = this.cameras.main.height;
 
@@ -265,16 +250,14 @@ export class LoadingScene extends Phaser.Scene {
 
         // pass value to change the loading bar fill
         this.load.on("progress", (value: number) => {
-            // console.log(value);
+            this._loadingInitiated = true; // this indicates that there are some freshly added assets to load
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(width / 2 - barWidth / 2, height - 200 - barHeight / 2 - 5, barWidth * value, barHeight);
             percentText.setText(Math.round(value * 100) + '%');
-            // for (var i = 0; i < 400000000; i++) {}
         });
 
         this.load.on('fileprogress', file => {
-            // console.log(file.src);
             assetText.setText('Loading asset: ' + file.key);
         });
 
@@ -284,6 +267,7 @@ export class LoadingScene extends Phaser.Scene {
             progressBox.destroy();
             percentText.destroy();
             assetText.destroy();
+            this._loadingText.setText('Loading complete');
             this._loadingFinished = true;
         });
     }
