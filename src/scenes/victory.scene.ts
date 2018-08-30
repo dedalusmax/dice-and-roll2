@@ -89,6 +89,7 @@ export class VictoryScene extends Phaser.Scene {
         for (var index in this._options.playerParty.members) {
             var player = this._options.playerParty.members[index];
             player.health = player.baseHealth; // reset health to party members
+            player.effects = []; // clean all effects
             this.displayCard(player, +index, this._options.playerParty.members.length);
         };
 
@@ -169,6 +170,7 @@ export class VictoryScene extends Phaser.Scene {
             let newSpecial = player.definedSpecials[player.specialsUsed];
             this.addNewSpecial(newSpecial, cardPosition).then(() => {
                 player.specialsUsed++;
+                player.specials.push(newSpecial);
                 this._status.setText('Purchased ' + newSpecial.title + ' for ' + player.title);
                 this.backToMap();
             });
