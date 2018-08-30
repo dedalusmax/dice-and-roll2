@@ -24,7 +24,6 @@
                 "cliffside_keep"
             ],
             "enemies": [
-                "seabound_sailor",
                 "seabound_sailor"
             ]
         },
@@ -41,8 +40,7 @@
                 "shipwreck"
             ],
             "enemies": [
-                "seabound_sailor",
-                "seabound_captain"
+                "seabound_sailor"
             ]
         },
         {
@@ -58,9 +56,7 @@
                 "sirens_cove"
             ],
             "enemies": [
-                "seabound_sailor",
-                "seabound_sailor",
-                "seabound_captain"
+                "seabound_sailor"
             ]
         },
         {

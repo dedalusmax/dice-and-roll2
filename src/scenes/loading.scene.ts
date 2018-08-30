@@ -142,6 +142,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('party', 'assets/common/party-small.png');
 
                 this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
+                this.load.image('terrain-hills', 'assets/screens/terrain-beach-small.png');
 
                 this.load.audio('ambient-arrival', Assets.sounds.ambient.arrival);
                 this.load.audio('ambient-beach', Assets.sounds.ambient.beach);
@@ -196,7 +197,7 @@ export class LoadingScene extends Phaser.Scene {
             this.sound.volume += 0.005;
         }
 
-        this.time.delayedCall(800, () => { // this must be a little bit postponed because of the check whether there are any not cached assets to load!
+        this.time.delayedCall(200, () => { // this must be a little bit postponed because of the check whether there are any not cached assets to load!
             // check if the loading is over or not started at all, and then prepare transition (with some sound loading sync)
             if (this._loadingFinished || !this._loadingInitiated) {
                 SceneService.runLoadedScene(this, this._options);

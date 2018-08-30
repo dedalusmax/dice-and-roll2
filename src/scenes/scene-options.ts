@@ -26,3 +26,9 @@ export class MapSceneOptions {
     worldMap: boolean;
     playerParty: Party;
 }
+
+export class VictorySceneOptions {
+    loadScene: string;
+    skirmish: boolean;
+    playerParty: Party;
+}

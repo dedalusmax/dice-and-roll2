@@ -1,7 +1,7 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
-import { Styles } from "../models/styles";
+import { Styles, FONT_FAMILY } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
 import { Enemy } from "../models/enemy";
 import { Profile } from "../models/profile";
@@ -9,9 +9,12 @@ import { Card } from "../models/card";
 import { Moves } from "../models/moves";
 import { Special, TargetType, ExecutionType, EffectType } from "../models/special";
 import { Mana } from "../models/mana";
-import { BattleSceneOptions, MapSceneOptions } from "./scene-options";
+import { BattleSceneOptions, VictorySceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
-import { MapScene } from "./map.scene";
+import { VictoryScene } from "./victory.scene";
+import { DefeatScene } from "./defeat.scene";
+
+const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' };
 
 export class BattleScene extends Phaser.Scene {
 
@@ -128,7 +131,7 @@ export class BattleScene extends Phaser.Scene {
     private startNextTurn() {
         this._turnNumber++;
 
-        var turnText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Turn ' + this._turnNumber, Styles.battle.round);
+        var turnText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Turn ' + this._turnNumber, ROUND_TEXT_STYLE);
         turnText.setOrigin(0.5, 0.5);
         turnText.alpha = 0;
         turnText.setColor('#008888');
@@ -162,7 +165,7 @@ export class BattleScene extends Phaser.Scene {
             }
         }
  
-        var roundText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Round ' + this._roundNumber, Styles.battle.round);
+        var roundText = this.add.text(this._canvas.width / 2, this._canvas.height / 2, 'Round ' + this._roundNumber, ROUND_TEXT_STYLE);
         roundText.setOrigin(0.5, 0.5);
         roundText.alpha = 0;
 
@@ -191,16 +194,19 @@ export class BattleScene extends Phaser.Scene {
 
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
             this.time.delayedCall(1000, () => {
-                // SceneService.run(this, (numInEnemyTeam === 0) ? new VictoryScene() : new DefeatScene());
+                if ((numInEnemyTeam === 0)) { // victory
 
-                this._options.playerParty.doneFighting();
+                    this._options.playerParty.doneFighting();
                 
-                var options = new MapSceneOptions();
-                options.worldMap = false;
-                options.playerParty = this._options.playerParty;
-                
-                SceneService.run(this, new MapScene(), false, options);
+                    var options = new VictorySceneOptions();
+                    options.skirmish = this._options.skirmish;
+                    options.playerParty = this._options.playerParty;
 
+                    SceneService.run(this, new VictoryScene(), false, options);
+
+                } else {
+                    SceneService.run(this, new DefeatScene());
+                }
             }, null, this);
         }
     };
