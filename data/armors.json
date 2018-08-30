@@ -5,6 +5,24 @@
         "desc": "",
         "defense": 1
     },
+    "hardened_coat": {
+        "name": "hardened_coat",
+        "title": "Hardened coat",
+        "desc": "",
+        "defense": 2
+    },
+    "gunslingers_coat": {
+        "name": "gunslingers_coat",
+        "title": "Gunslinger's coat",
+        "desc": "",
+        "defense": 3
+    },
+    "sherrifs_coat": {
+        "name": "sherrifs_coat",
+        "title": "Sherrif's coat",
+        "desc": "",
+        "defense": 4
+    },
     "brass_plating": {
         "name": "brass_plating",
         "title": "Brass plating",

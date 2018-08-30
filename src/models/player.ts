@@ -10,6 +10,7 @@ export class Player extends Combatant {
     story: string;
     armor: Armor;
     
+    definedArmors: Array<Armor>;
     definedWeapons: Array<Weapon>;
     definedSpecials: Array<Special>;
     specialsUsed: number;
@@ -26,6 +27,14 @@ export class Player extends Combatant {
     private setPlayerData(data: any) {
         this.story = data.story;
         this.armor = ArmorService.get(data.armor);
+        
+        // add all defined weapons for the character
+        this.definedArmors = [];
+        if (data.armors && data.armors.length > 0) {
+            data.armors.forEach(a => {
+                this.definedArmors.push(ArmorService.get(a));
+            });
+        }
         
         // add all defined weapons for the character
         this.definedWeapons = [];

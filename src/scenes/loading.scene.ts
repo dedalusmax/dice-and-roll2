@@ -126,16 +126,6 @@ export class LoadingScene extends Phaser.Scene {
                 });
 
                 break;
-            case 'VictoryScene':
-                this.load.image('victory', 'assets/screens/menu.png');
-                this.load.image('paper', 'assets/common/paper-soften.png');
-
-                this.load.audio('victory', Assets.sounds.victory);
-                break;
-            case 'DefeatScene':
-                this.load.image('defeat', 'assets/screens/menu.png');
-                this.load.audio('defeat', Assets.sounds.defeat);
-                break;
             case 'MapScene':
                 // the big map and small locations assets
                 this.load.image('map', 'assets/screens/world-map-locations.png');
@@ -186,6 +176,18 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'BestiaryScene':
+                break;
+
+            case 'VictoryScene':
+                this.load.image('victory', 'assets/screens/menu.png');
+                this.load.image('defense', 'assets/common/defense.png');
+
+                this.load.audio('victory', Assets.sounds.victory);
+                this.load.audio('click', Assets.sounds.effects.click);
+                break;
+            case 'DefeatScene':
+                this.load.image('defeat', 'assets/screens/menu.png');
+                this.load.audio('defeat', Assets.sounds.defeat);
                 break;
         }
     }

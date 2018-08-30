@@ -8,7 +8,7 @@
         "defense": 5,
         "attack": 10,
         "type": "MELEE",
-        "armors": [ "leather_coat" ],
+        "armors": [ "leather_coat", "hardened_coat", "gunslingers_coat", "sherrifs_coat" ],
         "weapons": [ "revolvers", "hunting_revolvers", "sherrifs_sidearm", "peacemaker" ],
         "specials": [ "ricochet", "bullseye", "disarm", "playing_dirty" ],
         "armor": "leather_coat",

@@ -195,8 +195,6 @@ export class BattleScene extends Phaser.Scene {
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
             this.time.delayedCall(1000, () => {
                 if ((numInEnemyTeam === 0)) { // victory
-
-                    this._options.playerParty.doneFighting();
                 
                     var options = new VictorySceneOptions();
                     options.skirmish = this._options.skirmish;
