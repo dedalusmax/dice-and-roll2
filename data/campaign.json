@@ -72,8 +72,7 @@
                 "screaming_grotto"
             ],
             "enemies": [
-                "siren",
-                "siren"    
+                "siren"  
             ]
         },
         {
@@ -88,9 +87,6 @@
                 "cliffside_keep"
             ],
             "enemies": [
-                "siren",
-                "seabound_sailor",
-                "seabound_captain",
                 "siren"    
             ]
         },
@@ -106,6 +102,9 @@
                 "cliffside_keep",
                 "redwood_crossing",
                 "delmond_keep"
+            ],
+            "enemies": [
+                "seabound_sailor"    
             ]
         },
         {
@@ -120,6 +119,9 @@
                 "scorched_windmill",
                 "thorn_gate",
                 "fallen_tower"
+            ],
+            "enemies": [
+                "seabound_sailor"    
             ]
         },
         {
@@ -132,6 +134,9 @@
             "y": 1480,
             "connectsTo": [
                 "hunters_lodge"
+            ],
+            "enemies": [
+                "seabound_sailor"    
             ]
         },
         {
@@ -144,6 +149,9 @@
             "y": 1313,
             "connectsTo": [
                 "redwood_crossing"
+            ],
+            "enemies": [
+                "seabound_sailor"    
             ]
         },
         {

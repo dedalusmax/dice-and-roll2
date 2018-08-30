@@ -111,7 +111,7 @@ export class LoadingScene extends Phaser.Scene {
                 
                 // weapons and specials for characters
                 options.playerParty.members.forEach(character => {                   
-                    this.load.audio(character.weapon.name, Assets.sounds.weapons[character.weapon.name]);
+                    this.load.audio(character.name, Assets.sounds.weapons[character.name]);
                     character.specials.forEach(special => {
                         this.load.audio(special.name, Assets.sounds.specials[special.name]);
                     });

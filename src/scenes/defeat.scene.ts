@@ -34,7 +34,7 @@ export class DefeatScene extends Phaser.Scene {
             music.play('', { loop: true });    
         }
 
-        var resultText = this.add.text(this._canvas.width / 2, 50, 'Victory', TITLE_TEXT_STYLE);
+        var resultText = this.add.text(this._canvas.width / 2, 50, 'You have been defeated', TITLE_TEXT_STYLE);
         resultText.setOrigin(0.5, 0.5);      
 
         TextualService.createTextButton(this, 'Close', this._canvas.width / 2, this._canvas.height - 100, BACK_STYLE, a => {

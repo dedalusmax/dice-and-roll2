@@ -13,6 +13,7 @@ import { BattleSceneOptions, VictorySceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
 import { VictoryScene } from "./victory.scene";
 import { DefeatScene } from "./defeat.scene";
+import { Weapon } from "../models/weapon";
 
 const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' };
 
@@ -514,8 +515,11 @@ export class BattleScene extends Phaser.Scene {
         // TODO: add tween for hitting target
 
         // play damage sound
-        var sound = this.sound.add(actor.activeMove.name, { volume: Settings.sound.sfxVolume });
-        sound.play();
+        if (actor.activeMove instanceof Weapon && actor.side === CombatantSide.Friend) {
+            this.sound.add(actor.name, { volume: Settings.sound.sfxVolume }).play();
+        } else {
+            this.sound.add(actor.activeMove.name, { volume: Settings.sound.sfxVolume }).play();
+        }
 
         // add tween for displaying damage
         // update target's card

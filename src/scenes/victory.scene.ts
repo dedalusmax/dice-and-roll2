@@ -46,7 +46,7 @@ export class VictoryScene extends Phaser.Scene {
             music.play('', { loop: true });    
         }
 
-        this.add.text(this.cameras.main.width / 2, 50, 'Victory', TITLE_TEXT_STYLE)
+        this.add.text(this.cameras.main.width / 2, 50, 'You are victorious', TITLE_TEXT_STYLE)
             .setOrigin(0.5, 0.5);      
 
         TextualService.createTextButton(this, 'Close', this.cameras.main.width / 2, this.cameras.main.height - 100, BACK_STYLE, a => {
@@ -88,6 +88,7 @@ export class VictoryScene extends Phaser.Scene {
 
         for (var index in this._options.playerParty.members) {
             var player = this._options.playerParty.members[index];
+            player.health = player.baseHealth; // reset health to party members
             this.displayCard(player, +index, this._options.playerParty.members.length);
         };
 
@@ -191,7 +192,6 @@ export class VictoryScene extends Phaser.Scene {
 
             sprite.setInteractive();
             sprite.on('pointerdown', e => {
-                this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
                 resolve();
             });
 
@@ -242,7 +242,7 @@ export class VictoryScene extends Phaser.Scene {
 
             sprite.setInteractive();
             sprite.on('pointerdown', e => {
-                this.backToMap();
+                resolve();
             });
 
             this.add.text(position.x, position.y + 60, special.title, WEAPON_NAME_STYLE).setOrigin(0.5);
@@ -257,7 +257,7 @@ export class VictoryScene extends Phaser.Scene {
         this.time.delayedCall(1000, () => {
 
             this._options.playerParty.doneFighting();
-            
+
             let options = new MapSceneOptions();
             options.playerParty = this._options.playerParty;
             options.worldMap = false;

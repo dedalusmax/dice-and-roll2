@@ -17,12 +17,12 @@
         "battle": "assets/sound/effects/347981__madmanmusic__battle-preparations.wav"
     },
     "weapons": {
-        "revolvers": "assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav",
-        "steam_pipe": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav",
-        "explosive_bomb": "assets/sound/effects/weapons/155235__zangrutz__bomb-small.wav",
-        "musket": "assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav",
-        "deck_of_cards": "assets/sound/effects/weapons/434472__dersuperanton__taking-card.wav",
-        "dagger": "assets/sound/effects/weapons/sword-clang5.wav",
+        "gunslinger": "assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav",
+        "automaton": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav",
+        "alchemist": "assets/sound/effects/weapons/155235__zangrutz__bomb-small.wav",
+        "musketeer": "assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav",
+        "illusionist": "assets/sound/effects/weapons/434472__dersuperanton__taking-card.wav",
+        "assasin": "assets/sound/effects/weapons/sword-clang5.wav",
         "claws": "assets/sound/effects/weapons/435238__aris621__nasty-knife-stab.wav",
         "cutlass": "assets/sound/effects/weapons/sword-clang.mp3",
         "arquebus": "assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav",

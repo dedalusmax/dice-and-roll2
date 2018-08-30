@@ -9,19 +9,19 @@
         "name": "hardened_coat",
         "title": "Hardened coat",
         "desc": "",
-        "defense": 2
+        "defense": 3
     },
     "gunslingers_coat": {
         "name": "gunslingers_coat",
         "title": "Gunslinger's coat",
         "desc": "",
-        "defense": 3
+        "defense": 5
     },
     "sherrifs_coat": {
         "name": "sherrifs_coat",
         "title": "Sherrif's coat",
         "desc": "",
-        "defense": 4
+        "defense": 7
     },
     "brass_plating": {
         "name": "brass_plating",
@@ -29,11 +29,47 @@
         "desc": "",
         "defense": 2
     },
+    "iron_plating": {
+        "name": "iron_plating",
+        "title": "Iron plating",
+        "desc": "",
+        "defense": 5
+    },
+    "steel_plating": {
+        "name": "steel_plating",
+        "title": "Steel plating",
+        "desc": "",
+        "defense": 7
+    },
+    "master_forged": {
+        "name": "master_forged",
+        "title": "Master forged armor",
+        "desc": "",
+        "defense": 10
+    },
     "regiment_uniform": {
         "name": "regiment_uniform",
         "title": "Regiment uniform",
         "desc": "",
         "defense": 1
+    },
+    "grenadier_uniform": {
+        "name": "grenadier_uniform",
+        "title": "Grenadier uniform",
+        "desc": "",
+        "defense": 3
+    },
+    "red_coat_uniform": {
+        "name": "red_coat_uniform",
+        "title": "Red coat uniform",
+        "desc": "",
+        "defense": 5
+    },
+    "marksman_uniform": {
+        "name": "marksman_uniform",
+        "title": "Marksman uniform",
+        "desc": "",
+        "defense": 7
     },
     "lab_coat": {
         "name": "lab_coat",
@@ -41,16 +77,70 @@
         "desc": "",
         "defense": 0
     },
-    "cloak": {
-        "name": "cloak",
-        "title": "Cloak",
+    "alchemist_apron": {
+        "name": "alchemist_apron",
+        "title": "Alchemist apron",
+        "desc": "",
+        "defense": 2
+    },
+    "scientist_coat": {
+        "name": "scientist_coat",
+        "title": "Scientist coat",
+        "desc": "",
+        "defense": 4
+    },
+    "wizard_robe": {
+        "name": "wizard_robe",
+        "title": "Wizard robe",
+        "desc": "",
+        "defense": 6
+    },
+    "wooven_robe": {
+        "name": "wooven_robe",
+        "title": "Wooven robe",
         "desc": "",
         "defense": 0
     },
+    "rogue_cloak": {
+        "name": "rogue_cloak",
+        "title": "Rogue cloak",
+        "desc": "",
+        "defense": 2
+    },
+    "assasin_cloak": {
+        "name": "assasin_cloak",
+        "title": "Assasin's cloak",
+        "desc": "",
+        "defense": 4
+    },
+    "hitman_cloak": {
+        "name": "hitman_cloak",
+        "title": "Hitman cloak",
+        "desc": "",
+        "defense": 6
+    },
     "magician_suit": {
         "name": "magician_suit",
-        "title": "Magician suit",
+        "title": "Magician's suit",
         "desc": "",
-        "defense": 1
+        "defense": 0
+    },
+    "gambler_suit": {
+        "name": "gambler_suit",
+        "title": "Gambler's suit",
+        "desc": "",
+        "defense": 2
+    },
+    "illusionist_suit": {
+        "name": "illusionist_suit",
+        "title": "Illusionist's suit",
+        "desc": "",
+        "defense": 4
+    },
+    "trickster_suit": {
+        "name": "trickster_suit",
+        "title": "Trickster's suit",
+        "desc": "",
+        "defense": 6
     }
 }
