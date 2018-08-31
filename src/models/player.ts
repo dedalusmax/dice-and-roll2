@@ -7,7 +7,6 @@ import { WeaponService } from "../services/weapon.service";
 
 export class Player extends Combatant {
     
-    story: string;
     armor: Armor;
     
     definedArmors: Array<Armor>;
@@ -25,7 +24,6 @@ export class Player extends Combatant {
     }
 
     private setPlayerData(data: any) {
-        this.story = data.story;
         this.armor = ArmorService.get(data.armor);
         
         // add all defined weapons for the character
