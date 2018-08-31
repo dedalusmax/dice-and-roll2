@@ -18,7 +18,7 @@ export class BootScene extends Phaser.Scene {
 
         // Load assets required for preLoader (progress bar, etc.)
         this.load.image('logo', 'assets/screens/logo.png');
-        this.load.audio('interlude', 'assets/sound/loops/looperman-l-1483711-0130311-hilltop-full.wav');
+        this.load.audio('interlude', 'assets/sound/loops/looperman-l-1483711-0130311-hilltop-full.wav'); // this is the only sound asset that has to be fixed (since there are not assets yet)
 
         // load data in JSON files
         this.load.text('characters', 'data/characters.json');

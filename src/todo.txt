@@ -1,0 +1,12 @@
+This is the list of things left open, after the initial (core) game has been developed.
+
+TODO LIST:
+--------------------------------
+- saving game via local storage to browser
+- end scene (after the whole game is finished)
+- refactor styles
+- fix position and scaling issues on different monitor displays
+- optimize loading of assets in loading scene
+- replace all var with lets in code
+- uniform handling of background music and images
+- support different types of locations (end, camp) not just battle

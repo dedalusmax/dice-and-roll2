@@ -54,6 +54,7 @@ export class LoadingScene extends Phaser.Scene {
 
         switch (this._options.loadScene) {
             case 'MainMenuScene':
+
                 // background screen
                 this.load.image('menu', 'assets/screens/menu.png');
                 this.load.image('paper', 'assets/common/paper-soften.png');
@@ -66,6 +67,7 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'BattleScene':
+
                 var options = this._options.sceneOptions as BattleSceneOptions;
 
                 // GRAPHICS:
@@ -127,7 +129,9 @@ export class LoadingScene extends Phaser.Scene {
                 });
 
                 break;
+
             case 'MapScene':
+
                 // the big map and small locations assets
                 this.load.image('map', 'assets/screens/world-map-locations.png');
                 this.load.spritesheet('locations', 'assets/common/locations-colors-soft.png', { frameWidth: 36, frameHeight: 36 });
@@ -151,6 +155,7 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'NewGameScene':
+
                 // generally usable background ;)
                 this.load.image('paper', 'assets/common/paper-soften.png');
 
@@ -192,19 +197,27 @@ export class LoadingScene extends Phaser.Scene {
             
                 // load special card
                 this.load.image('special-card', 'assets/common/special-card-s.png');
-
                 break;
 
             case 'VictoryScene':
+
                 this.load.image('victory', 'assets/screens/menu.png');
                 this.load.image('defense', 'assets/common/defense.png');
 
                 this.load.audio('victory', Assets.sounds.victory);
                 this.load.audio('click', Assets.sounds.effects.click);
                 break;
+
             case 'DefeatScene':
+
                 this.load.image('defeat', 'assets/screens/menu.png');
                 this.load.audio('defeat', Assets.sounds.defeat);
+                break;
+
+            case 'EndScene':
+
+                this.load.audio('end', Assets.sounds.end);
+                this.load.audio('click', Assets.sounds.effects.click);
                 break;
         }
     }

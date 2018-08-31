@@ -3,6 +3,7 @@
     "theme": "assets/sound/loops/looperman-l-0626891-0132037-tuesday.wav",
     "victory": "assets/sound/loops/looperman-l-0173301-0131687-eepic.wav",
     "defeat": "assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav",
+    "end": "assets/sound/loops/looperman-l-0173301-0131687-eepic.wav",
     "terrain": {
         "beach": "assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav",
         "hills": "assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav",
