@@ -251,29 +251,32 @@ export class BattleScene extends Phaser.Scene {
 
         // decrease duration of his effects for one
         combatant.wearOffEffects();
-                
+
         // check whether the player is stunned
         if (combatant.canAct()) {
-            // activate card
-            combatant.card.select();
-            // show weapon and specials
-            this.displayMoves(combatant);
 
-            // select first move, or automatically select and activate random one, if AI
-            if (combatant.side === CombatantSide.Friend) {
-                combatant.selectMove(0);
-                this.activateTargets(combatant);
-            } else {
-                // perform action in delay because of AI
-                this.time.delayedCall(2000, () => {
-                    var actor = combatant as Enemy;
-                    actor.activateRandomMove(this._manaPool[0].amount);
-                    this.pickRandomTarget(actor);
-                }, null, this);
-            }
-            
             // show profile
             this._activeProfile = new Profile(this, combatant);
+            this._activeProfile.display().then(() => {
+
+                // activate card
+                combatant.card.select();
+                // show weapon and specials
+                this.displayMoves(combatant);
+
+                // select first move, or automatically select and activate random one, if AI
+                if (combatant.side === CombatantSide.Friend) {
+                    combatant.selectMove(0);
+                    this.activateTargets(combatant);
+                } else {
+                    // perform action in delay because of AI
+                    this.time.delayedCall(2000, () => {
+                        var actor = combatant as Enemy;
+                        actor.activateRandomMove(this._manaPool[0].amount);
+                        this.pickRandomTarget(actor);
+                    }, null, this);
+                }
+            });
         } else {
             this._isTurnInProgress = false;
         }

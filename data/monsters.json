@@ -14,7 +14,7 @@
         "name": "seabound_sailor",
         "title": "Seabound sailor",
         "description": "erewewre wrewre wr ewrewre wr wes.",
-        "health": 1,
+        "health": 60,
         "defense": 3,
         "attack": 15,
         "type": "MELEE",

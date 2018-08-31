@@ -23,35 +23,36 @@ export class Profile {
             x: 100,
             alpha: 1
         });
-
-        this.displayPaper();
     }
 
-    private displayPaper() {
-        this._objects = [];
+    public display(): Promise<any> {
 
-        var backgroundPaper = this._scene.add.sprite(this._scene.cameras.main.width, this._scene.cameras.main.height / 2 + 50, 'paper');
-        backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height);
-        backgroundPaper.setScale(0.35, 0.35);
-        backgroundPaper.setAlpha(0);
+        return new Promise((resolve, reject) => {
+            this._objects = [];
 
-        this._scene.add.tween({
-            targets: [backgroundPaper],
-            ease: 'Quad.easeIn',
-            delay: 200,
-            duration: 600,
-            x: backgroundPaper.x - 320,
-            alpha: 1,
-            onComplete: () => {
-                this._paper = backgroundPaper;
-                this.displayStats();
-            }
+            var backgroundPaper = this._scene.add.sprite(this._scene.cameras.main.width, this._scene.cameras.main.height / 2 + 50, 'paper');
+            backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height);
+            backgroundPaper.setScale(0.35, 0.35);
+            backgroundPaper.setAlpha(0);
+
+            this._scene.add.tween({
+                targets: [backgroundPaper],
+                ease: 'Quad.easeIn',
+                delay: 200,
+                duration: 600,
+                x: backgroundPaper.x - 320,
+                alpha: 1,
+                onComplete: () => {
+                    this._paper = backgroundPaper;
+                    this.displayStats(resolve);
+                }
+            });
+
+            this._objects.push(backgroundPaper);
         });
-
-        this._objects.push(backgroundPaper);
     }
 
-    private displayStats() {
+    private displayStats(resolve: any) {
 
         var startX = this._paper.x + 30;
         var startY = this._paper.y - 180;
@@ -162,6 +163,8 @@ export class Profile {
 
             effectTop += 15;
         });
+
+        resolve();
     }
 
     public remove() {
