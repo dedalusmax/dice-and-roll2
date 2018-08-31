@@ -38,9 +38,6 @@ export class BestiaryScene extends Phaser.Scene {
     private _weaponTitle: Phaser.GameObjects.Text;
     private _weaponDescription: Phaser.GameObjects.Text;
     private _specials: Phaser.GameObjects.Group;
-    private _specialsTitles: Phaser.GameObjects.Group;
-    private _specialsDescriptions: Phaser.GameObjects.Group;
-    private _manaCosts: Phaser.GameObjects.Group;
 
     constructor() {
         super({
@@ -138,31 +135,7 @@ export class BestiaryScene extends Phaser.Scene {
 
         // specials
 
-        var specials = this.add.text(startX + 360, 230, 'Specials', MOVE_STYLE).setShadow(1, 1, '#000', 2, false, true);
-
-        this._specials = this.add.group();
-        for (var i = 0; i < 4; i++) { // TODO: this is now fixed to 4 specials per character!
-            var card = this.add.sprite(specials.x + 30, specials.y + 60 + 90 * i, 'special-card');
-            card.setScale(0.8);
-            var special = this.add.sprite(specials.x + 30, specials.y + 60 + 90 * i, null);
-            special.setScale(0.8);
-            this._specials.add(special, true);
-        }
-        this._specialsTitles = this.add.group();
-        for (var i = 0; i < 4; i++) { // TODO: this is now fixed to 4 specials per character!
-            var spText = this.add.text(specials.x + 80, specials.y + 25 + 90 * i, '', SPECIAL_NAME_STYLE);
-            this._specialsTitles.add(spText, true);
-        }
-        this._specialsDescriptions = this.add.group();
-        for (var i = 0; i < 4; i++) { // TODO: this is now fixed to 4 specials per character!
-            var spDesc = this.add.text(specials.x + 80, specials.y + 45 + 90 * i, '', SPECIAL_DESCRIPTION_STYLE);
-            this._specialsDescriptions.add(spDesc, true);
-        }
-        this._manaCosts = this.add.group();
-        for (var i = 0; i < 4; i++) { // TODO: this is now fixed to 4 specials per character!
-            var manaCost = this.add.text(specials.x + 80, specials.y + 75 + 90 * i, '', MANA_COST_STYLE);
-            this._manaCosts.add(manaCost, true);
-        }
+        this.add.text(startX + 360, 230, 'Specials', MOVE_STYLE).setShadow(1, 1, '#000', 2, false, true);
     }
 
     private displayCharacter() {
@@ -173,7 +146,7 @@ export class BestiaryScene extends Phaser.Scene {
         this._image.setAlpha(0);
         
         this._title.setText(monster.title);        
-        // this._story.setText(monster.story);
+        this._story.setText(monster.story);
         this._description.setText(monster.description);
         this._type.setText(CombatantType[monster.type]);
         this._health.setText(monster.health.toString());
@@ -184,18 +157,26 @@ export class BestiaryScene extends Phaser.Scene {
         this._weaponTitle.setText( monster.weapon.title);
         this._weaponDescription.setText( monster.weapon.description + ' (' +  monster.weapon.modifier + ' Att)');
 
-        for (var i = 0; i < monster.specials.length; i++) { // TODO: this is now fixed to 4 specials per character!
-            var special = this._specials.getChildren()[i] as Phaser.GameObjects.Sprite;
-            special.setTexture('specials/' + monster.specials[i].name);
+        let startX = this.cameras.main.width / 2 + 240, startY = 230;
 
-            var spTitle = this._specialsTitles.getChildren()[i] as Phaser.GameObjects.Text;
-            spTitle.setText(monster.specials[i].title);
+        if (this._specials) {
+            this._specials.clear(true);
+        }
+        this._specials = this.add.group();
+        if (monster.specials.length > 0) {
+            for (var i = 0; i < monster.specials.length; i++) {
 
-            var spDesc = this._specialsDescriptions.getChildren()[i] as Phaser.GameObjects.Text;
-            spDesc.setText(monster.specials[i].description);
-
-            var manaCost = this._manaCosts.getChildren()[i] as Phaser.GameObjects.Text;
-            manaCost.setText('Mana cost: ' + monster.specials[i].manaCost);
+                var card = this.add.sprite(startX + 30, startY + 60 + 90 * i, 'special-card').setScale(0.8);
+                var special = this.add.sprite(startX + 30, startY + 60 + 90 * i, 'specials/' + monster.specials[i].name).setScale(0.8);
+                var spText = this.add.text(startX + 80, startY + 25 + 90 * i, monster.specials[i].title, SPECIAL_NAME_STYLE);
+                var spDesc = this.add.text(startX + 80, startY + 45 + 90 * i, monster.specials[i].description, SPECIAL_DESCRIPTION_STYLE);
+                var manaCost = this.add.text(startX + 80, startY + 75 + 90 * i, 'Mana cost: ' + monster.specials[i].manaCost, MANA_COST_STYLE);
+    
+                this._specials.addMultiple([card, special, spText, spDesc, manaCost], true);
+            }   
+        } else {
+            var no = this.add.text(startX, startY + 25, 'This monster does not use any special moves', SPECIAL_DESCRIPTION_STYLE);   
+            this._specials.add(no, true);
         }
 
         this.add.tween({

@@ -22,6 +22,7 @@ export abstract class Combatant {
     // from the JSON files:
     name: string;
     title: string;
+    story: string;
     description: string;
     baseHealth: number; 
     baseDefense: number;
@@ -56,6 +57,7 @@ export abstract class Combatant {
     private setCommonData(data: any) {
         this.name = data.name;
         this.title = data.title;
+        this.story = data.story;
         this.description = data.description;
         this.baseHealth = data.health;
         this.baseAttack = data.attack;
