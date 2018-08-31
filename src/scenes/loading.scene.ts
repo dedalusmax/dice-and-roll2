@@ -5,6 +5,7 @@ import { FONT_FAMILY, FONT_FAMILY_BLOCK } from '../models/styles';
 import { ArrowsService } from '../services/arrows.service';
 import { LoadingSceneOptions, BattleSceneOptions } from './scene-options';
 import { SceneService } from '../services/scene.service';
+import { Enemy } from '../models/enemy';
 
 const LOADING_TEXT_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#D4915C' },
     PERCENT_TEXT_STYLE = { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#EDEAD9' },
@@ -176,6 +177,22 @@ export class LoadingScene extends Phaser.Scene {
                 break;
 
             case 'BestiaryScene':
+
+                // load all monsters in the game
+                for (var item in Assets.monsters) {
+                    var monster = new Enemy(Assets.monsters[item]);
+                    this.load.image('monsters/' + monster.name, 'assets/monsters/' + monster.name + '.png');
+                    // load only their weapons (one per monster)
+                    this.load.image('weapons/' + monster.weapon.name, 'assets/weapons/' + monster.weapon.name + '.png');
+                    // load their specials
+                    monster.specials.forEach(special => {
+                        this.load.image('specials/' + special.name, 'assets/specials/' + special.name + '.png');                       
+                    });
+                };
+            
+                // load special card
+                this.load.image('special-card', 'assets/common/special-card-s.png');
+
                 break;
 
             case 'VictoryScene':

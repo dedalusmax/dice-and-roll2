@@ -85,29 +85,29 @@ export class NewGameScene extends Phaser.Scene {
             repeat: Infinity
         });
 
-        var exit = TextualService.createTextButton(this, 'Back', 50, 30, BACK_STYLE, a => {
-                this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
-                SceneService.backToMenu(this);
-            });
+        TextualService.createTextButton(this, 'Back', 50, 30, BACK_STYLE, a => {
+            this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
+            SceneService.backToMenu(this);
+        });
 
-        var startGame = TextualService.createTextButton(this, 'Start game', this.cameras.main.width - 100, 30, START_GAME_STYLE, a => {
-                if (this._selectedCharacters.length === 3) {
-                    
-                    var party = new Party();
-                    this._selectedCharacters.forEach(character => { 
-                        var player = this._characters.find(c => c.name === character);
-                        party.addPlayer(player);
-                    });
+        TextualService.createTextButton(this, 'Start game', this.cameras.main.width - 100, 30, START_GAME_STYLE, a => {
+            if (this._selectedCharacters.length === 3) {
 
-                    var options = new MapSceneOptions();
-                    options.worldMap = false;
-                    options.playerParty = party;
-                    
-                    SceneService.run(this, new MapScene(), false, options);
-                } else {
-                    this.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
-                }
-            });
+                var party = new Party();
+                this._selectedCharacters.forEach(character => {
+                    var player = this._characters.find(c => c.name === character);
+                    party.addPlayer(player);
+                });
+
+                var options = new MapSceneOptions();
+                options.worldMap = false;
+                options.playerParty = party;
+
+                SceneService.run(this, new MapScene(), false, options);
+            } else {
+                this.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
+            }
+        });
         
         for (var character in Assets.characters) {
             this._characters.push(new Player(Assets.characters[character]));
