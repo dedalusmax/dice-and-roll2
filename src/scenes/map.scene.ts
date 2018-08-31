@@ -283,5 +283,8 @@ export class MapScene extends Phaser.Scene {
             this._ambientMusic = this.sound.add('ambient-' + TerrainType[pinpoint.location.terrain], { volume: Settings.sound.sfxVolume });
             this._ambientMusic.play('', { loop: true });
         }
+
+        // store current party stats, along with the locations visited
+        localStorage.setItem('dice-and-roll', JSON.stringify(this._options.playerParty));
     }
 }

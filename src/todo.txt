@@ -4,9 +4,13 @@ TODO LIST:
 --------------------------------
 - saving game via local storage to browser
 - end scene (after the whole game is finished)
-- refactor styles
+- refactor styles (especially the colors used)
 - fix position and scaling issues on different monitor displays
 - optimize loading of assets in loading scene
 - replace all var with lets in code
 - uniform handling of background music and images
 - support different types of locations (end, camp) not just battle
+- create options for playing skirmish
+- refactor new game and bestiary, since they use similar things
+- add frames into map and mini map
+- add controls to the map scene (exit)

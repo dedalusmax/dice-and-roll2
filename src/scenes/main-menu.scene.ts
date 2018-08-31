@@ -65,9 +65,12 @@ export class MainMenuScene extends Phaser.Scene {
         var position = 1;
 
         menu.add(this.createMenuItem('New Game', position++, Styles.menu.menu_button, this.newGame.bind(this)));
-        // if (this.game.saveData) {
-            // menu.add(this.createMenuItem('Continue', position++, Styles.menu.menu_button)); // TODO: implement this!
-        // }
+
+        var saveGame = localStorage.getItem('dice-and-roll');
+        if (saveGame) {
+            menu.add(this.createMenuItem('Continue', position++, Styles.menu.menu_button, this.continueGame.bind(this))); 
+        }
+
         menu.add(this.createMenuItem('Skirmish', position++, Styles.menu.menu_button, this.createSkirmishMenu.bind(this)));
         menu.add(this.createMenuItem('World Map', position++, Styles.menu.menu_button, this.openWorldMap.bind(this)));
         menu.add(this.createMenuItem('Bestiary', position++, Styles.menu.menu_button, this.openBestiary.bind(this)));
@@ -101,6 +104,16 @@ export class MainMenuScene extends Phaser.Scene {
     private openWorldMap() {
         var options = new MapSceneOptions();
         options.worldMap = true;
+        SceneService.run(this, new MapScene(), false, options);
+    }
+
+    private continueGame() {
+
+        let storedParty = JSON.parse(localStorage.getItem('dice-and-roll'));
+
+        var options = new MapSceneOptions();
+        options.worldMap = false;
+        options.playerParty = storedParty;
         SceneService.run(this, new MapScene(), false, options);
     }
 
