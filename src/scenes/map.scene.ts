@@ -56,7 +56,7 @@ export class MapScene extends Phaser.Scene {
         this.cameras.main.fadeIn(1000);
 
         // check if music is enabled
-        if (Settings.sound.musicVolume > 0) {
+        if (Settings.sound.musicVolume > 0 && !this._options.worldMap) {
             // introductory fade in of theme music
             this.sound.stopAll();
         }
@@ -146,7 +146,9 @@ export class MapScene extends Phaser.Scene {
         this._controls.update(delta);
 
         if (this.cameras.main && this._minimap) {
-            this._minimap.scrollX = Phaser.Math.Clamp(this.cameras.main.scrollX + 500, 500, this._map.width);
+            // this._minimap.scrollX = Phaser.Math.Clamp(this.cameras.main.scrollX + 500, 500, this._map.width);
+            // this._minimap.scrollY = Phaser.Math.Clamp(this.cameras.main.scrollY - 200, 500, this._map.height);    
+            this._minimap.scrollX = Phaser.Math.Clamp(this.cameras.main.scrollX + 300, 700, this._map.width);
             this._minimap.scrollY = Phaser.Math.Clamp(this.cameras.main.scrollY - 200, 500, this._map.height);    
         }
     }
@@ -272,7 +274,7 @@ export class MapScene extends Phaser.Scene {
                         options.enemyParty = enemies;
                         options.enemyMana = 100;
                         options.reward = pinpoint.location.reward;
-                        
+
                         SceneService.run(this, new BattleScene(), false, options);
                     } else {
                         this.setPinpoint(pinpoint);
