@@ -2,6 +2,11 @@ import { Location, LocationStatus, TerrainType } from "../models/location";
 import { FONT_FAMILY } from "./styles";
 import { Settings } from "./settings";
 
+const TITLE_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
+    DESCRIPTION_STYLE =  { font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 400 }},
+    BACK_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' },
+    ACTION_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' };
+
 export class Pinpoint {
 
     private _sprite: Phaser.GameObjects.Sprite;
@@ -101,14 +106,10 @@ export class Pinpoint {
 
         var paper = this._infoObjects[0] as Phaser.GameObjects.Sprite;
 
-        var title = this._scene.add.text(paper.x + 40, paper.y + 40, this.location.title, {
-            font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center'
-        });
+        var title = this._scene.add.text(paper.x + 40, paper.y + 40, this.location.title, TITLE_STYLE);
         title.setOrigin(0, 0);
 
-        var desc = this._scene.add.text(paper.x + 40, paper.y + 80, this.location.description, {
-            font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 400 }
-        });
+        var desc = this._scene.add.text(paper.x + 40, paper.y + 80, this.location.description, DESCRIPTION_STYLE);
         title.setOrigin(0, 0);
 
         var terrain = this._scene.add.sprite(paper.x + 140, paper.y + 150, 'terrain-' + TerrainType[this.location.terrain]);
@@ -121,9 +122,7 @@ export class Pinpoint {
             this._scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             this.closeLocationInfo();
         });
-        var backTitle = this._scene.add.text(back.x + 10, back.y + 40, 'Back', {
-            font: '24px ' + FONT_FAMILY, fill: '#581B06'
-        });
+        var backTitle = this._scene.add.text(back.x + 10, back.y + 40, 'Back', BACK_STYLE);
         backTitle.setOrigin(0, 0);
 
         var alreadyVisited = this.location.status == LocationStatus.visited;
@@ -136,9 +135,7 @@ export class Pinpoint {
                 this.events.emit('travel', !alreadyVisited);
             });
         });
-        var actionTitle = this._scene.add.text(action.x, action.y + 40, alreadyVisited ? 'Travel' : 'Fight', {
-            font: '24px ' + FONT_FAMILY, fill: '#581B06'
-        });
+        var actionTitle = this._scene.add.text(action.x, action.y + 40, alreadyVisited ? 'Travel' : 'Fight', ACTION_STYLE);
         actionTitle.setOrigin(0, 0);
 
         this._infoObjects.push(title, desc, terrain, back, backTitle, action, actionTitle);

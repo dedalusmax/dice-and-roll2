@@ -1,7 +1,7 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
-import { Styles, FONT_FAMILY } from "../models/styles";
+import { FONT_FAMILY } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";
 import { Enemy } from "../models/enemy";
 import { Profile } from "../models/profile";
@@ -15,7 +15,8 @@ import { VictoryScene } from "./victory.scene";
 import { DefeatScene } from "./defeat.scene";
 import { Weapon } from "../models/weapon";
 
-const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' };
+const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
+    BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class BattleScene extends Phaser.Scene {
 
@@ -65,7 +66,7 @@ export class BattleScene extends Phaser.Scene {
 
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {
-            TextualService.createTextButton(this, 'Quit battle', 80, 20, Styles.battle.backButton, a => {
+            TextualService.createTextButton(this, 'Quit battle', 80, 20, BACK_STYLE, a => {
                 SceneService.backToMenu(this);
             });
         }

@@ -2,6 +2,16 @@ import { Combatant, CombatantSide } from "./combatant";
 import { FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
 import { Player } from "./player";
 
+const TITLE_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06'},
+    DESCRIPTION_STYLE = { font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 250 }},
+    HEALTH_STYLE = { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FF0000' },
+    HP_VALUE_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FFFFFF' },
+    HP_MAX_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FF0000', strokeThickness: 2 },
+    STAT_TITLE_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#FF6A00' },
+    BASE_STAT_STYLE = { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#581B06' },
+    STAT_STYLE = { font: '16px ' + FONT_FAMILY, fill: '#000' },
+    STAT_NAME_STYLE = { font: '16px ' + FONT_FAMILY, fill: '#581B06' };
+
 export class Profile {
 
     private _background: Phaser.GameObjects.Sprite;
@@ -57,19 +67,13 @@ export class Profile {
         var startX = this._paper.x + 30;
         var startY = this._paper.y - 180;
 
-        var title = this._scene.add.text(startX, startY, this._combatant.title, {
-            font: '24px ' + FONT_FAMILY, fill: '#581B06'
-        });
+        var title = this._scene.add.text(startX, startY, this._combatant.title, TITLE_STYLE);
         this._objects.push(title);
 
-        var desc = this._scene.add.text(startX, startY + 25, this._combatant.description, {
-            font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 250 }
-        });
+        var desc = this._scene.add.text(startX, startY + 25, this._combatant.description, DESCRIPTION_STYLE);
         this._objects.push(desc);
 
-        var hpTitle = this._scene.add.text(startX, startY + 70, 'HP', {
-            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#FF0000'
-        });
+        var hpTitle = this._scene.add.text(startX, startY + 70, 'HP', HEALTH_STYLE);
         hpTitle.setShadow(1, 1, '#000', 2, false, true);
         this._objects.push(hpTitle);
 
@@ -88,77 +92,54 @@ export class Profile {
         hpBar.fillRect(boxLeft + 1, boxTop + 1, (boxWidth * healthPercentage) - 1, boxHeight - 1);
         this._objects.push(hpBar);
 
-        var hpValue = this._scene.add.text(boxLeft + 4, boxTop + 2, this._combatant.health.toString(), {
-            font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FFFFFF'
-        });
+        var hpValue = this._scene.add.text(boxLeft + 4, boxTop + 2, this._combatant.health.toString(), HP_VALUE_STYLE);
         this._objects.push(hpValue);
 
-        var hpMax = this._scene.add.text(boxLeft + boxWidth + 4, boxTop + 2, this._combatant.baseHealth.toString(), {
-            font: '16px ' + FONT_FAMILY_BLOCK, fill: '#FF0000', strokeThickness: 2
-        });
+        var hpMax = this._scene.add.text(boxLeft + boxWidth + 4, boxTop + 2, this._combatant.baseHealth.toString(), HP_MAX_STYLE);
         this._objects.push(hpMax);
 
-        var attackTitle = this._scene.add.text(startX, startY + 100, 'Attack:', {
-            font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
-        });
+        var attackTitle = this._scene.add.text(startX, startY + 100, 'Attack:', STAT_TITLE_STYLE);
         attackTitle.setShadow(1, 1, '#000', 2, false, true);
         this._objects.push(attackTitle);
 
-        var baseAttack = this._scene.add.text(attackTitle.x + attackTitle.width + 5, attackTitle.y, this._combatant.baseAttack.toString(), {
-            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#581B06'
-        });
+        var baseAttack = this._scene.add.text(attackTitle.x + attackTitle.width + 5, attackTitle.y, this._combatant.baseAttack.toString(), BASE_STAT_STYLE);
         this._objects.push(baseAttack);
 
-        var weaponTitle = this._scene.add.text(attackTitle.x + 20, baseAttack.y + 20, 'Weapon:', {
-            font: '16px ' + FONT_FAMILY, fill: '#000'
-        });
+        var weaponTitle = this._scene.add.text(attackTitle.x + 20, baseAttack.y + 20, 'Weapon:', STAT_STYLE);
         this._objects.push(weaponTitle);
 
         var weaponName = this._scene.add.text(weaponTitle.x + weaponTitle.width + 5, weaponTitle.y, 
-            this._combatant.weapon.title + ' (+' + this._combatant.weapon.modifier + ')', 
-            { font: '16px ' + FONT_FAMILY, fill: '#581B06' });
+            this._combatant.weapon.title + ' (+' + this._combatant.weapon.modifier + ')', STAT_NAME_STYLE);
         this._objects.push(weaponName);
 
-        var defenseTitle = this._scene.add.text(startX, startY + 140, 'Defense:', {
-            font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
-        });
+        var defenseTitle = this._scene.add.text(startX, startY + 140, 'Defense:', STAT_TITLE_STYLE);
         defenseTitle.setShadow(1, 1, '#000', 2, false, true);
         this._objects.push(defenseTitle);
 
-        var baseDefense = this._scene.add.text(defenseTitle.x + defenseTitle.width + 5, defenseTitle.y, this._combatant.baseDefense.toString(), {
-            font: '18px ' + FONT_FAMILY_BLOCK, fill: '#581B06'
-        });
+        var baseDefense = this._scene.add.text(defenseTitle.x + defenseTitle.width + 5, defenseTitle.y, this._combatant.baseDefense.toString(), BASE_STAT_STYLE);
         this._objects.push(baseDefense);
 
         if (this._combatant instanceof Player) {
             var player = this._combatant as Player;
-            var armorTitle = this._scene.add.text(defenseTitle.x + 20, baseDefense.y + 20, 'Armor:', {
-                font: '16px ' + FONT_FAMILY, fill: '#000'
-            });
+            var armorTitle = this._scene.add.text(defenseTitle.x + 20, baseDefense.y + 20, 'Armor:', STAT_STYLE);
             this._objects.push(armorTitle);
     
             var armorName = this._scene.add.text(armorTitle.x + armorTitle.width + 5, armorTitle.y, 
-                player.armor.title + ' (+' + player.armor.defense + ')', 
-                { font: '16px ' + FONT_FAMILY, fill: '#581B06' });
+                player.armor.title + ' (+' + player.armor.defense + ')', STAT_NAME_STYLE);
             this._objects.push(armorName);  
         }
 
-        var effectsTitle = this._scene.add.text(startX, startY + 180, 'Current effects:', {
-            font: '18px ' + FONT_FAMILY, fill: '#FF6A00'
-        });
+        var effectsTitle = this._scene.add.text(startX, startY + 180, 'Current effects:', STAT_TITLE_STYLE);
         effectsTitle.setShadow(1, 1, '#000', 2, false, true);
         this._objects.push(effectsTitle);
 
         var effectTop = effectsTitle.y + 20;
         this._combatant.effects.forEach(e => {
-            var effectTitle = this._scene.add.text(effectsTitle.x + 20, effectTop, e.title, {
-                font: '16px ' + FONT_FAMILY, fill: '#000'
-            });
+            var effectTitle = this._scene.add.text(effectsTitle.x + 20, effectTop, e.title, STAT_STYLE);
             this._objects.push(effectTitle);
 
             var effectDuration = this._scene.add.text(effectTitle.x + effectTitle.width + 5, effectTop, 
-                ' (' + e.duration + ' turns)', 
-                { font: '16px ' + FONT_FAMILY, fill: '#581B06' });
+                ' (' + e.duration + ' turns)', STAT_NAME_STYLE);
             this._objects.push(effectDuration);  
 
             effectTop += 15;

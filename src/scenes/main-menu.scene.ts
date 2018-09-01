@@ -1,7 +1,7 @@
 import { Settings } from "../models/settings";
 import { ImageService } from "../services/image.service";
 import { Assets } from "../models/assets";
-import { Styles } from "../models/styles";
+import { FONT_FAMILY, FONT_FAMILY_BLOCK } from "../models/styles";
 import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 import { Party } from "../models/party";
 import { SceneService } from "../services/scene.service";
@@ -12,6 +12,15 @@ import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
 import { SaveGameService } from "../services/save-game.service";
 import { LocationReward } from "../models/location";
+
+const BACK_STYLE = { font: '56px ' + FONT_FAMILY, fill: '#DDDD00', align: 'center', stroke: '#000000', strokeThickness: 2 },
+    HEADER_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#444' },
+    SUBMENU_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 },
+    VOLUME_STYLE = { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#990000', align: 'center' },
+    AUTHOR_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
+    AUTHOR_SMALL_STYLE =  { font: '18px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
+    MENU_STYLE = { font: '48px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
+    MENU_PRESSED = { font: '56px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -66,23 +75,23 @@ export class MainMenuScene extends Phaser.Scene {
 
         var position = 1;
 
-        menu.add(this.createMenuItem('New Game', position++, Styles.menu.menu_button, this.newGame.bind(this)));
+        menu.add(this.createMenuItem('New Game', position++, MENU_STYLE, this.newGame.bind(this)));
 
         if (SaveGameService.isGameSaved()) {
-            menu.add(this.createMenuItem('Continue', position++, Styles.menu.menu_button, this.continueGame.bind(this))); 
+            menu.add(this.createMenuItem('Continue', position++, MENU_STYLE, this.continueGame.bind(this))); 
         }
 
-        menu.add(this.createMenuItem('Skirmish', position++, Styles.menu.menu_button, this.createSkirmishMenu.bind(this)));
-        menu.add(this.createMenuItem('World Map', position++, Styles.menu.menu_button, this.openWorldMap.bind(this)));
-        menu.add(this.createMenuItem('Bestiary', position++, Styles.menu.menu_button, this.openBestiary.bind(this)));
-        menu.add(this.createMenuItem('Settings', position++, Styles.menu.menu_button, this.createSettingsMenu.bind(this)));
-        menu.add(this.createMenuItem('Credits', position++, Styles.menu.menu_button, this.createCreditsMenu.bind(this)));
+        menu.add(this.createMenuItem('Skirmish', position++, MENU_STYLE, this.createSkirmishMenu.bind(this)));
+        menu.add(this.createMenuItem('World Map', position++, MENU_STYLE, this.openWorldMap.bind(this)));
+        menu.add(this.createMenuItem('Bestiary', position++, MENU_STYLE, this.openBestiary.bind(this)));
+        menu.add(this.createMenuItem('Settings', position++, MENU_STYLE, this.createSettingsMenu.bind(this)));
+        menu.add(this.createMenuItem('Credits', position++, MENU_STYLE, this.createCreditsMenu.bind(this)));
 
         this._activeMenu = menu;
     };
 
     private createMenuItem(text, position, style, action?) {
-        style = style || Styles.menu.menu_button_pressed;
+        style = style || MENU_PRESSED;
 
         var x = this._paper.x;
         var y = this._paper.y - this._paper.displayHeight / 2 + 60 + position * 60;
@@ -94,7 +103,7 @@ export class MainMenuScene extends Phaser.Scene {
         item.on('pointerdown', e => {
             this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             if (action) {
-                item.setStyle(Styles.menu.menu_button_pressed);
+                item.setStyle(MENU_PRESSED);
                 action.call();
             }
         });
@@ -166,7 +175,7 @@ export class MainMenuScene extends Phaser.Scene {
 
         // TODO: add battles
 
-        menu.add(this.createMenuItem('Back', 5.2, Styles.text.backButton, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Back', 5.2, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     }
@@ -188,13 +197,13 @@ export class MainMenuScene extends Phaser.Scene {
         var menu = this.add.group();
 
         var position = 1;
-        menu.add(this.createMenuItem('Game settings:', position, Styles.menu.header));
+        menu.add(this.createMenuItem('Game settings:', position, HEADER_STYLE));
 
         position += 0.8;
-        menu.add(this.createMenuItem('Music volume', position, Styles.menu.submenu));
+        menu.add(this.createMenuItem('Music volume', position, SUBMENU_STYLE));
 
         position += 0.8;
-        var musicLevel = this.createMenuItem('', position, Styles.menu.volume);
+        var musicLevel = this.createMenuItem('', position, VOLUME_STYLE);
         musicLevel.setText(this.displayVolume(Settings.sound.musicVolume));
         menu.add(musicLevel);
 
@@ -229,10 +238,10 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(moreMusic);
 
         position += 0.8;
-        menu.add(this.createMenuItem('Sound FX volume', position, Styles.menu.submenu));
+        menu.add(this.createMenuItem('Sound FX volume', position, SUBMENU_STYLE));
 
         position += 0.8;
-        var sfxLevel = this.createMenuItem('', position, Styles.menu.volume);
+        var sfxLevel = this.createMenuItem('', position, VOLUME_STYLE);
         sfxLevel.setText(this.displayVolume(Settings.sound.sfxVolume));
         menu.add(sfxLevel);
 
@@ -263,7 +272,7 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(moreSfx);
 
         position += 1.6;
-        menu.add(this.createMenuItem('Back', position, Styles.text.backButton, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Back', position, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     };
@@ -274,16 +283,16 @@ export class MainMenuScene extends Phaser.Scene {
         }
         var menu = this.add.group();
 
-        menu.add(this.createMenuItem('Game programming:', 1, Styles.menu.header));
-        menu.add(this.createMenuItem('Ratko & Šimun Ćosić', 1.4, Styles.menu.author));
-        menu.add(this.createMenuItem('Game artwork:', 2, Styles.menu.header));
-        menu.add(this.createMenuItem('Klara Ćosić', 2.4, Styles.menu.author));
-        menu.add(this.createMenuItem('Game story:', 3, Styles.menu.header));
-        menu.add(this.createMenuItem('Tvrtko Ćosić', 3.4, Styles.menu.author));
-        menu.add(this.createMenuItem('Special thanks to:', 4, Styles.menu.header));
-        menu.add(this.createMenuItem('Looperman for music tracks', 4.4, Styles.menu.author_small));
-        menu.add(this.createMenuItem('Freesound for sound effects', 4.8, Styles.menu.author_small));
-        menu.add(this.createMenuItem('Back', 6, Styles.text.backButton, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Game programming:', 1, HEADER_STYLE));
+        menu.add(this.createMenuItem('Ratko & Šimun Ćosić', 1.4, AUTHOR_STYLE));
+        menu.add(this.createMenuItem('Game artwork:', 2, HEADER_STYLE));
+        menu.add(this.createMenuItem('Klara Ćosić', 2.4, AUTHOR_STYLE));
+        menu.add(this.createMenuItem('Game story:', 3, HEADER_STYLE));
+        menu.add(this.createMenuItem('Tvrtko Ćosić', 3.4, AUTHOR_STYLE));
+        menu.add(this.createMenuItem('Special thanks to:', 4, HEADER_STYLE));
+        menu.add(this.createMenuItem('Looperman for music tracks', 4.4, AUTHOR_SMALL_STYLE));
+        menu.add(this.createMenuItem('Freesound for sound effects', 4.8, AUTHOR_SMALL_STYLE));
+        menu.add(this.createMenuItem('Back', 6, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     }

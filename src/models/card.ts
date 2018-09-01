@@ -1,5 +1,5 @@
 import { Combatant, CombatantSide } from "./combatant";
-import { Styles, FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
+import { FONT_FAMILY_BLOCK, FONT_FAMILY } from "./styles";
 import { Special, LingeringType, EffectType } from "./special";
 
 const COLOR = {
@@ -10,13 +10,16 @@ const COLOR = {
     GRAY: '#333333'
 };
 
+const HEALTH_STYLE = { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#009900', align: 'center', stroke: '#000000', strokeThickness: 2 },
+    DAMAGE_STYLE = { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#ff0000', align: 'center' },
+    HEALING_STYLE = { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#00FF00', align: 'center' },
+    STUNNED_STYLE = { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FF6A00', align: 'center' },
+    EFFECT_STYLE = { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' },
+    INDICATOR_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#444', align: 'center' };
+
 export class Card {
 
-    private _canvas: HTMLCanvasElement;
-
     private _mainSprite: Phaser.GameObjects.Sprite;
-    private _attackText: Phaser.GameObjects.Text;
-    private _defenseText: Phaser.GameObjects.Text;
     private _image: Phaser.GameObjects.Sprite;
     private _healthIndicator: Phaser.GameObjects.Text;
 
@@ -51,8 +54,6 @@ export class Card {
 
     constructor(private _scene: Phaser.Scene, combatant: Combatant, private _position: Phaser.Geom.Point) {
 
-        this._canvas = _scene.textures.game.canvas;
-
         // the main sprite, the card background
         this._mainSprite = _scene.add.sprite(_position.x, _position.y, 'card');
 
@@ -62,9 +63,8 @@ export class Card {
             this._image = this.addSpriteToCard(0, 0, 'monsters/' + combatant.name + '-head');
         }
 
-        this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString(), 
-        { font: '18px ' + FONT_FAMILY_BLOCK, fill: '#009900', align: 'center', stroke: '#000000', strokeThickness: 2 });
-        this._healthIndicator.setShadow(0, 0, '#FFFFFF', 4, true, true);
+        this._healthIndicator = this.addTextToCard(0, 60, combatant.health.toString(), HEALTH_STYLE)
+            .setShadow(0, 0, '#FFFFFF', 4, true, true);
     }
 
     private addSpriteToCard(left: number, top: number, texture, frame?) {
@@ -82,7 +82,7 @@ export class Card {
 
         var x = this._position.x + left;
         var y = this._position.y + top;
-        var textObject = this._scene.add.text(x, y, text, style || Styles.battle.indicator);
+        var textObject = this._scene.add.text(x, y, text, style || INDICATOR_STYLE);
         textObject.setDisplayOrigin(this._position.x, this._position.y);
         textObject.setOrigin(0.5, 0.5);
       
@@ -142,14 +142,14 @@ export class Card {
      }
 
      public showDamage(amount: number, health: number) {
-        var damageText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#ff0000', align: 'center' });
+        var damageText = this.addTextToCard(0, 0, amount.toString(), DAMAGE_STYLE);
         this.playVanishingEffect(damageText).then(() => {
             this.updateHealth(health);
         });
     }
 
     public showHealing(amount: number, health: number) {
-        var healingText = this.addTextToCard(0, 0, amount.toString(), { font: '65px ' + FONT_FAMILY_BLOCK, fill: '#00FF00', align: 'center' });
+        var healingText = this.addTextToCard(0, 0, amount.toString(), HEALING_STYLE);
         this.playVanishingEffect(healingText).then(() => {
             this.updateHealth(health);
         });
@@ -158,12 +158,11 @@ export class Card {
     public showEffect(effect: Special): Promise<any> {
         var sprite: Phaser.GameObjects.Text;
         if (effect.effectType === EffectType.stun) {
-            sprite = this.addTextToCard(0, 0, 'stunned', 
-                { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FF6A00', align: 'center' });
+            sprite = this.addTextToCard(0, 0, 'stunned', STUNNED_STYLE);
         } else {
             sprite = this.addTextToCard(0, 0, 
                 [EffectType[effect.effectType], effect.modifier > 0 ? '+' + effect.modifier : effect.modifier.toString()], 
-                { font: '36px ' + FONT_FAMILY_BLOCK, fill: '#FFD800', align: 'center' });
+                EFFECT_STYLE);
         }
         return this.playVanishingEffect(sprite);   
     }

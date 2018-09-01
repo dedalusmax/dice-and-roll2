@@ -1,5 +1,5 @@
 import { TextualService } from "../services/textual.service";
-import { Styles } from "../models/styles";
+import { FONT_FAMILY } from "../models/styles";
 import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
 import { LocationStatus, TerrainType } from "../models/location";
@@ -10,6 +10,8 @@ import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
 import { BattleScene } from "./battle.scene";
 import { SaveGameService } from "../services/save-game.service";
+
+const BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class MapScene extends Phaser.Scene {
 
@@ -129,7 +131,7 @@ export class MapScene extends Phaser.Scene {
 
         // add objects that will be displayed on the static camera
 
-        var exit = TextualService.createTextButton(this, 'Exit', 80, 20, Styles.battle.backButton, a => {
+        var exit = TextualService.createTextButton(this, 'Exit', 80, 20, BACK_STYLE, a => {
             SceneService.backToMenu(this);
         }).setName('exit');
 
