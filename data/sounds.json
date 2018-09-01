@@ -15,7 +15,8 @@
         "gong": "assets/sound/effects/Metal_Gong-Dianakc-109711828.mp3",
         "page": "assets/sound/effects/page-flip-01a.mp3",
         "card": "assets/sound/effects/434472__dersuperanton__taking-card.wav",
-        "battle": "assets/sound/effects/347981__madmanmusic__battle-preparations.wav"
+        "battle": "assets/sound/effects/347981__madmanmusic__battle-preparations.wav",
+        "mana": "assets/sound/effects/specials/218561__phr4kture__last-scar-healed.wav"
     },
     "weapons": {
         "gunslinger": "assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav",

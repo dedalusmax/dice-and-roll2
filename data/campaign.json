@@ -41,7 +41,10 @@
             ],
             "enemies": [
                 "seabound_sailor"
-            ]
+            ],
+            "rewards": {
+                "mana": 20
+            }
         },
         {
             "name": "shipwreck",
@@ -57,7 +60,10 @@
             ],
             "enemies": [
                 "seabound_sailor"
-            ]
+            ],
+            "rewards": {
+                "mana": 20
+            }
         },
         {
             "name": "sirens_cove",

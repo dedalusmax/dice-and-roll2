@@ -32,6 +32,8 @@ export class LocationService {
         result.status = LocationStatus.unknown;
         result.enemies = prop.enemies ? prop.enemies : [];
 
+        result.reward = prop.reward;
+        
         return result;
     }
 }

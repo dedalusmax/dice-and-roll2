@@ -200,7 +200,8 @@ export class BattleScene extends Phaser.Scene {
                     var options = new VictorySceneOptions();
                     options.skirmish = this._options.skirmish;
                     options.playerParty = this._options.playerParty;
-
+                    options.reward = this._options.reward;
+                    
                     SceneService.run(this, new VictoryScene(), false, options);
 
                 } else {

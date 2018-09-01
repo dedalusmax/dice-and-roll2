@@ -9,12 +9,14 @@ import { Player } from "../models/player";
 import { Armor } from "../models/armor";
 import { Weapon } from "../models/weapon";
 import { Special } from "../models/special";
+import { Mana } from "../models/mana";
 
 const TITLE_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#22FF22', align: 'center' },
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
     CHOOSE_TEXT_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
     WEAPON_NAME_STYLE = { font: '20px ' + FONT_FAMILY, fill: '#563C24', align: 'center'},
-    WEAPON_DESCRIPTION_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#000', wordWrap: { width: 160 }};
+    WEAPON_DESCRIPTION_STYLE = { font: '16px ' + FONT_FAMILY_BLOCK, fill: '#000', wordWrap: { width: 160 }},
+    MANA_TEXT_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#948FAA', align: 'center', wordWrap: { width: 100 }};
 
 export class VictoryScene extends Phaser.Scene {
 
@@ -49,24 +51,51 @@ export class VictoryScene extends Phaser.Scene {
         this.add.text(this.cameras.main.width / 2, 50, 'You are victorious', TITLE_TEXT_STYLE)
             .setOrigin(0.5, 0.5);      
 
-        TextualService.createTextButton(this, 'Close', this.cameras.main.width / 2, this.cameras.main.height - 100, BACK_STYLE, a => {
+        TextualService.createTextButton(this, 'Close', 40, this.cameras.main.height - 100, BACK_STYLE, a => {
             if (this._options.skirmish) {
                 SceneService.backToMenu(this);
             } else {
-                var options = new MapSceneOptions();
-                options.worldMap = false;
-                options.playerParty = this._options.playerParty;
-                SceneService.run(this, new MapScene(), false, options);
+                this.backToMap();
             }
         });
 
-        if (this._options.skirmish) {
-            return;
-        }
+        // if (this._options.skirmish) {
+        //     return;
+        // }
 
         let backgroundPaper = this.add.sprite(this.cameras.main.width / 2, 180, 'paper');
         backgroundPaper.setOrigin(0.5, 0);
         backgroundPaper.setScale(0.7, 0.5);
+
+        if (this._options.reward) {
+            // for now, only mana is supported as a reward
+            if (this._options.reward.mana) {
+                   
+                const targetMana = this._options.playerParty.totalMana + this._options.reward.mana;
+                const mana = new Mana(this, true, 'Party mana', targetMana);
+                mana.update(this._options.reward.mana);
+                this.time.delayedCall(1500, () => {
+
+                    this.sound.add('mana', { volume: Settings.sound.sfxVolume }).play();
+
+                    const rewardText = this.add.text(this.cameras.main.width - 80, this.cameras.main.height - 190, 
+                        'You gained reward of +' + this._options.reward.mana + ' mana', MANA_TEXT_STYLE)
+                        .setOrigin(0.5);
+
+                    this.tweens.add({
+                        targets: [rewardText],
+                        duration: 600,
+                        scaleX: '+=0.2',
+                        scaleY: '+=0.2',
+                        ease: 'Quad.easeIn',
+                        yoyo: true
+                    });
+
+                    mana.update(this._options.reward.mana * (-1));
+
+                }, null, this);
+            }
+        }
 
         this._status = this.add.text(this.cameras.main.width / 2, 120, 'Choose character to upgrade', CHOOSE_TEXT_STYLE);
         this._status.setOrigin(0.5, 0.5);

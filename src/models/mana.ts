@@ -1,8 +1,11 @@
 import { FONT_FAMILY, FONT_FAMILY_BLOCK } from "./styles";
 
-const MAX_MANA_VALUE = 100;
+const MANA_TITLE_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#7766AF' },
+    MANA_AMOUNT_STYLE = { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#13004F' };
 
 export class Mana {
+
+    private _totalAmount: number;
 
     private _amount: number;
     get amount(): number {
@@ -14,6 +17,7 @@ export class Mana {
 
     constructor(private _scene: Phaser.Scene, private _isBottom: boolean, text: string, amount: number) {
 
+        this._totalAmount = amount;
         this._amount = amount;
         
         var startX = _scene.cameras.main.width - 80;
@@ -21,8 +25,7 @@ export class Mana {
 
         var manaBottle = _scene.add.sprite(startX, startY, 'mana-bottle');
 
-        var manaTitle = _scene.add.text(startX, startY + manaBottle.height / 2, text, 
-            { font: '18px ' + FONT_FAMILY, fill: '#7766AF' });
+        var manaTitle = _scene.add.text(startX, startY + manaBottle.height / 2, text, MANA_TITLE_STYLE);
         manaTitle.setShadow(1, 1, '#000', 2, false, true);
         manaTitle.setOrigin(0.5, 0.5);
 
@@ -34,8 +37,7 @@ export class Mana {
         var startX = this._scene.cameras.main.width - 80;
         var startY = this._isBottom ? this._scene.cameras.main.height - 100 : 60;
 
-        var text = this._scene.add.text(startX, startY + 10, this._amount.toString(), 
-            { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#13004F' });
+        var text = this._scene.add.text(startX, startY + 10, this._amount.toString(), MANA_AMOUNT_STYLE);
         text.setShadow(1, 1, '#FFFFFF', 2, false, true);
         text.setOrigin(0.5, 0.5);
 
@@ -45,7 +47,7 @@ export class Mana {
 
         var maxTop = startY - 20;
         var maxHeight = 60;
-        var height = maxHeight * this._amount / MAX_MANA_VALUE;
+        var height = maxHeight * this._amount / this._totalAmount;
         var top = maxTop + (maxHeight - height);
         graphics.fillRect(startX - 30, top, 60, height);
 
@@ -56,6 +58,10 @@ export class Mana {
     public update(amountSpent: number) {
 
         this._amount -= amountSpent;
+        if (this._amount > this._totalAmount) {
+            this._totalAmount = this._amount;
+        }
+
         this._text.setText(this._amount.toString());
 
         this._scene.tweens.add({
@@ -81,7 +87,7 @@ export class Mana {
 
         var maxTop = startY - 20;
         var maxHeight = 60;
-        var height = maxHeight * this._amount / MAX_MANA_VALUE;
+        var height = maxHeight * this._amount / this._totalAmount;
         var top = maxTop + (maxHeight - height);
         this._graphics.fillRect(startX - 30, top, 60, height);
     }

@@ -271,7 +271,8 @@ export class MapScene extends Phaser.Scene {
                         options.playerParty = this._options.playerParty;
                         options.enemyParty = enemies;
                         options.enemyMana = 100;
-
+                        options.reward = pinpoint.location.reward;
+                        
                         SceneService.run(this, new BattleScene(), false, options);
                     } else {
                         this.setPinpoint(pinpoint);

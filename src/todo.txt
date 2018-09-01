@@ -11,5 +11,3 @@ TODO LIST:
 - support different types of locations (end, camp) not just battle
 - create options for playing skirmish
 - refactor new game and bestiary, since they use similar things
-- add frames into map and mini map
-- add controls to the map scene (exit)

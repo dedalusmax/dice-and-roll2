@@ -11,6 +11,7 @@ import { BattleScene } from "./battle.scene";
 import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
 import { SaveGameService } from "../services/save-game.service";
+import { LocationReward } from "../models/location";
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -135,8 +136,14 @@ export class MainMenuScene extends Phaser.Scene {
         options.playerParty = party;
         options.terrain = 'beach';
         options.skirmish = true;
-        options.enemyParty = [ Assets.monsters.plague_doctor ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
+        options.enemyParty = [ Assets.monsters.seabound_sailor ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
         options.enemyMana = 100;
+
+        // TODO: just for testing
+        const reward = new LocationReward();
+        reward.mana = 20;
+        options.reward = reward;
+
         SceneService.run(this, new BattleScene(), false, options);
 
         return;

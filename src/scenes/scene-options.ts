@@ -1,5 +1,5 @@
 import { Party } from "../models/party";
-import { Location } from "../models/location";
+import { LocationReward } from "../models/location";
 
 export interface SceneOptions {
     loadScene: string;
@@ -15,10 +15,11 @@ export class BattleSceneOptions implements SceneOptions {
     loadScene: string;
     
     skirmish: boolean;
-    terrain: string; // only in case of skirmish
+    terrain: string;
     playerParty: Party;
     enemyParty: Array<any>;
     enemyMana: number;
+    reward?: LocationReward;
 }
 
 export class MapSceneOptions {
@@ -31,4 +32,5 @@ export class VictorySceneOptions {
     loadScene: string;
     skirmish: boolean;
     playerParty: Party;
+    reward?: LocationReward;
 }

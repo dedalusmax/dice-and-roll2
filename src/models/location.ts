@@ -21,6 +21,10 @@ export enum LocationStatus {
     end
 }
 
+export class LocationReward {
+    mana?: number;
+}
+
 export class Location {
 
     name: string;
@@ -33,4 +37,5 @@ export class Location {
     connectsTo: Array<string>;
     enemies?: Array<string>;
     status: LocationStatus;
+    reward?: LocationReward;
 }

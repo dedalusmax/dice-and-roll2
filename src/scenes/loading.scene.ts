@@ -205,9 +205,11 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.image('victory', 'assets/screens/menu.png');
                 this.load.image('defense', 'assets/common/defense.png');
+                this.load.image('mana-bottle', 'assets/common/mana-bottle.png');
 
                 this.load.audio('victory', Assets.sounds.victory);
                 this.load.audio('click', Assets.sounds.effects.click);
+                this.load.audio('mana', Assets.sounds.effects.mana);
                 break;
 
             case 'DefeatScene':
