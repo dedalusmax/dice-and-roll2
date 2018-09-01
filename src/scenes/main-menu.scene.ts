@@ -10,6 +10,7 @@ import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
 import { BattleScene } from "./battle.scene";
 import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
+import { SaveGameService } from "../services/save-game.service";
 
 export class MainMenuScene extends Phaser.Scene {
 
@@ -66,8 +67,7 @@ export class MainMenuScene extends Phaser.Scene {
 
         menu.add(this.createMenuItem('New Game', position++, Styles.menu.menu_button, this.newGame.bind(this)));
 
-        var saveGame = localStorage.getItem('dice-and-roll');
-        if (saveGame) {
+        if (SaveGameService.isGameSaved()) {
             menu.add(this.createMenuItem('Continue', position++, Styles.menu.menu_button, this.continueGame.bind(this))); 
         }
 
@@ -109,7 +109,7 @@ export class MainMenuScene extends Phaser.Scene {
 
     private continueGame() {
 
-        let storedParty = JSON.parse(localStorage.getItem('dice-and-roll'));
+        let storedParty = SaveGameService.load();
 
         var options = new MapSceneOptions();
         options.worldMap = false;

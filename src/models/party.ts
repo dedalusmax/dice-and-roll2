@@ -43,4 +43,8 @@ export class Party {
         this.locationVisited(this.fightLocation);
         this.fightLocation = null;
     }
+
+    getAllVisitedLocations(): Array<string> {
+        return this.visitedLocations.map(l => l.name);
+    }
 }

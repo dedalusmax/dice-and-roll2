@@ -9,6 +9,7 @@ import { Settings } from "../models/settings";
 import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
 import { SceneService } from "../services/scene.service";
 import { BattleScene } from "./battle.scene";
+import { SaveGameService } from "../services/save-game.service";
 
 export class MapScene extends Phaser.Scene {
 
@@ -279,12 +280,14 @@ export class MapScene extends Phaser.Scene {
         });
 
         if (pinpoint.location.terrain !== TerrainType.start) {
-            this._ambientMusic.stop();
+            if (this._ambientMusic) {
+                this._ambientMusic.stop();
+            }
             this._ambientMusic = this.sound.add('ambient-' + TerrainType[pinpoint.location.terrain], { volume: Settings.sound.sfxVolume });
             this._ambientMusic.play('', { loop: true });
         }
 
         // store current party stats, along with the locations visited
-        localStorage.setItem('dice-and-roll', JSON.stringify(this._options.playerParty));
+        SaveGameService.save(this._options.playerParty);
     }
 }

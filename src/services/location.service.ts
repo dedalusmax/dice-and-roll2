@@ -11,6 +11,11 @@ export class LocationService {
         return result;
     }
 
+    static get(name: string): Location {
+        var data = Assets.campaign.locations.find(l => l.name == name);
+        return this.matchLocation(data);
+    }
+
     private static matchLocation(prop: any): Location {
         var result = new Location();
         result.name = prop.name;
