@@ -51,7 +51,7 @@ export class BattleScene extends Phaser.Scene {
     create(): void {
         // prepare the scene:
 
-        this.cameras.main.setBackgroundColor(0x360602);
+        this.cameras.main.setBackgroundColor(0x84B4AE);
 
         // check if music is enabled
         if (Settings.sound.musicVolume > 0) {
@@ -62,7 +62,8 @@ export class BattleScene extends Phaser.Scene {
         }
 
         // background image 
-        ImageService.stretchAndFitImage('battle_' + this._options.terrain, this);
+        //ImageService.stretchAndFitImage('battle_' + this._options.terrain, this);
+        this.add.sprite(this._canvas.width / 2, this._canvas.height / 2, 'battle_' + this._options.terrain); 
 
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {
