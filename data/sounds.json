@@ -66,7 +66,8 @@
         "enchanting_song": "assets/sound/effects/specials/345504__cormi__mermaids.wav",
         "tidal_wave": "assets/sound/effects/specials/412308__straget__big-waves-hit-land.wav",
         "piercing_laugh": "assets/sound/effects/specials/126113__klankbeeld__laugh.wav",
-        "puppet": "assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav"
+        "puppet": "assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav",
+        "crow": "assets/sound/effects/specials/418262__inspectorj__crow-call-single-a.wav"
     },
     "ambient": {
         "arrival": "assets/sound/ambient/331435__codeine__storm-at-sea.wav",

@@ -298,5 +298,15 @@
         "effectType": "stun",
         "duration": 1,
         "manaCost": 35
+    },
+    "crow": {
+        "name": "crow",
+        "title": "Crow",
+        "description": "Minion of the dark, crow flies and stings fearfully with 35 damage to enemy.",
+        "targetType": "anyEnemy",
+        "executionType": "singleTarget",
+        "effectType": "damage",
+        "modifier": 35,
+        "manaCost": 45
     }
 }

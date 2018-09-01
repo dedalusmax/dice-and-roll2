@@ -2,8 +2,8 @@
     "siren": {
         "name": "siren",
         "title": "Siren",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "erewewre wrewre wr ewrewre wr wes.",
+        "story": "The shore of the Lighthouse bay is littered by the rotting remains of once sea-worthy vessels. Sunken by the luring whales of beautiful women whose bodies lay upon the sharp rocks protruding from the sea.",
+        "description": "Beautiful, yet vile, utilising sharp claws and enchanting voices to defite their enemies.",
         "health": 60,
         "defense": 3,
         "attack": 15,
@@ -14,8 +14,8 @@
     "seabound_sailor": {
         "name": "seabound_sailor",
         "title": "Seabound sailor",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "erewewre wrewre wr ewrewre wr wes.",
+        "story": "Once hardy marimen, now cursed to serve the unforgiving sea forever. They inhabit the numerous shipwrecks stranded along the shore. They are mindless aberrations whose appearance is like of a blooted and drowned sailor.",
+        "description": "Although passive if not disturbed, the are quite protective and attack with cutlasses and sabres.",
         "health": 60,
         "defense": 3,
         "attack": 15,
@@ -26,8 +26,8 @@
     "seabound_captain": {
         "name": "seabound_captain",
         "title": "Seabound captain",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "erewewre wrewre wr ewrewre wr wes.",
+        "story": "For every ship there is a captain and so it is in death. Although an aberration, some sort of his former personality remains. He still persists in the constant maintenance and protection of his ship.",
+        "description": "A seabound captain uses an arquebus and is able to call upon the tide to drown his foes.",
         "health": 80,
         "defense": 6,
         "attack": 17,
@@ -38,8 +38,8 @@
     "harlequin": {
         "name": "harlequin",
         "title": "Harlequin",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "He may seems joyful, but he is filled with ill content. His laughter brings madness to men.",
+        "story": "Not many venture to the old theatre, for they may hear the hored laughter of a madman. Dressed in costumes and wearing masks with fixed grins, they can only be described as unsettling.",
+        "description": "His attacks are swift and always accompanied with his horrifying laughter.",
         "health": 60,
         "defense": 2,
         "attack": 18,
@@ -50,8 +50,8 @@
 	"puppeteer": {
         "name": "puppeteer",
         "title": "Puppeteer",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "Master of strings and manipulation. Don't get too close to him, or he will turn you into one of his puppets.",
+        "story": "Strings upon strings…dance my little puppet…These are the chants of the puppet master wanting to enslave another unlucky victim, for his collection is vast and forever seeking more members.",
+        "description": "In combat he is quite malevolent and has the ability to temporarily enslave his enemies.",
         "health": 70,
         "defense": 3,
         "attack": 15,
@@ -62,13 +62,13 @@
     "plague_doctor": {
         "name": "plague_doctor",
         "title": "Plague doctor",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "Once doctor helping the sick, now a shadow of their former selves.",
+        "story": "When the Eather swept Lanervin, the streets were filled with the sickening cries of the sick and dying. Among them were healers - plague doctors. Once becoming hope, now shells of their former selves.",
+        "description": "In his cruel twist, plague doctor wields pestilence and poison.",
         "health": 80,
         "defense": 2,
         "attack": 20,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ ]
+        "specials": [ "crow" ]
     }
 }
