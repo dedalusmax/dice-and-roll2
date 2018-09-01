@@ -35,6 +35,18 @@
         "weapon": "arquebus",
         "specials": [ "tidal_wave" ]
     },
+    "harlequin": {
+        "name": "harlequin",
+        "title": "Harlequin",
+        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
+        "description": "He may seems joyful, but he is filled with ill content. His laughter brings madness to men.",
+        "health": 60,
+        "defense": 2,
+        "attack": 18,
+        "type": "MELEE",
+        "weapon": "sceptre",
+        "specials": [ "piercing_laugh" ]
+    },
 	"puppeteer": {
         "name": "puppeteer",
         "title": "Puppeteer",
@@ -45,19 +57,7 @@
         "attack": 15,
         "type": "MELEE",
         "weapon": "strings",
-        "specials": [ ]
-    },
-	"harlequin": {
-        "name": "harlequin",
-        "title": "Harlequin",
-        "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet ipsum vitae dui tincidunt auctor vel vitae ante. In hac habitasse platea dictumst. Vestibulum placerat felis purus,",
-        "description": "He may seems joyful, but he is filled with ill content. His laughter brings madness to men.",
-        "health": 60,
-        "defense": 2,
-        "attack": 18,
-        "type": "MELEE",
-        "weapon": "sceptre",
-        "specials": [ ]
+        "specials": [ "puppet" ]
     },
     "plague_doctor": {
         "name": "plague_doctor",

@@ -256,6 +256,9 @@
         "modifier": 20,
         "manaCost": 50
     },
+
+
+
     "enchanting_song": {
         "name": "enchanting_song",
         "title": "Enchanting song",
@@ -275,5 +278,25 @@
         "effectType": "damage",
         "modifier": 10,
         "manaCost": 40
+    },
+    "piercing_laugh": {
+        "name": "piercing_laugh",
+        "title": "Piercing laugh",
+        "description": "Makes annoying sound awful to two beligerents which causes +8 Att damage.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "twoTargets",
+        "effectType": "damage",
+        "modifier": 8,
+        "manaCost": 30
+    },
+    "puppet": {
+        "name": "puppet",
+        "title": "Puppet",
+        "description": "Turns enemy unit into a puppet, therefore he is stunned for 2 turns.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "stun",
+        "duration": 1,
+        "manaCost": 35
     }
 }
