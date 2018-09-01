@@ -76,10 +76,17 @@ export class MapScene extends Phaser.Scene {
         //     this.cameras.main.scrollX += dragX;
         //     this.cameras.main.scrollY += dragY;
         // });
+
         this.displayMinimap();
 
         this.displayLocations();
-        this.displayParty();
+
+        if (!this._options.worldMap) {
+            this.displayParty();
+        } else {
+            // set starting position of the map for viewing
+            this.cameras.main.setScroll(0, 1800);
+        }
 
          // Set the camera bounds to be the size of the image
         this.cameras.main.setBounds(0, 0, this._map.width, this._map.height);
@@ -137,11 +144,12 @@ export class MapScene extends Phaser.Scene {
     displayLocations() {
         LocationService.getAll().forEach(location => {
 
-            if (this._options.playerParty.alreadyThere(location)) {
+            if (!this._options.worldMap && this._options.playerParty.alreadyThere(location)) {
                 location.status = LocationStatus.visited;
             }
 
             var pinpoint = new Pinpoint(this, location);
+
             pinpoint.events.on('travel', (fight) => {
                 this.travelTo(pinpoint, fight);
             });

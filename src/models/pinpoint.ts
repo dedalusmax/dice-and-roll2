@@ -36,7 +36,7 @@ export class Pinpoint {
             this._selectedTween.restart();
         }
 
-        this._sprite.setInteractive({ cursor: 'pointer' });
+        this._sprite.setInteractive();
 
         this._sprite.on('pointerdown', e => {
             this._scene.sound.add('page', { volume: Settings.sound.sfxVolume }).play();
@@ -108,7 +108,7 @@ export class Pinpoint {
 
         var back = this._scene.add.sprite(paper.x + 60, paper.y + 280, 'location-buttons', 0);
         back.setOrigin(0, 0);
-        back.setInteractive({ cursor: 'pointer' });
+        back.setInteractive();
         back.on('pointerdown', e => {
             this._scene.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             this.closeLocationInfo();
@@ -121,7 +121,7 @@ export class Pinpoint {
         var alreadyVisited = this.location.status == LocationStatus.visited;
         var action = this._scene.add.sprite(paper.x + 360, paper.y + 280, 'location-buttons', alreadyVisited ? 2 : 1);
         action.setOrigin(0, 0);
-        action.setInteractive({ cursor: 'pointer' });
+        action.setInteractive();
         action.on('pointerdown', e => {
             this._scene.sound.add('battle', { volume: Settings.sound.sfxVolume }).play();
             this.closeLocationInfo().then(() => {

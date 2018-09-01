@@ -62,7 +62,7 @@
         {
             "name": "sirens_cove",
             "title": "Siren's cove",
-            "description": "blablabla",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu vestibulum lorem. Suspendisse eu magna at magna maximus dignissim. Maecenas interdum eget justo eget malesuada. Fusce tellus sem bibi",
             "type": "encounter",
             "terrain": "beach",
             "x": 983,
