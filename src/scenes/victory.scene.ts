@@ -36,7 +36,7 @@ export class VictoryScene extends Phaser.Scene {
 
     create() {
         this.cameras.main.fadeIn(1000);
-        this.cameras.main.setBackgroundColor(0x360602);
+        this.cameras.main.setBackgroundColor(0x141414);
 
         // var logo = ImageService.stretchAndFitImage('victory', this);
         // logo.setScale(0.3);
@@ -51,7 +51,7 @@ export class VictoryScene extends Phaser.Scene {
         this.add.text(this.cameras.main.width / 2, 50, 'You are victorious', TITLE_TEXT_STYLE)
             .setOrigin(0.5, 0.5);      
 
-        TextualService.createTextButton(this, 'Close', 40, this.cameras.main.height - 100, BACK_STYLE, a => {
+        TextualService.createTextButton(this, 'Close', 40, this.cameras.main.height - 60, BACK_STYLE, a => {
             if (this._options.skirmish) {
                 SceneService.backToMenu(this);
             } else {
