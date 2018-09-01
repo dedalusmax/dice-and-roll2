@@ -134,6 +134,8 @@ export class LoadingScene extends Phaser.Scene {
 
                 // the big map and small locations assets
                 this.load.image('map', 'assets/screens/world-map-locations.png');
+                this.load.image('minimap', 'assets/common/map-frame-small.png');
+
                 this.load.spritesheet('locations', 'assets/common/locations-colors-soft.png', { frameWidth: 36, frameHeight: 36 });
                 this.load.spritesheet('location-buttons', 'assets/common/location-buttons.png', { frameWidth: 68, frameHeight: 46 });
                 this.load.image('party', 'assets/common/party-small.png');

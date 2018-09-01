@@ -78,6 +78,7 @@ export class MapScene extends Phaser.Scene {
         // });
 
         this.displayMinimap();
+        this.displayControls();
 
         this.displayLocations();
 
@@ -111,25 +112,34 @@ export class MapScene extends Phaser.Scene {
     }
 
     displayMinimap() {
-        var size = new Phaser.Geom.Point(250, 250);
-        this._minimap = this.cameras.add(this.cameras.main.width - size.x - 20, 20, size.x, size.y).setZoom(0.2);
+        const size = new Phaser.Geom.Point(350, 245);
+        const OFFSET = 20;
+        var position = new Phaser.Geom.Point(this.cameras.main.width - size.x - OFFSET, OFFSET);
+
+        this._minimap = this.cameras.add(position.x, position.y, size.x, size.y, false, 'minimap').setZoom(0.2);
     }
 
     displayControls() {
-        this._uiCamera = this.cameras.add(0, 0, this._map.width, this._map.height);
-        this._uiCamera.ignore(this._map);
-        //this._pinpoints.forEach(pinpoint => this._uiCamera.ignore(pinpoint));
+        var position = new Phaser.Geom.Point(this._minimap.x, this._minimap.y);
+        var size = new Phaser.Geom.Point(this._minimap.width, this._minimap.height);
 
-        // quit battle button (visible only in skirmish mode)
-        if (this._options.worldMap) {
-            var exit = TextualService.createTextButton(this, 'Exit', 80, 20, Styles.battle.backButton, a => {
-                SceneService.backToMenu(this);
-            });
-            if (this._minimap) {
-                this._minimap.ignore(exit);
-            }
-            this.cameras.main.ignore(exit);
-        }    
+        var cam = this.cameras.add(0, 0, this._map.width, this._map.height, false, 'static');
+        cam.transparent = true;
+        cam.ignore(this._map);
+
+        // add objects that will be displayed on the static camera
+
+        var exit = TextualService.createTextButton(this, 'Exit', 80, 20, Styles.battle.backButton, a => {
+            SceneService.backToMenu(this);
+        }).setName('exit');
+
+        var frame = this.add.sprite(position.x, position.y, 'minimap')
+            .setOrigin(0).setName('minimapFrame');
+
+        // ignore static objects on other cameras (main and minimap)
+
+        this._minimap.ignore([exit, frame]);
+        this.cameras.main.ignore([exit, frame]);
     }
 
     update(time, delta) {

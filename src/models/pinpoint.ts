@@ -62,9 +62,15 @@ export class Pinpoint {
             this._scene.cameras.systems.canvas.width / 2 - width / 2, 
             this._scene.cameras.systems.canvas.height / 2 - height / 2, width, height);
         this._infoCamera.transparent = true;
-        this._infoCamera.ignore(this._scene.children.getByName('map'));
 
-        // this._infoCamera.ignore(this._scene.children.getByName('map'));
+        // ignore object from other cameras (map on the main, controls on the static)
+
+        const map = this._scene.children.getByName('map'),
+            minimapFrame = this._scene.children.getByName('minimapFrame'),
+            exit = this._scene.children.getByName('exit');
+
+        this._infoCamera.ignore([map, minimapFrame, exit]);
+
         this._infoObjects = [];
 
         var backgroundPaper = this._scene.add.sprite(0, 40, 'paper');
@@ -72,7 +78,9 @@ export class Pinpoint {
         backgroundPaper.setOrigin(0, 0);
         backgroundPaper.setAlpha(0);
 
+        // ignore object on other cameras:
         this._scene.cameras.main.ignore(backgroundPaper);
+        this._scene.cameras.getCamera('static').ignore(backgroundPaper);
 
         this._scene.add.tween({
             targets: [backgroundPaper],
@@ -134,7 +142,10 @@ export class Pinpoint {
         actionTitle.setOrigin(0, 0);
 
         this._infoObjects.push(title, desc, terrain, back, backTitle, action, actionTitle);
-        this._scene.cameras.main.ignore([title, desc, terrain, back, backTitle, action, actionTitle]);
+
+        // ignore objects on other cameras
+        this._scene.cameras.main.ignore(this._infoObjects);
+        this._scene.cameras.getCamera('static').ignore(this._infoObjects);
     }
 
     private closeLocationInfo() : Promise<any> {
