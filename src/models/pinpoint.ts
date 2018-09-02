@@ -3,7 +3,7 @@ import { FONT_FAMILY } from "./styles";
 import { Settings } from "./settings";
 
 const TITLE_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
-    DESCRIPTION_STYLE =  { font: '14px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 400 }},
+    DESCRIPTION_STYLE =  { font: '16px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 400 }},
     BACK_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' },
     ACTION_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' };
 
@@ -112,7 +112,7 @@ export class Pinpoint {
         var desc = this._scene.add.text(paper.x + 40, paper.y + 80, this.location.description, DESCRIPTION_STYLE);
         title.setOrigin(0, 0);
 
-        var terrain = this._scene.add.sprite(paper.x + 140, paper.y + 150, 'terrain-' + TerrainType[this.location.terrain]);
+        var terrain = this._scene.add.sprite(paper.x + 130, paper.y + 160, 'terrain-' + TerrainType[this.location.terrain]);
         terrain.setOrigin(0, 0);
 
         var back = this._scene.add.sprite(paper.x + 60, paper.y + 280, 'location-buttons', 0);

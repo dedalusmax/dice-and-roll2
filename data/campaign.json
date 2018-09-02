@@ -15,7 +15,7 @@
         {
             "name": "fishermans_village",
             "title": "Fisherman's village",
-            "description": "erewrewr ewr ere re re ewre wre ew rew re rew rew rewr ew rew rew rew rew rew ewr ewre wr ewr ewr ewr ew ewr ewre wrew re ewrewrew rew rew rew",
+            "description": "Not far from the Lighthouse a collection of houses can be seen. Many nets and boats have been left to rot and the place seems to have been abandoned in a hurry. From who or what did they flee, is yet unknown…",
             "type": "encounter",
             "terrain": "beach",
             "x": 606,
@@ -30,7 +30,7 @@
         {
             "name": "cliffside_keep",
             "title": "Cliffside keep",
-            "description": "blablabla",
+            "description": "A Leviathan stands upon the black ridge, resisting the slashes of the raging sea. Already has the sea taken a bite and left a deep gash, from which the cold water of the bay can seep in.",
             "type": "encounter",
             "terrain": "hills",
             "x": 877,
@@ -49,7 +49,7 @@
         {
             "name": "shipwreck",
             "title": "Shipwreck",
-            "description": "blablabla",
+            "description": "An old corroding wreck captivated by the unforgiving sea seems to be stranded upon the shore of this strange land. In its bowls men can bee seen… dead men. Lost souls bound to this place forever.",
             "type": "encounter",
             "terrain": "beach",
             "x": 1002,
@@ -68,7 +68,7 @@
         {
             "name": "sirens_cove",
             "title": "Siren's cove",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu vestibulum lorem. Suspendisse eu magna at magna maximus dignissim. Maecenas interdum eget justo eget malesuada. Fusce tellus sem bibi",
+            "description": "Strange noises seem to come from this cove. Song and waves are interminglerd in a strange and earry symphony that pulses the listener closer and closer. For this voices are from sirens whose enchanting voices are to beautiful to resist.",
             "type": "encounter",
             "terrain": "beach",
             "x": 983,
@@ -84,7 +84,7 @@
         {
             "name": "screaming_grotto",
             "title": "Screaming grotto",
-            "description": "blablabla",
+            "description": "On the southern most end of the bay, a spire of stone emerges from the sea. As the wind smashes against the hollow rocks, bonechilling sounds can be heard, echoing for miles upon miles deterring any adventures from anchoring their ships.",
             "type": "camp",
             "terrain": "beach",
             "x": 519,
@@ -99,7 +99,7 @@
         {
             "name": "fallen_tower",
             "title": "Fallen tower",
-            "description": "blablabla",
+            "description": "As the sea faids into the distance and as the open grasslands emerge from the fog carried by the sea, a great vanguard can be seen securing the western passage to the once great city of Lanervin.",
             "type": "camp",
             "terrain": "hills",
             "x": 1070,
@@ -116,7 +116,7 @@
         {
             "name": "redwood_crossing",
             "title": "Redwood crossing",
-            "description": "blablabla",
+            "description": "Here the western passage splits by two. One heading to the east to the Tondor highlands and other to the west to the great glooming forest. Fresh tracks seem to have been left on the road signalising the presense of an unknown stalker.",
             "type": "camp",
             "terrain": "hills",
             "x": 1161,
@@ -133,7 +133,7 @@
         {
             "name": "scorched_windmill",
             "title": "Scorched windmill",
-            "description": "blablabla",
+            "description": "A lonely windmill seems to have been partially burned down by a fire of unknown origin. Scorched and blackened by sutt it does seem uninhabited although loud growls seem to suggest otherwise.",
             "type": "camp",
             "terrain": "hills",
             "x": 852,
@@ -148,7 +148,7 @@
         {
             "name": "hunters_lodge",
             "title": "Hunter's lodge",
-            "description": "blablabla",
+            "description": "A Hunter's lodge stand abandoned, abraced by the strong oak trees that call the Glooming forest their home. Truly, as days turn into weeks and weeks into months, strong memories once charished now fade as the old world disappears before eyes.",
             "type": "camp",
             "terrain": "forest",
             "x": 859,
@@ -163,7 +163,7 @@
         {
             "name": "thorn_gate",
             "title": "Thorn gate",
-            "description": "blablabla",
+            "description": "Thorn gate, a door far older then all of the towers and keeps of the great Karon. The great warden of the forest, said to have survived all the wars and wildfires of this age, so that it can keep watch upon the people unlucky enough to enter its mouth.",
             "type": "camp",
             "terrain": "forest",
             "x": 1434,
