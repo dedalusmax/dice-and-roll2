@@ -96,8 +96,8 @@
             "enemies": [
                 "siren",
                 "serpent",
-                "seabound_captain",
-                "seabound_sailor"
+                "serpent",
+                "siren"
             ],
             "reward": {
                 "mana": 20
@@ -117,7 +117,8 @@
                 "delmond_keep"
             ],
             "enemies": [
-                "seabound_sailor"    
+                "hoblum",
+                "gnilur"  
             ]
         },
         {
@@ -134,7 +135,8 @@
                 "fallen_tower"
             ],
             "enemies": [
-                "seabound_sailor"    
+                "hoblum",
+                "gnilur"     
             ]
         },
         {
