@@ -233,7 +233,9 @@ export class MapScene extends Phaser.Scene {
             });
 
             this.cameras.main.startFollow(party, false, 0.5, 0.5);
-            this.cameras.main.stopFollow();
+            this.time.delayedCall(200, () => {
+                this.cameras.main.stopFollow();
+            }, null, this);
 
             this._party = party;
 

@@ -68,7 +68,7 @@
         {
             "name": "sirens_cove",
             "title": "Siren's cove",
-            "description": "Strange noises seem to come from this cove. Song and waves are interminglerd in a strange and earry symphony that pulses the listener closer and closer. For this voices are from sirens whose enchanting voices are to beautiful to resist.",
+            "description": "Strange noises seem to come from this cove. Song and waves are intermingled in a strange and eary symphony that pulses the listener closer and closer. For this voices are from sirens whose enchanting voices are too beautiful to resist.",
             "type": "encounter",
             "terrain": "beach",
             "x": 983,
