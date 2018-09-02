@@ -93,6 +93,8 @@ export class VictoryScene extends Phaser.Scene {
 
                     mana.update(this._options.reward.mana * (-1));
 
+                    this._options.playerParty.totalMana += this._options.reward.mana;
+
                 }, null, this);
             }
         }

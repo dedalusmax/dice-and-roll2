@@ -42,7 +42,7 @@
             "enemies": [
                 "seabound_sailor"
             ],
-            "rewards": {
+            "reward": {
                 "mana": 20
             }
         },
@@ -61,7 +61,7 @@
             "enemies": [
                 "seabound_sailor"
             ],
-            "rewards": {
+            "reward": {
                 "mana": 20
             }
         },
