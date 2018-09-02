@@ -5,7 +5,8 @@ import { Settings } from "./settings";
 const TITLE_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
     DESCRIPTION_STYLE =  { font: '16px ' + FONT_FAMILY, fill: '#000', wordWrap: { width: 400 }},
     BACK_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' },
-    ACTION_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' };
+    ACTION_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06' },
+    REWARD_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#7F0000'};
 
 export class Pinpoint {
 
@@ -138,7 +139,10 @@ export class Pinpoint {
         var actionTitle = this._scene.add.text(action.x, action.y + 40, alreadyVisited ? 'Travel' : 'Fight', ACTION_STYLE);
         actionTitle.setOrigin(0, 0);
 
-        this._infoObjects.push(title, desc, terrain, back, backTitle, action, actionTitle);
+        let rewardTitle = this._scene.add.text(back.x + 110, back.y + 20, this.location.reward ? 'Additional Reward!' : '', REWARD_STYLE);
+        rewardTitle.setOrigin(0, 0);
+
+        this._infoObjects.push(title, desc, terrain, back, backTitle, action, actionTitle, rewardTitle);
 
         // ignore objects on other cameras
         this._scene.cameras.main.ignore(this._infoObjects);

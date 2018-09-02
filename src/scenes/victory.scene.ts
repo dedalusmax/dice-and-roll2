@@ -119,8 +119,11 @@ export class VictoryScene extends Phaser.Scene {
 
         for (var index in this._options.playerParty.members) {
             var player = this._options.playerParty.members[index];
+            
             player.health = player.baseHealth; // reset health to party members
             player.effects = []; // clean all effects
+            player.killed = false; // resurrect if been killed in battle
+
             this.displayCard(player, +index, this._options.playerParty.members.length);
         };
 
