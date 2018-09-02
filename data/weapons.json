@@ -203,5 +203,26 @@
         "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
         "type": "POTION",
         "attack": 2
+    },
+    "clutches": {
+        "name": "clutches",
+        "title": "Clutches",
+        "desc": "Very sharp claws of a menevolent creature attack viciously",
+        "type": "CLAWS",
+        "attack": 2
+    },
+    "bite": {
+        "name": "bite",
+        "title": "Bite",
+        "desc": "Very sharp teeth of the monstrous serpent deal deep wounds",
+        "type": "CLAWS",
+        "attack": 2
+    },
+    "spores": {
+        "name": "spores",
+        "title": "Spores",
+        "desc": "Venom spores from the fungus caster throws at a distance",
+        "type": "CLAWS",
+        "attack": 2
     }
 }

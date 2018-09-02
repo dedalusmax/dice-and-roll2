@@ -308,5 +308,27 @@
         "effectType": "damage",
         "modifier": 35,
         "manaCost": 45
+    },
+    "curse": {
+        "name": "curse",
+        "title": "Curse",
+        "description": "Cast powerful curse, thus decreasing attack modifier for -15 for 3 turns.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "attack",
+        "modifier": -15,
+        "duration": 3,
+        "manaCost": 35
+    },
+    "fear": {
+        "name": "fear",
+        "title": "Fear",
+        "description": "Wendigo strikes fear to your party, making them full of panic defensless for 2 turns.",
+        "targetType": "anyEnemy",
+        "executionType": "allTargets",
+        "effectType": "defense",
+        "modifier": -15,
+        "duration": 2,
+        "manaCost": 35
     }
 }

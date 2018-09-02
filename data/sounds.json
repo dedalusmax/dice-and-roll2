@@ -27,11 +27,14 @@
         "assasin": "assets/sound/effects/weapons/sword-clang5.wav",
 
         "claws": "assets/sound/effects/weapons/435238__aris621__nasty-knife-stab.wav",
+        "clutches": "assets/sound/effects/weapons/435238__aris621__nasty-knife-stab.wav",
         "cutlass": "assets/sound/effects/weapons/sword-clang.mp3",
         "arquebus": "assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav",
         "strings": "assets/sound/effects/weapons/336859__borque__zoiing-display-wires.wav",
         "sceptre": "assets/sound/effects/weapons/Swords_Collide.mp3",
-        "poison": "assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav"
+        "poison": "assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav",
+        "spores": "assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav",
+        "bite": "assets/sound/effects/weapons/246184__andreangelo__bite-growl-effect.wav"
     },
     "specials": {
         "ricochet": "assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav",
@@ -68,7 +71,9 @@
         "tidal_wave": "assets/sound/effects/specials/412308__straget__big-waves-hit-land.wav",
         "piercing_laugh": "assets/sound/effects/specials/126113__klankbeeld__laugh.wav",
         "puppet": "assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav",
-        "crow": "assets/sound/effects/specials/418262__inspectorj__crow-call-single-a.wav"
+        "crow": "assets/sound/effects/specials/418262__inspectorj__crow-call-single-a.wav",
+        "curse": "assets/sound/effects/specials/348142__nikomyth__witch-s-laugh.wav",
+        "fear": "assets/sound/effects/specials/173945__johnsonbrandediting__human-male-scream-small-crowd-panic-fear.wav"
     },
     "ambient": {
         "arrival": "assets/sound/ambient/331435__codeine__storm-at-sea.wav",
