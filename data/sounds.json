@@ -34,7 +34,8 @@
         "sceptre": "assets/sound/effects/weapons/Swords_Collide.mp3",
         "poison": "assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav",
         "spores": "assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav",
-        "bite": "assets/sound/effects/weapons/246184__andreangelo__bite-growl-effect.wav"
+        "bite": "assets/sound/effects/weapons/246184__andreangelo__bite-growl-effect.wav",
+        "branch": "assets/sound/effects/weapons/278881__theshaggyfreak__shaking-branch.wav"
     },
     "specials": {
         "ricochet": "assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav",
@@ -73,7 +74,8 @@
         "puppet": "assets/sound/effects/specials/193810__geoneo0__four-voices-whispering-3.wav",
         "crow": "assets/sound/effects/specials/418262__inspectorj__crow-call-single-a.wav",
         "curse": "assets/sound/effects/specials/348142__nikomyth__witch-s-laugh.wav",
-        "fear": "assets/sound/effects/specials/173945__johnsonbrandediting__human-male-scream-small-crowd-panic-fear.wav"
+        "fear": "assets/sound/effects/specials/173945__johnsonbrandediting__human-male-scream-small-crowd-panic-fear.wav",
+        "entangle": "assets/sound/effects/specials/278881__theshaggyfreak__shaking-branch-1.wav"
     },
     "ambient": {
         "arrival": "assets/sound/ambient/331435__codeine__storm-at-sea.wav",

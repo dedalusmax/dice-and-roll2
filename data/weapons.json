@@ -224,5 +224,12 @@
         "desc": "Venom spores from the fungus caster throws at a distance",
         "type": "CLAWS",
         "attack": 2
+    },
+    "branch": {
+        "name": "branch",
+        "title": "Branch",
+        "desc": "Wood creatures fight with their branches that vip the victims hard",
+        "type": "CLAWS",
+        "attack": 2
     }
 }

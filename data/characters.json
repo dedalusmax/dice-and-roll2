@@ -22,7 +22,7 @@
         "description": "He is the most armored combatant, and is able to utilize powerful punches and flames.",
         "health": 70,
         "defense": 8,
-        "attack": 9,
+        "attack": 6,
         "type": "MELEE",
         "armors": [ "brass_plating", "iron_plating", "steel_plating", "master_forged" ],
         "weapons": [ "steam_pipe", "pickaxe", "wrench", "forge_hammer" ],

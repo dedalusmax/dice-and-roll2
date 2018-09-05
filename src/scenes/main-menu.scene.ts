@@ -145,7 +145,7 @@ export class MainMenuScene extends Phaser.Scene {
         options.playerParty = party;
         options.terrain = 'beach';
         options.skirmish = true;
-        options.enemyParty = [ Assets.monsters.hoblum, Assets.monsters.serpent ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
+        options.enemyParty = [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
         options.enemyMana = 100;
 
         // TODO: just for testing

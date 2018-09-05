@@ -330,5 +330,15 @@
         "modifier": -15,
         "duration": 2,
         "manaCost": 35
+    },
+    "entangle": {
+        "name": "entangle",
+        "title": "Entangle",
+        "description": "Wood creature has ability to entangle the enemy which cannot move for 2 turns.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "stun",
+        "duration": 2,
+        "manaCost": 25
     }
 }

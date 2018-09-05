@@ -68,8 +68,20 @@
         "defense": 3,
         "attack": 20,
         "type": "MELEE",
-        "weapon": "spores",
-        "specials": [ ]
+        "weapon": "branch",
+        "specials": [ "entangle" ]
+    },
+    "fey": {
+        "name": "fey",
+        "title": "Fey",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 70,
+        "defense": 2,
+        "attack": 18,
+        "type": "MELEE",
+        "weapon": "branch",
+        "specials": [ "remedy" ]
     },
     "wendigo": {
         "name": "wendigo",
@@ -130,5 +142,17 @@
         "type": "RANGED",
         "weapon": "poison",
         "specials": [ "crow" ]
+    },
+    "corpse": {
+        "name": "corpse",
+        "title": "Corpse",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 80,
+        "defense": 2,
+        "attack": 20,
+        "type": "MELEE",
+        "weapon": "clutches",
+        "specials": [ ]
     }
 }
