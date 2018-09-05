@@ -5,9 +5,12 @@
     "defeat": "assets/sound/loops/looperman-l-0202721-0070581-anubis-anubis.wav",
     "end": "assets/sound/loops/looperman-l-0173301-0131687-eepic.wav",
     "terrain": {
-        "beach": "assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav",
-        "hills": "assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav",
-        "forest": "assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav"
+        "beach": "assets/sound/loops/looperman-l-0202721-0074107-anubis-titans-on-the-battlefield.wav",
+        "hills": "assets/sound/loops/looperman-l-0202721-0073828-anubis-face-2-face.wav",
+        "forest": "assets/sound/loops/looperman-l-0202721-0112505-anubis-black-forest.wav",
+        "swamp": "assets/sound/loops/looperman-l-0202721-0107480-anubis-heavy-drums-02.wav",
+        "mine": "assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav",
+        "city": "assets/sound/loops/looperman-l-0202721-0107483-anubis-heavy-drums-05-groove.wav"
     },
     "effects": {
         "click": "assets/sound/effects/mechanical-clonk-1.mp3",

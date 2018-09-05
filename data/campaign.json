@@ -185,7 +185,7 @@
         {
             "name": "old_willow",
             "title": "Old willow",
-            "description": "blablabla",
+            "description": "An easy breeze accompanies the calming song of birds nesting on the top branches of the old willow. Its roots are deep and untainted by the Eather, it serves as a sanctuary for all that seek shelter in these troublesome times.",
             "type": "camp",
             "terrain": "forest",
             "x": 1525,
@@ -197,7 +197,7 @@
         {
             "name": "tainted_well",
             "title": "Tainted well",
-            "description": "blablabla",
+            "description": "As the Eather moved through the land, it gradually started poisoning the rivers and lakes. Like poison running through veins, it blackened every pond and spring releasing old creatures long forgotten into the waters of the world.",
             "type": "camp",
             "terrain": "swamp",
             "x": 1821,
@@ -209,7 +209,7 @@
         {
             "name": "madmans_bridge",
             "title": "Madman's bridge",
-            "description": "blablabla",
+            "description": "Long were stories told of an old bridge deep inside the forest from which unexplained laughter can be heard. There is no explanation for the reason why it was built, and people seem to vanish there.",
             "type": "camp",
             "terrain": "forest",
             "x": 1909,
@@ -221,7 +221,7 @@
         {
             "name": "old_theatre",
             "title": "Old theatre",
-            "description": "blablabla",
+            "description": "Many things are mysterious in the Glooming forest and there is surely nothing more curious than the old theatre stranded in the middle of this great wilderness. Many dolls and puppets can by seen giving this place a feeling of being watched.",
             "type": "camp",
             "terrain": "mine",
             "x": 2137,
@@ -233,7 +233,7 @@
         {
             "name": "lonely_cabin",
             "title": "Lonely cabin",
-            "description": "blablabla",
+            "description": "Travelling on the western passage you will come across a wooden cabin. Its windows are broken, and its roof moldy, yet the fireplace is still burning. A cattle hangs above it, and as the day passes and the night settles, the once lonely cabin is lonely no more.",
             "type": "camp",
             "terrain": "forest",
             "x": 2395,
@@ -245,7 +245,7 @@
         {
             "name": "the_hollow",
             "title": "The hollow",
-            "description": "blablabla",
+            "description": "Many people get lost in these woods for its treetops block the light of the sun, yet there is a clearing, a shallow mound where no tree or plant yet grows. A melishious creature stokes this grounds making this passage even more difficult.",
             "type": "camp",
             "terrain": "mine",
             "x": 2382,
@@ -257,7 +257,7 @@
         {
             "name": "the_western_gate",
             "title": "The western gate",
-            "description": "blablabla",
+            "description": "The great wilderness stops at the western gates, hindered by the strong wall built to keep the large forest in check and all the inhabitants in it. Its builders are now long dead yet its foundations are still strong.",
             "type": "camp",
             "terrain": "forest",
             "x": 2154,
@@ -269,7 +269,7 @@
         {
             "name": "hagville",
             "title": "Hagville",
-            "description": "blablabla",
+            "description": "A well known settlement built by the fearsome pilgrims who settled this land, overlooking the vast and once heavily populated valley of the Karon river. Its name stems from its notorious history of having the famous witch trials.",
             "type": "camp",
             "terrain": "city",
             "x": 2245,

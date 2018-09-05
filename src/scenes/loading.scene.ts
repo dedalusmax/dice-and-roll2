@@ -143,6 +143,9 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('terrain-beach', 'assets/screens/terrain-beach-small.png');
                 this.load.image('terrain-hills', 'assets/screens/terrain-hills-small.png');
                 this.load.image('terrain-forest', 'assets/screens/terrain-forest-small.png');
+                this.load.image('terrain-swamp', 'assets/screens/terrain-swamp-small.png');
+                this.load.image('terrain-mine', 'assets/screens/terrain-mine-small.png');
+                this.load.image('terrain-city', 'assets/screens/terrain-city-small.png');
 
                 this.load.audio('ambient-arrival', Assets.sounds.ambient.arrival);
                 this.load.audio('ambient-beach', Assets.sounds.ambient.beach);
