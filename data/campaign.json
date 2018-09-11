@@ -312,7 +312,7 @@
         {
             "name": "bog_crossing",
             "title": "Bog crossing",
-            "description": "blablabla",
+            "description": "A vast land stretches to the east. Great marshlands of Gorwich. Waiving paths appear and disappear, broken by the murky waters of the Karon. Stay on the path, for if you stray from it, you will never find the way back.",
             "type": "camp",
             "terrain": "hills",
             "x": 1807,
@@ -328,7 +328,7 @@
         {
             "name": "delmond_keep",
             "title": "Delmond keep",
-            "description": "blablabla",
+            "description": "Another watcher sits on the shore of the Fading sea. Long gone were the days of its splendor and many things once cherished are no more: the song, the food, the laughter. All are just a distant call of memory.",
             "type": "camp",
             "terrain": "hills",
             "x": 1511,
@@ -342,7 +342,7 @@
         {
             "name": "sunken_graveyard",
             "title": "Sunken graveyard",
-            "description": "blablabla",
+            "description": "Whispers can be heard emanating from the cold tombstones half semerged in the muddy water. Stones stacked on each other, creating small islands of dirt and bone. Strange siluettes move around the pits…",
             "type": "camp",
             "terrain": "swamp",
             "x": 1892,
@@ -355,7 +355,7 @@
         {
             "name": "snatchers_hideout",
             "title": "Snatcher's hideout",
-            "description": "blablabla",
+            "description": "On the west-most point of the delta, a small hut can be seen. The place smells of death and decay, for this was the hideout of the Dogsnouth killer. He is long dead, but his spirit still indures, looking for more victims.",
             "type": "camp",
             "terrain": "swamp",
             "x": 1795,
@@ -368,7 +368,7 @@
         {
             "name": "old_battlefield",
             "title": "Old battlefield",
-            "description": "blablabla",
+            "description": "The weak soil is littered by the remains of the dead, from a war long forgotten. The bog drenched in blood, hiding the warriors of old with all of their arms. A great curse lies over this place…so choose your way wisely.",
             "type": "camp",
             "terrain": "hills",
             "x": 1994,
@@ -381,7 +381,7 @@
         {
             "name": "krones_nest",
             "title": "Krone's nest",
-            "description": "blablabla",
+            "description": "The weak soil is littered by the remains of the dead, from a war long forgotten. The bog drenched in blood, hiding the warriors of old with all of their arms. A great curse lies over this place…so choose your way wisely.",
             "type": "camp",
             "terrain": "swamp",
             "x": 1996,
@@ -395,7 +395,7 @@
         {
             "name": "candlelight",
             "title": "Candlelight",
-            "description": "blablabla",
+            "description": "A village always engulfed in fog stands in the constant shadow of the Red keep. A dangerous place, harrased by the likes of the dead. Many candles are lit, giving this place an eary quality as well as its name: Candellight.",
             "type": "camp",
             "terrain": "city",
             "x": 2321,
@@ -411,7 +411,7 @@
         {
             "name": "southern_beacon",
             "title": "Southern beacon",
-            "description": "blablabla",
+            "description": "In times of need, great tongues of flame would be lit on this tower. Its light would be seen far to the west, calling if needed the great voyagers of Rodor. For some unknown reason this was newer done, inspite of the greatest calamity that has ever struck this forsaken land.",
             "type": "camp",
             "terrain": "beach",
             "x": 2076,
