@@ -11,7 +11,8 @@ import { BattleScene } from "./battle.scene";
 import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
 import { SaveGameService } from "../services/save-game.service";
-import { LocationReward } from "../models/location";
+import { LocationType } from "../models/location";
+import { LocationService } from "../services/location.service";
 
 const BACK_STYLE = { font: '56px ' + FONT_FAMILY, fill: '#DDDD00', align: 'center', stroke: '#000000', strokeThickness: 2 },
     HEADER_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#444' },
@@ -128,56 +129,63 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     private createSkirmishMenu() {
-
-        var party = new Party();
-        var p1 = Assets.characters.musketeer; 
-        var p2 = Assets.characters.gunslinger; 
-        var p3 = Assets.characters.illusionist; 
-        // beef them with all specials
-        // p1.specialsUsed = 4;
-        // p2.specialsUsed = 4;
-        // p3.specialsUsed = 4;
-        party.add(p1);
-        party.add(p2);
-        party.add(p3);
-
-        var options = new BattleSceneOptions();
-        options.playerParty = party;
-        options.terrain = 'beach';
-        options.skirmish = true;
-        options.enemyParty = [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ], // [ Assets.monsters.seabound_sailor, Assets.monsters.seabound_captain, Assets.monsters.siren ];
-        options.enemyMana = 100;
-
-        // TODO: just for testing
-        const reward = new LocationReward();
-        reward.mana = 20;
-        options.reward = reward;
-
-        SceneService.run(this, new BattleScene(), false, options);
-
-        return;
-
         if (this._activeMenu) {
             this._activeMenu.toggleVisible();
         }
         var menu = this.add.group();
 
-        var mockupPlayers = [
-            Assets.characters.gunslinger,
-            Assets.characters.automaton,
-            Assets.characters.musketeer,
-            Assets.characters.alchemist,
-            Assets.characters.assasin,
-            Assets.characters.illusionist
-        ];
+        menu.add(this.createMenuItem('Choose from the following battles:', 1, HEADER_STYLE));
 
-        mockupPlayers.forEach(character => character.specialsUsed = 4);
+        menu.add(this.createMenuItem('Shipwreck', 1.8, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'shipwreck', 1)));
+        menu.add(this.createMenuItem('Hunter\'s Lodge', 2.5, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'hunters_lodge', 1)));
+        menu.add(this.createMenuItem('Old Theatre', 3.2, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'old_theatre', 2)));
+        menu.add(this.createMenuItem('The Hollow', 3.9, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'the_hollow', 2)));
+        menu.add(this.createMenuItem('Sunken Graveyard', 4.6, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'sunken_graveyard', 2)));
+        menu.add(this.createMenuItem('The Red Keep', 5.3, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'the_red_keep', 3)));
+        menu.add(this.createMenuItem('King\'s Bridge', 6.0, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'kings_bridge', 3)));
 
-        // TODO: add battles
-
-        menu.add(this.createMenuItem('Back', 5.2, BACK_STYLE, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Back', 7, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
+    }
+
+    private startSkirmishGame(locationName: string, level: number): void {
+
+        const party = new Party();
+
+        const characters: Array<any> = [];
+        for (var character in Assets.characters) {
+            characters.push(Assets.characters[character]);
+        }
+
+        while (party.members.length < 3) {
+
+            const player = Phaser.Math.RND.pick(characters);
+
+            if (party.members.find(p => p.name == player.name)) {
+                continue;
+            }
+
+            player.specialsUsed = Phaser.Math.RND.between(0, level);
+            const availableWeapons: Array<any> = player.weapons.slice(0, level);
+            player.weapon = Phaser.Math.RND.pick(availableWeapons);
+            const availableArmors: Array<any> = player.armors.slice(0, level);
+            player.armor = Phaser.Math.RND.pick(availableArmors);
+
+            party.add(player);
+        }
+
+        const location = LocationService.get(locationName);
+        
+        var options = new BattleSceneOptions();
+        options.playerParty = party;
+        options.terrain = LocationType[location.terrain];
+        options.skirmish = true;
+        options.enemyParty = [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ],
+        options.enemyMana = location.enemyMana | 100;
+        options.reward = location.reward;
+
+        SceneService.run(this, new BattleScene(), false, options);
     }
 
     private displayVolume(volume): string {

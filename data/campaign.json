@@ -63,7 +63,8 @@
             "enemies": [
                 "seabound_sailor",
                 "seabound_captain"
-            ]
+            ],
+            "enemyMana": 120
         },
         {
             "name": "sirens_cove",
@@ -80,7 +81,8 @@
             "enemies": [
                 "siren",
                 "siren" 
-            ]
+            ],
+            "enemyMana": 120
         },
         {
             "name": "screaming_grotto",
@@ -99,6 +101,7 @@
                 "serpent",
                 "siren"
             ],
+            "enemyMana": 160,
             "reward": {
                 "mana": 20
             }
@@ -119,7 +122,8 @@
             "enemies": [
                 "hoblum",
                 "gnilur"  
-            ]
+            ],
+            "enemyMana": 120
         },
         {
             "name": "redwood_crossing",
@@ -137,7 +141,8 @@
             "enemies": [
                 "hoblum",
                 "gnilur"     
-            ]
+            ],
+            "enemyMana": 120
         },
         {
             "name": "scorched_windmill",
@@ -152,7 +157,8 @@
             ],
             "enemies": [
                 "seabound_sailor"    
-            ]
+            ],
+            "enemyMana": 100
         },
         {
             "name": "hunters_lodge",
@@ -167,7 +173,8 @@
             ],
             "enemies": [
                 "seabound_sailor"    
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "thorn_gate",
@@ -180,7 +187,8 @@
             "connectsTo": [
                 "old_willow",
                 "redwood_crossing"
-            ]
+            ],
+            "enemyMana": 120
         },
         {
             "name": "old_willow",
@@ -192,7 +200,8 @@
             "y": 1031,
             "connectsTo": [
                 "tainted_well"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "tainted_well",
@@ -204,7 +213,8 @@
             "y": 839,
             "connectsTo": [
                 "madmans_bridge"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "madmans_bridge",
@@ -216,7 +226,8 @@
             "y": 437,
             "connectsTo": [
                 "old_theatre"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "old_theatre",
@@ -228,7 +239,8 @@
             "y": 309,
             "connectsTo": [
                 "lonely_cabin"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "lonely_cabin",
@@ -240,7 +252,8 @@
             "y": 553,
             "connectsTo": [
                 "the_hollow"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "the_hollow",
@@ -252,7 +265,8 @@
             "y": 818,
             "connectsTo": [
                 "the_western_gate"
-            ]
+            ],
+            "enemyMana": 180
         },
         {
             "name": "the_western_gate",
@@ -264,7 +278,8 @@
             "y": 1192,
             "connectsTo": [
                 "hagville"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "hagville",
@@ -277,7 +292,8 @@
             "connectsTo": [
                 "eldridge_ruins",
                 "city_gate"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "eldridge_ruins",
@@ -290,7 +306,8 @@
             "connectsTo": [
                 "bog_crossing",
                 "hagville"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "bog_crossing",
@@ -305,7 +322,8 @@
                 "sunken_graveyard",
                 "eldridge_ruins",
                 "hagville"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "delmond_keep",
@@ -318,7 +336,8 @@
             "connectsTo": [
                 "fallen_tower",
                 "bog_crossing"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "sunken_graveyard",
@@ -330,7 +349,8 @@
             "y": 1898,
             "connectsTo": [
                 "snatchers_hideout"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "snatchers_hideout",
@@ -342,7 +362,8 @@
             "y": 2048,
             "connectsTo": [
                 "old_battlefield"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "old_battlefield",
@@ -354,7 +375,8 @@
             "y": 2023,
             "connectsTo": [
                 "krones_nest"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "krones_nest",
@@ -367,7 +389,8 @@
             "connectsTo": [
                 "farnath",
                 "candlelight"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "candlelight",
@@ -382,7 +405,8 @@
                 "farnath",
                 "southern_beacon",
                 "the_red_keep"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "southern_beacon",
@@ -394,7 +418,8 @@
             "y": 2495,
             "connectsTo": [
                 "candlelight"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "the_red_keep",
@@ -406,7 +431,8 @@
             "y": 2515,
             "connectsTo": [
                 "candlelight"
-            ]
+            ],
+            "enemyMana": 180
         },
         {
             "name": "farnath",
@@ -419,7 +445,8 @@
             "connectsTo": [
                 "candlelight",
                 "karon_keep"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "karon_keep",
@@ -431,7 +458,8 @@
             "y": 1953,
             "connectsTo": [
                 "bog_crossing"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "city_gate",
@@ -443,7 +471,8 @@
             "y": 1446,
             "connectsTo": [
                 "kings_bridge"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "kings_bridge",
@@ -456,7 +485,8 @@
             "connectsTo": [
                 "citadel",
                 "bazaar"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "citadel",
@@ -468,7 +498,8 @@
             "y": 1580,
             "connectsTo": [
                 "bazaar"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "bazaar",
@@ -484,7 +515,8 @@
                 "the_slums",
                 "college_courtyard",
                 "northern_passage"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "the_slums",
@@ -497,7 +529,8 @@
             "connectsTo": [
                 "bazaar",
                 "college_courtyard"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "college_courtyard",
@@ -510,7 +543,8 @@
             "connectsTo": [
                 "bazaar",
                 "northern_passage"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "northern_passage",
@@ -522,7 +556,8 @@
             "y": 1276,
             "connectsTo": [
                 "mountain_pass"
-            ]
+            ],
+            "enemyMana": 140
         },
         {
             "name": "mountain_pass",
@@ -534,7 +569,8 @@
             "y": 1163,
             "connectsTo": [
                 "fort_sibros"
-            ]
+            ],
+            "enemyMana": 160
         },
         {
             "name": "fort_sibros",
@@ -545,7 +581,8 @@
             "x": 3657,
             "y": 844,
             "connectsTo": [
-            ]
+            ],
+            "enemyMana": 200
         }
     ]
 }

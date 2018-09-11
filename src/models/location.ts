@@ -36,6 +36,7 @@ export class Location {
     y: number;
     connectsTo: Array<string>;
     enemies?: Array<string>;
+    enemyMana?: number;
     status: LocationStatus;
     reward?: LocationReward;
 }
