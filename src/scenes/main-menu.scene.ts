@@ -11,7 +11,7 @@ import { BattleScene } from "./battle.scene";
 import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
 import { SaveGameService } from "../services/save-game.service";
-import { LocationType } from "../models/location";
+import { TerrainType } from "../models/location";
 import { LocationService } from "../services/location.service";
 
 const BACK_STYLE = { font: '56px ' + FONT_FAMILY, fill: '#DDDD00', align: 'center', stroke: '#000000', strokeThickness: 2 },
@@ -177,11 +177,16 @@ export class MainMenuScene extends Phaser.Scene {
 
         const location = LocationService.get(locationName);
         
+        const enemyParty = [];
+        location.enemies.forEach(enemy => {
+            enemyParty.push(Assets.monsters[enemy]);
+        });
+
         var options = new BattleSceneOptions();
         options.playerParty = party;
-        options.terrain = LocationType[location.terrain];
+        options.terrain = TerrainType[location.terrain];
         options.skirmish = true;
-        options.enemyParty = [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ],
+        options.enemyParty = enemyParty; // [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ],
         options.enemyMana = location.enemyMana | 100;
         options.reward = location.reward;
 

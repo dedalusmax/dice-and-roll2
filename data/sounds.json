@@ -38,7 +38,8 @@
         "poison": "assets/sound/effects/weapons/270409__littlerobotsoundfactory__spell-00.wav",
         "spores": "assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav",
         "bite": "assets/sound/effects/weapons/246184__andreangelo__bite-growl-effect.wav",
-        "branch": "assets/sound/effects/weapons/278881__theshaggyfreak__shaking-branch.wav"
+        "branch": "assets/sound/effects/weapons/278881__theshaggyfreak__shaking-branch.wav",
+        "pickaxe": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav"
     },
     "specials": {
         "ricochet": "assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav",

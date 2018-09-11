@@ -154,5 +154,29 @@
         "type": "MELEE",
         "weapon": "clutches",
         "specials": [ ]
+    },
+    "grave_digger": {
+        "name": "grave_digger",
+        "title": "Grave digger",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 70,
+        "defense": 2,
+        "attack": 17,
+        "type": "MELEE",
+        "weapon": "pickaxe",
+        "specials": [ ]
+    },
+    "banshee": {
+        "name": "banshee",
+        "title": "Banshee",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 80,
+        "defense": 3,
+        "attack": 20,
+        "type": "MELEE",
+        "weapon": "claws",
+        "specials": [ ]
     }
 }

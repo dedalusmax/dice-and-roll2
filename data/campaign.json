@@ -172,7 +172,8 @@
                 "redwood_crossing"
             ],
             "enemies": [
-                "seabound_sailor"    
+                "hoblum",
+                "fey"    
             ],
             "enemyMana": 140
         },
@@ -240,6 +241,11 @@
             "connectsTo": [
                 "lonely_cabin"
             ],
+            "enemies": [
+                "harlequin",
+                "puppeteer",
+                "harlequin"    
+            ],
             "enemyMana": 160
         },
         {
@@ -265,6 +271,10 @@
             "y": 818,
             "connectsTo": [
                 "the_western_gate"
+            ],
+            "enemies": [
+                "wendigo",
+                "wendigo"
             ],
             "enemyMana": 180
         },
@@ -350,6 +360,11 @@
             "connectsTo": [
                 "snatchers_hideout"
             ],
+            "enemies": [
+                "corpse",
+                "grave_digger",
+                "grave_digger"
+            ],           
             "enemyMana": 160
         },
         {
@@ -425,13 +440,17 @@
             "name": "the_red_keep",
             "title": "The red keep",
             "description": "blablabla",
-            "type": "camp",
+            "type": "encounter",
             "terrain": "mine",
             "x": 2545,
             "y": 2515,
             "connectsTo": [
                 "candlelight"
             ],
+            "enemies": [
+                "banshee",
+                "banshee"
+            ],  
             "enemyMana": 180
         },
         {
