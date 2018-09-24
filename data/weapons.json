@@ -231,5 +231,12 @@
         "desc": "Wood creatures fight with their branches that vip the victims hard",
         "type": "CLAWS",
         "attack": 2
+    },
+    "lightning": {
+        "name": "lightning",
+        "title": "Lightning",
+        "desc": "Doctor Sibros uses his powers to call the thunderbolt on random enemy",
+        "type": "CLAWS",
+        "attack": 4
     }
 }

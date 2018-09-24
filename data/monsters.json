@@ -153,7 +153,7 @@
         "attack": 20,
         "type": "MELEE",
         "weapon": "clutches",
-        "specials": [ ]
+        "specials": [ "poisonous_gas" ]
     },
     "grave_digger": {
         "name": "grave_digger",
@@ -176,8 +176,8 @@
         "defense": 3,
         "attack": 20,
         "type": "MELEE",
-        "weapon": "claws",
-        "specials": [ ]
+        "weapon": "clutches",
+        "specials": [ "vampire_bite", "enchanting_song" ]
     },
     "vampire": {
         "name": "vampire",
@@ -188,8 +188,8 @@
         "defense": 3,
         "attack": 20,
         "type": "MELEE",
-        "weapon": "claws",
-        "specials": [ ]
+        "weapon": "clutches",
+        "specials": [ "vampire_bite", "blood" ]
     },
     "construct": {
         "name": "construct",
@@ -201,7 +201,7 @@
         "attack": 20,
         "type": "MELEE",
         "weapon": "forge_hammer",
-        "specials": [ ]
+        "specials": [ "break_defense", "burning_flames" ]
     },
     "doctor_sibros": {
         "name": "doctor_sibros",
@@ -212,7 +212,7 @@
         "defense": 3,
         "attack": 20,
         "type": "MELEE",
-        "weapon": "branch",
-        "specials": [ ]
+        "weapon": "lightning",
+        "specials": [ "electric_charge", "eather" ]
     }
 }

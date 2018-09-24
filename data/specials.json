@@ -340,5 +340,49 @@
         "effectType": "stun",
         "duration": 2,
         "manaCost": 25
+    },
+    "vampire_bite": {
+        "name": "vampire_bite",
+        "title": "Vampire bite",
+        "description": "Vampires causes attack of bleeding of close target for 3 turns with 6 damage.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "singleTarget",
+        "effectType": "lingering",
+        "lingeringType": "bleeding",
+        "duration": 3,
+        "modifier": 6,
+        "manaCost": 20
+    },
+    "blood": {
+        "name": "blood",
+        "title": "Blood",
+        "description": "Regenerates health of vampire by drinking human blood for 30 HP.",
+        "targetType": "self",
+        "executionType": "singleTarget",
+        "effectType": "heal",
+        "modifier": 30,
+        "manaCost": 5
+    },
+    "electric_charge": {
+        "name": "electric_charge",
+        "title": "Electric charge",
+        "description": "By using his mighty powers, electric charges stuns all enemies for 1 turn.",
+        "targetType": "anyEnemy",
+        "executionType": "allTargets",
+        "effectType": "stun",
+        "duration": 1,
+        "manaCost": 40
+    },
+    "eather": {
+        "name": "eather",
+        "title": "Eather",
+        "description": "Throws deadly Eather wind which lingers for 3 turns dealing 15 damage.",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "allTargetsInRank",
+        "effectType": "lingering",
+        "lingeringType": "poison",
+        "duration": 3,
+        "modifier": 15,
+        "manaCost": 40
     }
 }

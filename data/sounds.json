@@ -23,7 +23,7 @@
     },
     "weapons": {
         "gunslinger": "assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav",
-        "automaton": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav",
+        "automaton": "assets/sound/effects/weapons/103628__benboncan__large-anvil-steel-hammer.wav",
         "alchemist": "assets/sound/effects/weapons/155235__zangrutz__bomb-small.wav",
         "musketeer": "assets/sound/effects/weapons/128978__aaronsiler__aaronsiler-musket-2.wav",
         "illusionist": "assets/sound/effects/weapons/434472__dersuperanton__taking-card.wav",
@@ -40,7 +40,8 @@
         "bite": "assets/sound/effects/weapons/246184__andreangelo__bite-growl-effect.wav",
         "branch": "assets/sound/effects/weapons/278881__theshaggyfreak__shaking-branch.wav",
         "pickaxe": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav",
-        "forge_hammer": "assets/sound/effects/weapons/175180__yottasounds__clank-002.wav"
+        "forge_hammer": "assets/sound/effects/weapons/103628__benboncan__large-anvil-steel-hammer.wav",
+        "lightning": "assets/sound/effects/specials/399656__bajko__sfx-thunder-blast.wav"
     },
     "specials": {
         "ricochet": "assets/sound/effects/specials/315858__benjaminharveydesign__gunshot-ricochet.wav",
@@ -80,7 +81,11 @@
         "crow": "assets/sound/effects/specials/418262__inspectorj__crow-call-single-a.wav",
         "curse": "assets/sound/effects/specials/348142__nikomyth__witch-s-laugh.wav",
         "fear": "assets/sound/effects/specials/173945__johnsonbrandediting__human-male-scream-small-crowd-panic-fear.wav",
-        "entangle": "assets/sound/effects/specials/278881__theshaggyfreak__shaking-branch-1.wav"
+        "entangle": "assets/sound/effects/specials/278881__theshaggyfreak__shaking-branch-1.wav",
+        "vampire_bite": "assets/sound/effects/specials/339501__robinhood76__06451-vampire-slow-hit-scream.wav",
+        "blood": "assets/sound/effects/specials/433645__dersuperanton__drinking-and-swallow.wav",
+        "electric_charge": "assets/sound/effects/specials/383654__deleted-user-7146007__electricity.wav",
+        "eather": "assets/sound/effects/specials/270409__littlerobotsoundfactory__spell-00.wav"
     },
     "ambient": {
         "arrival": "assets/sound/ambient/331435__codeine__storm-at-sea.wav",
