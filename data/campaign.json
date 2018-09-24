@@ -449,6 +449,7 @@
             ],
             "enemies": [
                 "banshee",
+                "vampire",
                 "banshee"
             ],  
             "enemyMana": 180
@@ -497,7 +498,7 @@
             "name": "kings_bridge",
             "title": "King's bridge",
             "description": "blablabla",
-            "type": "camp",
+            "type": "encounter",
             "terrain": "city",
             "x": 2944,
             "y": 1520,
@@ -505,6 +506,11 @@
                 "citadel",
                 "bazaar"
             ],
+            "enemies": [
+                "construct",
+                "doctor_sibros",
+                "construct"
+            ], 
             "enemyMana": 140
         },
         {

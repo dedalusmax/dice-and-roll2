@@ -178,5 +178,41 @@
         "type": "MELEE",
         "weapon": "claws",
         "specials": [ ]
+    },
+    "vampire": {
+        "name": "vampire",
+        "title": "Vampire",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 80,
+        "defense": 3,
+        "attack": 20,
+        "type": "MELEE",
+        "weapon": "claws",
+        "specials": [ ]
+    },
+    "construct": {
+        "name": "construct",
+        "title": "Construct",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 80,
+        "defense": 3,
+        "attack": 20,
+        "type": "MELEE",
+        "weapon": "forge_hammer",
+        "specials": [ ]
+    },
+    "doctor_sibros": {
+        "name": "doctor_sibros",
+        "title": "Doctor Sibros",
+        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
+        "description": "re wrere erwer wer ew.",
+        "health": 80,
+        "defense": 3,
+        "attack": 20,
+        "type": "MELEE",
+        "weapon": "branch",
+        "specials": [ ]
     }
 }
