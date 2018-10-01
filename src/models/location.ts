@@ -4,7 +4,7 @@ export enum TerrainType {
     hills, 
     swamp,
     forest,
-    mine,
+    ruins,
     city
 }
 

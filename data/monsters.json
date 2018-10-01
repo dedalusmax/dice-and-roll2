@@ -74,8 +74,8 @@
     "fey": {
         "name": "fey",
         "title": "Fey",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "As the towns got emptied and as the once traveled roads became abandoned, old beings awoke. Hardy protectors of the lush wilderness and great foes to the „tree-eaters“. They also inbody the beauty and youth of nature – that's why they look like gorgeous women clad in moss and flowers.",
+        "description": "Unassuming, but quite deadly. Possessing powerful hands and utilizing spores as ranged weapons.",
         "health": 70,
         "defense": 2,
         "attack": 18,
@@ -158,8 +158,8 @@
     "grave_digger": {
         "name": "grave_digger",
         "title": "Grave digger",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "From the ashes of the world arose a man seeking the rebirth of the once lost in the great spite of the Eather. To reclaim the bodies of the „lost“ he uses his henchmen – the grave diggers to dig up the cadavers and to transport them to castle Sibros.",
+        "description": "Week-minded individuals, unable to use sofisticated weapons there only attack with pickaxe.",
         "health": 70,
         "defense": 2,
         "attack": 17,
@@ -170,8 +170,8 @@
     "banshee": {
         "name": "banshee",
         "title": "Banshee",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "For many inhabitants of Gorwich, death has a different face. Neither roth nor bone, but gentle skin and red lips. Her lust is to drive the hearts of man away from their wives and to turn them into her servants. She plays the dance of death with mortal men.",
+        "description": "Her beauty is only matched by her feriousety in battle. She bites, she claws.",
         "health": 80,
         "defense": 3,
         "attack": 20,
