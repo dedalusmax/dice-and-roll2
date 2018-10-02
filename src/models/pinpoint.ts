@@ -110,11 +110,17 @@ export class Pinpoint {
         var title = this._scene.add.text(paper.x + 40, paper.y + 40, this.location.title, TITLE_STYLE);
         title.setOrigin(0, 0);
 
+        var terrain = this._scene.add.sprite(paper.x + 130, paper.y + 160, 'terrain-' + TerrainType[this.location.terrain]);
+        terrain.setOrigin(0, 0);
+
         var desc = this._scene.add.text(paper.x + 40, paper.y + 80, this.location.description, DESCRIPTION_STYLE);
         title.setOrigin(0, 0);
 
-        var terrain = this._scene.add.sprite(paper.x + 130, paper.y + 160, 'terrain-' + TerrainType[this.location.terrain]);
-        terrain.setOrigin(0, 0);
+        var terrainTitle = this._scene.add.text(paper.x + 140, paper.y + 200, 'Terrain type:', DESCRIPTION_STYLE);
+        terrainTitle.setOrigin(0, 0);
+
+        var terrainType = this._scene.add.text(terrainTitle.x + 100, terrainTitle.y, TerrainType[this.location.terrain], DESCRIPTION_STYLE);
+        terrainType.setOrigin(0, 0);
 
         var back = this._scene.add.sprite(paper.x + 60, paper.y + 280, 'location-buttons', 0);
         back.setOrigin(0, 0);
@@ -142,7 +148,7 @@ export class Pinpoint {
         let rewardTitle = this._scene.add.text(back.x + 110, back.y + 20, this.location.reward ? 'Additional Reward!' : '', REWARD_STYLE);
         rewardTitle.setOrigin(0, 0);
 
-        this._infoObjects.push(title, desc, terrain, back, backTitle, action, actionTitle, rewardTitle);
+        this._infoObjects.push(title, desc, terrain, terrainTitle, terrainType, back, backTitle, action, actionTitle, rewardTitle);
 
         // ignore objects on other cameras
         this._scene.cameras.main.ignore(this._infoObjects);

@@ -146,8 +146,8 @@
     "corpse": {
         "name": "corpse",
         "title": "Corpse",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "Many souls escaped their fragile, earthly shell, but not every. For one man's idea was to renew the world and it was by his hand there would still endure in their former bodies. There once was a smile on his face, now unfortunately, impossible.",
+        "description": "Their brain is now long gone and it is for this reason it lacks any strategical or tactical ability.",
         "health": 80,
         "defense": 2,
         "attack": 20,
@@ -182,8 +182,8 @@
     "vampire": {
         "name": "vampire",
         "title": "Vampire",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "Not many creatures can indure in the vicinity of this entity. It leeches on your energy, until you are unwiling to stand, for in this manor, it breaks your will. As you lay down, trying to get up, it falls up on you, trusting its fangs into your weakened body.",
+        "description": "This may be the strongest creature you will encounter. Has the unique ability to constantly heal itself.",
         "health": 80,
         "defense": 3,
         "attack": 20,
@@ -194,8 +194,8 @@
     "construct": {
         "name": "construct",
         "title": "Construct",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "There are many ways of creating a homunculus. First you need a vessel, a shell, preferably made out of iron or copper. The second thing you need is a soul. Now in case of this construct, it is a brain that floats in a green, luminescent liquid. ",
+        "description": "A construct is a strong fighter, using its fists and flames to decimate its opponents.",
         "health": 80,
         "defense": 3,
         "attack": 20,
@@ -206,8 +206,8 @@
     "doctor_sibros": {
         "name": "doctor_sibros",
         "title": "Doctor Sibros",
-        "story": "rerewrewrewrerew err ew rewr ewr ewr ew",
-        "description": "re wrere erwer wer ew.",
+        "story": "Dark were the closing days of the Great dying, yet the 12e Regiment endured. They never stopped searching for the cure. 6 times they passed the King's bridge, but in vain. Many fell, but for the once left there was no going back. Such was the faith of this man – doctor Augustus Hervil Sibros.",
+        "description": "He is using powerful lightning strikes and devastating waves of poison to anhilate his enemies.",
         "health": 80,
         "defense": 3,
         "attack": 20,

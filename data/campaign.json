@@ -560,7 +560,7 @@
         {
             "name": "college_courtyard",
             "title": "College courtyard",
-            "description": "blablabla",
+            "description": "As the Karon meandres through the city it separates in two. So it was that the people fled from the vast to the East. The great college established a regiment of the best doctors and students to travel to the sickened streets of east Lanervin. 12e regiments there were, established by the great council. There was one among them, a doctor who managed to survive.",
             "type": "encounter",
             "terrain": "city",
             "x": 3307,
@@ -574,7 +574,7 @@
         {
             "name": "northern_passage",
             "title": "Northern passage",
-            "description": "blablabla",
+            "description": "Iti s not actualy known from where the Eather came from. It struck quickly and without any restraint. Killing or corrupting anything in its path. Its origins may lay in something not from this world. Many scolars agree, that while studying the old texts and engravings they saw something…something that came once before.",
             "type": "encounter",
             "terrain": "hills",
             "x": 3229,
@@ -587,7 +587,7 @@
         {
             "name": "mountain_pass",
             "title": "Mountain pass",
-            "description": "blablabla",
+            "description": "This is the last stretch of road, leading to castle Sibros. Not many people knew about its existence. Its purpose was, that in case of a disaster the monarch could flee to the former Blackstone keep. It is not known if he made it, although I do quite doubt Sibros would share his castle with him.",
             "type": "encounter",
             "terrain": "hills",
             "x": 3521,
@@ -600,7 +600,7 @@
         {
             "name": "fort_sibros",
             "title": "Fort sibros",
-            "description": "blablabla",
+            "description": "A tall, black tower stands in front of you. Lined with copper wiring, repurposed to do the unholy…to raise the dead. On top of this horred spire stand three rods, there purpose to channel the power of Thunder into the rotting bodies of the deceased. There are no windows or doors, neither crests nor flags, there is only a mouth that heads into the bowls of this great monster.",
             "type": "end",
             "terrain": "ruins",
             "x": 3657,
