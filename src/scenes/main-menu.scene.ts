@@ -305,9 +305,14 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(this.createMenuItem('Special thanks to:', 4, HEADER_STYLE));
         menu.add(this.createMenuItem('Looperman for music tracks', 4.4, AUTHOR_SMALL_STYLE));
         menu.add(this.createMenuItem('Freesound for sound effects', 4.8, AUTHOR_SMALL_STYLE));
-        menu.add(this.createMenuItem('Back', 6, BACK_STYLE, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('For full list of music\n and sound effects authors click here', 5.8, AUTHOR_STYLE, this.navigateToReadme.bind(this)));
+        menu.add(this.createMenuItem('Back', 7, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
+    }
+
+    private navigateToReadme() {
+        window.open('https://github.com/dedalusmax/dice-and-roll2/blob/master/README.md','_blank');
     }
 
     private newGame() {
