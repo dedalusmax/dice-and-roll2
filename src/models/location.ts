@@ -5,7 +5,8 @@ export enum TerrainType {
     swamp,
     forest,
     ruins,
-    city
+    city,
+    fort
 }
 
 export enum LocationType {

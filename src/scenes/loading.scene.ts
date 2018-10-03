@@ -146,6 +146,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.image('terrain-swamp', 'assets/screens/terrain-swamp-small.png');
                 this.load.image('terrain-ruins', 'assets/screens/terrain-ruins-small.png');
                 this.load.image('terrain-city', 'assets/screens/terrain-city-small.png');
+                this.load.image('terrain-fort', 'assets/screens/terrain-fort-small.png');
 
                 this.load.audio('ambient-arrival', Assets.sounds.ambient.arrival);
                 this.load.audio('ambient-beach', Assets.sounds.ambient.beach);
@@ -154,6 +155,7 @@ export class LoadingScene extends Phaser.Scene {
                 this.load.audio('ambient-forest', Assets.sounds.ambient.forest);
                 this.load.audio('ambient-ruins', Assets.sounds.ambient.ruins);
                 this.load.audio('ambient-city', Assets.sounds.ambient.city);
+                this.load.audio('ambient-fort', Assets.sounds.ambient.fort);
 
                 this.load.audio('page', Assets.sounds.effects.page);
                 this.load.audio('card', Assets.sounds.effects.card);

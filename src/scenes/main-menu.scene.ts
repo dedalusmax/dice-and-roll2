@@ -20,7 +20,7 @@ const BACK_STYLE = { font: '56px ' + FONT_FAMILY, fill: '#DDDD00', align: 'cente
     VOLUME_STYLE = { font: '24px ' + FONT_FAMILY_BLOCK, fill: '#990000', align: 'center' },
     AUTHOR_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
     AUTHOR_SMALL_STYLE =  { font: '18px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
-    MENU_STYLE = { font: '48px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
+    MENU_STYLE = { font: '42px ' + FONT_FAMILY, fill: '#581B06', align: 'center' },
     MENU_PRESSED = { font: '56px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class MainMenuScene extends Phaser.Scene {
@@ -85,6 +85,7 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(this.createMenuItem('Skirmish', position++, MENU_STYLE, this.createSkirmishMenu.bind(this)));
         menu.add(this.createMenuItem('World Map', position++, MENU_STYLE, this.openWorldMap.bind(this)));
         menu.add(this.createMenuItem('Bestiary', position++, MENU_STYLE, this.openBestiary.bind(this)));
+        menu.add(this.createMenuItem('Intro', position++, MENU_STYLE, this.openBestiary.bind(this)));
         menu.add(this.createMenuItem('Settings', position++, MENU_STYLE, this.createSettingsMenu.bind(this)));
         menu.add(this.createMenuItem('Credits', position++, MENU_STYLE, this.createCreditsMenu.bind(this)));
 
@@ -95,7 +96,7 @@ export class MainMenuScene extends Phaser.Scene {
         style = style || MENU_PRESSED;
 
         var x = this._paper.x;
-        var y = this._paper.y - this._paper.displayHeight / 2 + 60 + position * 60;
+        var y = this._paper.y - this._paper.displayHeight / 2 + 60 + position * 50;
         var item = this.add.text(x, y, text, style);
         item.setOrigin(0.5);
 
@@ -143,8 +144,10 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(this.createMenuItem('Sunken Graveyard', 4.6, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'sunken_graveyard', 2)));
         menu.add(this.createMenuItem('The Red Keep', 5.3, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'the_red_keep', 3)));
         menu.add(this.createMenuItem('King\'s Bridge', 6.0, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'kings_bridge', 3)));
+        menu.add(this.createMenuItem('Candlelight', 6.7, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'candlelight', 3)));
+        menu.add(this.createMenuItem('Fort Sibros', 7.4, AUTHOR_STYLE, this.startSkirmishGame.bind(this, 'fort_sibros', 4)));
 
-        menu.add(this.createMenuItem('Back', 7, BACK_STYLE, this.createMainMenu.bind(this)));
+        menu.add(this.createMenuItem('Back', 8.5, BACK_STYLE, this.createMainMenu.bind(this)));
 
         this._activeMenu = menu;
     }
@@ -187,7 +190,7 @@ export class MainMenuScene extends Phaser.Scene {
         options.terrain = TerrainType[location.terrain];
         options.skirmish = true;
         options.enemyParty = enemyParty; // [ Assets.monsters.fey, Assets.monsters.corpse, Assets.monsters.hoblum ],
-        options.enemyMana = location.enemyMana | 100;
+        options.enemyMana = location.enemyMana;
         options.reward = location.reward;
 
         SceneService.run(this, new BattleScene(), false, options);

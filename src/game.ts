@@ -13,6 +13,7 @@ import { VictoryScene } from "./scenes/victory.scene";
 import { DefeatScene } from "./scenes/defeat.scene";
 import { BestiaryScene } from "./scenes/bestiary.scene";
 import { EndScene } from "./scenes/end.scene";
+import { IntroScene } from "./scenes/intro.scene";
 
 var A4 = { height: 297, width: 210 };
 
@@ -29,7 +30,11 @@ const config: GameConfig = {
     height: window.innerHeight * window.devicePixelRatio - 4,
     type: Phaser.CANVAS,
     parent: "game",
-    scene: [ BootScene, LoadingScene, MainMenuScene, NewGameScene, BestiaryScene, MapScene, BattleScene, VictoryScene, DefeatScene, EndScene ]
+    scene: [ 
+      BootScene, LoadingScene, MainMenuScene, 
+      IntroScene, NewGameScene, BestiaryScene, MapScene, BattleScene, 
+      VictoryScene, DefeatScene, EndScene 
+    ]
   };
   
 // game class

@@ -208,10 +208,10 @@
         "title": "Doctor Sibros",
         "story": "Dark were the closing days of the Great dying, yet the 12e Regiment endured. They never stopped searching for the cure. 6 times they passed the King's bridge, but in vain. Many fell, but for the once left there was no going back. Such was the faith of this man – doctor Augustus Hervil Sibros.",
         "description": "He is using powerful lightning strikes and devastating waves of poison to anhilate his enemies.",
-        "health": 80,
-        "defense": 3,
-        "attack": 20,
-        "type": "MELEE",
+        "health": 120,
+        "defense": 4,
+        "attack": 22,
+        "type": "RANGED",
         "weapon": "lightning",
         "specials": [ "electric_charge", "eather" ]
     }

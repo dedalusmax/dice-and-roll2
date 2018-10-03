@@ -10,7 +10,8 @@
         "forest": "assets/sound/loops/looperman-l-0202721-0112505-anubis-black-forest.wav",
         "swamp": "assets/sound/loops/looperman-l-0202721-0107480-anubis-heavy-drums-02.wav",
         "ruins": "assets/sound/loops/looperman-l-0202721-0107482-anubis-heavy-drums-04-groove.wav",
-        "city": "assets/sound/loops/looperman-l-0202721-0107483-anubis-heavy-drums-05-groove.wav"
+        "city": "assets/sound/loops/looperman-l-0202721-0107483-anubis-heavy-drums-05-groove.wav",
+        "fort": "assets/sound/loops/looperman-l-0202721-0107483-anubis-heavy-drums-05-groove.wav"
     },
     "effects": {
         "click": "assets/sound/effects/mechanical-clonk-1.mp3",
@@ -94,6 +95,7 @@
         "hills": "assets/sound/ambient/405561__inspectorj__wind-realistic-a.wav",
         "forest": "assets/sound/ambient/385279__bajko__sfx-amb-forest-spring-afternoon-02.wav",
         "ruins": "assets/sound/ambient/89448__bkamuse__dangerous-mine-shaft.wav",
-        "city": "assets/sound/ambient/75076__nupton__abandoned.wav"
+        "city": "assets/sound/ambient/75076__nupton__abandoned.wav",
+        "fort": "assets/sound/ambient/75076__nupton__abandoned.wav"
     }
 }

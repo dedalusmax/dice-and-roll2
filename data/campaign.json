@@ -33,7 +33,7 @@
             "title": "Cliffside keep",
             "description": "A Leviathan stands upon the black ridge, resisting the slashes of the raging sea. Already has the sea taken a bite and left a deep gash, from which the cold water of the bay can seep in.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "ruins",
             "x": 877,
             "y": 1885,
             "connectsTo": [
@@ -120,8 +120,8 @@
                 "delmond_keep"
             ],
             "enemies": [
-                "hoblum",
-                "gnilur"  
+                "corpse",
+                "grave_digger"  
             ],
             "enemyMana": 120
         },
@@ -156,7 +156,7 @@
                 "hunters_lodge"
             ],
             "enemies": [
-                "seabound_sailor"    
+                "construct"    
             ],
             "enemyMana": 100
         },
@@ -173,7 +173,8 @@
             ],
             "enemies": [
                 "hoblum",
-                "fey"    
+                "fey",
+                "gnilur"
             ],
             "enemyMana": 140
         },
@@ -189,6 +190,10 @@
                 "old_willow",
                 "redwood_crossing"
             ],
+            "enemies": [
+                "hoblum",
+                "hoblum"
+            ],
             "enemyMana": 120
         },
         {
@@ -201,6 +206,11 @@
             "y": 1031,
             "connectsTo": [
                 "tainted_well"
+            ],
+            "enemies": [
+                "fey",
+                "gnilur",
+                "fey"
             ],
             "enemyMana": 160
         },
@@ -215,6 +225,11 @@
             "connectsTo": [
                 "madmans_bridge"
             ],
+            "enemies": [
+                "serpent",
+                "gnilur",
+                "serpent"
+            ],
             "enemyMana": 140
         },
         {
@@ -227,6 +242,10 @@
             "y": 437,
             "connectsTo": [
                 "old_theatre"
+            ],
+            "enemies": [
+                "harlequin",
+                "harlequin"
             ],
             "enemyMana": 140
         },
@@ -259,6 +278,11 @@
             "connectsTo": [
                 "the_hollow"
             ],
+            "enemies": [
+                "krone",
+                "krone",
+                "fey"    
+            ],
             "enemyMana": 160
         },
         {
@@ -266,7 +290,7 @@
             "title": "The hollow",
             "description": "Many people get lost in these woods for its treetops block the light of the sun, yet there is a clearing, a shallow mound where no tree or plant yet grows. A melishious creature stokes this grounds making this passage even more difficult.",
             "type": "encounter",
-            "terrain": "ruins",
+            "terrain": "hills",
             "x": 2382,
             "y": 818,
             "connectsTo": [
@@ -289,6 +313,11 @@
             "connectsTo": [
                 "hagville"
             ],
+            "enemies": [
+                "wendigo",
+                "gnilur",
+                "fey"
+            ],
             "enemyMana": 140
         },
         {
@@ -303,6 +332,11 @@
                 "eldridge_ruins",
                 "city_gate"
             ],
+            "enemies": [
+                "krone",
+                "krone",
+                "krone"
+            ],
             "enemyMana": 140
         },
         {
@@ -310,12 +344,16 @@
             "title": "Eldridge ruins",
             "description": "Once there was a king sitting on this throne, a wicked man he was, for he seeked power and influence over everything else. He sent both of his sons to the sickend streets of Lanervin, for in his mind it was a way to get rid of his throne-seeking rivals. He never left his throne…and so he died alone and unwanted, the great king of old.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "ruins",
             "x": 1842,
             "y": 1475,
             "connectsTo": [
                 "bog_crossing",
                 "hagville"
+            ],
+            "enemies": [
+                "corpse",
+                "corpse"
             ],
             "enemyMana": 140
         },
@@ -324,7 +362,7 @@
             "title": "Bog crossing",
             "description": "A vast land stretches to the east. Great marshlands of Gorwich. Waiving paths appear and disappear, broken by the murky waters of the Karon. Stay on the path, for if you stray from it, you will never find the way back.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "swamp",
             "x": 1807,
             "y": 1687,
             "connectsTo": [
@@ -332,6 +370,11 @@
                 "sunken_graveyard",
                 "eldridge_ruins",
                 "hagville"
+            ],
+            "enemies": [
+                "gnilur",
+                "krone",
+                "serpent"
             ],
             "enemyMana": 140
         },
@@ -346,6 +389,11 @@
             "connectsTo": [
                 "fallen_tower",
                 "bog_crossing"
+            ],
+            "enemies": [
+                "seabound_captain",
+                "seabound_sailor",
+                "seabound_sailor"
             ],
             "enemyMana": 140
         },
@@ -363,7 +411,7 @@
             "enemies": [
                 "corpse",
                 "grave_digger",
-                "grave_digger"
+                "gnilur"
             ],           
             "enemyMana": 160
         },
@@ -378,6 +426,10 @@
             "connectsTo": [
                 "old_battlefield"
             ],
+            "enemies": [
+                "wendigo",
+                "krone"
+            ],   
             "enemyMana": 140
         },
         {
@@ -391,12 +443,17 @@
             "connectsTo": [
                 "krones_nest"
             ],
+            "enemies": [
+                "corpse",
+                "grave_digger",
+                "banshee"
+            ],  
             "enemyMana": 160
         },
         {
             "name": "krones_nest",
             "title": "Krone's nest",
-            "description": "The weak soil is littered by the remains of the dead, from a war long forgotten. The bog drenched in blood, hiding the warriors of old with all of their arms. A great curse lies over this place…so choose your way wisely.",
+            "description": "Stories were told of three old women chanting nearby town. They spoke in a old tongue, unknown and unheard. It was said that every night there were chanting in front of an idol. Folks started to grew suspicius after children started to go missing. So they drove off the wicked sisters and they fled to a place the locals call Krone's nest.",
             "type": "encounter",
             "terrain": "swamp",
             "x": 1996,
@@ -405,6 +462,11 @@
                 "farnath",
                 "candlelight"
             ],
+            "enemies": [
+                "krone",
+                "fey",
+                "krone"
+            ],  
             "enemyMana": 140
         },
         {
@@ -421,6 +483,11 @@
                 "southern_beacon",
                 "the_red_keep"
             ],
+            "enemies": [
+                "harlequin",
+                "banshee",
+                "harlequin"
+            ],  
             "enemyMana": 140
         },
         {
@@ -434,6 +501,12 @@
             "connectsTo": [
                 "candlelight"
             ],
+            "enemies": [
+                "siren",
+                "seabound_captain",
+                "siren",
+                "serpent"
+            ],  
             "enemyMana": 140
         },
         {
@@ -466,6 +539,11 @@
                 "candlelight",
                 "karon_keep"
             ],
+            "enemies": [
+                "banshee",
+                "grave_digger",
+                "banshee"
+            ],  
             "enemyMana": 160
         },
         {
@@ -473,12 +551,18 @@
             "title": "Karon keep",
             "description": "On the eastern bank of the river Karon lies a lonely tower which overlooks the southern entrance to Lanervin. Still, the crests of its former masters indure on its crumbled exterior. But wait…something is moving within its walls…",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "ruins",
             "x": 2604,
             "y": 1953,
             "connectsTo": [
                 "bog_crossing"
             ],
+            "enemies": [
+                "banshee",
+                "grave_digger",
+                "grave_digger",
+                "gnilur"
+            ],  
             "enemyMana": 140
         },
         {
@@ -492,6 +576,10 @@
             "connectsTo": [
                 "kings_bridge"
             ],
+            "enemies": [
+                "construct",
+                "construct"
+            ],  
             "enemyMana": 140
         },
         {
@@ -508,8 +596,8 @@
             ],
             "enemies": [
                 "construct",
-                "doctor_sibros",
-                "construct"
+                "plague_doctor",
+                "corpse"
             ], 
             "enemyMana": 140
         },
@@ -518,12 +606,17 @@
             "title": "Citadel",
             "description": "Of all the great wardens, keeps and forts of this land there is but one whose beauty is unmatched by any. The king's fort, the lord's great eirloom – the city citadel. Light glances of its marble walls. Banners of old wave in the chilling north wind displaying the krests and emblems of now dead dynasties.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "ruins",
             "x": 2782,
             "y": 1580,
             "connectsTo": [
                 "bazaar"
             ],
+            "enemies": [
+                "banshee",
+                "puppeteer",
+                "banshee"
+            ], 
             "enemyMana": 140
         },
         {
@@ -541,6 +634,12 @@
                 "college_courtyard",
                 "northern_passage"
             ],
+            "enemies": [
+                "corpse",
+                "plague_doctor",
+                "harlequin",
+                "corpse"
+            ], 
             "enemyMana": 140
         },
         {
@@ -555,6 +654,12 @@
                 "bazaar",
                 "college_courtyard"
             ],
+            "enemies": [
+                "corpse",
+                "plague_doctor",
+                "grave_digger",
+                "krone"
+            ], 
             "enemyMana": 140
         },
         {
@@ -569,6 +674,11 @@
                 "bazaar",
                 "northern_passage"
             ],
+            "enemies": [
+                "plague_doctor",
+                "plague_doctor",
+                "corpse"
+            ], 
             "enemyMana": 160
         },
         {
@@ -576,12 +686,17 @@
             "title": "Northern passage",
             "description": "Iti s not actualy known from where the Eather came from. It struck quickly and without any restraint. Killing or corrupting anything in its path. Its origins may lay in something not from this world. Many scolars agree, that while studying the old texts and engravings they saw something…something that came once before.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "city",
             "x": 3229,
             "y": 1276,
             "connectsTo": [
                 "mountain_pass"
             ],
+            "enemies": [
+                "construct",
+                "grave_digger",
+                "grave_digger"
+            ], 
             "enemyMana": 140
         },
         {
@@ -595,6 +710,11 @@
             "connectsTo": [
                 "fort_sibros"
             ],
+            "enemies": [
+                "wendigo",
+                "gnilur",
+                "wendigo"
+            ], 
             "enemyMana": 160
         },
         {
@@ -602,12 +722,19 @@
             "title": "Fort sibros",
             "description": "A tall, black tower stands in front of you. Lined with copper wiring, repurposed to do the unholy…to raise the dead. On top of this horred spire stand three rods, there purpose to channel the power of Thunder into the rotting bodies of the deceased. There are no windows or doors, neither crests nor flags, there is only a mouth that heads into the bowls of this great monster.",
             "type": "end",
-            "terrain": "ruins",
+            "terrain": "fort",
             "x": 3657,
             "y": 844,
             "connectsTo": [
             ],
-            "enemyMana": 200
+            "enemies": [
+                "construct",
+                "banshee",
+                "doctor_sibros",
+                "plague_doctor",
+                "construct"
+            ], 
+            "enemyMana": 300
         }
     ]
 }
