@@ -34,3 +34,8 @@ export class VictorySceneOptions {
     playerParty: Party;
     reward?: LocationReward;
 }
+
+export class IntroSceneOptions {
+    loadScene: string;
+    playerParty: Party;
+}

@@ -13,6 +13,7 @@ import { BestiaryScene } from "./bestiary.scene";
 import { SaveGameService } from "../services/save-game.service";
 import { TerrainType } from "../models/location";
 import { LocationService } from "../services/location.service";
+import { IntroScene } from "./intro.scene";
 
 const BACK_STYLE = { font: '56px ' + FONT_FAMILY, fill: '#DDDD00', align: 'center', stroke: '#000000', strokeThickness: 2 },
     HEADER_STYLE = { font: '24px ' + FONT_FAMILY, fill: '#444' },
@@ -85,7 +86,7 @@ export class MainMenuScene extends Phaser.Scene {
         menu.add(this.createMenuItem('Skirmish', position++, MENU_STYLE, this.createSkirmishMenu.bind(this)));
         menu.add(this.createMenuItem('World Map', position++, MENU_STYLE, this.openWorldMap.bind(this)));
         menu.add(this.createMenuItem('Bestiary', position++, MENU_STYLE, this.openBestiary.bind(this)));
-        menu.add(this.createMenuItem('Intro', position++, MENU_STYLE, this.openBestiary.bind(this)));
+        menu.add(this.createMenuItem('Intro', position++, MENU_STYLE, this.openIntro.bind(this)));
         menu.add(this.createMenuItem('Settings', position++, MENU_STYLE, this.createSettingsMenu.bind(this)));
         menu.add(this.createMenuItem('Credits', position++, MENU_STYLE, this.createCreditsMenu.bind(this)));
 
@@ -324,5 +325,26 @@ export class MainMenuScene extends Phaser.Scene {
 
     private openBestiary() {
         SceneService.run(this, new BestiaryScene(), true);
+    };
+
+    private openIntro() {
+
+        const party = new Party();
+        const characters: Array<any> = [];
+        for (var character in Assets.characters) {
+            characters.push(Assets.characters[character]);
+        }
+        while (party.members.length < 3) {
+            const player = Phaser.Math.RND.pick(characters);
+            if (party.members.find(p => p.name == player.name)) {
+                continue;
+            }
+            party.add(player);
+        }
+
+        var options = new BattleSceneOptions();
+        options.playerParty = party;
+
+        SceneService.run(this, new IntroScene(), false, options);
     };
 }

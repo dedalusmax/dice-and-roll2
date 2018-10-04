@@ -3,7 +3,7 @@ import { Assets } from '../models/assets';
 import { ImageService } from '../services/image.service';
 import { FONT_FAMILY, FONT_FAMILY_BLOCK } from '../models/styles';
 import { ArrowsService } from '../services/arrows.service';
-import { LoadingSceneOptions, BattleSceneOptions } from './scene-options';
+import { LoadingSceneOptions, BattleSceneOptions, IntroSceneOptions } from './scene-options';
 import { SceneService } from '../services/scene.service';
 import { Enemy } from '../models/enemy';
 
@@ -68,7 +68,7 @@ export class LoadingScene extends Phaser.Scene {
 
             case 'BattleScene':
 
-                var options = this._options.sceneOptions as BattleSceneOptions;
+                let options = this._options.sceneOptions as BattleSceneOptions;
 
                 // GRAPHICS:
 
@@ -222,6 +222,24 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.image('defeat', 'assets/screens/menu.png');
                 this.load.audio('defeat', Assets.sounds.defeat);
+                break;
+
+            case 'IntroScene':
+                let introOptions = this._options.sceneOptions as IntroSceneOptions;
+
+                this.load.image('arrival-ship', 'assets/screens/arrival_ship.png');
+                this.load.image('arrival-map', 'assets/screens/arrival_map.png');
+
+                // load characters in party
+                introOptions.playerParty.members.forEach(character => {
+                    this.load.image('characters/' + character.name, 'assets/characters/' + character.name + '.png');
+                });
+                
+                this.load.audio('ambient-arrival', Assets.sounds.ambient.arrival);
+                this.load.audio('ambient-beach', Assets.sounds.ambient.beach);
+
+                this.load.audio('page', Assets.sounds.end);
+                this.load.audio('click', Assets.sounds.effects.click);
                 break;
 
             case 'EndScene':
