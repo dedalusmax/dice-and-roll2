@@ -9,7 +9,6 @@ import { IntroSceneOptions } from "./scene-options";
 
 const TITLE_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#FFEEBC'},
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
-    SKIP_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 },
     TALK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class IntroScene extends Phaser.Scene {
@@ -52,7 +51,7 @@ export class IntroScene extends Phaser.Scene {
                 break;
 
             case 400:
-                this._ambientMusic = this.sound.add('ambient-arrival', { volume: Settings.sound.sfxVolume });
+                this._ambientMusic = this.sound.add('ambient-arrival', { volume: Settings.sound.musicVolume });
                 this._ambientMusic.play('', { loop: true });
                 this.cameras.main.flash(100);
                 break;
@@ -97,20 +96,19 @@ export class IntroScene extends Phaser.Scene {
                 this.cameras.main.fadeOut(2000);
                 break;
 
-            case 1805:
-                this.sound.volume -= 0.005;
-
             case 2000:
-                this.cameras.main.fadeIn(2000);
+                this.sound.volume = Settings.sound.musicVolume;
                 this.cameras.main.setBackgroundColor(0xFFFFFF);
+                this.cameras.main.fadeIn(2000);
                 ImageService.stretchAndFitImage('arrival-map', this);
-                break;
-            
-            case 2200:
                 this._ambientMusic.stop();
-                this._ambientMusic = this.sound.add('ambient-beach', { volume: Settings.sound.sfxVolume });
+                this._ambientMusic = this.sound.add('ambient-beach', { volume: Settings.sound.musicVolume });
                 this._ambientMusic.play('', { loop: true });
                 break;
+        }
+
+        if (this._timeline >= 1800 && this._timeline < 2000 && this.sound.volume > 0) {
+            this.sound.volume -= 0.005;
         }
     }
 
