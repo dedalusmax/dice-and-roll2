@@ -248,7 +248,10 @@ export class LoadingScene extends Phaser.Scene {
 
             case 'EndScene':
 
+                this.load.image('end', 'assets/screens/end-scene.png');
+
                 this.load.audio('end', Assets.sounds.end);
+                this.load.audio('victory', Assets.sounds.specials.battle_cry);
                 this.load.audio('click', Assets.sounds.effects.click);
                 break;
         }

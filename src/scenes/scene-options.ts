@@ -20,6 +20,7 @@ export class BattleSceneOptions implements SceneOptions {
     enemyParty: Array<any>;
     enemyMana: number;
     reward?: LocationReward;
+    end: boolean;
 }
 
 export class MapSceneOptions {

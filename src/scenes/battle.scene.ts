@@ -14,6 +14,7 @@ import { SceneService } from "../services/scene.service";
 import { VictoryScene } from "./victory.scene";
 import { DefeatScene } from "./defeat.scene";
 import { Weapon } from "../models/weapon";
+import { EndScene } from "./end.scene";
 
 const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 };
@@ -198,14 +199,16 @@ export class BattleScene extends Phaser.Scene {
         if (numInEnemyTeam === 0 || numInPlayerTeam === 0) {
             this.time.delayedCall(1000, () => {
                 if ((numInEnemyTeam === 0)) { // victory
-                
-                    var options = new VictorySceneOptions();
-                    options.skirmish = this._options.skirmish;
-                    options.playerParty = this._options.playerParty;
-                    options.reward = this._options.reward;
-                    
-                    SceneService.run(this, new VictoryScene(), false, options);
-
+                    if (this._options.end) {
+                        SceneService.run(this, new EndScene(), false);   
+                    } else {
+                        var options = new VictorySceneOptions();
+                        options.skirmish = this._options.skirmish;
+                        options.playerParty = this._options.playerParty;
+                        options.reward = this._options.reward;
+                        
+                        SceneService.run(this, new VictoryScene(), false, options);   
+                    }
                 } else {
                     SceneService.run(this, new DefeatScene());
                 }

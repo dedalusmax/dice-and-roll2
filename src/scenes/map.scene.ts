@@ -2,7 +2,7 @@ import { TextualService } from "../services/textual.service";
 import { FONT_FAMILY } from "../models/styles";
 import { LocationService } from "../services/location.service";
 import { Pinpoint } from "../models/pinpoint";
-import { LocationStatus, TerrainType } from "../models/location";
+import { LocationStatus, TerrainType, LocationType } from "../models/location";
 import { Assets } from "../models/assets";
 import { Party } from "../models/party";
 import { Settings } from "../models/settings";
@@ -278,7 +278,8 @@ export class MapScene extends Phaser.Scene {
                         options.enemyParty = enemies;
                         options.enemyMana = pinpoint.location.enemyMana | 100;
                         options.reward = pinpoint.location.reward;
-
+                        options.end = pinpoint.location.type === LocationType.end;
+                        
                         SceneService.run(this, new BattleScene(), false, options);
                     } else {
                         this.setPinpoint(pinpoint);
