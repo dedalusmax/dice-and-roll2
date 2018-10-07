@@ -20,7 +20,8 @@
         "page": "assets/sound/effects/page-flip-01a.mp3",
         "card": "assets/sound/effects/434472__dersuperanton__taking-card.wav",
         "battle": "assets/sound/effects/347981__madmanmusic__battle-preparations.wav",
-        "mana": "assets/sound/effects/specials/218561__phr4kture__last-scar-healed.wav"
+        "mana": "assets/sound/effects/specials/218561__phr4kture__last-scar-healed.wav",
+        "horn": "assets/sound/effects/217343__jordivburgel__warhorn-sound.wav"
     },
     "weapons": {
         "gunslinger": "assets/sound/effects/weapons/213925__diboz__pistol-riccochet-s.wav",

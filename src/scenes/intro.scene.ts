@@ -10,7 +10,7 @@ import { IntroSceneOptions } from "./scene-options";
 const NARRATION_LIGHT_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#FFEEBC'},
     NARRATION_DARK_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#581B06'},     
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
-    TALK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FF6A00', align: 'center', stroke: '#000000', strokeThickness: 2 };
+    TALK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#60362B', align: 'center', stroke: '#000000', strokeThickness: 2 };
 
 export class IntroScene extends Phaser.Scene {
   
@@ -50,7 +50,7 @@ export class IntroScene extends Phaser.Scene {
 
         switch (this._timeline) {
             case 50:
-                this.displayNarrationTextOnCenter('somewhere near the coast of the Fading sea ...');
+                this.displayNarrationTextOnCenter('Somewhere near the coast of the Fading sea ...');
                 break;
 
             case 400:
@@ -72,36 +72,54 @@ export class IntroScene extends Phaser.Scene {
                 break;
 
             case 600:
-                this.displayNarrationText('one ship was sailing carrying mysterious passengers ...', NARRATION_LIGHT_STYLE);
+                this.displayNarrationText('A steamboat sails close to the shore of an unknown land,\n hitting rocks as it getting closer to the shallow bay.', NARRATION_LIGHT_STYLE);
                 break;
-
-            case 800:
-                this.displayCharacter(0, true, 'Hey! This storm is getting bigger and bigger.\n We might die out here!!');
-                break;
-
+            
             case 1100:
-                this.removeCharacter(true);
-                break;
-
-            case 1150:
-                this.displayNarrationText('the sea was treacherous, and the ship swang on the waves helplesly ...', NARRATION_LIGHT_STYLE);
-                break;
-
-            case 1300:
-                this.displayCharacter(1, false, 'Hold tight! A large wave is coming!\n We\'re gonna drown!');
+                this.displayNarrationText('Its waters are murky, and as the ship moves closer to the shore,\n a light gust of wind disperses thick fog over the ink-like water.', NARRATION_LIGHT_STYLE);
                 break;
 
             case 1600:
-                this.removeCharacter(false);
+                this.displayCharacter(0, true, 'Draw your cards!\n I can still beat you in this poker game!');
                 break;
 
             case 1800:
-                this.cameras.main.fadeOut(2000);
+                this.removeCharacter(true);
                 break;
 
             case 2000:
+                this.displayCharacter(1, false, 'The lights have gone out!,\n What\'s happening?');
+                break;
+
+            case 2200:
+                this.removeCharacter(false);
+                break;
+
+            case 2300:
+                this.displayNarrationText('The boat trembles, as it hits the rocky ridge.', NARRATION_LIGHT_STYLE);
+                break;
+
+            case 2500:
+                this.displayCharacter(2, true, 'Hold tight!\n We\'re gonna hit the rocks!');
+                break;
+
+            case 2700:
+                this.removeCharacter(true);
+                break;
+
+            case 2900:
+                const crash = this.sound.add('crash');
+                crash.play();
+                break;
+
+            case 3000:
+                this.cameras.main.fadeOut(2000);
+                const panic = this.sound.add('panic');
+                panic.play();
+                break;
+
+            case 3400:
                 this.sound.volume = Settings.sound.musicVolume;
-                this.cameras.main.setBackgroundColor(0xFFFFFF);
                 this.cameras.main.fadeIn(2000);
                 ImageService.stretchAndFitImage('arrival-map', this);
                 this._ambientMusic.stop();
@@ -109,20 +127,54 @@ export class IntroScene extends Phaser.Scene {
                 this._ambientMusic.play('', { loop: true });
                 break;
 
-            case 2200:
-                this.displayNarrationText('the ship crashed on the shores of small peninsula\n so distant from their destination', NARRATION_DARK_STYLE);
+            case 3600:
+                this.displayNarrationText('The ship crashed on the shores of a small peninsula\n very distant from their destinations.', NARRATION_DARK_STYLE);
                 break;
 
-            case 2400:
-                this.displayCharacter(2, true, 'Well, that was close!\n Next time I\'m bringing swimming gear');
+            case 4000:
+                this.displayNarrationText('A vast land stretches before their eyes,\n villages, distant towns and forests can be seen.', NARRATION_DARK_STYLE);
                 break;
 
-            case 2600:
+            case 4400:
+                this.displayCharacter(2, true, 'Well, that was close!\n We were lucky we survived - not like the others!');
+                break;
+
+            case 4700:
                 this.removeCharacter(true);
+                break;
+
+            case 4800:
+                this.displayCharacter(1, false, 'Look there! There is a lighthouse!\n We can take a refuge there and rest.');
+                break;
+
+            case 5100:
+                this.removeCharacter(false);
+                break;
+
+            case 5200:
+                this.displayCharacter(0, true, 'A great journey awaits us,\n for there is no return back for us now!');
+                break;
+
+            case 5600:
+                this.removeCharacter(true);
+                break;
+
+            case 5700:
+                const horn = this.sound.add('horn');
+                horn.play();
+                this.cameras.main.fadeOut(2000);
+                break;
+
+            case 6200:
+                SceneService.backToMenu(this);
                 break;
         }
 
-        if (this._timeline >= 1800 && this._timeline < 2000 && this.sound.volume > 0) {
+        if (this._timeline >= 3000 && this._timeline < 3400 && this.sound.volume > 0) {
+            this.sound.volume -= 0.005;
+        }
+
+        if (this._timeline >= 6000 && this._timeline < 6200 && this.sound.volume > 0) {
             this.sound.volume -= 0.005;
         }
     }
@@ -145,7 +197,7 @@ export class IntroScene extends Phaser.Scene {
         this.add.tween({
             targets: [ this._centeredText ],
             ease: 'Linear',
-            duration: 3000,
+            duration: 4000,
             delay: 1000,
             alpha: 1,
             yoyo: true

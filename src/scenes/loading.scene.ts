@@ -240,6 +240,10 @@ export class LoadingScene extends Phaser.Scene {
 
                 this.load.audio('page', Assets.sounds.end);
                 this.load.audio('click', Assets.sounds.effects.click);
+                this.load.audio('crash', Assets.sounds.specials.catalitic_bomb);
+                this.load.audio('panic', Assets.sounds.specials.fear);
+                this.load.audio('horn', Assets.sounds.effects.horn);
+
                 break;
 
             case 'EndScene':
