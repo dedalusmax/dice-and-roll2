@@ -37,5 +37,6 @@ export class VictorySceneOptions {
 
 export class IntroSceneOptions {
     loadScene: string;
+    newGame: boolean;
     playerParty: Party;
 }

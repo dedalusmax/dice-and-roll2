@@ -6,7 +6,7 @@ import { ArrowsService, ArrowOrientation } from "../services/arrows.service";
 import { Party } from "../models/party";
 import { SceneService } from "../services/scene.service";
 import { MapScene } from "./map.scene";
-import { MapSceneOptions, BattleSceneOptions } from "./scene-options";
+import { MapSceneOptions, BattleSceneOptions, IntroSceneOptions } from "./scene-options";
 import { BattleScene } from "./battle.scene";
 import { NewGameScene } from "./new-game.scene";
 import { BestiaryScene } from "./bestiary.scene";
@@ -342,8 +342,9 @@ export class MainMenuScene extends Phaser.Scene {
             party.add(player);
         }
 
-        var options = new BattleSceneOptions();
+        var options = new IntroSceneOptions();
         options.playerParty = party;
+        options.newGame = false;
 
         SceneService.run(this, new IntroScene(), false, options);
     };

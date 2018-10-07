@@ -5,7 +5,8 @@ import { Settings } from "../models/settings";
 import { SceneService } from "../services/scene.service";
 import { FONT_FAMILY } from "../models/styles";
 import { ImageService } from "../services/image.service";
-import { IntroSceneOptions } from "./scene-options";
+import { IntroSceneOptions, MapSceneOptions } from "./scene-options";
+import { MapScene } from "./map.scene";
 
 const NARRATION_LIGHT_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#FFEEBC'},
     NARRATION_DARK_STYLE = { font: '18px ' + FONT_FAMILY, fill: '#581B06'},     
@@ -38,7 +39,7 @@ export class IntroScene extends Phaser.Scene {
 
         this.sound.stopAll();
 
-        TextualService.createTextButton(this, 'Back', 50, 30, BACK_STYLE, a => {
+        TextualService.createTextButton(this, 'Give up', 50, 30, BACK_STYLE, a => {
             this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             SceneService.backToMenu(this);
         });
@@ -67,7 +68,7 @@ export class IntroScene extends Phaser.Scene {
             case 550: 
                 TextualService.createTextButton(this, 'Skip intro', this.cameras.main.width - 100, 30, BACK_STYLE, a => {
                     this.sound.add('page', { volume: Settings.sound.sfxVolume }).play();
-                    SceneService.backToMenu(this);
+                    this.endScene();
                 });
                 break;
 
@@ -166,7 +167,7 @@ export class IntroScene extends Phaser.Scene {
                 break;
 
             case 6200:
-                SceneService.backToMenu(this);
+                this.endScene();
                 break;
         }
 
@@ -255,5 +256,16 @@ export class IntroScene extends Phaser.Scene {
             x: left ? -200 : 2000,
             alpha: 0
         });
+    }
+
+    private endScene() {
+        if (this._options.newGame) {
+            var options = new MapSceneOptions();
+            options.worldMap = false;
+            options.playerParty = this._options.playerParty;
+            SceneService.run(this, new MapScene(), false, options);    
+        } else {
+            SceneService.backToMenu(this);
+        }
     }
 }

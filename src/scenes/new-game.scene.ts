@@ -7,8 +7,8 @@ import { Settings } from "../models/settings";
 import { CombatantType } from "../models/combatant";
 import { Party } from "../models/party";
 import { SceneService } from "../services/scene.service";
-import { MapSceneOptions } from "./scene-options";
-import { MapScene } from "./map.scene";
+import { IntroSceneOptions } from "./scene-options";
+import { IntroScene } from "./intro.scene";
 
 const TITLE_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#FFEEBC'},
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 },
@@ -99,11 +99,11 @@ export class NewGameScene extends Phaser.Scene {
                     party.addPlayer(player);
                 });
 
-                var options = new MapSceneOptions();
-                options.worldMap = false;
+                var options = new IntroSceneOptions();
+                options.newGame = true;
                 options.playerParty = party;
 
-                SceneService.run(this, new MapScene(), false, options);
+                SceneService.run(this, new IntroScene(), false, options);
             } else {
                 this.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
             }
