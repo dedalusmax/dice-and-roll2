@@ -1,6 +1,6 @@
 # Dice & Roll 2 - the Forgotten Realm
 
-## Credits
+## Credits 
  
 Programming - Ratko & Šimun Ćosić
 Game Design - Klara Ćosić
