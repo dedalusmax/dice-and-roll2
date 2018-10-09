@@ -1,4 +1,4 @@
-# Dice & Roll 2 - the forgotten realm
+# Dice & Roll 2 - the forgotten Realm
 
 ## Credits
  
