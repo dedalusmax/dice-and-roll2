@@ -41,7 +41,7 @@ export class MainMenuScene extends Phaser.Scene {
     create(): void {
         this.cameras.main.fadeIn(1000);
 
-        this.cameras.main.setBackgroundColor(0xFFFFFF);
+        this.cameras.main.setBackgroundColor(0xF7EDD5);
 
         if (Settings.sound.musicVolume > 0) {
             this.sound.stopAll();
@@ -50,17 +50,27 @@ export class MainMenuScene extends Phaser.Scene {
         }
 
         // set screen background
-        ImageService.stretchAndFitImage('menu', this);
-        var logo = ImageService.stretchAndFitImage('logo', this);
-        logo.setScale(0.12);
-        logo.setOrigin(1, 1.4);
+        const image = ImageService.stretchAndFitImage('menu', this);
+        image.setOrigin(0.72, 0.5);
+
+        const logo = this.add.sprite(this.cameras.main.width / 2, 0, 'logo');
+        logo.alpha = 0;
+        logo.setOrigin(0.5, 0);   
+        this.add.tween({
+            targets: [ logo ],
+            ease: 'Linear',
+            duration: 1000,
+            delay: 100,
+            alpha: 1,
+            onComplete: () => {
+                // build up main menu
+                this.createMainMenu();
+            }
+        });
 
         this._paper = this.add.sprite(this.cameras.main.width / 2 + 200, this.cameras.main.height / 2, 'paper');
-        this._paper.setOrigin(0.5);
+        this._paper.setOrigin(0, 0.5);
         this._paper.setScale(0.5, 0.7);
-
-        // build up main menu
-        this.createMainMenu();
     }
 
     update(): void {
@@ -96,10 +106,18 @@ export class MainMenuScene extends Phaser.Scene {
     private createMenuItem(text, position, style, action?) {
         style = style || MENU_PRESSED;
 
-        var x = this._paper.x;
+        var x = this._paper.x + this._paper.displayWidth / 2;
         var y = this._paper.y - this._paper.displayHeight / 2 + 60 + position * 50;
         var item = this.add.text(x, y, text, style);
+        item.alpha = 0;
         item.setOrigin(0.5);
+        this.add.tween({
+            targets: [ item ],
+            ease: 'Linear',
+            duration: 600,
+            delay: 100 * position,
+            alpha: 1
+        });
 
         item.setInteractive();
 
