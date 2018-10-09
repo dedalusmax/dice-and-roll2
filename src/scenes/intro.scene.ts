@@ -47,7 +47,7 @@ export class IntroScene extends Phaser.Scene {
 
     update() {
         this._timeline++;
-        console.log(this._timeline);
+        // console.log(this._timeline);
 
         switch (this._timeline) {
             case 50:

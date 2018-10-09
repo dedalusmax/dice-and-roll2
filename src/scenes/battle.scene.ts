@@ -1,5 +1,4 @@
 import { Settings } from "../models/settings";
-import { ImageService } from "../services/image.service";
 import { TextualService } from "../services/textual.service";
 import { FONT_FAMILY } from "../models/styles";
 import { Combatant, CombatantSide, CombatantType } from "../models/combatant";

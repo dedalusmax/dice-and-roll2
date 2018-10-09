@@ -1,4 +1,4 @@
-import { Location, TerrainType, LocationStatus } from "../models/location";
+import { Location, TerrainType, LocationStatus, LocationType } from "../models/location";
 import { Assets } from "../models/assets";
 
 export class LocationService {
@@ -21,7 +21,7 @@ export class LocationService {
         result.name = prop.name;
         result.title = prop.title;
         result.description = prop.description;
-        result.type = prop.type;
+        result.type = LocationType[prop.type as string];
 
         result.terrain = prop.terrain ? TerrainType[prop.terrain as string] : TerrainType.beach;
 
