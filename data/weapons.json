@@ -31,140 +31,140 @@
     "steam_pipe": {
         "name": "steam_pipe",
         "title": "Steam pipe",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desc": "A pipe used in the boiler rooms of the Great city",
         "type": "BLUNT",
         "attack": 1
     },  
     "pickaxe": {
         "name": "pickaxe",
         "title": "Pickaxe",
-        "desc": "",
+        "desc": "Multipurpose tool for mining, grave digging and so",
         "type": "BLUNT",
         "attack": 2
     },  
     "wrench": {
         "name": "wrench",
         "title": "Wrench",
-        "desc": "",
+        "desc": "Handy tool for fixing everything including enemies",
         "type": "BLUNT",
         "attack": 3
     },  
     "forge_hammer": {
         "name": "forge_hammer",
         "title": "Forge hammer",
-        "desc": "",
+        "desc": "Great blunt weapon used by the blacksmiths and automatons",
         "type": "BLUNT",
         "attack": 4
     },  
     "musket": {
         "name": "musket",
         "title": "Musket",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desc": "A standard weapon for fighting in the trenches",
         "type": "FIREARMS",
         "attack": 1
     },  
     "arquebus": {
         "name": "arquebus",
         "title": "Aquebus",
-        "desc": "",
+        "desc": "An advanced weapon for handling heavy number of troops",
         "type": "FIREARMS",
         "attack": 2
     },  
     "shotgun": {
         "name": "shotgun",
         "title": "Shotgun",
-        "desc": "",
+        "desc": "A weapon used for hunting purposes, including humans",
         "type": "FIREARMS",
         "attack": 3
     },  
     "scoped_rifle": {
         "name": "scoped_rifle",
         "title": "Scoped rifle",
-        "desc": "",
+        "desc": "A precise gun meant for long range shots from a distance",
         "type": "FIREARMS",
         "attack": 4
     },  
     "explosive_bomb": {
         "name": "explosive_bomb",
         "title": "Explosive bomb",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desc": "A basic missile typed weapon for every decent alchemist",
         "type": "MISSILE",
         "attack": 1
     },  
     "molotov_coctail": {
         "name": "molotov_coctail",
         "title": "Molotov coctail",
-        "desc": "",
+        "desc": "A makeshift bomb made from alcohol base and highly flammable unit",
         "type": "MISSILE",
         "attack": 2
     },  
     "frag_grenade": {
         "name": "frag_grenade",
         "title": "Frag grenade",
-        "desc": "",
+        "desc": "Used on the fronts for dealing great fragmentation damage",
         "type": "MISSILE",
         "attack": 3
     },  
     "dragon_breath": {
         "name": "dragon_breath",
         "title": "Dragon breath",
-        "desc": "",
+        "desc": "Extraordinary weapon dealing maximum damage to enemies",
         "type": "MISSILE",
         "attack": 4
     },  
     "dagger": {
         "name": "dagger",
         "title": "Dagger",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desc": "A weapon mandatory for every assasin killing in the dark",
         "type": "BLADE",
         "attack": 1
     },  
     "razor": {
         "name": "razor",
         "title": "Razor",
-        "desc": "",
+        "desc": "Sharp small blade for quick executing the enemy unit",
         "type": "BLADE",
         "attack": 2
     },  
     "shadow_blade": {
         "name": "shadow_blade",
         "title": "Shadow blade",
-        "desc": "",
+        "desc": "Lethal blade made especially for dealing bleeding damage",
         "type": "BLADE",
         "attack": 3
     },  
     "throat_slitter": {
         "name": "throat_slitter",
         "title": "Throat slitter",
-        "desc": "",
+        "desc": "A blade that many fear due its cunning and lethal properties",
         "type": "BLADE",
         "attack": 1
     },  
     "deck_of_cards": {
         "name": "deck_of_cards",
         "title": "Deck of cards",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desc": "A normal lot of cards dealing damage with their sharp edges",
         "type": "BLADE",
         "attack": 1
     },
     "blackjack": {
         "name": "blackjack",
         "title": "Blackjack",
-        "desc": "",
+        "desc": "An advanced cards damaging opponents with their sharp cuts",
         "type": "BLADE",
         "attack": 2
     },
     "poker_cards": {
         "name": "poker_cards",
         "title": "Poker cards",
-        "desc": "",
+        "desc": "A famous deck of cards heavily damaging the enemies",
         "type": "BLADE",
         "attack": 3
     },
     "joker_card": {
         "name": "joker_card",
         "title": "Joker card",
-        "desc": "",
+        "desc": "A special cunning card that kills enemies as a stout",
         "type": "BLADE",
         "attack": 4
     },
@@ -172,35 +172,35 @@
     "claws": {
         "name": "claws",
         "title": "Claws",
-        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "desc": "Razor-sharp fingernails of an undead creature",
         "type": "BLADE",
         "attack": 2
     },
     "cutlass": {
         "name": "cutlass",
         "title": "Cutlass",
-        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "desc": "A famous weapon used by many sailors",
         "type": "BLADE",
         "attack": 2
     },
     "strings": {
         "name": "strings",
         "title": "Strings",
-        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "desc": "Ones used for theatrical performances now used to kill",
         "type": "MISSILE",
         "attack": 2
     },
     "sceptre": {
         "name": "sceptre",
         "title": "Sceptre",
-        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "desc": "Hard and heavy golden rod inflicts blunt damage",
         "type": "BLADE",
         "attack": 2
     },
     "poison": {
         "name": "poison",
         "title": "Poison",
-        "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "desc": "Sick purpose is this weapon's aim, very deadly",
         "type": "POTION",
         "attack": 2
     },
@@ -235,7 +235,7 @@
     "lightning": {
         "name": "lightning",
         "title": "Lightning",
-        "desc": "Doctor Sibros uses his powers to call the thunderbolt on random enemy",
+        "desc": "Doctor Sibros uses his powers to call the thunderbolt on enemies",
         "type": "CLAWS",
         "attack": 4
     }
