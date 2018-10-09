@@ -610,7 +610,8 @@
             "x": 2782,
             "y": 1580,
             "connectsTo": [
-                "bazaar"
+                "bazaar",
+                "hagville"
             ],
             "enemies": [
                 "banshee",
@@ -729,10 +730,8 @@
             ],
             "enemies": [
                 "construct",
-                "banshee",
                 "doctor_sibros",
-                "plague_doctor",
-                "construct"
+                "plague_doctor"
             ], 
             "enemyMana": 300
         }

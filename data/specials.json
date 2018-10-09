@@ -306,7 +306,7 @@
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 35,
+        "modifier": 20,
         "manaCost": 45
     },
     "curse": {
@@ -327,7 +327,7 @@
         "targetType": "anyEnemy",
         "executionType": "allTargets",
         "effectType": "defense",
-        "modifier": -15,
+        "modifier": -10,
         "duration": 2,
         "manaCost": 35
     },
