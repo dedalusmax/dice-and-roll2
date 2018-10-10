@@ -50,7 +50,7 @@
     "alchemist": {
         "name": "alchemist",
         "title": "Alchemist",
-        "story": "In a world ruled by superstition and folklore ",
+        "story": "In a world ruled by superstition and folklore, an alchemist is an important figure in the known world. With her intelligence and alchemy skills, she prepares various potions and devastating projectiles.",
         "description": "Uses different missiles in her arsenal.",
         "health": 50,
         "defense": 3,
@@ -66,8 +66,8 @@
     "assasin": {
         "name": "assasin",
         "title": "Assasin",
-        "story": "",
-        "description": "Her stealthy abilities are lethal.",
+        "story": "Always lingering in the shadows, her cunning personality guarrantees her no friends, rather just enemies, which she gets rid off in silence. Nobody knows who she is, only that she is of oriental and mysterious origin.",
+        "description": "Her stealthy abilities are lethal and her weapons unforgiving.",
         "health": 60,
         "defense": 4,
         "attack": 10,
@@ -82,8 +82,8 @@
     "illusionist": {
         "name": "illusionist",
         "title": "Illusionist",
-        "story": "",
-        "description": "His cunning wits prove outstanding battle performance.",
+        "story": "Comming from the noble background, she is an outcast of their family. Employed by the best performers of the streets, she outmached them all, then once again left to search her own destiny. Since her only desire is pure fun.",
+        "description": "Her cunning wits prove outstanding battle performance.",
         "health": 50,
         "defense": 4,
         "attack": 8,
