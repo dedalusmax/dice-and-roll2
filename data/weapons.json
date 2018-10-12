@@ -4,14 +4,14 @@
         "title": "Revolvers",
         "desc": "Quick firearm weapon famous in the West",
         "type": "FIREARMS",
-        "attack": 1
+        "attack": 2
     }, 
     "hunting_revolvers": {
         "name": "hunting_revolvers",
         "title": "Hunting revolvers",
         "desc": "Used for shooting in the wild, give power shots",
         "type": "FIREARMS",
-        "attack": 2,
+        "attack": 3,
         "sound": ""
     }, 
     "sherrifs_sidearm": {
@@ -19,14 +19,14 @@
         "title": "Sherrif's sidearm",
         "desc": "Can't beat the sherrif's power when comes the shooting",
         "type": "FIREARMS",
-        "attack": 3
+        "attack": 4
     }, 
     "peacemaker": {
         "name": "peacemaker",
         "title": "Peacemaker",
         "desc": "There is a reason this thing is called that, peace be with their souls",
         "type": "FIREARMS",
-        "attack": 4
+        "attack": 5
     }, 
     "steam_pipe": {
         "name": "steam_pipe",
@@ -61,28 +61,28 @@
         "title": "Musket",
         "desc": "A standard weapon for fighting in the trenches",
         "type": "FIREARMS",
-        "attack": 1
+        "attack": 2
     },  
     "arquebus": {
         "name": "arquebus",
         "title": "Aquebus",
         "desc": "An advanced weapon for handling heavy number of troops",
         "type": "FIREARMS",
-        "attack": 2
+        "attack": 3
     },  
     "shotgun": {
         "name": "shotgun",
         "title": "Shotgun",
         "desc": "A weapon used for hunting purposes, including humans",
         "type": "FIREARMS",
-        "attack": 3
+        "attack": 4
     },  
     "scoped_rifle": {
         "name": "scoped_rifle",
         "title": "Scoped rifle",
         "desc": "A precise gun meant for long range shots from a distance",
         "type": "FIREARMS",
-        "attack": 4
+        "attack": 5
     },  
     "explosive_bomb": {
         "name": "explosive_bomb",
@@ -117,28 +117,28 @@
         "title": "Dagger",
         "desc": "A weapon mandatory for every assasin killing in the dark",
         "type": "BLADE",
-        "attack": 1
+        "attack": 2
     },  
     "razor": {
         "name": "razor",
         "title": "Razor",
         "desc": "Sharp small blade for quick executing the enemy unit",
         "type": "BLADE",
-        "attack": 2
+        "attack": 3
     },  
     "shadow_blade": {
         "name": "shadow_blade",
         "title": "Shadow blade",
         "desc": "Lethal blade made especially for dealing bleeding damage",
         "type": "BLADE",
-        "attack": 3
+        "attack": 4
     },  
     "throat_slitter": {
         "name": "throat_slitter",
         "title": "Throat slitter",
         "desc": "A blade that many fear due its cunning and lethal properties",
         "type": "BLADE",
-        "attack": 1
+        "attack": 5
     },  
     "deck_of_cards": {
         "name": "deck_of_cards",

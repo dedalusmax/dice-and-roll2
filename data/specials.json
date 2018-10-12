@@ -27,9 +27,9 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
-        "modifier": -10,
-        "duration": 3,
-        "manaCost": 30
+        "modifier": -40,
+        "duration": 2,
+        "manaCost": 35
     },
     "playing_dirty": {
         "name": "playing_dirty",
@@ -49,7 +49,7 @@
         "executionType": "singleTarget",
         "effectType": "heal",
         "modifier": 20,
-        "manaCost": 25
+        "manaCost": 20
     },
     "poisonous_gas": {
         "name": "poisonous_gas",
@@ -70,9 +70,9 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -10,
+        "modifier": -12,
         "duration": 3,
-        "manaCost": 35
+        "manaCost": 30
     },
     "catalitic_bomb": {
         "name": "catalitic_bomb",
@@ -91,7 +91,7 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -10,
+        "modifier": -12,
         "duration": 2,
         "manaCost": 30
     },
@@ -135,7 +135,7 @@
         "targetType": "anyFriend",
         "executionType": "singleTarget",
         "effectType": "heal",
-        "modifier": 25,
+        "modifier": 30,
         "manaCost": 30
     },
     "precision_shot": {
@@ -188,9 +188,9 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
-        "modifier": -15,
+        "modifier": -40,
         "duration": 2,
-        "manaCost": 35
+        "manaCost": 30
     },
     "performance": {
         "name": "performance",
@@ -199,7 +199,7 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -15,
+        "modifier": -12,
         "duration": 2,
         "manaCost": 35
     },
@@ -211,7 +211,7 @@
         "executionType": "singleTarget",
         "effectType": "stun",
         "duration": 3,
-        "manaCost": 60
+        "manaCost": 55
     },
     "disappear": {
         "name": "disappear",

@@ -45,7 +45,7 @@
                 "serpent"
             ],
             "reward": {
-                "mana": 10
+                "mana": 20
             }
         },
         {
@@ -103,7 +103,7 @@
             ],
             "enemyMana": 160,
             "reward": {
-                "mana": 20
+                "mana": 30
             }
         },
         {
@@ -176,7 +176,10 @@
                 "fey",
                 "gnilur"
             ],
-            "enemyMana": 140
+            "enemyMana": 140,
+            "reward": {
+                "mana": 20
+            }
         },
         {
             "name": "thorn_gate",
