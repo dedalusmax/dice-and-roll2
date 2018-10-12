@@ -14,6 +14,7 @@ import { VictoryScene } from "./victory.scene";
 import { DefeatScene } from "./defeat.scene";
 import { Weapon } from "../models/weapon";
 import { EndScene } from "./end.scene";
+import { ImageService } from "../services/image.service";
 
 const ROUND_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 };
@@ -51,7 +52,7 @@ export class BattleScene extends Phaser.Scene {
     create(): void {
         // prepare the scene:
 
-        this.cameras.main.setBackgroundColor(0x84B4AE);
+        this.cameras.main.setBackgroundColor(0x444444);
 
         // check if music is enabled
         if (Settings.sound.musicVolume > 0) {
@@ -62,8 +63,7 @@ export class BattleScene extends Phaser.Scene {
         }
 
         // background image 
-        //ImageService.stretchAndFitImage('battle_' + this._options.terrain, this);
-        this.add.sprite(this._canvas.width / 2, this._canvas.height / 2, 'battle_' + this._options.terrain); 
+        ImageService.stretchImage('battle_' + this._options.terrain, this);
 
         // quit battle button (visible only in skirmish mode)
         if (this._options.skirmish) {

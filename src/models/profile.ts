@@ -40,8 +40,8 @@ export class Profile {
         return new Promise((resolve, reject) => {
             this._objects = [];
 
-            var backgroundPaper = this._scene.add.sprite(this._scene.cameras.main.width, this._scene.cameras.main.height / 2 + 50, 'paper');
-            backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height);
+            var backgroundPaper = this._scene.add.sprite(this._scene.cameras.main.width, this._scene.cameras.main.height / 2, 'paper');
+            backgroundPaper.setDisplayOrigin(this._scene.cameras.main.x, this._scene.cameras.main.height / 2);
             backgroundPaper.setScale(0.35, 0.35);
             backgroundPaper.setAlpha(0);
 
@@ -65,7 +65,7 @@ export class Profile {
     private displayStats(resolve: any) {
 
         var startX = this._paper.x + 30;
-        var startY = this._paper.y - 180;
+        var startY = this._scene.cameras.main.height / 2 - 100;
 
         var title = this._scene.add.text(startX, startY, this._combatant.title, TITLE_STYLE);
         this._objects.push(title);

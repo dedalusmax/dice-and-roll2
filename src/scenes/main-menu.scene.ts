@@ -40,7 +40,6 @@ export class MainMenuScene extends Phaser.Scene {
 
     create(): void {
         this.cameras.main.fadeIn(1000);
-
         this.cameras.main.setBackgroundColor(0xF7EDD5);
 
         if (Settings.sound.musicVolume > 0) {
@@ -50,8 +49,7 @@ export class MainMenuScene extends Phaser.Scene {
         }
 
         // set screen background
-        const image = ImageService.stretchAndFitImage('menu', this);
-        image.setOrigin(0.72, 0.5);
+        ImageService.stretchImage('menu', this);
 
         const logo = this.add.sprite(this.cameras.main.width / 2, 0, 'logo');
         logo.alpha = 0;

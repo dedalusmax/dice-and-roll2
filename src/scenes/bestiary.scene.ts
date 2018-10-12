@@ -90,7 +90,7 @@ export class BestiaryScene extends Phaser.Scene {
     }
 
     private createControls() {
-        this._image = this.add.sprite(280, this.cameras.main.height - 300, null);
+        this._image = this.add.sprite(280, this.cameras.main.height / 2, null);
         this._image.setScale(0.8);
         this._image.setOrigin(0.5, 0.5);
 

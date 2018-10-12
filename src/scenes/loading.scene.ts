@@ -38,8 +38,8 @@ export class LoadingScene extends Phaser.Scene {
         this.cameras.main.fadeIn(500);
         this.cameras.main.setBackgroundColor(0x360602);
 
-        const logo = this.add.sprite(this.cameras.main.width / 2, 0, 'logo');
-        logo.setOrigin(0.5, 0);   
+        const logo = this.add.sprite(this.cameras.main.width / 2, this.cameras.main.height / 2, 'logo');
+        logo.setOrigin(0.5, 1);   
         
         if (!this._options.persistMusic) {
             this.sound.stopAll();

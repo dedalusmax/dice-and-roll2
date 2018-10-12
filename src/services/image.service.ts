@@ -20,4 +20,23 @@ export class ImageService {
             return scene.add.sprite(0, 0, name);
         }
     }
+
+    static stretchImage(name: string, scene: Phaser.Scene) {
+
+        var asset = scene.textures.get(name);
+        var image = asset.getSourceImage(0);
+        const canvas = scene.textures.game.canvas;
+        
+        if (canvas.width !== image.width || canvas.height !== image.height) {
+            var ratioX = canvas.width / image.width;
+            var ratioY = canvas.height / image.height;
+            var position = { x: (canvas.width - image.width * ratioX) / 2, y: (canvas.height - image.height * ratioY) / 2 };
+            var sprite = scene.add.sprite(position.x, position.y, name);
+            sprite.setOrigin(0);
+            sprite.setScale(ratioX, ratioY);
+            return sprite;
+        } else {
+            return scene.add.sprite(0, 0, name);
+        }
+    }
 }
