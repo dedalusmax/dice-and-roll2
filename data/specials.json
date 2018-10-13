@@ -23,12 +23,12 @@
     "disarm": {
         "name": "disarm",
         "title": "Disarm",
-        "description": "Shoots the enemy's weapon, thus decreasing its attack modifier by -10 on 3 turns.",
+        "description": "Shoots the enemy's weapon, thus decreasing its attack modifier by -40 on 3 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
         "modifier": -40,
-        "duration": 2,
+        "duration": 1,
         "manaCost": 35
     },
     "playing_dirty": {
@@ -49,7 +49,7 @@
         "executionType": "singleTarget",
         "effectType": "heal",
         "modifier": 20,
-        "manaCost": 20
+        "manaCost": 30
     },
     "poisonous_gas": {
         "name": "poisonous_gas",
@@ -70,9 +70,9 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -12,
-        "duration": 3,
-        "manaCost": 30
+        "modifier": -10,
+        "duration": 2,
+        "manaCost": 35
     },
     "catalitic_bomb": {
         "name": "catalitic_bomb",
@@ -91,9 +91,9 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -12,
+        "modifier": -10,
         "duration": 2,
-        "manaCost": 30
+        "manaCost": 35
     },
     "burning_flames": {
         "name": "burning_flames",
@@ -110,32 +110,32 @@
     "brass_shield": {
         "name": "brass_shield",
         "title": "Brass shield",
-        "description": "Made by engineering marvel, his poweful shield pertains defense +8 for 3 turns.",
+        "description": "Made by engineering marvel, his poweful shield pertains defense +10 for 3 turns.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": 15,
-        "duration": 3,
-        "manaCost": 35
+        "modifier": 10,
+        "duration": 2,
+        "manaCost": 40
     },
     "shake_ground": {
         "name": "shake_ground",
         "title": "Shake ground",
         "description": "By using all of his might, powerful stomp stuns all enemies for 1 turn.",
         "targetType": "anyEnemy",
-        "executionType": "allTargets",
+        "executionType": "allTargetsInRank",
         "effectType": "stun",
         "duration": 1,
-        "manaCost": 60
+        "manaCost": 70
     },
     "medikit": {
         "name": "medikit",
         "title": "Medikit",
-        "description": "Army medikit bag contains bandages that heal party member for +25 HP.",
+        "description": "Army medikit bag contains bandages that heal party member for +20 HP.",
         "targetType": "anyFriend",
         "executionType": "singleTarget",
         "effectType": "heal",
-        "modifier": 30,
+        "modifier": 20,
         "manaCost": 30
     },
     "precision_shot": {
@@ -145,7 +145,7 @@
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 25,
+        "modifier": 20,
         "manaCost": 40
     },
     "bayonet_charge": {
@@ -168,8 +168,8 @@
         "executionType": "allTargets",
         "effectType": "attack",
         "modifier": 10,
-        "duration": 2,
-        "manaCost": 45
+        "duration": 1,
+        "manaCost": 60
     },
     "ace": {
         "name": "ace",
@@ -178,28 +178,28 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 20,
-        "manaCost": 30
+        "modifier": 10,
+        "manaCost": 25
     },
     "blind": {
         "name": "blind",
         "title": "Blind",
-        "description": "Using her wits, a caster spells an enemy with blindness which lower its attack by -15 for 2 turns.",
+        "description": "Using her wits, a caster spells an enemy with blindness which lower its attack by -40 for 2 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
         "modifier": -40,
-        "duration": 2,
-        "manaCost": 30
+        "duration": 1,
+        "manaCost": 35
     },
     "performance": {
         "name": "performance",
         "title": "Performance",
-        "description": "Distraction is best when an enemy is fool, thus lowering its defense by -15 for 2 turns.",
+        "description": "Distraction is best when an enemy is fool, thus lowering its defense by -10 for 2 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": -12,
+        "modifier": -10,
         "duration": 2,
         "manaCost": 35
     },
@@ -211,28 +211,28 @@
         "executionType": "singleTarget",
         "effectType": "stun",
         "duration": 3,
-        "manaCost": 55
+        "manaCost": 70
     },
     "disappear": {
         "name": "disappear",
         "title": "Disappear",
-        "description": "Using her stealth, she dissapears increasing her defense this turn for +40.",
+        "description": "Using her stealth, she dissapears increasing her defense for +12 by 2 rounds.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": 40,
-        "duration": 1,
-        "manaCost": 35
+        "modifier": 10,
+        "duration": 2,
+        "manaCost": 40
     },
     "backstab": {
         "name": "backstab",
         "title": "Backstab",
-        "description": "Cunning ability makes it possible to sneak through and deal 20 damage to any of the foes.",
+        "description": "Cunning ability makes it possible to sneak through and deal 22 damage to any of the foes.",
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 20,
-        "manaCost": 30
+        "manaCost": 35
     },
     "reaping_cut": {
         "name": "reaping_cut",
@@ -253,9 +253,12 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "twoTargets",
         "effectType": "damage",
-        "modifier": 20,
-        "manaCost": 50
+        "modifier": 16,
+        "manaCost": 60
     },
+
+
+
 
 
 
@@ -283,10 +286,10 @@
         "name": "piercing_laugh",
         "title": "Piercing laugh",
         "description": "Makes annoying sound awful to two beligerents which causes +8 Att damage.",
-        "targetType": "anyEnemyInNearestRank",
+        "targetType": "anyEnemy",
         "executionType": "twoTargets",
         "effectType": "damage",
-        "modifier": 8,
+        "modifier": 7,
         "manaCost": 30
     },
     "puppet": {
@@ -306,18 +309,18 @@
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 20,
+        "modifier": 10,
         "manaCost": 45
     },
     "curse": {
         "name": "curse",
         "title": "Curse",
-        "description": "Casts a powerful curse, thus decreasing attack modifier for -15 for 3 turns.",
+        "description": "Casts a powerful curse, thus decreasing attack modifier for -40 for 3 turns.",
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "attack",
-        "modifier": -15,
-        "duration": 3,
+        "modifier": -40,
+        "duration": 2,
         "manaCost": 35
     },
     "fear": {
@@ -327,7 +330,7 @@
         "targetType": "anyEnemy",
         "executionType": "allTargets",
         "effectType": "defense",
-        "modifier": -10,
+        "modifier": -12,
         "duration": 2,
         "manaCost": 35
     },
@@ -356,33 +359,33 @@
     "blood": {
         "name": "blood",
         "title": "Blood",
-        "description": "Regenerates health of vampire by drinking human blood for 35 HP.",
+        "description": "Regenerates health of vampire by drinking human blood for 30 HP.",
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "heal",
-        "modifier": 35,
+        "modifier": 30,
         "manaCost": 5
     },
     "electric_charge": {
         "name": "electric_charge",
         "title": "Electric charge",
         "description": "By using mighty powers, electric charges stun all enemies for 1 turn.",
-        "targetType": "anyEnemy",
-        "executionType": "allTargets",
+        "targetType": "anyEnemyInNearestRank",
+        "executionType": "allTargetsInRank",
         "effectType": "stun",
         "duration": 1,
-        "manaCost": 40
+        "manaCost": 20
     },
     "eather": {
         "name": "eather",
         "title": "Eather",
         "description": "Throws deadly Eather wind which lingers for 3 turns dealing 15 damage.",
-        "targetType": "anyEnemyInNearestRank",
-        "executionType": "allTargetsInRank",
+        "targetType": "anyEnemy",
+        "executionType": "allTargets",
         "effectType": "lingering",
         "lingeringType": "poison",
         "duration": 3,
-        "modifier": 15,
-        "manaCost": 40
+        "modifier": 10,
+        "manaCost": 20
     }
 }

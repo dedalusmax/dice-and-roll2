@@ -42,7 +42,7 @@ export class EndScene extends Phaser.Scene {
         this.time.delayedCall(2000, () => {
 
             const message = 
-            `As the enemy lays defeated are heroes stand victories on this black spire.\n 
+            `As the enemy lays defeated our heroes stand victories on this black spire.\n 
             The light may shine again for, without them,\n
             this land would shorely stay by in the annales of history.\n 
             They have travelled far and wide, and here there are \n

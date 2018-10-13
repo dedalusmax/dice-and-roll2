@@ -27,49 +27,49 @@
         "name": "brass_plating",
         "title": "Brass plating",
         "desc": "",
-        "defense": 2
+        "defense": 1
     },
     "iron_plating": {
         "name": "iron_plating",
         "title": "Iron plating",
         "desc": "",
-        "defense": 5
+        "defense": 3
     },
     "steel_plating": {
         "name": "steel_plating",
         "title": "Steel plating",
         "desc": "",
-        "defense": 7
+        "defense": 6
     },
     "master_forged": {
         "name": "master_forged",
         "title": "Master forged armor",
         "desc": "",
-        "defense": 10
+        "defense": 9
     },
     "regiment_uniform": {
         "name": "regiment_uniform",
         "title": "Regiment uniform",
         "desc": "",
-        "defense": 1
+        "defense": 0
     },
     "grenadier_uniform": {
         "name": "grenadier_uniform",
         "title": "Grenadier uniform",
         "desc": "",
-        "defense": 3
+        "defense": 2
     },
     "red_coat_uniform": {
         "name": "red_coat_uniform",
         "title": "Red coat uniform",
         "desc": "",
-        "defense": 5
+        "defense": 4
     },
     "marksman_uniform": {
         "name": "marksman_uniform",
         "title": "Marksman uniform",
         "desc": "",
-        "defense": 7
+        "defense": 6
     },
     "lab_coat": {
         "name": "lab_coat",
@@ -99,25 +99,25 @@
         "name": "wooven_robe",
         "title": "Wooven robe",
         "desc": "",
-        "defense": 0
+        "defense": 1
     },
     "rogue_cloak": {
         "name": "rogue_cloak",
         "title": "Rogue cloak",
         "desc": "",
-        "defense": 2
+        "defense": 3
     },
     "assasin_cloak": {
         "name": "assasin_cloak",
         "title": "Assasin's cloak",
         "desc": "",
-        "defense": 4
+        "defense": 5
     },
     "hitman_cloak": {
         "name": "hitman_cloak",
         "title": "Hitman cloak",
         "desc": "",
-        "defense": 6
+        "defense": 7
     },
     "magician_suit": {
         "name": "magician_suit",

@@ -25,7 +25,7 @@ export class DefeatScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(0x360602);
 
         var logo = ImageService.stretchAndFitImage('defeat', this);
-        logo.setScale(0.3);
+        logo.setScale(0.5);
         logo.setOrigin(0.5, 0.5);   
 
         if (Settings.sound.musicVolume > 0) {
