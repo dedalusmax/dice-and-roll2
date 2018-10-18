@@ -2,7 +2,7 @@
 
 ## Credits 
  
-Programming - Ratko & Šimun Ćosić
+Programming - Ratko & Šimun Ćosić 
 Game Design - Klara Ćosić
 Game Story - Tvrtko Ćosić
 
