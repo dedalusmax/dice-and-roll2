@@ -7,7 +7,7 @@
         "executionType": "twoTargets",
         "effectType": "damage",
         "modifier": 8,
-        "manaCost": 30
+        "manaCost": 40
     },
     "bullseye": {
         "name": "bullseye",
@@ -49,7 +49,7 @@
         "executionType": "singleTarget",
         "effectType": "heal",
         "modifier": 20,
-        "manaCost": 30
+        "manaCost": 35
     },
     "poisonous_gas": {
         "name": "poisonous_gas",
@@ -105,7 +105,7 @@
         "lingeringType": "fire",
         "duration": 3,
         "modifier": 12,
-        "manaCost": 35
+        "manaCost": 40
     },
     "brass_shield": {
         "name": "brass_shield",
@@ -114,7 +114,7 @@
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "defense",
-        "modifier": 10,
+        "modifier": 3,
         "duration": 2,
         "manaCost": 40
     },
@@ -136,7 +136,7 @@
         "executionType": "singleTarget",
         "effectType": "heal",
         "modifier": 20,
-        "manaCost": 30
+        "manaCost": 40
     },
     "precision_shot": {
         "name": "precision_shot",
@@ -167,9 +167,9 @@
         "targetType": "anyFriend",
         "executionType": "allTargets",
         "effectType": "attack",
-        "modifier": 10,
+        "modifier": 7,
         "duration": 1,
-        "manaCost": 60
+        "manaCost": 50
     },
     "ace": {
         "name": "ace",
@@ -178,8 +178,8 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 10,
-        "manaCost": 25
+        "modifier": 8,
+        "manaCost": 20
     },
     "blind": {
         "name": "blind",
@@ -190,7 +190,7 @@
         "effectType": "attack",
         "modifier": -40,
         "duration": 1,
-        "manaCost": 35
+        "manaCost": 30
     },
     "performance": {
         "name": "performance",
@@ -232,7 +232,7 @@
         "executionType": "singleTarget",
         "effectType": "damage",
         "modifier": 20,
-        "manaCost": 35
+        "manaCost": 40
     },
     "reaping_cut": {
         "name": "reaping_cut",
@@ -363,8 +363,8 @@
         "targetType": "self",
         "executionType": "singleTarget",
         "effectType": "heal",
-        "modifier": 30,
-        "manaCost": 5
+        "modifier": 40,
+        "manaCost": 0
     },
     "electric_charge": {
         "name": "electric_charge",
@@ -385,7 +385,7 @@
         "effectType": "lingering",
         "lingeringType": "poison",
         "duration": 3,
-        "modifier": 10,
+        "modifier": 15,
         "manaCost": 20
     }
 }

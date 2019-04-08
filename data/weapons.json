@@ -11,7 +11,7 @@
         "title": "Hunting revolvers",
         "desc": "Used for shooting in the wild, give power shots",
         "type": "FIREARMS",
-        "attack": 3,
+        "attack": 2,
         "sound": ""
     }, 
     "sherrifs_sidearm": {
@@ -19,14 +19,14 @@
         "title": "Sherrif's sidearm",
         "desc": "Can't beat the sherrif's power when comes the shooting",
         "type": "FIREARMS",
-        "attack": 5
+        "attack": 4
     }, 
     "peacemaker": {
         "name": "peacemaker",
         "title": "Peacemaker",
         "desc": "There is a reason this thing is called that, peace be with their souls",
         "type": "FIREARMS",
-        "attack": 7
+        "attack": 6
     }, 
     "steam_pipe": {
         "name": "steam_pipe",
@@ -68,21 +68,21 @@
         "title": "Aquebus",
         "desc": "An advanced weapon for handling heavy number of troops",
         "type": "FIREARMS",
-        "attack": 3
+        "attack": 2
     },  
     "shotgun": {
         "name": "shotgun",
         "title": "Shotgun",
         "desc": "A weapon used for hunting purposes, including humans",
         "type": "FIREARMS",
-        "attack": 5
+        "attack": 4
     },  
     "scoped_rifle": {
         "name": "scoped_rifle",
         "title": "Scoped rifle",
         "desc": "A precise gun meant for long range shots from a distance",
         "type": "FIREARMS",
-        "attack": 7
+        "attack": 6
     },  
     "explosive_bomb": {
         "name": "explosive_bomb",
@@ -110,7 +110,7 @@
         "title": "Dragon breath",
         "desc": "Extraordinary weapon dealing maximum damage to enemies",
         "type": "MISSILE",
-        "attack": 4
+        "attack": 5
     },  
     "dagger": {
         "name": "dagger",

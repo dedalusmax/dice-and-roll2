@@ -6,7 +6,7 @@
         "description": "Beautiful, yet vile, utilising sharp claws and enchanting voices to defite their enemies.",
         "health": 60,
         "defense": 2,
-        "attack": 14,
+        "attack": 15,
         "type": "MELEE",
         "weapon": "claws",
         "specials": [ "enchanting_song" ]
@@ -17,8 +17,8 @@
         "story": "Once hardy marimen, now cursed to serve the unforgiving sea forever. They inhabit the numerous shipwrecks stranded along the shore. They are mindless aberrations whose appearance is like of a blooted and drowned sailor.",
         "description": "Although passive if not disturbed, the are quite protective and attack with cutlasses and sabres.",
         "health": 80,
-        "defense": 2,
-        "attack": 14,
+        "defense": 4,
+        "attack": 15,
         "type": "MELEE",
         "weapon": "cutlass",
         "specials": [ ]
@@ -40,8 +40,8 @@
         "title": "Serpent",
         "story": "Many ships who sail too close to the shore cought a glimpse of giant sea serpents basking in the shallow waters of the bay. Some are known to atack and eaven sink large wesels.",
         "description": "Very agressive and easily provoked, they atack with powerful bites.",
-        "health": 80,
-        "defense": 2,
+        "health": 75,
+        "defense": 3,
         "attack": 20,
         "type": "MELEE",
         "weapon": "bite",
@@ -81,7 +81,7 @@
         "attack": 16,
         "type": "RANGED",
         "weapon": "branch",
-        "specials": [ "remedy" ]
+        "specials": [ "remedy","enchanting_song" ]
     },
     "wendigo": {
         "name": "wendigo",
@@ -141,7 +141,7 @@
         "attack": 17,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ "crow" ]
+        "specials": [ "crow","eather" ]
     },
     "corpse": {
         "name": "corpse",
@@ -161,7 +161,7 @@
         "story": "From the ashes of the world arose a man seeking the rebirth of the once lost in the great spite of the Eather. To reclaim the bodies of the „lost“ he uses his henchmen – the grave diggers to dig up the cadavers and to transport them to castle Sibros.",
         "description": "Week-minded individuals, unable to use sofisticated weapons there only attack with pickaxe.",
         "health": 70,
-        "defense": 2,
+        "defense": 3,
         "attack": 17,
         "type": "MELEE",
         "weapon": "pickaxe",
