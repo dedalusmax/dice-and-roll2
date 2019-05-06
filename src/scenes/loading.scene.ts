@@ -219,7 +219,7 @@ export class LoadingScene extends Phaser.Scene {
 
             case 'DefeatScene':
 
-                this.load.image('defeat', 'assets/screens/menu.png');
+                this.load.image('defeat', 'assets/screens/defeat.png');
                 this.load.audio('defeat', Assets.sounds.defeat);
                 break;
 
