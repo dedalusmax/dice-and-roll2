@@ -11,7 +11,7 @@
         "title": "Hunting revolvers",
         "desc": "Used for shooting in the wild, give power shots",
         "type": "FIREARMS",
-        "attack": 2,
+        "attack": 4,
         "sound": ""
     }, 
     "sherrifs_sidearm": {
@@ -19,42 +19,42 @@
         "title": "Sherrif's sidearm",
         "desc": "Can't beat the sherrif's power when comes the shooting",
         "type": "FIREARMS",
-        "attack": 4
+        "attack": 7
     }, 
     "peacemaker": {
         "name": "peacemaker",
         "title": "Peacemaker",
         "desc": "There is a reason this thing is called that, peace be with their souls",
         "type": "FIREARMS",
-        "attack": 6
+        "attack": 9
     }, 
     "steam_pipe": {
         "name": "steam_pipe",
         "title": "Steam pipe",
         "desc": "A pipe used in the boiler rooms of the Great city",
         "type": "BLUNT",
-        "attack": 0
+        "attack": 1
     },  
     "pickaxe": {
         "name": "pickaxe",
         "title": "Pickaxe",
         "desc": "Multipurpose tool for mining, grave digging and so",
         "type": "BLUNT",
-        "attack": 1
+        "attack": 2
     },  
     "wrench": {
         "name": "wrench",
         "title": "Wrench",
         "desc": "Handy tool for fixing everything including enemies",
         "type": "BLUNT",
-        "attack": 2
+        "attack": 4
     },  
     "forge_hammer": {
         "name": "forge_hammer",
         "title": "Forge hammer",
         "desc": "Great blunt weapon used by the blacksmiths and automatons",
         "type": "BLUNT",
-        "attack": 3
+        "attack": 6
     },  
     "musket": {
         "name": "musket",
@@ -68,21 +68,21 @@
         "title": "Aquebus",
         "desc": "An advanced weapon for handling heavy number of troops",
         "type": "FIREARMS",
-        "attack": 2
+        "attack": 4
     },  
     "shotgun": {
         "name": "shotgun",
         "title": "Shotgun",
         "desc": "A weapon used for hunting purposes, including humans",
         "type": "FIREARMS",
-        "attack": 4
+        "attack": 7
     },  
     "scoped_rifle": {
         "name": "scoped_rifle",
         "title": "Scoped rifle",
         "desc": "A precise gun meant for long range shots from a distance",
         "type": "FIREARMS",
-        "attack": 6
+        "attack": 9
     },  
     "explosive_bomb": {
         "name": "explosive_bomb",
@@ -103,14 +103,14 @@
         "title": "Frag grenade",
         "desc": "Used on the fronts for dealing great fragmentation damage",
         "type": "MISSILE",
-        "attack": 3
+        "attack": 4
     },  
     "dragon_breath": {
         "name": "dragon_breath",
         "title": "Dragon breath",
         "desc": "Extraordinary weapon dealing maximum damage to enemies",
         "type": "MISSILE",
-        "attack": 5
+        "attack": 7
     },  
     "dagger": {
         "name": "dagger",
@@ -124,21 +124,21 @@
         "title": "Razor",
         "desc": "Sharp small blade for quick executing the enemy unit",
         "type": "BLADE",
-        "attack": 3
+        "attack": 4
     },  
     "shadow_blade": {
         "name": "shadow_blade",
         "title": "Shadow blade",
         "desc": "Lethal blade made especially for dealing bleeding damage",
         "type": "BLADE",
-        "attack": 5
+        "attack": 8
     },  
     "throat_slitter": {
         "name": "throat_slitter",
         "title": "Throat slitter",
         "desc": "A blade that many fear due its cunning and lethal properties",
         "type": "BLADE",
-        "attack": 7
+        "attack": 10
     },  
     "deck_of_cards": {
         "name": "deck_of_cards",
@@ -159,14 +159,14 @@
         "title": "Poker cards",
         "desc": "A famous deck of cards heavily damaging the enemies",
         "type": "BLADE",
-        "attack": 3
+        "attack": 4
     },
     "joker_card": {
         "name": "joker_card",
         "title": "Joker card",
         "desc": "A special cunning card that kills enemies as a stout",
         "type": "BLADE",
-        "attack": 4
+        "attack": 6
     },
 
 

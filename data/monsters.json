@@ -138,10 +138,10 @@
         "description": "In his cruel twist, plague doctor wields pestilence and poison.",
         "health": 80,
         "defense": 0,
-        "attack": 17,
+        "attack": 18,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ "crow","poisonous_gas" ]
+        "specials": [ "crow","eather" ]
     },
     "corpse": {
         "name": "corpse",
@@ -150,10 +150,10 @@
         "description": "Their brain is now long gone and it is for this reason it lacks any strategical or tactical ability.",
         "health": 80,
         "defense": 2,
-        "attack": 20,
+        "attack": 19,
         "type": "MELEE",
         "weapon": "clutches",
-        "specials": [ "poisonous_gas" ]
+        "specials": [ "poisonous_gas","break_defense" ]
     },
     "grave_digger": {
         "name": "grave_digger",

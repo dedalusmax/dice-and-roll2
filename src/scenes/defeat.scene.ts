@@ -6,7 +6,7 @@ import { SceneService } from "../services/scene.service";
 
 const TITLE_TEXT_STYLE = { font: '72px ' + FONT_FAMILY, fill: '#990000', align: 'center' },
     BACK_STYLE = { font: '32px ' + FONT_FAMILY, fill: '#581B06', align: 'center', stroke: '#000000', strokeThickness: 2 };
-
+    
 export class DefeatScene extends Phaser.Scene {
 
     private _canvas: HTMLCanvasElement;
