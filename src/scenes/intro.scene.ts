@@ -39,7 +39,7 @@ export class IntroScene extends Phaser.Scene {
 
         this.sound.stopAll();
 
-        TextualService.createTextButton(this, 'Give up', 50, 30, BACK_STYLE, a => {
+        TextualService.createTextButton(this, 'Back', 50, 30, BACK_STYLE, a => {
             this.sound.add('click', { volume: Settings.sound.sfxVolume }).play();
             SceneService.backToMenu(this);
         });
@@ -66,7 +66,7 @@ export class IntroScene extends Phaser.Scene {
                 break;
 
             case 550: 
-                TextualService.createTextButton(this, 'Skip intro', this.cameras.main.width - 100, 30, BACK_STYLE, a => {
+                TextualService.createTextButton(this, 'Skip', this.cameras.main.width - 100, 30, BACK_STYLE, a => {
                     this.sound.add('page', { volume: Settings.sound.sfxVolume }).play();
                     this.endScene();
                 });

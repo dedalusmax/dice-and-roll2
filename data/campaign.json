@@ -80,6 +80,7 @@
             ],
             "enemies": [
                 "siren",
+                "siren",
                 "siren"
             ],
             "enemyMana": 120
