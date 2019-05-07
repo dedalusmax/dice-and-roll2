@@ -77,8 +77,8 @@
         "story": "As the towns got emptied and as the once traveled roads became abandoned, old beings awoke. Hardy protectors of the lush wilderness and great foes to the „tree-eaters“. They also inbody the beauty and youth of nature – that's why they look like gorgeous women clad in moss and flowers.",
         "description": "Unassuming, but quite deadly. Possessing powerful hands and utilizing spores as ranged weapons.",
         "health": 70,
-        "defense": 2,
-        "attack": 16,
+        "defense": 4,
+        "attack": 17,
         "type": "RANGED",
         "weapon": "branch",
         "specials": [ "remedy","entangle" ]
@@ -141,7 +141,7 @@
         "attack": 18,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ "crow","eather" ]
+        "specials": [ "crow","remedy" ]
     },
     "corpse": {
         "name": "corpse",
