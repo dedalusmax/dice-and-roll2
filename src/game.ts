@@ -46,6 +46,13 @@ export class Game extends Phaser.Game {
 
 // when the page is loaded, create our game instance
 window.onload = () => {
-    var game = new Game(config);
+  var game = new Game(config);
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((reg) => {
+        console.log('Service worker registered.', reg);
+      });
+  }
 };
 
