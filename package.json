@@ -18,6 +18,7 @@
     "@babel/preset-typescript": "^7.0.0-beta.32",
     "babel-loader": "^8.0.0-beta.0",
     "copy-webpack-plugin": "5.1.2",
+    "http-server": "^14.0.0",
     "raw-loader": "^0.5.1",
     "typescript": "2.9.2",
     "uglifyjs-webpack-plugin": "^1.2.4",
@@ -30,7 +31,8 @@
   },
   "scripts": {
     "build": "webpack --config=webpack.prod.config.js",
-    "dev": "webpack && webpack-dev-server --port=8000 --open --hot"
+    "dev": "webpack && webpack-dev-server --port=8000 --open --hot",
+    "prod": "webpack --config=webpack.prod.config.js && cd dist && http-server -p 0 --cors -o"
   },
   "repository": {
     "type": "git",
