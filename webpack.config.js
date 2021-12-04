@@ -1,30 +1,38 @@
-var path = require('path');
-var pathToPhaser = path.join(__dirname, '/node_modules/phaser/');
-var phaser = path.join(pathToPhaser, 'dist/phaser.js');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/game.ts',
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-  },
-  module: {
-    rules: [
-      { test: /\.ts$/, loader: 'ts-loader', exclude: '/node_modules/' },
-      { test: /phaser\.js$/, loader: 'expose-loader?Phaser' }
+    entry: './src/game',
+    mode: 'development',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'app.bundle.js',
+        publicPath: '/dist'
+    },
+
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.(tsx?)|(js)$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            },
+            {
+                test: [/\.vert$/, /\.frag$/],
+                use: 'raw-loader'
+            }
+        ]
+    },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            CANVAS_RENDERER: JSON.stringify(true),
+            WEBGL_RENDERER: JSON.stringify(true)
+        }),
+        new webpack.NamedModulesPlugin()
     ]
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, './'),
-    publicPath: '/build/',
-    host: '127.0.0.1',
-    port: 8080,
-    open: true
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-    alias: {
-      phaser: phaser
-    }
-  }
 };
