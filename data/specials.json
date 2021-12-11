@@ -48,7 +48,7 @@
         "targetType": "anyFriend",
         "executionType": "singleTarget",
         "effectType": "heal",
-        "modifier": 20,
+        "modifier": 18,
         "manaCost": 35
     },
     "poisonous_gas": {
@@ -92,7 +92,7 @@
         "executionType": "singleTarget",
         "effectType": "defense",
         "modifier": -10,
-        "duration": 2,
+        "duration": 1,
         "manaCost": 35
     },
     "burning_flames": {
@@ -145,7 +145,7 @@
         "targetType": "anyEnemy",
         "executionType": "singleTarget",
         "effectType": "damage",
-        "modifier": 20,
+        "modifier": 25,
         "manaCost": 40
     },
     "bayonet_charge": {
@@ -200,7 +200,7 @@
         "executionType": "singleTarget",
         "effectType": "defense",
         "modifier": -10,
-        "duration": 2,
+        "duration": 1,
         "manaCost": 35
     },
     "magic_trick": {
@@ -279,7 +279,7 @@
         "targetType": "anyEnemyInNearestRank",
         "executionType": "allTargetsInRank",
         "effectType": "damage",
-        "modifier": 10,
+        "modifier": 8,
         "manaCost": 40
     },
     "piercing_laugh": {
@@ -342,7 +342,7 @@
         "executionType": "singleTarget",
         "effectType": "stun",
         "duration": 2,
-        "manaCost": 40
+        "manaCost": 25
     },
     "vampire_bite": {
         "name": "vampire_bite",
