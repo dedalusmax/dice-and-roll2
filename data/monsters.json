@@ -15,7 +15,7 @@
         "name": "seabound_sailor",
         "title": "Seabound sailor",
         "story": "Once hardy marimen, now cursed to serve the unforgiving sea forever. They inhabit the numerous shipwrecks stranded along the shore. They are mindless aberrations whose appearance is like of a blooted and drowned sailor.",
-        "description": "Although passive if not disturbed, the are qauite protective and attack with cutlasses and sabres.",
+        "description": "Although passive if not disturbed, the are quite protective and attack with cutlasses and sabres.",
         "health": 70,
         "defense": 3,
         "attack": 15,

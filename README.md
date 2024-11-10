@@ -68,3 +68,7 @@ Wind - InspectorJ: https://freesound.org/people/InspectorJ/sounds/405561/
 Spring - bajko: https://freesound.org/people/bajko/sounds/385279/
 Mine shaft - bkamuse: https://freesound.org/people/bkamuse/sounds/89448/
 Abandoned city - NUpton: https://freesound.org/people/NUpton/sounds/75076/
+
+
+## Phaser3 WebPack + TypeScript template:
+https://github.com/stephenpoole/phaser3-typescript-template
