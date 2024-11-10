@@ -1,6 +1,7 @@
 lib
 dist
 .prettierrc
+package-lock.json
 
 # System and IDE files
 Thumbs.db

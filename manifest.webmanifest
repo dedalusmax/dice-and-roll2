@@ -1,0 +1,35 @@
+{
+    "name": "Dice & Roll - The Forgotten Realm",
+    "short_name": "Dice & Roll",
+    "start_url": ".",
+    "display": "fullscreen",
+    "background_color": "#000",
+    "theme_color": "black",
+    "description": "A rpg turn-based card game.",
+    "orientation": "landscape",
+    "icons": [{
+      "src": "assets/icons/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }, {
+      "src": "assets/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }, {
+      "src": "assets/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }, {
+      "src": "assets/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "assets/icons/icon-168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    }, {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }]
+  }
