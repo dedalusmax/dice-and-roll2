@@ -342,7 +342,7 @@
         "executionType": "singleTarget",
         "effectType": "stun",
         "duration": 2,
-        "manaCost": 25
+        "manaCost": 40
     },
     "vampire_bite": {
         "name": "vampire_bite",

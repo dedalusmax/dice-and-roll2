@@ -235,7 +235,7 @@
             ],
             "enemies": [
                 "serpent",
-                "gnilur",
+                "hoblum",
                 "serpent"
             ],
             "enemyMana": 140
@@ -295,8 +295,8 @@
             ],
             "enemies": [
                 "krone",
-                "krone",
-                "fey"    
+                "fey",
+                "krone"    
             ],
             "enemyMana": 160
         },
@@ -352,6 +352,7 @@
             "enemies": [
                 "krone",
                 "krone",
+                "corpse",
                 "krone"
             ],
             "enemyMana": 140
@@ -369,9 +370,9 @@
                 "hagville"
             ],
             "enemies": [
+                "grave_digger",
                 "corpse",
-                "corpse",
-                "grave_digger"
+                "hoblum"
             ],
             "enemyMana": 140,
             "reward": {
@@ -510,9 +511,10 @@
                 "bog_crossing"
             ],
             "enemies": [
-                "harlequin",
                 "banshee",
-                "harlequin"
+                "corpse",
+                "banshee"
+                
             ],  
             "enemyMana": 140
         },
@@ -562,7 +564,7 @@
             "title": "Farnath",
             "description": "The western passage is vast, long and dangerous, but there is another way to the City. On the river's sandy shores, a warden watches over the passing ships. Borderwatch, protecting the north from the wild south.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "forest",
             "x": 2281,
             "y": 2059,
             "connectsTo": [
@@ -572,9 +574,9 @@
                 "bog_crossing"
             ],
             "enemies": [
-                "banshee",
-                "grave_digger",
-                "banshee"
+                "corpse",
+                "wendigo",
+                "gnilur"
             ],  
             "enemyMana": 160
             
@@ -592,7 +594,7 @@
                 "krones_nest"
             ],
             "enemies": [
-                "banshee",
+                "grave_digger",
                 "puppeteer",
                 "harlequin"
             ],  
@@ -610,7 +612,8 @@
             "x": 2703,
             "y": 1446,
             "connectsTo": [
-                "kings_bridge"
+                "kings_bridge",
+                "hagville"
             ],
             "enemies": [
                 "construct",
@@ -628,10 +631,11 @@
             "y": 1520,
             "connectsTo": [
                 "citadel",
-                "bazaar"
+                "bazaar",
+                "city_gate"
             ],
             "enemies": [
-                "construct",
+                "corpse",
                 "plague_doctor",
                 "corpse"
             ], 
@@ -650,7 +654,7 @@
                 "hagville"
             ],
             "enemies": [
-                "banshee",
+                "harlequin",
                 "puppeteer",
                 "banshee"
             ], 
@@ -675,7 +679,7 @@
                 "northern_passage"
             ],
             "enemies": [
-                "corpse",
+                "grave_digger",
                 "plague_doctor",
                 "harlequin"
             ], 
@@ -695,7 +699,7 @@
             ],
             "enemies": [
                 "krone",
-                "plague_doctor",
+                "gnilur",
                 "krone"
             ], 
             "enemyMana": 140
@@ -715,7 +719,7 @@
             "enemies": [
                 "plague_doctor",
                 "plague_doctor",
-                "corpse"
+                "plague_doctor"
             ], 
             "enemyMana": 160,
             "reward":{
@@ -727,7 +731,7 @@
             "title": "Northern passage",
             "description": "Iti s not actualy known from where the Eather came from. It struck quickly and without any restraint. Killing or corrupting anything in its path. Its origins may lay in something not from this world. Many scolars agree, that while studying the old texts and engravings they saw something…something that came once before.",
             "type": "encounter",
-            "terrain": "city",
+            "terrain": "hills",
             "x": 3229,
             "y": 1276,
             "connectsTo": [
@@ -735,8 +739,8 @@
             ],
             "enemies": [
                 "construct",
-                "grave_digger",
-                "corpse"
+                "plague_doctor",
+                "construct"
             ], 
             "enemyMana": 140
         },
@@ -745,7 +749,7 @@
             "title": "Mountain pass",
             "description": "This is the last stretch of road, leading to castle Sibros. Not many people knew about its existence. Its purpose was, that in case of a disaster the monarch could flee to the former Blackstone keep. It is not known if he made it, although I do quite doubt Sibros would share his castle with him.",
             "type": "encounter",
-            "terrain": "hills",
+            "terrain": "forest",
             "x": 3521,
             "y": 1163,
             "connectsTo": [
@@ -753,6 +757,7 @@
             ],
             "enemies": [
                 "wendigo",
+                "fey",
                 "wendigo"
             ], 
             "enemyMana": 160
@@ -772,7 +777,7 @@
                 "doctor_sibros",
                 "plague_doctor"
             ], 
-            "enemyMana": 300
+            "enemyMana": 400
         }
     ]
 }

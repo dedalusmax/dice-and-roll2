@@ -77,18 +77,18 @@
         "story": "As the towns got emptied and as the once traveled roads became abandoned, old beings awoke. Hardy protectors of the lush wilderness and great foes to the „tree-eaters“. They also inbody the beauty and youth of nature – that's why they look like gorgeous women clad in moss and flowers.",
         "description": "Unassuming, but quite deadly. Possessing powerful hands and utilizing spores as ranged weapons.",
         "health": 70,
-        "defense": 2,
-        "attack": 16,
+        "defense": 4,
+        "attack": 17,
         "type": "RANGED",
         "weapon": "branch",
-        "specials": [ "remedy","enchanting_song" ]
+        "specials": [ "remedy","entangle" ]
     },
     "wendigo": {
         "name": "wendigo",
         "title": "Wendigo",
         "story": "The deepest and darkest woods are often stoked by malicious beings. Wendigos are tall and slender beings with a human-like body. Once men who sucumb to their primal needs for blood, now towering creatures lurking the forests in search for human flesh.",
         "description": "With claws a wendigo can gut a human in a slash, and uses his apperance to paralize foes.",
-        "health": 90,
+        "health": 95,
         "defense": 4,
         "attack": 22,
         "type": "MELEE",
@@ -99,13 +99,13 @@
         "name": "krone",
         "title": "Krone",
         "story": "As the laws of the Old world faded, many dark and forbidden arts have been redisovered. Those who use them are known as Krones - women who made unholy pacts with the unnamed entities of the Eather.",
-        "description": "Krones are able to use potent poisons and powerful curses.",
+        "description": "Krones are able to use potent acids and powerful curses.",
         "health": 60,
         "defense": 2,
         "attack": 16,
         "type": "MELEE",
         "weapon": "clutches",
-        "specials": [ "curse" ]
+        "specials": [ "curse","throw_acid" ]
     },
     "harlequin": {
         "name": "harlequin",
@@ -124,8 +124,8 @@
         "title": "Puppeteer",
         "story": "Strings upon strings…dance my little puppet…These are the chants of the puppet master wanting to enslave another unlucky victim, for his collection is vast and forever seeking more members.",
         "description": "In combat he is quite malevolent and has the ability to temporarily enslave his enemies.",
-        "health": 70,
-        "defense": 4,
+        "health": 80,
+        "defense": 5,
         "attack": 20,
         "type": "RANGED",
         "weapon": "strings",
@@ -138,10 +138,10 @@
         "description": "In his cruel twist, plague doctor wields pestilence and poison.",
         "health": 80,
         "defense": 0,
-        "attack": 17,
+        "attack": 18,
         "type": "RANGED",
         "weapon": "poison",
-        "specials": [ "crow","eather" ]
+        "specials": [ "crow","remedy" ]
     },
     "corpse": {
         "name": "corpse",
@@ -149,20 +149,20 @@
         "story": "Many souls escaped their fragile, earthly shell, but not every. For one man's idea was to renew the world and it was by his hand there would still endure in their former bodies. There once was a smile on his face, now unfortunately, impossible.",
         "description": "Their brain is now long gone and it is for this reason it lacks any strategical or tactical ability.",
         "health": 80,
-        "defense": 2,
-        "attack": 20,
+        "defense": 1,
+        "attack": 16,
         "type": "MELEE",
         "weapon": "clutches",
-        "specials": [ "poisonous_gas" ]
+        "specials": [ "poisonous_gas","break_defense" ]
     },
     "grave_digger": {
         "name": "grave_digger",
         "title": "Grave digger",
         "story": "From the ashes of the world arose a man seeking the rebirth of the once lost in the great spite of the Eather. To reclaim the bodies of the „lost“ he uses his henchmen – the grave diggers to dig up the cadavers and to transport them to castle Sibros.",
         "description": "Week-minded individuals, unable to use sofisticated weapons there only attack with pickaxe.",
-        "health": 70,
-        "defense": 3,
-        "attack": 17,
+        "health": 60,
+        "defense": 1,
+        "attack": 14,
         "type": "MELEE",
         "weapon": "pickaxe",
         "specials": [ ]
@@ -184,11 +184,11 @@
         "title": "Vampire",
         "story": "Not many creatures can indure in the vicinity of this entity. It leeches on your energy, until you are unwiling to stand, for in this manor, it breaks your will. As you lay down, trying to get up, it falls up on you, trusting its fangs into your weakened body.",
         "description": "This may be the strongest creature you will encounter. Has the unique ability to constantly heal itself.",
-        "health": 90,
+        "health": 95,
         "defense": 4,
         "attack": 20,
         "type": "MELEE",
-        "weapon": "claws",
+        "weapon": "clutches",
         "specials": [ "vampire_bite", "blood" ]
     },
     "construct": {
@@ -197,8 +197,8 @@
         "story": "There are many ways of creating a homunculus. First you need a vessel, a shell, preferably made out of iron or copper. The second thing you need is a soul. Now in case of this construct, it is a brain that floats in a green, luminescent liquid. ",
         "description": "A construct is a strong fighter, using its fists and flames to decimate its opponents.",
         "health": 100,
-        "defense": 8,
-        "attack": 22,
+        "defense": 5,
+        "attack": 19,
         "type": "MELEE",
         "weapon": "forge_hammer",
         "specials": [ "break_defense", "burning_flames" ]
@@ -210,7 +210,7 @@
         "description": "He is using powerful lightning strikes and devastating waves of poison to anhilate his enemies.",
         "health": 120,
         "defense": 0,
-        "attack": 22,
+        "attack": 20,
         "type": "RANGED",
         "weapon": "lightning",
         "specials": [ "electric_charge", "eather" ]
