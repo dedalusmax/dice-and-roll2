@@ -1,7 +1,6 @@
 lib
 dist
 .prettierrc
-package-lock.json
 
 # System and IDE files
 Thumbs.db
@@ -17,3 +16,4 @@ node_modules/
 # Build
 build/
 /npm-debug.log
+package-lock.json
