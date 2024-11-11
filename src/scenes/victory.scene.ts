@@ -298,7 +298,7 @@ export class VictoryScene extends Phaser.Scene {
             options.playerParty = this._options.playerParty;
             options.worldMap = false;
     
-            SceneService.run(this, new MapScene(), false, options);
+            SceneService.run(this, "MapScene", false, options);
 
         }, null, this);
     }

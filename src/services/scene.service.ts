@@ -12,19 +12,19 @@ export class SceneService {
     static backToMenu(currentScene: Phaser.Scene) {
 
         var loadingOptions = new LoadingSceneOptions();
-        loadingOptions.loadScene = MainMenuScene.name;
+        loadingOptions.loadScene = 'MainMenuScene';
 
-        currentScene.scene.start(LoadingScene.name, loadingOptions);
+        currentScene.scene.start('LoadingScene', loadingOptions);
     }
 
-    static run(currentScene: Phaser.Scene, targetScene: Phaser.Scene, persistMusic?: boolean, options?: SceneOptions): void {
+    static run(currentScene: Phaser.Scene, targetScene: string, persistMusic?: boolean, options?: SceneOptions): void {
 
         var loadingOptions = new LoadingSceneOptions();
         
-        loadingOptions.loadScene = targetScene.constructor.name;
+        loadingOptions.loadScene = targetScene;
         loadingOptions.persistMusic = persistMusic;
         loadingOptions.sceneOptions = options;
 
-        currentScene.scene.start(LoadingScene.name, loadingOptions);
+        currentScene.scene.start('LoadingScene', loadingOptions);
     }
 }

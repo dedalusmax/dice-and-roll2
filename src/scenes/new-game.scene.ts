@@ -103,7 +103,7 @@ export class NewGameScene extends Phaser.Scene {
                 options.newGame = true;
                 options.playerParty = party;
 
-                SceneService.run(this, new IntroScene(), false, options);
+                SceneService.run(this, "IntroScene", false, options);
             } else {
                 this.sound.add('closed', { volume: Settings.sound.sfxVolume }).play();
             }

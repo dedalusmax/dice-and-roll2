@@ -199,17 +199,17 @@ export class BattleScene extends Phaser.Scene {
             this.time.delayedCall(1000, () => {
                 if ((numInEnemyTeam === 0)) { // victory
                     if (this._options.end) {
-                        SceneService.run(this, new EndScene(), false);   
+                        SceneService.run(this, "EndScene", false);   
                     } else {
                         var options = new VictorySceneOptions();
                         options.skirmish = this._options.skirmish;
                         options.playerParty = this._options.playerParty;
                         options.reward = this._options.reward;
                         
-                        SceneService.run(this, new VictoryScene(), false, options);   
+                        SceneService.run(this, "VictoryScene", false, options);   
                     }
                 } else {
-                    SceneService.run(this, new DefeatScene());
+                    SceneService.run(this, "DefeatScene");
                 }
             }, null, this);
         }

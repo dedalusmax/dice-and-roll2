@@ -133,7 +133,7 @@ export class MainMenuScene extends Phaser.Scene {
     private openWorldMap() {
         var options = new MapSceneOptions();
         options.worldMap = true;
-        SceneService.run(this, new MapScene(), false, options);
+        SceneService.run(this, "MapScene", false, options);
     }
 
     private continueGame() {
@@ -143,7 +143,7 @@ export class MainMenuScene extends Phaser.Scene {
         var options = new MapSceneOptions();
         options.worldMap = false;
         options.playerParty = storedParty;
-        SceneService.run(this, new MapScene(), false, options);
+        SceneService.run(this, "MapScene", false, options);
     }
 
     private createSkirmishMenu() {
@@ -210,7 +210,7 @@ export class MainMenuScene extends Phaser.Scene {
         options.enemyMana = location.enemyMana;
         options.reward = location.reward;
 
-        SceneService.run(this, new BattleScene(), false, options);
+        SceneService.run(this, "BattleScene", false, options);
     }
 
     private displayVolume(volume): string {
@@ -336,11 +336,11 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     private newGame() {
-        SceneService.run(this, new NewGameScene(), true);
+        SceneService.run(this, "NewGameScene", true);
     };
 
     private openBestiary() {
-        SceneService.run(this, new BestiaryScene(), true);
+        SceneService.run(this, "BestiaryScene", true);
     };
 
     private openIntro() {
@@ -362,6 +362,6 @@ export class MainMenuScene extends Phaser.Scene {
         options.playerParty = party;
         options.newGame = false;
 
-        SceneService.run(this, new IntroScene(), false, options);
+        SceneService.run(this, "IntroScene", false, options);
     };
 }

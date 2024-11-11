@@ -263,7 +263,7 @@ export class IntroScene extends Phaser.Scene {
             var options = new MapSceneOptions();
             options.worldMap = false;
             options.playerParty = this._options.playerParty;
-            SceneService.run(this, new MapScene(), false, options);    
+            SceneService.run(this, "MapScene", false, options);    
         } else {
             SceneService.backToMenu(this);
         }

@@ -280,7 +280,7 @@ export class MapScene extends Phaser.Scene {
                         options.reward = pinpoint.location.reward;
                         options.end = pinpoint.location.type === LocationType.end;
                         
-                        SceneService.run(this, new BattleScene(), false, options);
+                        SceneService.run(this, "BattleScene", false, options);
                     } else {
                         this.setPinpoint(pinpoint);
                     }
